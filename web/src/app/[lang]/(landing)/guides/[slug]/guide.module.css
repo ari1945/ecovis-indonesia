@@ -1,0 +1,329 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-body);
+  color: var(--text-900);
+}
+
+/* --- Minimal header ----------------------------------------------------- */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px clamp(20px, 4vw, 56px);
+  border-bottom: 1px solid var(--border-300);
+  background: var(--white);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.logo img {
+  height: 46px;
+  width: auto;
+  display: block;
+  margin: -2px 0 -2px -12px;
+}
+
+.trust {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--text-500);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #2e7d32;
+  display: inline-block;
+}
+
+/* --- Hero --------------------------------------------------------------- */
+
+.hero {
+  background: linear-gradient(135deg, var(--maroon-900) 0%, var(--maroon-800) 58%, var(--maroon-700) 100%);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+}
+
+.blobA {
+  position: absolute;
+  top: -200px;
+  right: -140px;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: var(--maroon-600);
+  opacity: 0.4;
+}
+
+.blobB {
+  position: absolute;
+  bottom: -260px;
+  left: -160px;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: var(--maroon-850);
+  opacity: 0.6;
+}
+
+.heroInner {
+  position: relative;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 64px clamp(20px, 4vw, 56px) 72px;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 56px;
+  align-items: center;
+}
+
+@media (max-width: 899px) {
+  .heroInner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 100px;
+  padding: 7px 16px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--maroon-100);
+  margin-bottom: 26px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(34px, 4vw, 52px);
+  line-height: 1.06;
+  margin: 0 0 20px;
+  max-width: 640px;
+}
+
+.subtitle {
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.84);
+  margin: 0 0 34px;
+  max-width: 540px;
+  text-wrap: pretty;
+}
+
+.pitchBody {
+  display: flex;
+  gap: 26px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* --- Guide cover -------------------------------------------------------- */
+
+.cover {
+  width: 170px;
+  flex-shrink: 0;
+  aspect-ratio: 3 / 4;
+  border-radius: 6px;
+  background: var(--white);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transform: rotate(-2deg);
+  position: relative;
+}
+
+.coverBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, var(--maroon-800), var(--maroon-900));
+}
+
+.coverSpine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 100%;
+  background: var(--maroon-500);
+}
+
+.coverInner {
+  position: relative;
+  padding: 22px 18px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: var(--white);
+}
+
+.coverLogo {
+  align-self: flex-start;
+  margin-bottom: auto;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: #fff;
+}
+
+.coverLogo span {
+  font-weight: 600;
+  color: #e7a6af;
+}
+
+.coverEyebrow {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: #e7a6af;
+  margin-bottom: 8px;
+}
+
+.coverTitle {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 1.15;
+}
+
+.coverRule {
+  height: 2px;
+  width: 36px;
+  background: #e7a6af;
+  margin-top: 12px;
+}
+
+/* --- Bullets ------------------------------------------------------------ */
+
+.bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  min-width: 220px;
+  flex: 1;
+}
+
+.bullet {
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+  font-size: 14.5px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.bulletMark {
+  color: var(--maroon-100);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* --- Form card ---------------------------------------------------------- */
+
+.formCard {
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.28);
+  overflow: hidden;
+  color: var(--text-900);
+}
+
+/* --- Social proof ------------------------------------------------------- */
+
+.proofStrip {
+  background: var(--cream);
+  border-top: 1px solid var(--border-200);
+}
+
+.proofInner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 34px clamp(20px, 4vw, 56px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.proofLabel {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-400);
+}
+
+.proofItems {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.proofItem {
+  text-align: center;
+}
+
+.proofValue {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 26px;
+  color: var(--maroon-800);
+  line-height: 1;
+}
+
+.proofText {
+  font-size: 12px;
+  color: var(--text-500);
+  margin-top: 3px;
+}
+
+/* --- Footer ------------------------------------------------------------- */
+
+.footer {
+  background: var(--ink-900);
+  color: var(--on-dark-450);
+  font-size: 12.5px;
+  padding: 22px clamp(20px, 4vw, 56px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 22px;
+}
+
+.footerLinks a {
+  color: var(--on-dark-450);
+}
+
+.footerLinks a:hover {
+  color: var(--white);
+}

@@ -1,0 +1,133 @@
+.heroBlob {
+  position: absolute;
+  top: -260px;
+  right: -160px;
+  width: 560px;
+  height: 560px;
+  border-radius: 50%;
+  background: var(--maroon-600);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.layout {
+  padding-block: 72px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+/* The form and its sidebar stack rather than squeeze on narrow screens. */
+@media (max-width: 899px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.panel {
+  background: var(--white);
+  border: 1px solid var(--border-350);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.panelTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--maroon-500);
+}
+
+.address {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-800);
+  font-style: normal;
+}
+
+.contactLines {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 15px;
+}
+
+.hours {
+  font-size: 13.5px;
+  color: var(--text-500);
+}
+
+.directLines {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--text-800);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* --- Map placeholder ---------------------------------------------------- */
+
+.mapPlaceholder {
+  border: 1px solid var(--border-350);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #e9e6e2;
+  height: 230px;
+  position: relative;
+}
+
+.mapPattern {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(45deg, #e9e6e2, #e9e6e2 12px, #e2dfda 12px, #e2dfda 24px);
+}
+
+.mapContent {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.mapPin {
+  width: 36px;
+  height: 36px;
+  border-radius: 50% 50% 50% 0;
+  background: var(--maroon-800);
+  transform: rotate(-45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mapPinDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--white);
+  transform: rotate(45deg);
+}
+
+.mapText {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-600);
+}

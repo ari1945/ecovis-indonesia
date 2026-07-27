@@ -1,0 +1,120 @@
+.wrap {
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  min-height: 60vh;
+}
+
+.inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: clamp(56px, 8vw, 80px) var(--gutter);
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(36px, 5vw, 56px);
+  align-items: center;
+}
+
+.code {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 120px;
+  line-height: 0.9;
+  color: var(--maroon-800);
+  letter-spacing: -0.02em;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 32px;
+  color: var(--text-900);
+  margin: 18px 0 14px;
+}
+
+.sub {
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: var(--text-600);
+  margin: 0 0 28px;
+  max-width: 440px;
+}
+
+.actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.primary {
+  background: var(--maroon-800);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 26px;
+  border-radius: var(--radius);
+}
+
+.primary:hover {
+  background: var(--maroon-500);
+  color: var(--white);
+}
+
+.secondary {
+  border: 1.5px solid var(--rose-border);
+  color: var(--maroon-800);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 26px;
+  border-radius: var(--radius);
+}
+
+.secondary:hover {
+  border-color: var(--maroon-800);
+}
+
+.panel {
+  background: var(--white);
+  border: 1px solid var(--border-350);
+  border-radius: 6px;
+  padding: 30px 32px;
+}
+
+.panelHead {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-400);
+  margin-bottom: 16px;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+}
+
+.link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-top: 1px solid var(--border-100);
+  color: var(--text-900);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15.5px;
+}
+
+.link:hover {
+  color: var(--maroon-800);
+}
+
+.arrow {
+  color: var(--maroon-500);
+  font-size: 16px;
+}

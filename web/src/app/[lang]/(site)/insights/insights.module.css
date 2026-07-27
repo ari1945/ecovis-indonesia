@@ -1,0 +1,33 @@
+.heroBlob {
+  position: absolute;
+  top: -260px;
+  right: -160px;
+  width: 560px;
+  height: 560px;
+  border-radius: 50%;
+  background: var(--maroon-600);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.newsletter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.newsletterTitle {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 28px;
+  color: var(--white);
+  margin: 0 0 8px;
+}
+
+.newsletterSub {
+  margin: 0;
+  font-size: 15.5px;
+  color: var(--on-dark-300);
+}

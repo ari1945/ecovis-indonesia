@@ -1,0 +1,153 @@
+// Generated from the design prototype project/Contact.dc.html
+// by scripts/extract-pages.mjs — copy is verbatim from the approved design.
+// Each [a, b] pair is [English, Bahasa Indonesia]; read with t(lang, ...pair).
+
+export const contact = {
+    "tKicker": ["Contact", "Kontak"],
+    "tHeroTitle": ["Talk to a partner this week", "Bicara dengan partner minggu ini"],
+    "tHeroSub": ["Tell us what you're planning. We reply within one business day, and first consultations are without obligation.", "Ceritakan rencana Anda. Kami membalas dalam satu hari kerja, dan konsultasi pertama tanpa kewajiban."],
+    "tPhName": ["Full name", "Nama lengkap"],
+    "tPhCompany": ["Company", "Perusahaan"],
+    "tPhEmail": ["Work email", "Email kantor"],
+    "tPhPhone": ["Phone / WhatsApp", "Telepon / WhatsApp"],
+    "tPhMessage": ["Briefly describe your situation — e.g. 'German manufacturer planning a plant in West Java, need entity setup and payroll.'", "Jelaskan singkat situasi Anda — mis. 'Produsen Jerman merencanakan pabrik di Jawa Barat, butuh pendirian entitas dan penggajian.'"],
+    "tNameErr": ["Please enter your name.", "Mohon masukkan nama Anda."],
+    "tEmailErr": ["Enter a valid work email.", "Masukkan email kantor yang valid."],
+    "tPreferred": ["Preferred time to talk", "Waktu yang Anda inginkan untuk bicara"],
+    "tReview": ["Review", "Tinjauan"],
+    "tBack": ["← Back", "← Kembali"],
+    "tPrivacyNote": ["Your details are used only to respond to this inquiry and are handled under our confidentiality protocols.", "Data Anda hanya digunakan untuk menanggapi permintaan ini dan ditangani sesuai protokol kerahasiaan kami."],
+    "tSuccessTitle": ["Request received", "Permintaan diterima"],
+    "tSuccessLead": ["A partner from our", "Seorang partner dari tim"],
+    "tSuccessMid": ["team will reply to", "kami akan membalas ke"],
+    "tSuccessTail": ["within one business day to confirm a consultation for", "dalam satu hari kerja untuk mengonfirmasi konsultasi untuk"],
+    "tWhileWait": ["While you wait — browse our free guides", "Sambil menunggu — jelajahi panduan gratis kami"],
+    "tOfficeLabel": ["Jakarta office", "Kantor Jakarta"],
+    "tHours": ["Monday–Friday, 08:30–17:30 WIB", "Senin–Jumat, 08.30–17.30 WIB"],
+    "tMapText": ["Google Maps embed goes here", "Embed Google Maps di sini"],
+    "tDirectLines": ["Direct lines", "Kontak langsung"],
+    "tDirAudit": ["Audit", "Audit"],
+    "tDirTax": ["Tax & advisory", "Pajak & advisory"],
+    "tDirValuation": ["Valuation", "Valuasi"],
+    "tDirCareers": ["Careers", "Karier"],
+    "notDone": true,
+    "done": false,
+    "isStep1": true,
+    "isStep2": false,
+    "isStep3": false,
+    "canBack": false,
+    "stepTitle": ["What can we help with?", "Apa yang bisa kami bantu?"],
+    "stepHint": ["Pick the area closest to your situation.", "Pilih area yang paling dekat dengan situasi Anda."],
+    "nextLabel": ["Continue →", "Lanjut →"],
+    "consentBorder": ["#E3DED9", "#E3DED9"],
+    "tConsent": ["I agree that Ecovis Indonesia may process these details to respond to my request and follow up.", "Saya setuju Ecovis Indonesia memproses data ini untuk menanggapi permintaan saya dan menindaklanjuti."],
+    "tPrivacyLink": ["Privacy Policy", "Kebijakan Privasi"],
+    "steps": [
+      {
+        "label": ["1", "1"],
+        "name": ["Need", "Kebutuhan"],
+        "fg": ["#fff", "#fff"],
+        "textColor": ["#26282B", "#26282B"],
+        "connector": true,
+      },
+      {
+        "label": ["2", "2"],
+        "name": ["Details", "Detail"],
+        "fg": ["#9A9089", "#9A9089"],
+        "textColor": ["#9A9089", "#9A9089"],
+        "connector": true,
+      },
+      {
+        "label": ["3", "3"],
+        "name": ["Schedule", "Jadwal"],
+        "fg": ["#9A9089", "#9A9089"],
+        "textColor": ["#9A9089", "#9A9089"],
+        "connector": false,
+      },
+    ],
+    "needOptions": [
+      {
+        "name": ["Audit & Assurance", "Audit & Asurans"],
+        "dot": ["#C9C4BF", "#C9C4BF"],
+        "dotFill": ["transparent", "transparent"],
+      },
+      {
+        "name": ["Tax", "Pajak"],
+        "dot": ["#C9C4BF", "#C9C4BF"],
+        "dotFill": ["transparent", "transparent"],
+      },
+      {
+        "name": ["Accounting & Payroll", "Akuntansi & Penggajian"],
+        "dot": ["#C9C4BF", "#C9C4BF"],
+        "dotFill": ["transparent", "transparent"],
+      },
+      {
+        "name": ["PT PMA / Company setup", "PT PMA / Pendirian usaha"],
+        "dot": ["#C9C4BF", "#C9C4BF"],
+        "dotFill": ["transparent", "transparent"],
+      },
+      {
+        "name": ["Advisory / Corp. finance", "Advisory / Keuangan korporat"],
+        "dot": ["#C9C4BF", "#C9C4BF"],
+        "dotFill": ["transparent", "transparent"],
+      },
+      {
+        "name": ["Transfer pricing", "Transfer pricing"],
+        "dot": ["#C9C4BF", "#C9C4BF"],
+        "dotFill": ["transparent", "transparent"],
+      },
+      {
+        "name": ["Something else", "Lainnya"],
+        "dot": ["#C9C4BF", "#C9C4BF"],
+        "dotFill": ["transparent", "transparent"],
+      },
+    ],
+    "slotOptions": [
+      {
+        "name": ["This week", "Minggu ini"],
+      },
+      {
+        "name": ["Next week", "Minggu depan"],
+      },
+      {
+        "name": ["Morning (WIB)", "Pagi (WIB)"],
+      },
+      {
+        "name": ["Afternoon (WIB)", "Siang (WIB)"],
+      },
+    ],
+    "summary": [
+      {
+        "k": ["Need", "Kebutuhan"],
+        "v": ["—", "—"],
+      },
+      {
+        "k": ["Name", "Nama"],
+        "v": ["—", "—"],
+      },
+      {
+        "k": ["Company", "Perusahaan"],
+        "v": ["—", "—"],
+      },
+      {
+        "k": ["Email", "Email"],
+        "v": ["—", "—"],
+      },
+      {
+        "k": ["Preferred", "Waktu"],
+        "v": ["No preference", "Tidak ada preferensi"],
+      },
+    ],
+    "name": ["", ""],
+    "company": ["", ""],
+    "email": ["", ""],
+    "phone": ["", ""],
+    "message": ["", ""],
+    "nameBorder": ["#DDD9D5", "#DDD9D5"],
+    "emailBorder": ["#DDD9D5", "#DDD9D5"],
+    "nameErrH": ["0px", "0px"],
+    "emailErrH": ["0px", "0px"],
+    "firstName": ["there", "Anda"],
+    "needName": ["advisory", "advisory"],
+    "slotName": ["this week", "minggu ini"],
+  } as const;

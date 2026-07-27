@@ -1,0 +1,250 @@
+.footer {
+  background: var(--ink-900);
+  color: var(--on-dark-200);
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+
+.grid {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 64px var(--gutter) 48px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(32px, 4vw, 48px);
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.brandCol {
+  gap: 16px;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--white);
+  letter-spacing: 0.04em;
+}
+
+.wordmark span {
+  font-weight: 600;
+  color: var(--maroon-300);
+}
+
+.tagline {
+  margin: 0;
+  line-height: 1.65;
+  color: var(--on-dark-300);
+}
+
+.entities {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--on-dark-450);
+  line-height: 1.5;
+  border-top: 1px solid var(--ink-550);
+  padding-top: 16px;
+}
+
+.entityName {
+  color: var(--on-dark-200);
+}
+
+.colTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--white);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--on-dark-400);
+}
+
+.link {
+  color: var(--on-dark-200);
+}
+
+.link:hover {
+  color: var(--white);
+}
+
+.linkAccent {
+  color: var(--maroon-300);
+}
+
+.linkAccent:hover {
+  color: var(--white);
+}
+
+.address {
+  line-height: 1.6;
+  color: var(--on-dark-300);
+  font-style: normal;
+}
+
+.iconLink {
+  color: var(--on-dark-200);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.iconLink:hover {
+  color: var(--white);
+}
+
+.iconBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.iconBadgeWa {
+  background: var(--whatsapp);
+  color: var(--whatsapp-ink);
+}
+
+.iconBadgeIn {
+  background: var(--ink-600);
+  color: var(--white);
+  font-weight: 700;
+}
+
+.bottom {
+  border-top: 1px solid var(--ink-550);
+}
+
+.bottomInner {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 20px var(--gutter);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 12.5px;
+  color: var(--on-dark-400);
+}
+
+.bottomLinks {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.bottomLink {
+  color: var(--on-dark-400);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  padding: 0;
+}
+
+.bottomLink:hover {
+  color: var(--white);
+}
+
+/* --- Cookie consent ----------------------------------------------------- */
+
+.cookie {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3000;
+  background: var(--ink-800);
+  border-top: 2px solid var(--maroon-800);
+  color: var(--on-dark-500);
+  font-family: var(--font-body);
+}
+
+.cookieInner {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 18px var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.cookieBody {
+  flex: 1;
+  min-width: 260px;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.cookieBody a {
+  color: #e7a6af;
+}
+
+.cookieBody a:hover {
+  color: var(--white);
+}
+
+.cookieActions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cookieDecline {
+  background: transparent;
+  color: var(--on-dark-500);
+  border: 1px solid var(--ink-500);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13.5px;
+  padding: 10px 20px;
+  border-radius: var(--radius);
+}
+
+.cookieDecline:hover {
+  border-color: var(--on-dark-200);
+  color: var(--white);
+}
+
+.cookieAccept {
+  background: var(--maroon-800);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13.5px;
+  padding: 10px 22px;
+  border-radius: var(--radius);
+}
+
+.cookieAccept:hover {
+  background: var(--maroon-500);
+}

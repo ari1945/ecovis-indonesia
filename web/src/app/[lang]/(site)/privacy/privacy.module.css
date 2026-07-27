@@ -1,0 +1,165 @@
+.heroBlob {
+  position: absolute;
+  top: -260px;
+  right: -160px;
+  width: 560px;
+  height: 560px;
+  border-radius: 50%;
+  background: var(--maroon-600);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.heroInner {
+  position: relative;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 60px var(--gutter) 64px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(30px, 4.5vw, 42px);
+  color: var(--white);
+  margin: 0 0 14px;
+}
+
+.intro {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  max-width: 600px;
+}
+
+.updated {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 20px;
+}
+
+.layout {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 56px var(--gutter) 80px;
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
+}
+
+@media (max-width: 899px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .toc {
+    position: static;
+  }
+}
+
+.toc {
+  position: sticky;
+  top: 132px;
+}
+
+.tocHead {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-400);
+  margin-bottom: 14px;
+}
+
+.tocLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tocLink {
+  font-size: 13.5px;
+  color: var(--text-600);
+  line-height: 1.4;
+}
+
+.tocLink:hover {
+  color: var(--maroon-800);
+}
+
+.body {
+  min-width: 0;
+}
+
+.section {
+  margin-bottom: 38px;
+  scroll-margin-top: 130px;
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 23px;
+  color: var(--text-900);
+  margin: 0 0 14px;
+}
+
+.para {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-800);
+  margin: 0 0 16px;
+  text-wrap: pretty;
+}
+
+.list {
+  margin: 0 0 8px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.listItem {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--text-800);
+}
+
+.listMark {
+  color: var(--maroon-500);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.contactBox {
+  background: var(--cream);
+  border: 1px solid var(--border-350);
+  border-radius: 6px;
+  padding: 26px 28px;
+  margin-top: 8px;
+}
+
+.contactTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--text-900);
+  margin-bottom: 8px;
+}
+
+.contactText {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-800);
+  margin: 0;
+}
