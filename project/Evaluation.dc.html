@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>html{scroll-behavior:smooth}body{margin:0;background:#fff}a{color:#A31631;text-decoration:none}a:hover{color:#6E1423}</style>
+</helmet>
+<div style="font-family:'IBM Plex Sans',sans-serif;color:#26282B">
+
+<section data-screen-label="Cover" style="background:linear-gradient(135deg,#4E0D19 0%,#6E1423 55%,#7E1A2C 100%);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-200px;right:-140px;width:620px;height:620px;border-radius:50%;background:#8E2136;opacity:0.5"></div>
+  <div style="position:relative;max-width:1120px;margin:0 auto;padding:clamp(48px,7vw,88px) clamp(20px,5vw,48px) clamp(52px,7vw,84px)">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:0.14em;text-transform:uppercase;color:#D98A94;margin-bottom:20px">Design review · Internal</div>
+    <h1 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(32px,5.4vw,52px);line-height:1.08;color:#fff;margin:0 0 20px;max-width:820px;text-wrap:pretty">Evaluasi Menyeluruh Rancangan Website Ecovis Indonesia</h1>
+    <p style="font-size:clamp(16px,1.8vw,18.5px);line-height:1.65;color:rgba(255,255,255,0.84);margin:0 0 36px;max-width:660px;text-wrap:pretty">Telaah 30 halaman rancangan terhadap delapan dimensi — arsitektur informasi, kredibilitas, konversi, aksesibilitas, SEO &amp; multibahasa, dan kesehatan kode. Berisi 17 temuan berperingkat dan roadmap perbaikan tiga gelombang.</p>
+    <div style="display:flex;gap:clamp(24px,4vw,56px);flex-wrap:wrap;border-top:1px solid rgba(255,255,255,0.2);padding-top:26px">
+      <div style="display:flex;flex-direction:column;gap:5px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:34px;color:#fff;line-height:1">5,6<span style="font-size:18px;color:rgba(255,255,255,0.55)">/10</span></span><span style="font-size:13px;color:#D98A94">Skor keseluruhan</span></div>
+      <div style="display:flex;flex-direction:column;gap:5px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:34px;color:#fff;line-height:1">30</span><span style="font-size:13px;color:#D98A94">Halaman ditelaah</span></div>
+      <div style="display:flex;flex-direction:column;gap:5px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:34px;color:#fff;line-height:1">5</span><span style="font-size:13px;color:#D98A94">Temuan kritis (P0)</span></div>
+      <div style="display:flex;flex-direction:column;gap:5px"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:34px;color:#fff;line-height:1">6</span><span style="font-size:13px;color:#D98A94">Quick win &lt; 1 hari</span></div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Ringkasan" style="background:#fff;border-bottom:1px solid #ECE9E6">
+  <div style="max-width:1120px;margin:0 auto;padding:clamp(48px,6vw,72px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,5vw,64px)">
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#A31631;margin-bottom:12px">Ringkasan eksekutif</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(24px,3.2vw,32px);margin:0 0 18px;line-height:1.2;text-wrap:pretty">Kerangkanya sudah profesional. Yang kurang adalah bukti.</h2>
+      <p style="font-size:16px;line-height:1.7;color:#5C6166;margin:0 0 14px;text-wrap:pretty">Struktur situs, sistem warna, dan tata bahasa desainnya konsisten dan pantas untuk firma jasa profesional. Alur kontak tiga langkah di <a href="Contact.dc.html">Contact</a> bahkan di atas rata-rata industri di Indonesia.</p>
+      <p style="font-size:16px;line-height:1.7;color:#5C6166;margin:0 0 14px;text-wrap:pretty">Masalahnya bukan estetika, melainkan <strong style="color:#26282B">kepercayaan</strong>. Situs ini menjual jasa yang dibeli berdasarkan orang dan izin — tetapi tidak menampilkan satu pun wajah, nama partner, testimoni, logo klien, studi kasus, atau nomor izin KAP. Semua klaim (“Top 15”, “9 tahun”, “3 firma anggota”) tidak dapat diverifikasi pengunjung.</p>
+      <p style="font-size:16px;line-height:1.7;color:#5C6166;margin:0;text-wrap:pretty">Isu terbesar kedua adalah <strong style="color:#26282B">kepatuhan &amp; keterjangkauan</strong>: formulir tanpa label dan tanpa persetujuan UU PDP, kontras teks di bawah WCAG AA, menu tanpa dukungan keyboard, dan pengalih bahasa yang tidak menghasilkan URL sehingga versi Bahasa Indonesia tidak pernah terindeks.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#A31631">Kartu skor</div>
+      <sc-for list="{{ scores }}" as="s" hint-placeholder-count="8">
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+            <span style="font-family:'Manrope',sans-serif;font-weight:700;font-size:15px">{{ s.name }}</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:13.5px;color:{{ s.color }}">{{ s.label }}</span>
+          </div>
+          <div style="height:6px;background:#EFEBE8;border-radius:100px;overflow:hidden"><div style="height:100%;width:{{ s.pct }};background:{{ s.color }};border-radius:100px"></div></div>
+          <span style="font-size:13px;color:#6B7075;line-height:1.45">{{ s.note }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Yang sudah kuat" style="background:#F6F4F2">
+  <div style="max-width:1120px;margin:0 auto;padding:clamp(44px,6vw,72px) clamp(20px,5vw,48px)">
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(22px,3vw,28px);margin:0 0 30px">Yang sudah kuat — pertahankan</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px">
+      <sc-for list="{{ strengths }}" as="w" hint-placeholder-count="6">
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:4px;padding:22px 22px 24px;display:flex;flex-direction:column;gap:9px">
+          <div style="width:24px;height:3px;background:#2E7D32"></div>
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;line-height:1.3">{{ w.title }}</div>
+          <div style="font-size:14px;color:#5C6166;line-height:1.55">{{ w.text }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Temuan" style="background:#fff">
+  <div style="max-width:1120px;margin:0 auto;padding:clamp(48px,6vw,76px) clamp(20px,5vw,48px)">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:32px">
+      <div>
+        <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#A31631;margin-bottom:10px">17 temuan</div>
+        <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(24px,3.2vw,32px);margin:0">Temuan &amp; saran perbaikan</h2>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+          <button onClick="{{ f.pick }}" style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13.5px;padding:9px 16px;border-radius:100px;cursor:pointer;border:1.5px solid {{ f.border }};background:{{ f.bg }};color:{{ f.color }}" style-hover="border-color:#6E1423">{{ f.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="background:#F0F6F0;border:1px solid #CADFCB;border-left:4px solid #2E7D32;border-radius:4px;padding:20px 24px;margin-bottom:20px">
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;color:#1F5C24;margin-bottom:6px">Sudah diterapkan pada 26 Juli 2026</div>
+      <div style="font-size:14px;color:#3D5C40;line-height:1.6">P0-4 (formulir berlabel + persetujuan UU PDP + janji respons di 10 formulir), P0-5 (kontras teks, skip-link, ARIA menu, tutup dengan Escape), sebagian P0-3 (izin, keanggotaan profesi, jam operasional di footer), dan lima dari enam quick win. Temuan yang menuntut aset atau data asli — foto, studi kasus, nomor izin — masih terbuka.</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <sc-for list="{{ findings }}" as="f" hint-placeholder-count="8">
+        <div style="border:1px solid #E8E4E1;border-left:4px solid {{ f.sevColor }};border-radius:4px;background:#fff">
+          <button onClick="{{ f.toggle }}" style="width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:22px 24px;display:flex;gap:18px;align-items:flex-start;font-family:'IBM Plex Sans',sans-serif" style-hover="background:#FBF9F8">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;color:#fff;background:{{ f.sevColor }};padding:4px 9px;border-radius:2px;flex-shrink:0;margin-top:2px">{{ f.sev }}</span>
+            <span style="flex:1;display:flex;flex-direction:column;gap:6px;min-width:0">
+              <span style="font-family:'Manrope',sans-serif;font-weight:700;font-size:clamp(16.5px,1.9vw,19px);line-height:1.3;color:#26282B;text-wrap:pretty">{{ f.title }}</span>
+              <span style="font-size:14px;color:#6B7075;line-height:1.5">{{ f.summary }}</span>
+            </span>
+            <span style="font-size:13px;color:#A31631;flex-shrink:0;margin-top:5px;transform:{{ f.caret }};transition:transform .18s">▼</span>
+          </button>
+          <div style="display:{{ f.bodyDisplay }};padding:0 24px 26px 66px">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px;border-top:1px solid #EFEBE8;padding-top:20px">
+              <div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#7C716A;margin-bottom:8px">Bukti</div>
+                <div style="font-size:14.5px;line-height:1.65;color:#5C6166">{{ f.evidence }}</div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#7C716A;margin-top:12px;line-height:1.6;word-break:break-word">{{ f.files }}</div>
+              </div>
+              <div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#7C716A;margin-bottom:8px">Rekomendasi</div>
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  <sc-for list="{{ f.fixes }}" as="x" hint-placeholder-count="3">
+                    <div style="display:flex;gap:10px;font-size:14.5px;line-height:1.6;color:#26282B"><span style="color:#A31631;flex-shrink:0">→</span><span>{{ x }}</span></div>
+                  </sc-for>
+                </div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px">
+                  <span style="font-size:12px;color:#5C6166;background:#F6F4F2;border:1px solid #E8E4E1;padding:4px 10px;border-radius:2px">Dampak: {{ f.impact }}</span>
+                  <span style="font-size:12px;color:#5C6166;background:#F6F4F2;border:1px solid #E8E4E1;padding:4px 10px;border-radius:2px">Upaya: {{ f.effort }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<sc-if value="{{ showRoadmap }}" hint-placeholder-val="{{ true }}">
+<section data-screen-label="Roadmap" style="background:#26282B;color:#fff">
+  <div style="max-width:1120px;margin:0 auto;padding:clamp(48px,6vw,80px) clamp(20px,5vw,48px)">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#D98A94;margin-bottom:12px">Urutan pengerjaan</div>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(24px,3.2vw,32px);margin:0 0 40px;max-width:620px;text-wrap:pretty">Roadmap tiga gelombang</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
+      <sc-for list="{{ waves }}" as="w" hint-placeholder-count="3">
+        <div style="background:#2E3134;border:1px solid #3A3D41;border-radius:4px;padding:28px 26px;display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+            <span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:15px;color:#D98A94;letter-spacing:0.06em">{{ w.num }}</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#9BA0A5">{{ w.time }}</span>
+          </div>
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:20px;line-height:1.25;text-wrap:pretty">{{ w.title }}</div>
+          <div style="font-size:14px;color:#B9BDC1;line-height:1.6">{{ w.goal }}</div>
+          <div style="display:flex;flex-direction:column;gap:7px;border-top:1px solid #3A3D41;padding-top:14px">
+            <sc-for list="{{ w.items }}" as="i" hint-placeholder-count="4">
+              <div style="display:flex;gap:9px;font-size:13.5px;line-height:1.5;color:#D6D9DC"><span style="color:#8E2136">■</span><span>{{ i }}</span></div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ showQuickWins }}" hint-placeholder-val="{{ true }}">
+<section data-screen-label="Quick wins" style="background:#F6F4F2">
+  <div style="max-width:1120px;margin:0 auto;padding:clamp(44px,6vw,72px) clamp(20px,5vw,48px)">
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(22px,3vw,28px);margin:0 0 8px">Enam perbaikan yang bisa selesai hari ini</h2>
+    <p style="font-size:15.5px;color:#5C6166;margin:0 0 28px;max-width:640px">Semuanya sunting kecil pada file yang sudah ada, tanpa halaman baru dan tanpa aset baru.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px">
+      <sc-for list="{{ quickWins }}" as="q" hint-placeholder-count="6">
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:4px;padding:20px 22px;display:flex;gap:14px;align-items:flex-start">
+          <span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:14px;color:#A31631;flex-shrink:0;margin-top:2px">{{ q.num }}</span>
+          <span style="display:flex;flex-direction:column;gap:5px">
+            <span style="font-family:'Manrope',sans-serif;font-weight:700;font-size:15.5px;line-height:1.3">{{ q.title }}</span>
+            <span style="font-size:13.5px;color:#6B7075;line-height:1.55">{{ q.text }}</span>
+          </span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<section data-screen-label="Penutup" style="background:#fff;border-top:1px solid #ECE9E6">
+  <div style="max-width:1120px;margin:0 auto;padding:clamp(40px,5vw,64px) clamp(20px,5vw,48px);display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap">
+    <div style="max-width:560px">
+      <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:20px;margin-bottom:8px">Langkah berikutnya</div>
+      <p style="margin:0;font-size:15.5px;color:#5C6166;line-height:1.65">Sebutkan temuan mana yang ingin dikerjakan lebih dulu — misalnya “kerjakan P0-1 sampai P0-5”, atau “satukan formulir layanan” — dan perubahannya langsung saya terapkan ke halaman terkait.</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="Home.dc.html" style="border:1.5px solid #E3D6D8;color:#6E1423;font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;padding:13px 24px;border-radius:3px" style-hover="border-color:#6E1423;color:#6E1423">Buka Home</a>
+      <a href="Blueprint.dc.html" style="background:#6E1423;color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;padding:13px 24px;border-radius:3px" style-hover="background:#A31631;color:#fff">Lihat Blueprint</a>
+    </div>
+  </div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280},&quot;showRoadmap&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Bagian&quot;},&quot;showQuickWins&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Bagian&quot;}}">
+class Component extends DCLogic {
+  state = { sev: 'Semua', open: 1 };
+  renderVals() {
+    const sevColors = { P0: '#A31631', P1: '#B26B00', P2: '#5C6166' };
+    const raw = [
+      { id: 1, sev: 'P0', impact: 'Tinggi', effort: 'Sedang',
+        title: 'Nol fotografi — situs jasa profesional tanpa satu pun wajah',
+        summary: 'Satu-satunya gambar di seluruh 30 halaman adalah file logo.',
+        evidence: 'Pencarian tag gambar di seluruh proyek hanya menemukan assets/logo.png (header, drawer, mockup mobile, development guide). Tidak ada foto partner, tim, kantor, maupun gambar artikel. Seluruh hierarki visual bertumpu pada warna dan tipografi.',
+        files: 'Home, About, Careers, Insights, ArticleDetail, 10 halaman layanan',
+        fixes: ['Headshot semua partner & manajer senior di About#leadership dan di kartu penulis artikel.', 'Satu foto kantor Jakarta yang sungguhan pada hero About dan halaman Contact.', 'Gambar sampul per artikel di Insights — kartu teks-saja menekan rasio klik.', 'Kalau foto belum tersedia, pasang slot placeholder berlabel supaya jelas apa yang harus difoto, bukan dibiarkan kosong.'] },
+      { id: 2, sev: 'P0', impact: 'Tinggi', effort: 'Sedang',
+        title: 'Tidak ada bukti sosial: testimoni, logo klien, atau studi kasus',
+        summary: 'Situs memuat klaim tentang diri sendiri, tanpa satu pun suara pihak ketiga.',
+        evidence: 'Home menampilkan enam poin “Why Ecovis” dan lima statistik jaringan — semuanya pernyataan sepihak. Tidak ada kutipan klien, logo klien, jumlah engagement, maupun cerita penugasan di halaman mana pun.',
+        files: 'Home, Services, 10 halaman layanan, About',
+        fixes: ['Tambah 3–5 studi kasus pendek berformat tetap: situasi → pekerjaan → hasil terukur, dengan sektor dan tahun (boleh anonim: “PT PMA manufaktur Jepang, 2025”).', 'Satu baris logo klien atau, bila terikat kerahasiaan, baris “sektor yang kami layani + jumlah klien aktif”.', 'Satu kutipan klien pada setiap halaman layanan, tepat di atas formulir.', 'Sebutkan afiliasi terverifikasi (jaringan ECOVIS, keanggotaan asosiasi) sebagai lencana, bukan sekadar teks berjalan di bar atas.'] },
+      { id: 3, sev: 'P0', impact: 'Tinggi', effort: 'Rendah',
+        title: 'Kredensial dan identitas legal tidak ditampilkan',
+        summary: 'Nama KAP, nomor izin, dan struktur tiga entitas tidak pernah dijelaskan.',
+        evidence: 'Home menyebut “3 Specialized member firms in Indonesia” tanpa menyebut nama satu pun. Tidak ada nama Kantor Akuntan Publik beserta nomor izin usaha, nomor izin akuntan publik penanggung jawab, izin konsultan pajak, keanggotaan IAPI/IKPI, alamat kantor terdaftar, maupun NPWP/NIB entitas.',
+        files: 'Home, About, SiteFooter, Audit, Tax',
+        fixes: ['Blok “Entitas hukum kami” di About: nama tiap firma, izin apa yang dipegang, jasa apa yang diberikan lewat entitas mana.', 'Nomor izin KAP dan izin konsultan pajak di footer — standar di situs firma audit Indonesia dan menjadi sinyal kepercayaan terkuat yang bisa dipasang gratis.', 'Alamat kantor lengkap + jam operasional di footer dan halaman Contact.', 'Pernyataan singkat independensi & pengendalian mutu di halaman Audit.'] },
+      { id: 4, sev: 'P0', impact: 'Tinggi', effort: 'Rendah',
+        title: 'Dua pengalaman formulir yang saling bertabrakan',
+        summary: 'Wizard tiga langkah di Contact vs tiga kolom tanpa validasi di 8 halaman layanan.',
+        evidence: 'Contact.dc.html memiliki wizard berlangkah dengan validasi nama/email dan layar sukses. Delapan halaman layanan memakai blok identik berisi tiga input polos tanpa label, tanpa validasi, tanpa penanganan galat, dan tanpa persetujuan pemrosesan data.',
+        files: 'Audit, Tax, Accounting, Payroll, Advisory, CorporateFinance, TransferPricing, ESG, DigitalSolutions, Resources',
+        fixes: ['Ekstrak satu komponen formulir bersama, dipakai semua halaman layanan; kirim nama layanan sebagai prop agar prospek terlacak sumbernya.', 'Tambah checkbox persetujuan pemrosesan data pribadi dengan tautan ke Kebijakan Privasi — kewajiban UU 27/2022 (PDP) untuk formulir prospek.', 'Tampilkan waktu respons yang dijanjikan (“balasan dalam 1 hari kerja”) tepat di bawah tombol — pengangkat konversi termurah.', 'Sediakan state galat dan gagal-kirim, bukan hanya jalur sukses.'] },
+      { id: 5, sev: 'P0', impact: 'Sedang', effort: 'Rendah',
+        title: 'Aksesibilitas di bawah WCAG AA pada empat titik',
+        summary: 'Kontras teks, label formulir, menu keyboard, dan panel drawer.',
+        evidence: 'Warna teks #9A9FA4 di atas putih hanya 2,7:1 dan #75797E hanya 4,4:1 — keduanya di bawah ambang 4,5:1 untuk teks kecil, dan dipakai untuk catatan formulir 12px serta deskripsi kartu. Input hanya memakai placeholder sebagai label. Dropdown header terbuka hanya lewat hover, tanpa aria-expanded maupun navigasi keyboard. Drawer mobile tidak menjebak fokus dan tidak tertutup dengan Escape.',
+        files: 'SiteHeader, seluruh halaman berformulir, kartu di Home/Services',
+        fixes: ['Naikkan abu-abu teks minimal ke #6B7075 untuk 14px ke bawah; #9A9FA4 hanya untuk elemen non-teks.', 'Ganti placeholder-sebagai-label dengan label tetap di atas input.', 'Buka dropdown lewat fokus dan tombol Enter/Space, isi aria-expanded serta aria-haspopup, tutup dengan Escape.', 'Tambah skip-link “Lewati ke konten”, jebak fokus di drawer, dan kembalikan fokus ke tombol menu saat ditutup.'] },
+      { id: 6, sev: 'P1', impact: 'Tinggi', effort: 'Tinggi',
+        title: 'Pengalih bahasa tidak menghasilkan URL — versi Indonesia tak terindeks',
+        summary: 'EN/ID hanya state di localStorage; tidak ada /en dan /id.',
+        evidence: 'SiteHeader menyimpan pilihan bahasa di localStorage dan menyiarkannya lewat event; 20+ komponen mendengarkan lalu memilih string. Konsekuensinya satu URL untuk dua bahasa, atribut lang pada dokumen tidak pernah berubah, halaman berbahasa Indonesia tidak dapat ditautkan atau dibagikan, dan mesin pencari hanya melihat satu versi.',
+        files: 'SiteHeader dan seluruh halaman',
+        fixes: ['Pindah ke rute per bahasa (/en/..., /id/...) dengan tag hreflang timbal balik saat dibangun jadi situs sungguhan.', 'Perbarui atribut lang dokumen mengikuti pilihan bahasa.', 'Pindahkan seluruh string ke satu berkas kamus, bukan pasangan teks yang tersebar di 20 komponen.', 'Untuk sekarang, minimal simpan pilihan di query string agar tautan dapat dibagikan.'] },
+      { id: 7, sev: 'P1', impact: 'Sedang', effort: 'Sedang',
+        title: 'Delapan halaman layanan adalah salinan nyaris identik',
+        summary: 'Struktur, formulir, dan boilerplate bahasa diulang di setiap file.',
+        evidence: 'Halaman Audit, Tax, Accounting, Payroll, Advisory, Corporate Finance, Transfer Pricing, ESG, dan Digital Solutions memiliki urutan bagian dan blok formulir yang sama persis pada baris yang sama. Boilerplate pemantau bahasa (componentDidMount/componentWillUnmount) disalin ke lebih dari 20 file.',
+        files: '9 halaman layanan + seluruh halaman',
+        fixes: ['Satu komponen halaman layanan berbasis data; tiap layanan hanya mengisi konten.', 'Satu modul bantu bahasa yang di-import, bukan disalin.', 'Manfaatnya nyata: perbaikan aksesibilitas atau formulir cukup dilakukan sekali, bukan sembilan kali.'] },
+      { id: 8, sev: 'P1', impact: 'Tinggi', effort: 'Sedang',
+        title: 'Fondasi SEO belum dipasang padahal bahannya sudah ada',
+        summary: 'Tanpa title/meta per halaman, tanpa data terstruktur, padahal FAQ sudah ditulis.',
+        evidence: 'Setiap halaman layanan sudah memuat akordeon FAQ dan uraian layanan yang cukup panjang — bahan mentah paling berharga untuk pencarian — tetapi tidak ada title, meta description, Open Graph, breadcrumb, maupun JSON-LD.',
+        files: 'Seluruh halaman, terutama 9 halaman layanan',
+        fixes: ['Title dan meta description unik per halaman, berorientasi maksud pencarian (“Jasa Audit Laporan Keuangan Jakarta | Ecovis Indonesia”).', 'JSON-LD ProfessionalService untuk organisasi dan FAQPage untuk setiap akordeon FAQ — jalur tercepat menuju hasil kaya.', 'Breadcrumb pada halaman anak; kartu Open Graph agar tautan yang dibagikan di WhatsApp/LinkedIn tampil layak.'] },
+      { id: 9, sev: 'P1', impact: 'Sedang', effort: 'Sedang',
+        title: 'Sembilan industri hanya berupa jangkar, bukan halaman',
+        summary: 'Semua tautan industri menuju Industries.dc.html#anchor.',
+        evidence: 'Home dan header menautkan sembilan sektor, tetapi seluruhnya mengarah ke jangkar pada satu halaman. Tidak ada halaman industri yang bisa diperingkatkan, dan tidak ada bukti spesifik sektor.',
+        files: 'Home, Industries, SiteHeader',
+        fixes: ['Berikan halaman penuh untuk empat sektor prioritas terlebih dahulu (manufaktur, teknologi, jasa keuangan, energi).', 'Isi tiap halaman dengan isu regulasi khas sektor, layanan yang relevan, dan satu studi kasus — bukan paragraf umum yang diganti kata kuncinya.', 'Sisanya tetap sebagai daftar sampai ada bahan nyata; halaman kosong lebih merugikan daripada tidak ada halaman.'] },
+      { id: 10, sev: 'P1', impact: 'Sedang', effort: 'Rendah',
+        title: 'Jalur kontak khas Indonesia belum tersedia',
+        summary: 'Tidak ada WhatsApp, nomor telepon, alamat kantor, atau jam operasional.',
+        evidence: 'Satu-satunya kontak langsung adalah alamat email di bar atas dan formulir. Untuk pasar Indonesia, WhatsApp umumnya menjadi saluran pertama bagi calon klien korporat.',
+        files: 'SiteHeader, SiteFooter, Contact',
+        fixes: ['Tombol WhatsApp click-to-chat di header dan pada tiap halaman layanan, dengan pesan awal yang sudah terisi sesuai layanan.', 'Nomor telepon kantor yang dapat diklik dan jam operasional (WIB) di footer.', 'Alamat kantor dengan peta di halaman Contact.'] },
+      { id: 11, sev: 'P1', impact: 'Sedang', effort: 'Rendah',
+        title: 'Hanya ada satu tingkat CTA — semuanya “Schedule a Consultation”',
+        summary: 'Tidak ada langkah bagi pengunjung yang belum siap bicara dengan partner.',
+        evidence: 'Ajakan yang sama muncul di header, hero, bagian CTA, dan setiap halaman layanan. Mayoritas pengunjung sedang meriset, bukan membeli, sehingga sebagian besar lalu lintas tidak punya langkah lanjutan.',
+        files: 'SiteHeader, Home, seluruh halaman layanan',
+        fixes: ['Tambah CTA berkomitmen rendah di samping CTA utama: unduh panduan pendirian PT PMA, kalender kepatuhan pajak, atau checklist kesiapan Coretax.', 'Tukar dengan alamat email — begitulah daftar prospek dibangun dan Resources sudah punya perangkatnya.', 'Ubah judul CTA agar spesifik per konteks (“Diskusikan kebutuhan audit Anda”) alih-alih satu kalimat generik.'] },
+      { id: 12, sev: 'P1', impact: 'Rendah', effort: 'Rendah',
+        title: 'Insights belum berperilaku seperti pusat pengetahuan',
+        summary: 'Hanya filter kategori: tanpa pencarian, penulis, waktu baca, atau paginasi.',
+        evidence: 'Insights menyediakan penyaring kategori saja. Artikel tidak menampilkan penulis, tanpa estimasi waktu baca, tanpa artikel terkait, dan tanpa paginasi. Semua tanggal berada di tahun 2026 tanpa kebijakan kesegaran konten.',
+        files: 'Insights, ArticleDetail',
+        fixes: ['Tambah pencarian, penulis dengan foto, waktu baca, dan tiga artikel terkait di akhir tulisan.', 'Pisahkan “Tax Alert” sebagai kanal tersendiri dengan langganan — inilah yang benar-benar dicari klien.', 'Tetapkan irama publikasi dan tanggal tinjau ulang; konten pajak basi lebih merusak kredibilitas daripada tidak ada konten.'] },
+      { id: 13, sev: 'P2', impact: 'Sedang', effort: 'Rendah',
+        title: 'Angka-angka dipakai tanpa sumber dan tahun',
+        summary: '“Top 15”, “~5%”, “280M+”, “9 tahun” muncul tanpa atribusi.',
+        evidence: 'Statistik pada Home ditampilkan sebagai fakta tanpa sumber maupun tanggal. Firma audit dinilai justru dari ketelitian semacam ini, sehingga angka tak bersumber di halaman muka menimbulkan kesan sebaliknya.',
+        files: 'Home',
+        fixes: ['Cantumkan sumber dan tahun di bawah blok statistik (BPS, Bank Dunia, laporan jaringan ECOVIS).', 'Tetapkan pengingat tinjau tahunan untuk setiap angka.', 'Hapus klaim peringkat yang tidak dapat ditunjukkan sumbernya.'] },
+      { id: 14, sev: 'P2', impact: 'Sedang', effort: 'Sedang',
+        title: 'Irama visual seragam di seluruh situs',
+        summary: 'Setiap halaman: hero gradien merah, lalu deretan kartu di latar krem.',
+        evidence: 'Pola bagian nyaris sama pada semua halaman — hero gradien, grid kartu, bagian gelap, CTA. Tidak ada layout penuh lebar, tanpa tata letak editorial, tanpa visualisasi data, dan tanpa halaman yang terasa berbeda dari lainnya.',
+        files: 'Seluruh halaman',
+        fixes: ['Tambah dua sampai tiga pola bagian baru: perbandingan dua kolom, garis waktu penugasan, dan blok kutipan penuh lebar.', 'Beri satu bagian penanda khas per jenis halaman agar layanan, industri, dan insight terasa berbeda.', 'Kurangi kedalaman gradien pada hero sekunder — gradien identik di setiap halaman melemahkan hero utama.'] },
+      { id: 15, sev: 'P2', impact: 'Rendah', effort: 'Rendah',
+        title: 'Mockup mobile statis akan menyimpang dari halaman sungguhan',
+        summary: 'Mobile.dc.html menyalin konten header dan halaman secara manual.',
+        evidence: 'Mobile.dc.html menyusun ulang bar atas, header, dan konten halaman sebagai markup statis di dalam bingkai perangkat. Begitu halaman aslinya berubah, mockup ini menjadi menyesatkan.',
+        files: 'Mobile',
+        fixes: ['Beri label jelas sebagai artefak presentasi bertanggal, atau', 'Bangun ulang dengan menyematkan halaman sungguhan ke dalam bingkai perangkat agar selalu sinkron.'] },
+      { id: 16, sev: 'P2', impact: 'Sedang', effort: 'Tinggi',
+        title: 'Beberapa halaman yang diharapkan pengunjung belum ada',
+        summary: 'Tim, studi kasus, lokasi kantor, berita, syarat penggunaan, peta situs.',
+        evidence: 'Struktur mencakup layanan, industri, insight, sumber daya, karier, dan kebijakan privasi. Belum ada halaman tim dengan profil individual, studi kasus, kantor & lokasi, berita/penghargaan, syarat penggunaan, maupun peta situs.',
+        files: 'Struktur situs',
+        fixes: ['Prioritaskan Tim dan Studi Kasus — keduanya langsung menutup celah kredibilitas terbesar.', 'Kantor & Lokasi penting untuk pencarian lokal.', 'Syarat Penggunaan dan Peta Situs bersifat higienis; cepat dikerjakan menjelang peluncuran.'] },
+      { id: 17, sev: 'P2', impact: 'Rendah', effort: 'Rendah',
+        title: 'Status formulir belum lengkap di luar jalur sukses',
+        summary: 'Tidak ada state memuat, gagal kirim, maupun batas pengiriman ganda.',
+        evidence: 'Formulir menandai keberhasilan lewat state internal dan langsung menampilkan layar sukses. Tidak ada indikator proses pengiriman, tidak ada penanganan kegagalan, dan tombol tidak dinonaktifkan setelah diklik.',
+        files: 'Contact, Resources, 8 halaman layanan',
+        fixes: ['Tambah state memuat pada tombol dan nonaktifkan saat proses berjalan.', 'Sediakan pesan gagal dengan jalur alternatif (email/WhatsApp).', 'Arahkan ke ThankYou.dc.html agar konversi dapat diukur, bukan sekadar mengganti isi kartu.'] }
+    ];
+    const sev = this.state.sev;
+    const filters = ['Semua', 'P0', 'P1', 'P2'].map(k => ({
+      label: k === 'Semua' ? 'Semua (17)' : k + ' (' + raw.filter(f => f.sev === k).length + ')',
+      pick: () => this.setState({ sev: k }),
+      bg: sev === k ? '#6E1423' : '#fff',
+      color: sev === k ? '#fff' : '#5C6166',
+      border: sev === k ? '#6E1423' : '#E3DED9'
+    }));
+    const findings = raw.filter(f => sev === 'Semua' || f.sev === sev).map(f => {
+      const isOpen = this.state.open === f.id;
+      return Object.assign({}, f, {
+        sevColor: sevColors[f.sev],
+        sev: f.sev + '-' + f.id,
+        toggle: () => this.setState(s => ({ open: s.open === f.id ? null : f.id })),
+        caret: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+        bodyDisplay: isOpen ? 'block' : 'none'
+      });
+    });
+    const sc = [
+      ['Arsitektur informasi & navigasi', 7.5, 'Struktur logis, mega-menu jelas; industri belum punya halaman sendiri.'],
+      ['Visual & sistem brand', 7.0, 'Palet dan tipografi disiplin; irama antarhalaman terlalu seragam.'],
+      ['Konten & copywriting', 7.5, 'Spesifik dan relevan konteks Indonesia — kekuatan terbesar situs ini.'],
+      ['Kredibilitas & bukti', 3.5, 'Tanpa wajah, tanpa nama, tanpa testimoni, tanpa nomor izin.'],
+      ['Konversi', 5.5, 'Wizard kontak bagus; formulir layanan lemah dan CTA hanya satu tingkat.'],
+      ['Aksesibilitas', 4.0, 'Kontras, label, dan dukungan keyboard di bawah WCAG AA.'],
+      ['SEO & multibahasa', 4.0, 'Toggle bahasa tanpa URL; metadata dan data terstruktur belum ada.'],
+      ['Arsitektur kode', 5.5, 'Pola komponen rapi, tetapi sembilan halaman disalin manual.']
+    ].map(([name, v, note]) => ({
+      name, note, label: String(v).replace('.', ',') + '/10', pct: (v * 10) + '%',
+      color: v >= 7 ? '#2E7D32' : v >= 5 ? '#B26B00' : '#A31631'
+    }));
+    return {
+      showRoadmap: this.props.showRoadmap ?? true,
+      showQuickWins: this.props.showQuickWins ?? true,
+      scores: sc, filters, findings,
+      strengths: [
+        { title: 'Konteks Indonesia yang nyata', text: 'Coretax, OSS, PPh 21, BPJS, PT PMA, PPN 12% — copy-nya ditulis orang yang paham regulasi, bukan hasil terjemahan template global.' },
+        { title: 'Alur kontak tiga langkah', text: 'Wizard dengan validasi, ringkasan, dan pilihan waktu — di atas rata-rata firma sejenis di pasar ini.' },
+        { title: 'Disiplin sistem desain', text: 'Satu palet maroon, dua keluarga huruf, radius dan spasi konsisten di 30 halaman.' },
+        { title: 'Cakupan halaman lengkap', text: 'Sepuluh layanan, insight, sumber daya, karier, privasi, 404, dan terima kasih — jarang selengkap ini di tahap rancangan.' },
+        { title: 'Mobile sudah dipikirkan', text: 'Drawer dengan sub-menu, target sentuh 44px, dan breakpoint yang jelas — bukan sekadar menyusut.' },
+        { title: 'Kerangka dwibahasa sudah berdiri', text: 'Setiap string sudah punya pasangan EN/ID; tinggal masalah pengelolaan dan URL, bukan penerjemahan.' }
+      ],
+      waves: [
+        { num: 'GELOMBANG 1', time: '± 2 minggu', title: 'Kredibilitas & kepatuhan', goal: 'Menutup alasan utama prospek pergi tanpa menghubungi.', items: ['Foto partner, tim, dan kantor', 'Entitas hukum, izin, dan alamat', 'Tiga studi kasus pertama', 'Persetujuan data + label formulir', 'Perbaikan kontras dan keyboard'] },
+        { num: 'GELOMBANG 2', time: '± 4 minggu', title: 'Ditemukan & dikonversi', goal: 'Membuat halaman layak diperingkatkan dan memberi langkah bagi peneliti.', items: ['Metadata + JSON-LD FAQ', 'Rute /en dan /id', 'Empat halaman industri prioritas', 'CTA unduhan panduan', 'WhatsApp dan telepon'] },
+        { num: 'GELOMBANG 3', time: '6 minggu +', title: 'Skala konten & sistem', goal: 'Membuat situs mudah dirawat dan terus tumbuh.', items: ['Satu komponen halaman layanan', 'Kamus bahasa terpusat', 'Insight dengan pencarian & penulis', 'Pola bagian baru', 'Halaman tim, lokasi, syarat'] }
+      ],
+      quickWins: [
+        { num: '01', title: 'Naikkan kontras dua warna abu', text: 'Ganti #9A9FA4 dan #75797E pada teks kecil menjadi #6B7075 — memperbaiki hampir semua kegagalan WCAG sekaligus.' },
+        { num: '02', title: 'Label + persetujuan pada formulir', text: 'Label tetap di atas input dan checkbox persetujuan UU PDP dengan tautan Kebijakan Privasi.' },
+        { num: '03', title: 'Tombol WhatsApp di header', text: 'Satu tautan click-to-chat; saluran pertama bagi sebagian besar prospek korporat di Indonesia.' },
+        { num: '04', title: 'Izin dan alamat di footer', text: 'Nama KAP, nomor izin, alamat kantor, jam operasional — sinyal kepercayaan tanpa biaya.' },
+        { num: '05', title: 'Sumber untuk setiap angka', text: 'Baris sumber kecil di bawah blok statistik Home; hapus yang tidak bisa dibuktikan.' },
+        { num: '06', title: 'Skip-link dan Escape di drawer', text: 'Dua puluh baris kode yang membuat situs dapat dinavigasi dengan keyboard.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

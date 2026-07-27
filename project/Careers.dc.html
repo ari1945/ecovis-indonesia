@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>html{scroll-behavior:smooth}body{margin:0;background:#fff}a{color:#A31631;text-decoration:none}a:hover{color:#6E1423}</style>
+</helmet>
+<div style="font-family:'IBM Plex Sans',sans-serif;color:#26282B">
+<dc-import name="SiteHeader" style="position:sticky;top:0;z-index:1000;display:block" hint-size="100%,116px"></dc-import>
+<div id="main" tabindex="-1"></div>
+
+<section data-screen-label="Careers hero" style="background:linear-gradient(135deg,#4E0D19,#6E1423);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-260px;right:-160px;width:560px;height:560px;border-radius:50%;background:#8E2136;opacity:0.5"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:72px 48px 80px">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#D98A94;margin-bottom:14px">{{ tKicker }}</div>
+    <h1 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(32px,5vw,46px);color:#fff;margin:0 0 18px;max-width:760px;text-wrap:pretty">{{ tHeroTitle }}</h1>
+    <p style="font-size:17.5px;line-height:1.65;color:rgba(255,255,255,0.82);margin:0;max-width:640px">{{ tHeroSub }}</p>
+  </div>
+</section>
+
+<section data-screen-label="Culture" style="background:#fff">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,88px) clamp(20px,5vw,48px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:40px 48px">
+      <sc-for list="{{ culture }}" as="c" hint-placeholder-count="3">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="width:26px;height:3px;background:#6E1423"></div>
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:19px">{{ c.title }}</div>
+          <div style="font-size:14.5px;color:#5C6166;line-height:1.6">{{ c.text }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Openings" style="background:#F6F4F2">
+  <div style="max-width:1240px;margin:0 auto;padding:80px 48px">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#A31631;margin-bottom:10px">{{ tOpenKicker }}</div>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(28px,4vw,36px);margin:0 0 40px">{{ tOpenTitle }}</h2>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ jobs }}" as="j" hint-placeholder-count="5">
+        <a href="mailto:careers@ecovisindonesia.com" style="background:#fff;border:1px solid #E8E4E1;border-radius:4px;padding:22px 28px;display:grid;grid-template-columns:2fr 1.4fr 1fr auto;gap:20px;align-items:center;color:#26282B" style-hover="border-color:#6E1423;box-shadow:0 6px 20px rgba(110,20,35,0.08);color:#26282B">
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:17.5px">{{ j.role }}</div>
+          <div style="font-size:14px;color:#5C6166">{{ j.entity }}</div>
+          <div style="font-size:13px;font-weight:600;color:#6E1423;background:#F7EBED;border-radius:2px;padding:5px 12px;justify-self:start">{{ j.type }}</div>
+          <span style="color:#A31631;font-family:'Manrope',sans-serif;font-weight:700;font-size:14px">{{ tApply }} →</span>
+        </a>
+      </sc-for>
+    </div>
+    <p style="font-size:14px;color:#6B7075;margin:24px 0 0">{{ tApplyNote }} <a href="mailto:careers@ecovisindonesia.com">careers@ecovisindonesia.com</a>{{ tApplyNote2 }}</p>
+  </div>
+</section>
+
+<section data-screen-label="Programs" style="background:#26282B;color:#fff">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,88px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
+    <div style="background:#2E3134;border:1px solid #3A3D41;border-radius:4px;padding:36px;display:flex;flex-direction:column;gap:12px">
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#D98A94">{{ tInternKicker }}</div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:24px">{{ tInternTitle }}</div>
+      <p style="margin:0;font-size:15px;line-height:1.65;color:#B9BDC1">{{ tInternText }}</p>
+      <a href="mailto:careers@ecovisindonesia.com" style="color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:14.5px;border-bottom:2px solid #A31631;padding-bottom:3px;align-self:flex-start" style-hover="color:#D98A94">{{ tInternCta }} →</a>
+    </div>
+    <div style="background:#2E3134;border:1px solid #3A3D41;border-radius:4px;padding:36px;display:flex;flex-direction:column;gap:12px">
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#D98A94">{{ tGradKicker }}</div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:24px">{{ tGradTitle }}</div>
+      <p style="margin:0;font-size:15px;line-height:1.65;color:#B9BDC1">{{ tGradText }}</p>
+      <a href="mailto:careers@ecovisindonesia.com" style="color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:14.5px;border-bottom:2px solid #A31631;padding-bottom:3px;align-self:flex-start" style-hover="color:#D98A94">{{ tGradCta }} →</a>
+    </div>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { lang: 'EN' };
+  componentDidMount() {
+    try { const l = localStorage.getItem('ecovis-lang'); if (l) this.setState({ lang: l }); } catch (e) {}
+    this._onLang = (e) => this.setState({ lang: (e && e.detail) || 'EN' });
+    window.addEventListener('ecovis-lang', this._onLang);
+  }
+  componentWillUnmount() { if (this._onLang) window.removeEventListener('ecovis-lang', this._onLang); }
+  renderVals() {
+    const id = this.state.lang === 'ID';
+    const pick = (en, idn) => (id ? idn : en);
+    const ft = pick('Full-time · Jakarta', 'Penuh waktu · Jakarta');
+    return {
+      tKicker: pick('Careers', 'Karier'),
+      tHeroTitle: pick('Do work that crosses borders — without leaving Jakarta', 'Kerjakan pekerjaan lintas negara — tanpa meninggalkan Jakarta'),
+      tHeroSub: pick('Join a firm where juniors sit in client meetings, partners teach, and the network sends work — and secondments — from 90+ countries.', 'Bergabunglah dengan firma tempat junior ikut rapat klien, partner mengajar, dan jaringan mengirim pekerjaan — serta secondment — dari 90+ negara.'),
+      tOpenKicker: pick('Open positions', 'Posisi terbuka'),
+      tOpenTitle: pick('Current openings', 'Lowongan saat ini'),
+      tApply: pick('Apply', 'Lamar'),
+      tApplyNote: pick('Applications:', 'Lamaran:'),
+      tApplyNote2: pick(' — CV and a short note on why this role.', ' — CV dan catatan singkat mengapa posisi ini.'),
+      tInternKicker: pick('Internship', 'Magang'),
+      tInternTitle: pick('Audit & Tax Internships', 'Magang Audit & Pajak'),
+      tInternText: pick('3–6 month placements during busy season. Real engagement work, a named mentor, and a path to a graduate offer for strong performers.', 'Penempatan 3–6 bulan selama busy season. Pekerjaan penugasan nyata, mentor khusus, dan jalur ke tawaran graduate bagi yang berkinerja kuat.'),
+      tInternCta: pick('Apply for internship', 'Lamar magang'),
+      tGradKicker: pick('Graduate program', 'Program graduate'),
+      tGradTitle: pick('ECOVIS Graduate Track', 'ECOVIS Graduate Track'),
+      tGradText: pick('A two-year rotation across audit, tax and advisory with sponsored professional certification (CPA/USKP) and network training abroad.', 'Rotasi dua tahun di audit, pajak, dan advisory dengan sertifikasi profesional bersponsor (CPA/USKP) dan pelatihan jaringan di luar negeri.'),
+      tGradCta: pick('Join the graduate track', 'Ikut graduate track'),
+      culture: id ? [
+        { title: 'Pembelajaran & pengembangan', text: 'Pelatihan teknis terstruktur, sertifikasi bersponsor, dan akses ke akademi ECOVIS di seluruh jaringan.' },
+        { title: 'Tanggung jawab nyata, sejak awal', text: 'Tim penugasan kecil berarti Anda presentasi ke klien di tahun pertama — dengan partner di samping Anda, bukan di atas Anda.' },
+        { title: 'Paparan internasional', text: 'Penugasan lintas negara dan peluang secondment di dalam jaringan ECOVIS.' }
+      ] : [
+        { title: 'Learning & development', text: 'Structured technical training, sponsored certifications and access to ECOVIS academies across the network.' },
+        { title: 'Real responsibility, early', text: 'Small engagement teams mean you present to clients in year one — with a partner beside you, not above you.' },
+        { title: 'International exposure', text: 'Cross-border engagements and secondment opportunities within the ECOVIS network.' }
+      ],
+      jobs: [
+        { role: pick('Audit Senior', 'Audit Senior'), entity: 'ECOVIS KAP Pieter, Uways & Partners', type: ft },
+        { role: pick('Tax Consultant', 'Konsultan Pajak'), entity: 'ECOVIS PT Piesta Dinamika Consult', type: ft },
+        { role: pick('Transfer Pricing Analyst', 'Analis Transfer Pricing'), entity: 'ECOVIS PT Piesta Dinamika Consult', type: ft },
+        { role: pick('Valuation Associate', 'Associate Valuasi'), entity: 'ECOVIS KJPP Toha, Okky, Heru & Partners', type: ft },
+        { role: pick('Payroll Specialist', 'Spesialis Penggajian'), entity: 'ECOVIS PT Piesta Dinamika Consult', type: ft }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

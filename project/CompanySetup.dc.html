@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>html{scroll-behavior:smooth}body{margin:0;background:#fff}a{color:#A31631;text-decoration:none}a:hover{color:#6E1423}</style>
+</helmet>
+<div style="font-family:'IBM Plex Sans',sans-serif;color:#26282B">
+<dc-import name="SiteHeader" style="position:sticky;top:0;z-index:1000;display:block" hint-size="100%,116px"></dc-import>
+<div id="main" tabindex="-1"></div>
+
+<section data-screen-label="PMA hero" style="background:linear-gradient(135deg,#4E0D19 0%,#6E1423 58%,#7E1A2C 100%);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-200px;right:-120px;width:620px;height:620px;border-radius:50%;background:#8E2136;opacity:0.5"></div>
+  <div style="position:absolute;top:-120px;right:-280px;width:620px;height:620px;border-radius:50%;background:#5A0F1D"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:34px clamp(20px,5vw,48px) 82px">
+    <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.62);margin-bottom:40px"><a href="Home.dc.html" style="color:rgba(255,255,255,0.62)" style-hover="color:#fff">{{ tHome }}</a> &nbsp;/&nbsp; <a href="Services.dc.html" style="color:rgba(255,255,255,0.62)" style-hover="color:#fff">{{ tServicesCrumb }}</a> &nbsp;/&nbsp; <span style="color:#fff">{{ tCrumbLast }}</span></div>
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.18em;text-transform:uppercase;color:#D98A94;margin-bottom:18px">{{ tKicker }}</div>
+    <h1 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(32px,5vw,52px);line-height:1.07;color:#fff;margin:0 0 22px;max-width:860px;text-wrap:pretty">{{ tHeroTitle }}</h1>
+    <p style="font-size:clamp(16px,2vw,18.5px);line-height:1.6;color:rgba(255,255,255,0.85);margin:0 0 38px;max-width:680px;text-wrap:pretty">{{ tHeroSub }}</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <a href="Contact.dc.html" style="background:#fff;color:#6E1423;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;padding:15px 30px;border-radius:3px" style-hover="background:#F3E6E8;color:#4E0D19">{{ tCtaPrimary }}</a>
+      <a href="#guide" style="border:1.5px solid rgba(255,255,255,0.5);color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;padding:15px 30px;border-radius:3px" style-hover="border-color:#fff;background:rgba(255,255,255,0.08);color:#fff">{{ tCtaSecondary }}</a>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Trust strip" style="background:#fff;border-bottom:1px solid #ECE9E6">
+  <div style="max-width:1240px;margin:0 auto;padding:34px clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:28px">
+    <sc-for list="{{ trust }}" as="t" hint-placeholder-count="4">
+      <div style="display:flex;flex-direction:column;gap:5px;border-left:2px solid #E3D6D8;padding-left:18px">
+        <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:15px;color:#6E1423">{{ t.k }}</div>
+        <div style="font-size:13.5px;color:#5C6166;line-height:1.45">{{ t.v }}</div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section data-screen-label="Problem to solution" style="background:#F6F4F2">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(36px,5vw,56px)">
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px">{{ tSituation }}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(26px,3.5vw,32px);margin:0 0 26px;line-height:1.2;text-wrap:pretty">{{ tSituationTitle }}</h2>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <sc-for list="{{ problems }}" as="p" hint-placeholder-count="4">
+          <div style="display:flex;gap:14px;align-items:flex-start"><span style="color:#C9535F;font-weight:700;font-size:17px;line-height:1.4">—</span><div><div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;margin-bottom:4px">{{ p.t }}</div><div style="font-size:14.5px;color:#5C6166;line-height:1.6">{{ p.d }}</div></div></div>
+        </sc-for>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px">{{ tHowHelps }}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(26px,3.5vw,32px);margin:0 0 26px;line-height:1.2;text-wrap:pretty">{{ tHowHelpsTitle }}</h2>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <sc-for list="{{ solutions }}" as="s" hint-placeholder-count="4">
+          <div style="display:flex;gap:14px;align-items:flex-start"><span style="color:#6E1423;font-weight:700;font-size:16px;line-height:1.5">✓</span><div><div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;margin-bottom:4px">{{ s.t }}</div><div style="font-size:14.5px;color:#5C6166;line-height:1.6">{{ s.d }}</div></div></div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Scope" style="background:#fff;border-top:1px solid #ECE9E6">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px)">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px">{{ tIncluded }}</div>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);margin:0 0 44px;max-width:640px;text-wrap:pretty">{{ tScopeTitle }}</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px">
+      <sc-for list="{{ scope }}" as="c" hint-placeholder-count="6">
+        <div style="border:1px solid #E8E4E1;border-radius:4px;padding:26px 24px;display:flex;flex-direction:column;gap:9px" style-hover="border-color:#6E1423;box-shadow:0 8px 24px rgba(110,20,35,0.07)">
+          <div style="width:26px;height:3px;background:#6E1423;margin-bottom:4px"></div>
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:17px">{{ c.t }}</div>
+          <div style="font-size:13.5px;color:#5C6166;line-height:1.55">{{ c.d }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Process" style="background:#26282B;color:#fff">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px)">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#D98A94;margin-bottom:12px">{{ tTimelineKicker }}</div>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);margin:0 0 48px;max-width:680px;text-wrap:pretty">{{ tProcessTitle }}</h2>
+    <div style="display:flex;flex-direction:column;gap:0">
+      <sc-for list="{{ steps }}" as="st" hint-placeholder-count="6">
+        <div style="display:grid;grid-template-columns:140px 1fr;gap:clamp(16px,3vw,32px);padding:22px 0;border-top:1px solid #3A3D41;align-items:baseline">
+          <div>
+            <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.1em;color:#D98A94;margin-bottom:4px">{{ tStep }} {{ st.n }}</div>
+            <div style="font-size:13px;color:#8B9096">{{ st.time }}</div>
+          </div>
+          <div>
+            <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:19px;margin-bottom:6px">{{ st.t }}</div>
+            <div style="font-size:14.5px;color:#9BA0A5;line-height:1.6;max-width:720px">{{ st.d }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Proof" style="background:#F6F4F2">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(40px,5vw,64px);align-items:center">
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px">{{ tCredentials }}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(26px,3.5vw,32px);margin:0 0 18px;line-height:1.2;text-wrap:pretty">{{ tProofTitle }}</h2>
+      <p style="font-size:16px;line-height:1.7;color:#5C6166;margin:0 0 16px">{{ tProofBody }}</p>
+      <div style="background:#fff;border:1px solid #E8E4E1;border-left:4px solid #6E1423;border-radius:4px;padding:24px 26px">
+        <p style="margin:0 0 10px;font-size:15.5px;line-height:1.65;color:#3C4045;font-style:italic;text-wrap:pretty">{{ tQuote }}</p>
+        <div style="font-size:13px;color:#6B7075;font-weight:600">{{ tQuoteBy }}</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px">
+      <sc-for list="{{ proof }}" as="q" hint-placeholder-count="4">
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:4px;padding:26px 24px;display:flex;flex-direction:column;gap:7px">
+          <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:30px;color:#6E1423;line-height:1">{{ q.k }}</div>
+          <div style="font-size:13.5px;color:#5C6166;line-height:1.45">{{ q.v }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="guide" data-screen-label="Lead magnet" style="scroll-margin-top:130px;background:linear-gradient(120deg,#4E0D19,#6E1423);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-220px;left:-140px;width:520px;height:520px;border-radius:50%;background:#8E2136;opacity:0.4"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,76px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(40px,5vw,64px);align-items:center">
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#D98A94;margin-bottom:14px">{{ tFreeDownload }}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);color:#fff;margin:0 0 14px;text-wrap:pretty">{{ tGuideTitle }}</h2>
+      <p style="margin:0 0 22px;font-size:16px;color:rgba(255,255,255,0.82);line-height:1.65">{{ tGuideBody }}</p>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <sc-for list="{{ guidePoints }}" as="g" hint-placeholder-count="3">
+          <div style="display:flex;gap:11px;align-items:center;color:rgba(255,255,255,0.9);font-size:14.5px"><span style="color:#F0C9CF;font-weight:700">✓</span>{{ g }}</div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="background:#fff;border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:13px">
+      <input placeholder="{{ tPhName }}" style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;padding:12px 16px;border-radius:3px;border:1px solid #DDD9D5;outline:none" style-focus="border-color:#6E1423">
+      <input placeholder="{{ tPhEmail }}" style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;padding:12px 16px;border-radius:3px;border:1px solid #DDD9D5;outline:none" style-focus="border-color:#6E1423">
+      <input placeholder="{{ tPhCompany }}" style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;padding:12px 16px;border-radius:3px;border:1px solid #DDD9D5;outline:none" style-focus="border-color:#6E1423">
+      <button onClick="{{ submit }}" style="background:#6E1423;color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:15.5px;padding:14px;border-radius:3px;border:none;cursor:pointer" style-hover="background:#A31631">{{ submitLabel }}</button>
+      <p style="margin:0;font-size:12px;color:#6B7075;line-height:1.5">{{ tFormNote }}</p>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="FAQ" style="background:#fff">
+  <div style="max-width:900px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px)">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px;text-align:center">{{ tFaqKicker }}</div>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);margin:0 0 44px;text-align:center">{{ tFaqTitle }}</h2>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+        <div style="border:1px solid #E8E4E1;border-radius:4px;overflow:hidden;background:{{ f.bg }}">
+          <button onClick="{{ f.toggle }}" style="width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:22px 26px;display:flex;justify-content:space-between;align-items:center;gap:20px;font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;color:#26282B">{{ f.q }}<span style="color:#A31631;font-size:22px;flex-shrink:0">{{ f.icon }}</span></button>
+          <div style="display:{{ f.display }};padding:0 26px 24px;font-size:15px;color:#5C6166;line-height:1.7;max-width:720px">{{ f.a }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="CTA" style="background:linear-gradient(120deg,#4E0D19,#6E1423);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-220px;right:-140px;width:520px;height:520px;border-radius:50%;background:#8E2136;opacity:0.4"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,76px) clamp(20px,5vw,48px);display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
+    <div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);color:#fff;margin:0 0 10px;text-wrap:pretty">{{ tCtaTitle }}</h2>
+      <p style="margin:0;font-size:16.5px;color:rgba(255,255,255,0.8)">{{ tCtaSub }}</p>
+    </div>
+    <a href="Contact.dc.html" style="background:#fff;color:#6E1423;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:3px;white-space:nowrap" style-hover="background:#F3E6E8;color:#4E0D19">{{ tCtaPrimary }}</a>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = { sent: false, openFaq: 0, lang: 'EN' };
+  componentDidMount() {
+    try { const l = localStorage.getItem('ecovis-lang'); if (l) this.setState({ lang: l }); } catch (e) {}
+    this._onLang = (e) => this.setState({ lang: (e && e.detail) || 'EN' });
+    window.addEventListener('ecovis-lang', this._onLang);
+  }
+  componentWillUnmount() { if (this._onLang) window.removeEventListener('ecovis-lang', this._onLang); }
+  renderVals() {
+    const id = this.state.lang === 'ID';
+    const pick = (en, idn) => (id ? idn : en);
+    const faqData = id ? [
+      ['Berapa modal minimum untuk PT PMA?', 'Aturan umumnya adalah rencana investasi minimum di atas IDR 10 miliar per klasifikasi usaha (KBLI), di luar tanah dan bangunan, dengan sebagian disetor sebagai modal ditempatkan. Sejumlah sektor dan struktur berbeda, dan rencana investasi terpisah dari kas yang harus disetor pada hari pertama — kami menghitung keduanya sesuai bisnis nyata Anda di sesi pertama.'],
+      ['Bisakah asing memiliki 100% perusahaan?', 'Tergantung aktivitas usaha. Daftar Positif Investasi menetapkan batas kepemilikan per kode KBLI — banyak sektor mengizinkan kepemilikan asing 100%, sementara yang lain membatasi atau mensyaratkan mitra lokal. Memilih KBLI yang tepat adalah keputusan awal terpenting, dan salah memilih memaksa restrukturisasi kemudian.'],
+      ['Berapa lama pendirian?', 'Dengan dokumen lengkap, akta, persetujuan Kemenkumham, dan NIB dapat diselesaikan dalam beberapa minggu. Izin spesifik sektor di bawah perizinan berbasis risiko OSS menambah waktu tergantung kategori risiko Anda. Kami memberi lini waktu realistis sesuai aktivitas spesifik Anda, bukan estimasi generik.'],
+      ['Apa yang kami butuhkan sebelum bisa beroperasi?', 'Selain akta dan NIB, Anda biasanya membutuhkan izin usaha sesuai tingkat risiko OSS, pendaftaran pajak (NPWP dan PKP untuk PPN), pengaturan domisili, rekening bank perusahaan, dan pendaftaran BPJS sebelum merekrut. Kami menangani pendaftaran pasca-pendirian ini sebagai bagian dari penugasan.'],
+      ['Apakah Anda membantu setelah perusahaan berdiri?', 'Ya — itulah intinya. Tim yang sama menjalankan pembukuan, kepatuhan pajak, penggajian, dan pekerjaan sekretaris perusahaan Anda, sehingga entitas tetap patuh dengan satu titik kontak alih-alih ditinggalkan setelah pendirian.']
+    ] : [
+      ['What is the minimum capital for a PT PMA?', 'The general rule is a minimum investment plan above IDR 10 billion per business classification (KBLI), excluding land and buildings, with a portion paid up as issued capital. Some sectors and structures differ, and the investment plan is separate from the cash you must deposit on day one — we size both to your actual business in the first session.'],
+      ['Can foreigners own 100% of the company?', 'It depends on the business activity. The Positive Investment List sets ownership limits by KBLI code — many sectors allow 100% foreign ownership, while others cap it or require a local partner. Choosing the correct KBLI is the single most important early decision, and getting it wrong forces a restructure later.'],
+      ['How long does incorporation take?', 'With documents in order, the deed, Ministry of Law approval and NIB can be completed in a few weeks. Sector-specific licenses under OSS risk-based licensing add time depending on your risk category. We give you a realistic timeline mapped to your specific activity, not a generic estimate.'],
+      ['What do we need before we can operate?', 'Beyond the deed and NIB, you typically need a business license appropriate to your OSS risk level, tax registration (NPWP and PKP for VAT), a domicile arrangement, a corporate bank account, and BPJS registration before hiring. We handle these post-incorporation registrations as part of the engagement.'],
+      ['Do you help after the company is set up?', 'Yes — that is the point. The same team runs your bookkeeping, tax compliance, payroll and corporate secretarial work, so the entity stays compliant with one point of contact instead of being handed off after incorporation.']
+    ];
+    return {
+      tHome: pick('Home', 'Beranda'),
+      tServicesCrumb: pick('Services', 'Layanan'),
+      tCrumbLast: pick('PT PMA Establishment', 'Pendirian PT PMA'),
+      tKicker: pick('Corporate Services · PT PMA', 'Layanan Korporat · PT PMA'),
+      tHeroTitle: pick('Set up your Indonesian company right — before you commit capital', 'Dirikan perusahaan Indonesia Anda dengan benar — sebelum menanamkan modal'),
+      tHeroSub: pick('End-to-end PT PMA establishment for foreign investors: from checking the investment list and minimum capital, through deed and OSS risk-based licensing, to the registrations you need before you can hire, invoice and open a bank account.', 'Pendirian PT PMA menyeluruh untuk investor asing: dari memeriksa daftar investasi dan modal minimum, melalui akta dan perizinan berbasis risiko OSS, hingga pendaftaran yang Anda butuhkan sebelum bisa merekrut, menagih, dan membuka rekening bank.'),
+      tCtaPrimary: pick('Schedule a setup session', 'Jadwalkan sesi pendirian'),
+      tCtaSecondary: pick('Get the PT PMA guide', 'Dapatkan panduan PT PMA'),
+      tSituation: pick('The situation', 'Situasinya'),
+      tSituationTitle: pick('Where foreign investors get stuck', 'Di mana investor asing tersendat'),
+      tHowHelps: pick('How Ecovis helps', 'Bagaimana Ecovis membantu'),
+      tHowHelpsTitle: pick('One team from structuring to first invoice', 'Satu tim dari penataan hingga faktur pertama'),
+      tIncluded: pick("What's included", 'Yang termasuk'),
+      tScopeTitle: pick('Everything the setup actually requires', 'Semua yang benar-benar dibutuhkan pendirian'),
+      tTimelineKicker: pick('The setup timeline', 'Lini waktu pendirian'),
+      tProcessTitle: pick('From decision to operating entity', 'Dari keputusan hingga entitas beroperasi'),
+      tStep: pick('STEP', 'LANGKAH'),
+      tCredentials: pick('Credentials & proof', 'Kredensial & bukti'),
+      tProofTitle: pick('The advisor stays after the company is formed', 'Advisor tetap ada setelah perusahaan terbentuk'),
+      tProofBody: pick("Incorporation is the easy part — staying compliant is the work. Because we also run your tax, accounting and payroll, the entity we build for you is one we keep compliant afterwards, with a single team and a single point of contact from your home country's time zone.", 'Pendirian adalah bagian mudahnya — tetap patuh adalah pekerjaannya. Karena kami juga menjalankan pajak, akuntansi, dan penggajian Anda, entitas yang kami bangun untuk Anda adalah entitas yang kami jaga kepatuhannya setelahnya, dengan satu tim dan satu titik kontak dari zona waktu negara asal Anda.'),
+      tQuote: pick('"They flagged a foreign-ownership cap in our KBLI code that would have forced a restructure six months in. We changed the plan before signing the deed."', '"Mereka menandai batas kepemilikan asing pada kode KBLI kami yang akan memaksa restrukturisasi enam bulan kemudian. Kami mengubah rencana sebelum menandatangani akta."'),
+      tQuoteBy: pick('Managing Director — inbound logistics venture', 'Managing Director — ventura logistik inbound'),
+      tFreeDownload: pick('Free download', 'Unduhan gratis'),
+      tGuideTitle: pick('Setting Up a PT PMA in 2026: Step by Step', 'Mendirikan PT PMA di 2026: Langkah demi Langkah'),
+      tGuideBody: pick("Capital requirements, OSS risk-based licensing, realistic timelines and the post-incorporation registrations most guides leave out — written for foreign investors. We'll email the PDF and add you to our monthly briefing.", 'Persyaratan modal, perizinan berbasis risiko OSS, lini waktu realistis, dan pendaftaran pasca-pendirian yang sering dilewatkan panduan lain — ditulis untuk investor asing. Kami akan mengirim PDF via email dan menambahkan Anda ke briefing bulanan kami.'),
+      tPhName: pick('Full name', 'Nama lengkap'),
+      tPhEmail: pick('Work email', 'Email kantor'),
+      tPhCompany: pick('Company', 'Perusahaan'),
+      tFormNote: pick('Used only to send this guide and our briefing. Unsubscribe anytime.', 'Hanya digunakan untuk mengirim panduan ini dan briefing kami. Berhenti berlangganan kapan saja.'),
+      tFaqKicker: pick('Frequently asked', 'Sering ditanyakan'),
+      tFaqTitle: pick('PT PMA questions we hear most', 'Pertanyaan PT PMA yang paling sering kami dengar'),
+      tCtaTitle: pick('Planning your entry into Indonesia?', 'Merencanakan masuk ke Indonesia?'),
+      tCtaSub: pick("Bring us your business activity and we'll map the structure, licenses and timeline — no obligation.", 'Bawakan aktivitas usaha Anda dan kami akan memetakan struktur, izin, dan lini waktunya — tanpa kewajiban.'),
+      trust: id ? [
+        { k: 'Menyeluruh', v: 'Akta, perizinan OSS, NIB, dan pendaftaran pasca-pendirian.' },
+        { k: 'Penataan dulu', v: 'KBLI dan kepemilikan diperiksa sebelum Anda menandatangani.' },
+        { k: 'Tetap patuh', v: 'Tim yang sama menjalankan pajak, akuntansi, dan penggajian setelahnya.' },
+        { k: 'Fokus investor', v: 'Panduan dalam zona waktu dan bahasa Anda.' }
+      ] : [
+        { k: 'End-to-end', v: 'Deed, OSS licensing, NIB and post-setup registrations.' },
+        { k: 'Structuring first', v: 'KBLI and ownership checked before you sign.' },
+        { k: 'Stays compliant', v: 'Same team runs tax, accounting and payroll after.' },
+        { k: 'Investor-focused', v: 'Guidance in your time zone and language.' }
+      ],
+      problems: id ? [
+        { t: 'KBLI yang salah mengunci struktur yang salah', d: 'Batas kepemilikan pada Daftar Positif Investasi terkait klasifikasi usaha Anda — memilihnya tanpa arah memaksa restrukturisasi yang mahal.' },
+        { t: 'Aturan modal minimum salah dibaca', d: 'Kebingungan antara rencana investasi, modal ditempatkan, dan kas yang disetor menghambat pendirian atau mengunci dana berlebih.' },
+        { t: 'Perizinan berbasis risiko OSS dari luar negeri', d: 'Sistem OSS sulit dinavigasi tanpa kehadiran lokal dan dokumen yang tepat.' },
+        { t: 'Celah pasca-pendirian', d: 'Akta selesai, tetapi tanpa NPWP, tanpa rekening bank, tanpa BPJS — sehingga Anda masih belum bisa menagih atau merekrut.' }
+      ] : [
+        { t: 'The wrong KBLI locks in the wrong structure', d: 'Ownership caps on the Positive Investment List are tied to your business classification — picking it blind forces a costly restructure.' },
+        { t: 'Minimum-capital rules misread', d: 'Confusion between the investment plan, issued capital and cash to deposit stalls setup or over-commits funds.' },
+        { t: 'OSS risk-based licensing from abroad', d: 'The online single submission system is hard to navigate without a local presence and the right documents.' },
+        { t: 'Post-incorporation gaps', d: 'The deed is done, but no NPWP, no bank account, no BPJS — so you still cannot invoice or hire.' }
+      ],
+      solutions: id ? [
+        { t: 'Saran penataan sebelum Anda berkomitmen', d: 'Kami memastikan KBLI, batas kepemilikan, dan rencana modal yang sesuai aktivitas Anda — sebelum akta dibuat.' },
+        { t: 'Pendirian penuh ditangani lokal', d: 'Akta, persetujuan Kemenkumham, NIB, dan izin OSS dikelola menyeluruh oleh tim kami di lapangan.' },
+        { t: 'Setiap pendaftaran untuk mulai beroperasi', d: 'NPWP, PKP, domisili, dukungan rekening bank, dan BPJS agar Anda bisa beroperasi sejak hari pertama.' },
+        { t: 'Kalender kepatuhan sejak hari pertama', d: 'Tenggat korporat, pajak, dan pelaporan disiapkan agar tak ada yang terlewat setelah peluncuran.' }
+      ] : [
+        { t: 'Structuring advice before you commit', d: 'We confirm the KBLI, ownership limits and capital plan that fit your activity — before the deed is drawn.' },
+        { t: 'Full incorporation handled locally', d: 'Deed, Ministry approval, NIB and OSS licenses managed end to end by our team on the ground.' },
+        { t: 'Every registration to go live', d: 'NPWP, PKP, domicile, bank-account support and BPJS so you can operate from day one.' },
+        { t: 'A compliance calendar from day one', d: 'Corporate, tax and reporting deadlines set up so nothing is missed after launch.' }
+      ],
+      scope: id ? [
+        { t: 'Saran penataan & KBLI', d: 'Batas kepemilikan, rencana modal, dan klasifikasi usaha yang tepat.' },
+        { t: 'Pendirian PT PMA', d: 'Akta pendirian dan persetujuan Kemenkumham.' },
+        { t: 'Perizinan berbasis risiko OSS', d: 'NIB dan izin usaha yang diperlukan kategori risiko Anda.' },
+        { t: 'Pendaftaran pajak & PPN', d: 'NPWP, PKP untuk PPN, dan setup pajak awal.' },
+        { t: 'Setup pasca-pendirian', d: 'Domisili, dukungan rekening bank, dan pendaftaran BPJS.' },
+        { t: 'Sekretaris perusahaan', d: 'RUPS tahunan, daftar statutori, dan kepatuhan berkelanjutan.' }
+      ] : [
+        { t: 'Structuring & KBLI advice', d: 'Ownership limits, capital plan and the right business classification.' },
+        { t: 'PT PMA establishment', d: 'Deed of establishment and Ministry of Law & Human Rights approval.' },
+        { t: 'OSS risk-based licensing', d: 'NIB and the business licenses your risk category requires.' },
+        { t: 'Tax & VAT registration', d: 'NPWP, PKP for VAT and initial tax setup.' },
+        { t: 'Post-incorporation setup', d: 'Domicile, bank-account support and BPJS registration.' },
+        { t: 'Corporate secretarial', d: 'Annual GMS, statutory registers and ongoing compliance.' }
+      ],
+      steps: id ? [
+        { n: '1', time: 'Minggu 1', t: 'Penataan & kelayakan', d: 'Kami memastikan KBLI, posisi kepemilikan asing, dan rencana modal minimum untuk aktivitas yang Anda tuju.' },
+        { n: '2', time: 'Minggu 1\u20132', t: 'Nama & dokumen', d: 'Reservasi nama perusahaan dan penyiapan akta, dokumen pemegang saham dan direksi.' },
+        { n: '3', time: 'Minggu 2\u20133', t: 'Akta & badan hukum', d: 'Akta pendirian notaris dan persetujuan Kementerian Hukum & HAM.' },
+        { n: '4', time: 'Minggu 3\u20134', t: 'NIB & perizinan OSS', d: 'Nomor Induk Berusaha dan izin yang diperlukan kategori risiko OSS Anda.' },
+        { n: '5', time: 'Minggu 4\u20135', t: 'Pajak & pendaftaran', d: 'NPWP, PKP untuk PPN, domisili, dukungan rekening bank, dan pendaftaran BPJS.' },
+        { n: '6', time: 'Berkelanjutan', t: 'Beroperasi & patuh', d: 'Pembukuan, pajak, penggajian, dan sekretaris perusahaan di bawah satu tim dan satu titik kontak.' }
+      ] : [
+        { n: '1', time: 'Week 1', t: 'Structuring & feasibility', d: 'We confirm the KBLI, foreign-ownership position and minimum-capital plan for your intended activity.' },
+        { n: '2', time: 'Week 1\u20132', t: 'Name & documents', d: 'Company-name reservation and preparation of the deed, shareholder and director documents.' },
+        { n: '3', time: 'Week 2\u20133', t: 'Deed & legal entity', d: 'Notarial deed of establishment and approval from the Ministry of Law & Human Rights.' },
+        { n: '4', time: 'Week 3\u20134', t: 'NIB & OSS licensing', d: 'Business identification number and the licenses your OSS risk category requires.' },
+        { n: '5', time: 'Week 4\u20135', t: 'Tax & registrations', d: 'NPWP, PKP for VAT, domicile, bank-account support and BPJS registration.' },
+        { n: '6', time: 'Ongoing', t: 'Operate & comply', d: 'Bookkeeping, tax, payroll and secretarial work under one team and one point of contact.' }
+      ],
+      proof: id ? [
+        { k: 'OSS', v: 'Perizinan berbasis risiko ditangani lokal' },
+        { k: 'KBLI', v: 'Klasifikasi dan kepemilikan diperiksa lebih dulu' },
+        { k: 'Satu tim', v: 'Pendirian, pajak, akuntansi & penggajian bersama' },
+        { k: '90+', v: 'Negara dalam jaringan ECOVIS' }
+      ] : [
+        { k: 'OSS', v: 'Risk-based licensing handled locally' },
+        { k: 'KBLI', v: 'Classification and ownership checked first' },
+        { k: 'One team', v: 'Setup, tax, accounting & payroll together' },
+        { k: '90+', v: 'Countries in the ECOVIS network' }
+      ],
+      guidePoints: id
+        ? ['Modal minimum & rencana investasi', 'Panduan perizinan berbasis risiko OSS', 'Checklist pasca-pendirian']
+        : ['Minimum capital & the investment plan', 'OSS risk-based licensing walkthrough', 'The post-incorporation checklist'],
+      faqs: faqData.map(([q, a], i) => ({
+        q, a,
+        bg: this.state.openFaq === i ? '#FBF7F6' : '#fff',
+        display: this.state.openFaq === i ? 'block' : 'none',
+        icon: this.state.openFaq === i ? '\u2212' : '+',
+        toggle: () => this.setState(s => ({ openFaq: s.openFaq === i ? -1 : i }))
+      })),
+      submit: () => this.setState({ sent: true }),
+      submitLabel: this.state.sent ? pick('Thank you — check your inbox', 'Terima kasih — cek kotak masuk Anda') : pick('Email me the guide', 'Kirim panduan ke email saya')
+    };
+  }
+}
+</script>
+</body>
+</html>

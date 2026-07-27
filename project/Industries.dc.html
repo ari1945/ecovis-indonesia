@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>html{scroll-behavior:smooth}body{margin:0;background:#fff}a{color:#A31631;text-decoration:none}a:hover{color:#6E1423}</style>
+</helmet>
+<div style="font-family:'IBM Plex Sans',sans-serif;color:#26282B">
+<dc-import name="SiteHeader" style="position:sticky;top:0;z-index:1000;display:block" hint-size="100%,116px"></dc-import>
+<div id="main" tabindex="-1"></div>
+
+<section data-screen-label="Industries hero" style="background:linear-gradient(135deg,#4E0D19,#6E1423);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-260px;right:-160px;width:560px;height:560px;border-radius:50%;background:#8E2136;opacity:0.5"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:72px 48px 80px">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#D98A94;margin-bottom:14px">{{ tKicker }}</div>
+    <h1 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(32px,5vw,46px);color:#fff;margin:0 0 18px;max-width:720px;text-wrap:pretty">{{ tHeroTitle }}</h1>
+    <p style="font-size:17.5px;line-height:1.65;color:rgba(255,255,255,0.82);margin:0;max-width:640px">{{ tHeroSub }}</p>
+  </div>
+</section>
+
+<sc-for list="{{ industries }}" as="ind" hint-placeholder-count="9">
+  <section id="{{ ind.slug }}" data-screen-label="{{ ind.name }}" style="background:{{ ind.bg }};scroll-margin-top:130px;border-bottom:1px solid #ECE9E6">
+    <div style="max-width:1240px;margin:0 auto;padding:clamp(48px,7vw,64px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(36px,5vw,64px)">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="width:34px;height:4px;background:#6E1423"></div>
+        <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:30px;margin:0">{{ ind.name }}</h2>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;color:#5C6166">{{ ind.desc }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px">
+          <sc-for list="{{ ind.services }}" as="sv" hint-placeholder-count="3">
+            <a href="{{ sv.href }}" style="font-size:12.5px;font-weight:600;color:#6E1423;background:#F7EBED;border-radius:2px;padding:5px 11px" style-hover="background:#6E1423;color:#fff">{{ sv.name }}</a>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;color:#A31631">{{ tRegulatory }}</div>
+          <sc-for list="{{ ind.regulatory }}" as="r" hint-placeholder-count="2">
+            <div style="display:flex;gap:10px;font-size:14.5px;line-height:1.55;color:#3C4045"><span style="color:#C9535F;font-weight:700">—</span><span>{{ r }}</span></div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;color:#A31631">{{ tHowWeHelp }}</div>
+          <sc-for list="{{ ind.help }}" as="h" hint-placeholder-count="2">
+            <div style="display:flex;gap:10px;font-size:14.5px;line-height:1.55;color:#3C4045"><span style="color:#6E1423;font-weight:700">✓</span><span>{{ h }}</span></div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+</sc-for>
+
+<section data-screen-label="CTA" style="background:#26282B">
+  <div style="max-width:1240px;margin:0 auto;padding:64px 48px;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap">
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(24px,3vw,30px);color:#fff;margin:0;text-wrap:pretty">{{ tCtaTitle }}</h2>
+    <a href="Contact.dc.html" style="background:#6E1423;color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:15.5px;padding:15px 30px;border-radius:3px;white-space:nowrap" style-hover="background:#A31631;color:#fff">{{ tCta }}</a>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { lang: 'EN' };
+  componentDidMount() {
+    try { const l = localStorage.getItem('ecovis-lang'); if (l) this.setState({ lang: l }); } catch (e) {}
+    this._onLang = (e) => this.setState({ lang: (e && e.detail) || 'EN' });
+    window.addEventListener('ecovis-lang', this._onLang);
+  }
+  componentWillUnmount() { if (this._onLang) window.removeEventListener('ecovis-lang', this._onLang); }
+  renderVals() {
+    const id = this.state.lang === 'ID';
+    const pick = (en, idn) => (id ? idn : en);
+    const detail = { audit: 'Audit.dc.html', tax: 'Tax.dc.html', corporate: 'CompanySetup.dc.html', accounting: 'Accounting.dc.html', payroll: 'Payroll.dc.html', finance: 'CorporateFinance.dc.html', advisory: 'Advisory.dc.html', 'transfer-pricing': 'TransferPricing.dc.html', esg: 'ESG.dc.html', digital: 'DigitalSolutions.dc.html' };
+    const svcName = {
+      tax: pick('Tax', 'Pajak'), audit: pick('Audit & Assurance', 'Audit & Asurans'),
+      corporate: pick('Corporate Services', 'Layanan Korporat'), accounting: pick('Accounting', 'Akuntansi'),
+      payroll: pick('Payroll', 'Penggajian'), finance: pick('Corporate Finance', 'Keuangan Korporat'),
+      advisory: pick('Advisory', 'Advisory'), 'transfer-pricing': pick('Transfer Pricing', 'Transfer Pricing'),
+      esg: pick('ESG & Sustainability', 'ESG & Keberlanjutan'), digital: pick('Digital Solutions', 'Solusi Digital')
+    };
+    const S = (slug) => ({ name: svcName[slug], href: detail[slug] || ('Services.dc.html#' + slug) });
+    const en = [
+      ['Manufacturing', 'Indonesia\u2019s downstreaming agenda makes manufacturing the centerpiece of FDI — and one of its most regulated sectors.',
+        ['Import facilities (KITE), bonded zones and local-content (TKDN) rules', 'Environmental permits and industrial licensing under OSS'],
+        ['Structuring for tax facilities like tax holidays and allowances', 'Cost accounting and inventory audits tuned to plant operations']],
+      ['Technology', 'From regional SaaS players to local startups, tech companies face rules written faster than most can read them.',
+        ['PSE registration and data-protection obligations under UU PDP', 'Permanent-establishment risk for cross-border digital services'],
+        ['Revenue recognition and ESOP accounting under PSAK', 'VAT on digital services and withholding on cross-border fees']],
+      ['Financial Services', 'Banks, insurers, fintechs and multifinance companies answer to OJK — and to auditors who know its expectations.',
+        ['OJK licensing, capital and reporting requirements', 'POJK 51 sustainability reporting obligations'],
+        ['Statutory audits by an OJK-registered public accounting firm', 'Independent valuations from a licensed KJPP']],
+      ['Logistics', 'A 17,000-island supply chain makes logistics a growth sector — with foreign-ownership limits that demand careful structuring.',
+        ['Foreign-ownership caps in sea transport and forwarding', 'Multi-entity structures across ports and provinces'],
+        ['Entity structuring that stays inside the positive investment list', 'Consolidated reporting across operating entities']],
+      ['Healthcare', 'The Omnibus Health Law opened hospitals and clinics to greater foreign participation — under heavy licensing.',
+        ['Hospital licensing and foreign medical-practitioner rules', 'Pharma serialization and BPOM requirements'],
+        ['Feasibility and valuation for facility acquisitions', 'Payroll for large clinical workforces']],
+      ['Consumer Goods', 'A 280-million-person consumer market with halal certification, labeling and distribution rules of its own.',
+        ['Mandatory halal certification deadlines by product category', 'Distributor and import licensing (API, NIB extensions)'],
+        ['Supply-chain and distributor audit programs', 'Transfer pricing for brand royalties and imported goods']],
+      ['Energy', 'From coal to critical minerals and renewables, energy remains Indonesia\u2019s flagship investment story.',
+        ['Divestment obligations and production-sharing contracts', 'New-and-renewable-energy incentives and carbon-market rules'],
+        ['Cost-recovery audits and PSC accounting', 'Valuations for divestment and farm-in transactions']],
+      ['Education', 'International schools and ed-tech ventures navigate a sector where foreign participation is welcome but tightly framed.',
+        ['Foundation (yayasan) vs company structures for institutions', 'Foreign-teacher work permits and quotas'],
+        ['Structuring advice for market entry', 'Payroll and expatriate tax for international faculty']],
+      ['Real Estate', 'Development, REITs and asset acquisitions — where valuation and tax structuring decide the economics.',
+        ['Land-title restrictions on foreign ownership (HGB structures)', 'Final income-tax regimes on land and building transfers'],
+        ['KJPP valuations for acquisitions and financing', 'Due diligence on land titles, permits and tax exposure']]
+    ];
+    const idn = [
+      ['Manufaktur', 'Agenda hilirisasi Indonesia menjadikan manufaktur sebagai pusat FDI — sekaligus salah satu sektor paling teregulasi.',
+        ['Fasilitas impor (KITE), kawasan berikat, dan aturan TKDN', 'Izin lingkungan dan perizinan industri di bawah OSS'],
+        ['Penataan untuk fasilitas pajak seperti tax holiday dan allowance', 'Akuntansi biaya dan audit persediaan yang disetel untuk operasi pabrik']],
+      ['Teknologi', 'Dari pemain SaaS regional hingga startup lokal, perusahaan teknologi menghadapi aturan yang ditulis lebih cepat dari kemampuan membacanya.',
+        ['Pendaftaran PSE dan kewajiban perlindungan data di bawah UU PDP', 'Risiko bentuk usaha tetap untuk jasa digital lintas negara'],
+        ['Pengakuan pendapatan dan akuntansi ESOP berdasarkan PSAK', 'PPN atas jasa digital dan pemotongan atas fee lintas negara']],
+      ['Jasa Keuangan', 'Bank, asuransi, fintech, dan multifinance menjawab OJK — dan auditor yang memahami ekspektasinya.',
+        ['Persyaratan perizinan, permodalan, dan pelaporan OJK', 'Kewajiban pelaporan keberlanjutan POJK 51'],
+        ['Audit statutori oleh kantor akuntan publik terdaftar OJK', 'Valuasi independen dari KJPP berlisensi']],
+      ['Logistik', 'Rantai pasok 17.000 pulau menjadikan logistik sektor pertumbuhan — dengan batas kepemilikan asing yang menuntut penataan cermat.',
+        ['Batas kepemilikan asing di angkutan laut dan forwarding', 'Struktur multi-entitas lintas pelabuhan dan provinsi'],
+        ['Penataan entitas yang tetap dalam daftar positif investasi', 'Pelaporan konsolidasi lintas entitas operasi']],
+      ['Kesehatan', 'UU Kesehatan Omnibus membuka rumah sakit dan klinik bagi partisipasi asing yang lebih besar — dengan perizinan yang ketat.',
+        ['Perizinan rumah sakit dan aturan praktisi medis asing', 'Serialisasi farmasi dan persyaratan BPOM'],
+        ['Kelayakan dan valuasi untuk akuisisi fasilitas', 'Penggajian untuk tenaga klinis dalam jumlah besar']],
+      ['Barang Konsumen', 'Pasar konsumen 280 juta jiwa dengan sertifikasi halal, pelabelan, dan aturan distribusinya sendiri.',
+        ['Tenggat sertifikasi halal wajib per kategori produk', 'Perizinan distributor dan impor (API, perpanjangan NIB)'],
+        ['Program audit rantai pasok dan distributor', 'Transfer pricing untuk royalti merek dan barang impor']],
+      ['Energi', 'Dari batu bara hingga mineral kritis dan energi terbarukan, energi tetap menjadi kisah investasi unggulan Indonesia.',
+        ['Kewajiban divestasi dan kontrak bagi hasil', 'Insentif energi baru-terbarukan dan aturan pasar karbon'],
+        ['Audit cost-recovery dan akuntansi PSC', 'Valuasi untuk transaksi divestasi dan farm-in']],
+      ['Pendidikan', 'Sekolah internasional dan ventura ed-tech menavigasi sektor yang menyambut partisipasi asing namun berbingkai ketat.',
+        ['Struktur yayasan vs perseroan untuk institusi', 'Izin kerja dan kuota guru asing'],
+        ['Saran penataan untuk masuk pasar', 'Penggajian dan pajak ekspatriat untuk staf pengajar internasional']],
+      ['Properti', 'Pengembangan, REIT, dan akuisisi aset — di mana valuasi dan penataan pajak menentukan keekonomiannya.',
+        ['Batasan sertifikat tanah atas kepemilikan asing (struktur HGB)', 'Rezim PPh final atas pengalihan tanah dan bangunan'],
+        ['Valuasi KJPP untuk akuisisi dan pembiayaan', 'Due diligence atas sertifikat tanah, izin, dan eksposur pajak']]
+    ];
+    const slugs = [
+      ['tax', 'audit', 'corporate'], ['accounting', 'tax', 'digital'], ['audit', 'esg', 'finance'],
+      ['corporate', 'accounting', 'advisory'], ['finance', 'payroll', 'corporate'], ['transfer-pricing', 'audit', 'tax'],
+      ['audit', 'finance', 'esg'], ['corporate', 'payroll', 'tax'], ['finance', 'tax', 'advisory']
+    ];
+    const src = id ? idn : en;
+    return {
+      tKicker: pick('Industries', 'Industri'),
+      tHeroTitle: pick('Regulation looks different in every sector', 'Regulasi berbeda di setiap sektor'),
+      tHeroSub: pick('We organize teams around industries, so your advisors already know the regulators, the licenses and the pitfalls specific to your business.', 'Kami menyusun tim berdasarkan industri, sehingga advisor Anda sudah mengenal regulator, izin, dan jebakan spesifik bisnis Anda.'),
+      tRegulatory: pick('Regulatory landscape', 'Lanskap regulasi'),
+      tHowWeHelp: pick('How we help', 'Bagaimana kami membantu'),
+      tCtaTitle: pick("Don't see your industry? We probably still know it.", 'Tidak menemukan industri Anda? Kemungkinan kami tetap memahaminya.'),
+      tCta: pick('Talk to Us', 'Hubungi Kami'),
+      industries: src.map(([name, desc, regulatory, help], i) => ({
+        name, desc, regulatory, help,
+        services: slugs[i].map(S),
+        slug: en[i][0].toLowerCase().replace(/[^a-z]+/g, '-'), bg: i % 2 ? '#F6F4F2' : '#fff'
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

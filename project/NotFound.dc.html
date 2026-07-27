@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>html{scroll-behavior:smooth}body{margin:0;background:#fff}a{color:#A31631;text-decoration:none}a:hover{color:#6E1423}</style>
+</helmet>
+<div style="font-family:'IBM Plex Sans',sans-serif;color:#26282B;min-height:100vh;display:flex;flex-direction:column">
+<dc-import name="SiteHeader" style="position:sticky;top:0;z-index:1000;display:block" hint-size="100%,116px"></dc-import>
+<div id="main" tabindex="-1"></div>
+
+<section data-screen-label="404" style="flex:1;background:#F6F4F2;display:flex;align-items:center">
+  <div style="max-width:1040px;margin:0 auto;padding:clamp(56px,8vw,80px) clamp(20px,5vw,48px);width:100%;box-sizing:border-box;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(36px,5vw,56px);align-items:center">
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:120px;line-height:0.9;color:#6E1423;letter-spacing:-0.02em">404</div>
+      <h1 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:32px;color:#26282B;margin:18px 0 14px;text-wrap:pretty">{{ tTitle }}</h1>
+      <p style="font-size:16.5px;line-height:1.65;color:#5C6166;margin:0 0 28px;max-width:440px">{{ tSub }}</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap">
+        <a href="Home.dc.html" style="background:#6E1423;color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;padding:14px 26px;border-radius:3px" style-hover="background:#A31631;color:#fff">{{ tBtnHome }}</a>
+        <a href="Contact.dc.html" style="border:1.5px solid #E3D6D8;color:#6E1423;font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;padding:14px 26px;border-radius:3px" style-hover="border-color:#6E1423">{{ tBtnContact }}</a>
+      </div>
+    </div>
+    <div style="background:#fff;border:1px solid #E8E4E1;border-radius:6px;padding:30px 32px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#7C716A;margin-bottom:16px">{{ tPopular }}</div>
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{ links }}" as="l" hint-placeholder-count="5">
+          <a href="{{ l.href }}" style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-top:1px solid #F1ECE8;color:#26282B;font-family:'Manrope',sans-serif;font-weight:600;font-size:15.5px" style-hover="color:#6E1423">
+            <span>{{ l.name }}</span><span style="color:#A31631;font-size:16px">→</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1240}}">
+class Component extends DCLogic {
+  state = { lang: 'EN' };
+  componentDidMount() {
+    try { const l = localStorage.getItem('ecovis-lang'); if (l) this.setState({ lang: l }); } catch (e) {}
+    this._onLang = (e) => this.setState({ lang: (e && e.detail) || 'EN' });
+    window.addEventListener('ecovis-lang', this._onLang);
+  }
+  componentWillUnmount() { if (this._onLang) window.removeEventListener('ecovis-lang', this._onLang); }
+  renderVals() {
+    const id = this.state.lang === 'ID';
+    const pick = (en, idn) => (id ? idn : en);
+    return {
+      tTitle: pick('This page has moved on — or never existed', 'Halaman ini telah pindah — atau tidak pernah ada'),
+      tSub: pick("The link may be outdated. Let's get you back to something useful.", 'Tautannya mungkin sudah usang. Mari kembali ke sesuatu yang berguna.'),
+      tBtnHome: pick('Back to home', 'Kembali ke beranda'),
+      tBtnContact: pick('Contact us', 'Hubungi kami'),
+      tPopular: pick('Popular destinations', 'Tujuan populer'),
+      links: [
+        { name: pick('Our services', 'Layanan kami'), href: 'Services.dc.html' },
+        { name: pick('Industries we serve', 'Industri yang kami layani'), href: 'Industries.dc.html' },
+        { name: pick('Insights & tax alerts', 'Wawasan & alert pajak'), href: 'Insights.dc.html' },
+        { name: pick('Free guides & resources', 'Panduan & sumber daya gratis'), href: 'Resources.dc.html' },
+        { name: pick('Talk to a partner', 'Bicara dengan partner'), href: 'Contact.dc.html' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

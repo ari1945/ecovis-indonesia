@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:#EDEAE6;font-family:'IBM Plex Sans',sans-serif;color:#26282B}
+a{color:#A31631;text-decoration:none}a:hover{color:#6E1423}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:#CFC8C2;border-radius:6px;border:2px solid transparent;background-clip:content-box}
+::-webkit-scrollbar-thumb:hover{background:#B7ADA5;background-clip:content-box}
+@keyframes admSlideIn{from{transform:translateX(24px);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes admFade{from{opacity:0}to{opacity:1}}
+@keyframes admPop{from{transform:translate(-50%,-46%);opacity:0}to{transform:translate(-50%,-50%);opacity:1}}
+@keyframes admToast{from{transform:translateY(16px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes admSpin{to{transform:rotate(360deg)}}
+</style>
+</helmet>
+<div style="display:flex;height:100vh;overflow:hidden;font-family:'IBM Plex Sans',sans-serif;color:#26282B">
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside style="width:246px;flex-shrink:0;background:{{ sbBg }};color:{{ sbText }};display:flex;flex-direction:column;height:100vh;border-right:1px solid {{ sbBorder }}">
+    <div style="padding:20px 22px 18px;border-bottom:1px solid {{ sbBorder }};display:flex;align-items:center;gap:12px">
+      <div style="background:#fff;border-radius:7px;padding:6px 9px;display:flex;align-items:center"><img src="assets/logo.png" alt="Ecovis" style="height:24px;display:block"></div>
+      <div style="border-left:1px solid {{ sbDivider }};padding-left:12px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:{{ sbMuted }};line-height:1.5">ADMIN<br>CONSOLE</div>
+    </div>
+
+    <nav style="flex:1;overflow-y:auto;padding:16px 12px 24px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:{{ sbMuted }};padding:6px 12px 8px">OVERVIEW</div>
+      <sc-for list="{{ navMain }}" as="n" hint-placeholder-count="2">
+        <button onClick="{{ n.go }}" style="width:100%;display:flex;align-items:center;gap:11px;border:none;cursor:pointer;text-align:left;font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:{{ n.weight }};padding:9px 12px;border-radius:6px;margin-bottom:2px;background:{{ n.bg }};color:{{ n.color }}">
+          <span style="width:6px;height:6px;border-radius:2px;flex-shrink:0;background:{{ n.dot }}"></span>
+          <span style="flex:1">{{ n.label }}</span>
+          <sc-if value="{{ n.badge }}" hint-placeholder-val=""><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;background:#A31631;color:#fff;padding:1px 7px;border-radius:9px">{{ n.badge }}</span></sc-if>
+        </button>
+      </sc-for>
+
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:{{ sbMuted }};padding:18px 12px 8px">CONTENT</div>
+      <sc-for list="{{ navContent }}" as="n" hint-placeholder-count="5">
+        <button onClick="{{ n.go }}" style="width:100%;display:flex;align-items:center;gap:11px;border:none;cursor:pointer;text-align:left;font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:{{ n.weight }};padding:9px 12px;border-radius:6px;margin-bottom:2px;background:{{ n.bg }};color:{{ n.color }}">
+          <span style="width:6px;height:6px;border-radius:2px;flex-shrink:0;background:{{ n.dot }}"></span>
+          <span style="flex:1">{{ n.label }}</span>
+        </button>
+      </sc-for>
+
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:{{ sbMuted }};padding:18px 12px 8px">AUDIENCE &amp; PEOPLE</div>
+      <sc-for list="{{ navPeople }}" as="n" hint-placeholder-count="3">
+        <button onClick="{{ n.go }}" style="width:100%;display:flex;align-items:center;gap:11px;border:none;cursor:pointer;text-align:left;font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:{{ n.weight }};padding:9px 12px;border-radius:6px;margin-bottom:2px;background:{{ n.bg }};color:{{ n.color }}">
+          <span style="width:6px;height:6px;border-radius:2px;flex-shrink:0;background:{{ n.dot }}"></span>
+          <span style="flex:1">{{ n.label }}</span>
+        </button>
+      </sc-for>
+
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:{{ sbMuted }};padding:18px 12px 8px">SYSTEM</div>
+      <sc-for list="{{ navSystem }}" as="n" hint-placeholder-count="2">
+        <button onClick="{{ n.go }}" style="width:100%;display:flex;align-items:center;gap:11px;border:none;cursor:pointer;text-align:left;font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:{{ n.weight }};padding:9px 12px;border-radius:6px;margin-bottom:2px;background:{{ n.bg }};color:{{ n.color }}">
+          <span style="width:6px;height:6px;border-radius:2px;flex-shrink:0;background:{{ n.dot }}"></span>
+          <span style="flex:1">{{ n.label }}</span>
+        </button>
+      </sc-for>
+    </nav>
+
+    <div style="padding:14px 16px;border-top:1px solid {{ sbBorder }};display:flex;align-items:center;gap:11px">
+      <div style="width:34px;height:34px;border-radius:8px;background:#A31631;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Manrope',sans-serif;font-weight:700;font-size:14px;flex-shrink:0">AW</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:13px;font-weight:600;color:{{ sbText }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Ari Wibowo</div>
+        <div style="font-size:11px;color:{{ sbMuted }}">Administrator</div>
+      </div>
+      <span style="color:{{ sbMuted }};font-size:12px">⌄</span>
+    </div>
+  </aside>
+
+  <!-- ===================== MAIN ===================== -->
+  <div style="flex:1;display:flex;flex-direction:column;min-width:0;height:100vh">
+
+    <!-- topbar -->
+    <header style="height:62px;flex-shrink:0;background:#fff;border-bottom:1px solid #E8E4E1;display:flex;align-items:center;gap:18px;padding:0 26px">
+      <div style="flex:1;min-width:0">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;color:#7C716A">{{ crumb }}</div>
+        <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:19px;color:#26282B;line-height:1.15">{{ pageTitle }}</div>
+      </div>
+      <div style="display:flex;align-items:center;background:#F4F1EE;border:1px solid #E8E4E1;border-radius:7px;padding:0 12px;height:38px;width:260px">
+        <span style="color:#B0A79F;font-size:14px;margin-right:8px">⌕</span>
+        <input value="{{ globalSearch }}" onInput="{{ onGlobalSearch }}" placeholder="Search content, leads…" style="border:none;background:transparent;outline:none;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;color:#26282B;width:100%"/>
+      </div>
+      <button onClick="{{ onNewClick }}" style="background:#6E1423;color:#fff;border:none;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:13.5px;padding:0 18px;height:38px;border-radius:7px;white-space:nowrap" style-hover="background:#A31631">{{ newLabel }}</button>
+      <button style="position:relative;width:38px;height:38px;border-radius:7px;border:1px solid #E8E4E1;background:#fff;cursor:pointer;color:#5C6166;font-size:16px" style-hover="background:#F4F1EE">◔<span style="position:absolute;top:7px;right:8px;width:7px;height:7px;border-radius:50%;background:#A31631;border:1.5px solid #fff"></span></button>
+    </header>
+
+    <!-- scroll region -->
+    <main style="flex:1;overflow-y:auto;position:relative">
+
+      <!-- ============ DASHBOARD ============ -->
+      <sc-if value="{{ showDashboard }}" hint-placeholder-val="{{ true }}">
+      <div style="padding:26px 30px 60px;animation:admFade .25s ease">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px">
+          <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+            <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;padding:20px 22px">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#7C716A;text-transform:uppercase;line-height:1.4">{{ k.label }}</div>
+                <span style="font-size:11.5px;font-weight:600;color:{{ k.trendColor }};background:{{ k.trendBg }};padding:2px 8px;border-radius:20px;white-space:nowrap">{{ k.trend }}</span>
+              </div>
+              <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:32px;color:#26282B;line-height:1">{{ k.value }}</div>
+              <div style="font-size:12px;color:#6B7075;margin-top:7px">{{ k.note }}</div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1.55fr 1fr;gap:16px;margin-bottom:16px">
+          <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;padding:22px 24px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+              <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:16px">Conversion funnel</div>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7C716A">LAST 30 DAYS</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <sc-for list="{{ funnel }}" as="f" hint-placeholder-count="5">
+                <div style="display:flex;align-items:center;gap:14px">
+                  <div style="width:132px;flex-shrink:0;font-size:13.5px;font-weight:600;color:#26282B">{{ f.name }}</div>
+                  <div style="flex:1;height:30px;background:#F1ECE8;border-radius:6px;overflow:hidden;position:relative">
+                    <div style="height:100%;width:{{ f.width }};background:{{ f.bg }};border-radius:6px;display:flex;align-items:center;padding:0 12px;color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px">{{ f.count }}</div>
+                  </div>
+                  <div style="width:52px;text-align:right;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#6E1423;font-weight:600">{{ f.rate }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;padding:22px 24px">
+            <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;margin-bottom:20px">Traffic by channel</div>
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <sc-for list="{{ channels }}" as="c" hint-placeholder-count="5">
+                <div>
+                  <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="font-size:13px;font-weight:600;color:#26282B">{{ c.name }}</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6E1423;font-weight:600">{{ c.pct }}</span></div>
+                  <div style="height:7px;background:#F1ECE8;border-radius:4px;overflow:hidden"><div style="height:100%;width:{{ c.pct }};background:linear-gradient(90deg,#6E1423,#A31631);border-radius:4px"></div></div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1.55fr 1fr;gap:16px">
+          <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;overflow:hidden">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 24px;border-bottom:1px solid #ECE9E6"><div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:16px">Recent leads</div><button onClick="{{ goLeads }}" style="background:none;border:none;cursor:pointer;color:#A31631;font-weight:600;font-size:13px;font-family:'IBM Plex Sans',sans-serif">View all →</button></div>
+            <sc-for list="{{ recentLeads }}" as="l" hint-placeholder-count="5">
+              <div onClick="{{ l.open }}" style="display:grid;grid-template-columns:1.4fr 1.3fr 1fr auto;gap:12px;align-items:center;padding:13px 24px;border-top:1px solid #F1ECE8;cursor:pointer" style-hover="background:#FBF9F7">
+                <div><div style="font-weight:600;font-size:13.5px;color:#26282B">{{ l.name }}</div><div style="font-size:12px;color:#7C716A">{{ l.company }}</div></div>
+                <div style="font-size:12.5px;color:#5C6166">{{ l.service }}</div>
+                <div><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:20px;background:{{ l.stageBg }};color:{{ l.stageColor }}">{{ l.stageLabel }}</span></div>
+                <div style="font-size:11.5px;color:#7C716A;font-family:'IBM Plex Mono',monospace">{{ l.ago }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;padding:18px 24px">
+            <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;margin-bottom:16px">Activity</div>
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <sc-for list="{{ activity }}" as="a" hint-placeholder-count="6">
+                <div style="display:flex;gap:12px;padding:9px 0;border-bottom:1px solid #F4F1EE">
+                  <div style="width:8px;height:8px;border-radius:50%;background:{{ a.dot }};margin-top:5px;flex-shrink:0"></div>
+                  <div style="flex:1"><div style="font-size:13px;color:#26282B;line-height:1.45">{{ a.text }}</div><div style="font-size:11px;color:#7C716A;margin-top:2px">{{ a.who }} · {{ a.time }}</div></div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ============ LEADS ============ -->
+      <sc-if value="{{ showLeads }}" hint-placeholder-val="">
+      <div style="padding:22px 30px 60px;animation:admFade .25s ease">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;flex-wrap:wrap">
+          <div style="display:flex;background:#fff;border:1px solid #E8E4E1;border-radius:8px;padding:3px">
+            <button onClick="{{ setBoard }}" style="border:none;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;padding:7px 16px;border-radius:6px;background:{{ boardTabBg }};color:{{ boardTabColor }}">Pipeline</button>
+            <button onClick="{{ setList }}" style="border:none;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;padding:7px 16px;border-radius:6px;background:{{ listTabBg }};color:{{ listTabColor }}">List</button>
+          </div>
+          <div style="display:flex;align-items:center;background:#fff;border:1px solid #E8E4E1;border-radius:8px;padding:0 12px;height:38px;width:260px">
+            <span style="color:#B0A79F;font-size:14px;margin-right:8px">⌕</span>
+            <input value="{{ leadSearch }}" onInput="{{ onLeadSearch }}" placeholder="Search leads…" style="border:none;background:transparent;outline:none;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;width:100%"/>
+          </div>
+          <button onClick="{{ addLead }}" style="background:#F7EBED;color:#6E1423;border:none;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;padding:0 16px;height:38px;border-radius:8px" style-hover="background:#F0DADF">+ Add lead</button>
+          <div style="flex:1"></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6B7075">{{ leadCount }} leads · {{ pipelineValue }} pipeline</div>
+        </div>
+
+        <!-- board -->
+        <sc-if value="{{ showBoard }}" hint-placeholder-val="{{ true }}">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:start">
+          <sc-for list="{{ columns }}" as="col" hint-placeholder-count="4">
+            <div style="background:#E9E4DF;border-radius:10px;padding:10px">
+              <div style="display:flex;align-items:center;gap:8px;padding:6px 8px 12px">
+                <span style="width:9px;height:9px;border-radius:3px;background:{{ col.color }}"></span>
+                <span style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13.5px;color:#26282B">{{ col.label }}</span>
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7C716A">{{ col.count }}</span>
+                <div style="flex:1"></div>
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6E1423;font-weight:600">{{ col.value }}</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:9px">
+                <sc-for list="{{ col.leads }}" as="l" hint-placeholder-count="3">
+                  <div onClick="{{ l.open }}" style="background:#fff;border:1px solid #E8E4E1;border-left:3px solid {{ l.priorityColor }};border-radius:8px;padding:13px 14px;cursor:pointer" style-hover="box-shadow:0 6px 18px rgba(38,40,43,0.10)">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:7px">
+                      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:14px;color:#26282B;line-height:1.25">{{ l.name }}</div>
+                      <div style="width:24px;height:24px;border-radius:50%;background:{{ l.avatarBg }};color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Manrope',sans-serif">{{ l.initials }}</div>
+                    </div>
+                    <div style="font-size:12px;color:#6B7075;margin-bottom:10px">{{ l.company }}</div>
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;color:#6E1423;background:#F7EBED;padding:2px 8px;border-radius:4px">{{ l.serviceTag }}</span>
+                      <span style="font-size:11px;color:#7C716A;font-family:'IBM Plex Mono',monospace">{{ l.ago }}</span>
+                    </div>
+                  </div>
+                </sc-for>
+                <sc-if value="{{ col.empty }}" hint-placeholder-val=""><div style="text-align:center;color:#B0A79F;font-size:12px;padding:14px 0;font-family:'IBM Plex Mono',monospace">No leads</div></sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        </sc-if>
+
+        <!-- list -->
+        <sc-if value="{{ showList }}" hint-placeholder-val="">
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;overflow:hidden">
+          <div style="display:grid;grid-template-columns:1.4fr 1.2fr 1fr 1fr 0.9fr 0.7fr;background:#26282B;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase">
+            <div style="padding:13px 18px">Lead</div><div style="padding:13px 18px">Service</div><div style="padding:13px 18px">Stage</div><div style="padding:13px 18px">Owner</div><div style="padding:13px 18px">Value</div><div style="padding:13px 18px">Age</div>
+          </div>
+          <sc-for list="{{ listLeads }}" as="l" hint-placeholder-count="8">
+            <div onClick="{{ l.open }}" style="display:grid;grid-template-columns:1.4fr 1.2fr 1fr 1fr 0.9fr 0.7fr;border-top:1px solid #F1ECE8;background:{{ l.rowBg }};cursor:pointer;align-items:center" style-hover="background:#FBF9F7">
+              <div style="padding:13px 18px"><div style="font-weight:600;font-size:13.5px">{{ l.name }}</div><div style="font-size:11.5px;color:#7C716A">{{ l.company }}</div></div>
+              <div style="padding:13px 18px;font-size:12.5px;color:#5C6166">{{ l.service }}</div>
+              <div style="padding:13px 18px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:20px;background:{{ l.stageBg }};color:{{ l.stageColor }}">{{ l.stageLabel }}</span></div>
+              <div style="padding:13px 18px;font-size:12.5px;color:#5C6166">{{ l.assigned }}</div>
+              <div style="padding:13px 18px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#26282B">{{ l.valueLabel }}</div>
+              <div style="padding:13px 18px;font-size:11.5px;color:#7C716A;font-family:'IBM Plex Mono',monospace">{{ l.ago }}</div>
+            </div>
+          </sc-for>
+        </div>
+        </sc-if>
+      </div>
+      </sc-if>
+
+      <!-- ============ PAGES ============ -->
+      <sc-if value="{{ showPages }}" hint-placeholder-val="">
+      <div style="padding:22px 30px 60px;animation:admFade .25s ease">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
+          <div style="display:flex;align-items:center;background:#fff;border:1px solid #E8E4E1;border-radius:8px;padding:0 12px;height:38px;width:260px">
+            <span style="color:#B0A79F;font-size:14px;margin-right:8px">⌕</span>
+            <input value="{{ pageSearch }}" onInput="{{ onPageSearch }}" placeholder="Search pages…" style="border:none;background:transparent;outline:none;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;width:100%"/>
+          </div>
+          <div style="flex:1"></div>
+          <button onClick="{{ addPage }}" style="background:#6E1423;color:#fff;border:none;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;padding:0 16px;height:38px;border-radius:8px" style-hover="background:#A31631">+ New page</button>
+        </div>
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;overflow:hidden">
+          <div style="display:grid;grid-template-columns:1.5fr 1fr 0.9fr 0.9fr auto;background:#26282B;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase">
+            <div style="padding:13px 20px">Page</div><div style="padding:13px 20px">URL</div><div style="padding:13px 20px">Status</div><div style="padding:13px 20px">Updated</div><div style="padding:13px 20px">Edit</div>
+          </div>
+          <sc-for list="{{ pages }}" as="p" hint-placeholder-count="8">
+            <div style="display:grid;grid-template-columns:1.5fr 1fr 0.9fr 0.9fr auto;border-top:1px solid #F1ECE8;align-items:center">
+              <div style="padding:14px 20px"><div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:14px;color:#26282B">{{ p.title }}</div><div style="font-size:11.5px;color:#7C716A">{{ p.blocks }} sections</div></div>
+              <div style="padding:14px 20px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6E1423">{{ p.url }}</div>
+              <div style="padding:14px 20px"><button onClick="{{ p.toggle }}" title="Toggle publish" style="border:none;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:20px;background:{{ p.statusBg }};color:{{ p.statusColor }}">{{ p.statusLabel }}</button></div>
+              <div style="padding:14px 20px;font-size:12px;color:#6B7075">{{ p.updated }}</div>
+              <div style="padding:14px 20px"><button onClick="{{ p.edit }}" style="border:1px solid #E8E4E1;background:#fff;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:600;font-size:12.5px;color:#6E1423;padding:6px 14px;border-radius:6px" style-hover="background:#F7EBED">Edit</button></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ============ INSIGHTS ============ -->
+      <sc-if value="{{ showInsights }}" hint-placeholder-val="">
+      <div style="padding:26px 30px 60px;animation:admFade .25s ease">
+        <div style="display:flex;gap:10px;margin-bottom:18px;align-items:center">
+          <sc-for list="{{ insightTabs }}" as="t" hint-placeholder-count="4">
+            <button onClick="{{ t.go }}" style="border:1px solid {{ t.border }};background:{{ t.bg }};color:{{ t.color }};cursor:pointer;font-family:'Manrope',sans-serif;font-weight:600;font-size:12.5px;padding:7px 15px;border-radius:20px">{{ t.label }} <span style="opacity:.6">{{ t.count }}</span></button>
+          </sc-for>
+          <div style="flex:1"></div>
+          <button onClick="{{ newArticleAi }}" style="background:#fff;color:#6E1423;border:1px solid #E3B6BF;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;padding:8px 15px;border-radius:7px;display:flex;align-items:center;gap:7px" style-hover="background:#F7EBED">✦ Draft with AI</button>
+          <button onClick="{{ newArticle }}" style="background:#6E1423;color:#fff;border:none;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;padding:8px 16px;border-radius:7px" style-hover="background:#A31631">+ New article</button>
+        </div>
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;overflow:hidden">
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 0.8fr 130px;background:#26282B;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase">
+            <div style="padding:13px 20px">Title</div><div style="padding:13px 20px">Category</div><div style="padding:13px 20px">Author</div><div style="padding:13px 20px">Status</div><div style="padding:13px 20px"></div>
+          </div>
+          <sc-for list="{{ articleList }}" as="a" hint-placeholder-count="6">
+            <div style="display:grid;grid-template-columns:2fr 1fr 1fr 0.8fr 130px;border-top:1px solid #F1ECE8;align-items:center">
+              <div style="padding:14px 20px"><div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:14px;color:#26282B;line-height:1.3">{{ a.title }}</div><div style="font-size:11.5px;color:#7C716A;margin-top:2px">{{ a.date }} · {{ a.views }} views</div></div>
+              <div style="padding:14px 20px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#6E1423;background:#F7EBED;padding:2px 9px;border-radius:4px">{{ a.category }}</span></div>
+              <div style="padding:14px 20px;font-size:12.5px;color:#5C6166">{{ a.author }}</div>
+              <div style="padding:14px 20px"><button onClick="{{ a.toggle }}" title="Toggle publish" style="border:none;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:20px;background:{{ a.statusBg }};color:{{ a.statusColor }}">{{ a.statusLabel }}</button></div>
+              <div style="padding:14px 20px;display:flex;gap:6px"><button onClick="{{ a.edit }}" style="border:1px solid #E8E4E1;background:#fff;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:600;font-size:12.5px;color:#6E1423;padding:6px 12px;border-radius:6px" style-hover="background:#F7EBED">Edit</button><button onClick="{{ a.del }}" title="Delete" style="border:1px solid #F0D9DD;background:#fff;cursor:pointer;width:31px;border-radius:6px;color:#A31631;font-size:14px" style-hover="background:#F7EBED">×</button></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ============ RESOURCES ============ -->
+      <sc-if value="{{ showResources }}" hint-placeholder-val="">
+      <div style="padding:22px 30px 60px;animation:admFade .25s ease">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6B7075">{{ resourceCount }} lead magnets</div>
+          <div style="flex:1"></div>
+          <button onClick="{{ addResource }}" style="background:#6E1423;color:#fff;border:none;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;padding:0 16px;height:38px;border-radius:8px" style-hover="background:#A31631">+ New resource</button>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+          <sc-for list="{{ resources }}" as="r" hint-placeholder-count="6">
+            <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;overflow:hidden;display:flex;flex-direction:column">
+              <div style="height:96px;background:linear-gradient(135deg,#6E1423,#A31631);display:flex;align-items:flex-end;padding:14px 16px;position:relative">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(255,255,255,0.85);letter-spacing:0.08em;position:absolute;top:14px;left:16px">{{ r.type }}</span>
+                <button onClick="{{ r.del }}" title="Delete" style="position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:6px;border:none;background:rgba(255,255,255,0.16);color:#fff;cursor:pointer;font-size:14px" style-hover="background:rgba(255,255,255,0.3)">×</button>
+                <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:16px;color:#fff;line-height:1.2">{{ r.title }}</div>
+              </div>
+              <div style="padding:16px;display:flex;flex-direction:column;gap:12px;flex:1">
+                <div style="display:flex;gap:8px">
+                  <div style="flex:1;background:#FBF9F7;border:1px solid #F1ECE8;border-radius:7px;padding:9px 11px"><div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:19px;color:#6E1423">{{ r.downloads }}</div><div style="font-size:10.5px;color:#7C716A">downloads</div></div>
+                  <div style="flex:1;background:#FBF9F7;border:1px solid #F1ECE8;border-radius:7px;padding:9px 11px"><div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:19px;color:#6E1423">{{ r.leads }}</div><div style="font-size:10.5px;color:#7C716A">leads (MQL)</div></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#5C6166"><span style="width:8px;height:8px;border-radius:50%;background:{{ r.gateColor }}"></span>{{ r.gate }}</div>
+                <div style="margin-top:auto;display:flex;gap:8px">
+                  <button onClick="{{ r.toggle }}" style="flex:1;border:1px solid #E8E4E1;background:#fff;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:600;font-size:12px;color:#5C6166;padding:7px;border-radius:6px" style-hover="background:#F4F1EE">{{ r.toggleLabel }}</button>
+                  <button onClick="{{ r.edit }}" style="flex:1;border:1px solid #E8E4E1;background:#fff;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:600;font-size:12px;color:#6E1423;padding:7px;border-radius:6px" style-hover="background:#F7EBED">Edit</button>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ============ SERVICES & INDUSTRIES ============ -->
+      <sc-if value="{{ showServices }}" hint-placeholder-val="">
+      <div style="padding:26px 30px 60px;animation:admFade .25s ease;display:grid;grid-template-columns:1fr 1fr;gap:18px">
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;overflow:hidden">
+          <div style="padding:16px 20px;border-bottom:1px solid #ECE9E6;display:flex;justify-content:space-between;align-items:center"><div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:15px">Services <span style="color:#7C716A;font-weight:500">· {{ servicesCount }}</span></div><button onClick="{{ addService }}" style="border:none;background:#F7EBED;color:#6E1423;cursor:pointer;font-weight:700;font-size:12px;padding:5px 12px;border-radius:6px;font-family:'Manrope',sans-serif">+ Add</button></div>
+          <sc-for list="{{ servicesList }}" as="s" hint-placeholder-count="6">
+            <div style="display:flex;align-items:center;gap:10px;padding:12px 20px;border-top:1px solid #F4F1EE" style-hover="background:#FBF9F7">
+              <span style="color:#C9BEB6;font-size:14px">⠿</span>
+              <div style="flex:1;min-width:0"><div style="font-weight:600;font-size:13.5px;color:#26282B">{{ s.name }}</div><div style="font-size:11.5px;color:#7C716A">{{ s.tagline }}</div></div>
+              <sc-if value="{{ s.priority }}" hint-placeholder-val=""><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;font-weight:600;color:#6E1423;background:#F7EBED;padding:2px 7px;border-radius:4px">PRIORITY</span></sc-if>
+              <span style="font-size:11px;color:#6B7075;font-family:'IBM Plex Mono',monospace">{{ s.leads }}</span>
+              <button onClick="{{ s.up }}" title="Move up" style="border:1px solid #E8E4E1;background:#fff;cursor:pointer;width:26px;height:26px;border-radius:5px;color:#7C716A;font-size:11px" style-hover="background:#F4F1EE">↑</button>
+              <button onClick="{{ s.down }}" title="Move down" style="border:1px solid #E8E4E1;background:#fff;cursor:pointer;width:26px;height:26px;border-radius:5px;color:#7C716A;font-size:11px" style-hover="background:#F4F1EE">↓</button>
+              <button onClick="{{ s.edit }}" title="Edit" style="border:1px solid #E8E4E1;background:#fff;cursor:pointer;width:26px;height:26px;border-radius:5px;color:#6E1423;font-size:12px" style-hover="background:#F7EBED">✎</button>
+              <button onClick="{{ s.del }}" title="Delete" style="border:1px solid #F0D9DD;background:#fff;cursor:pointer;width:26px;height:26px;border-radius:5px;color:#A31631;font-size:14px" style-hover="background:#F7EBED">×</button>
+            </div>
+          </sc-for>
+        </div>
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;overflow:hidden">
+          <div style="padding:16px 20px;border-bottom:1px solid #ECE9E6;display:flex;justify-content:space-between;align-items:center"><div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:15px">Industries <span style="color:#7C716A;font-weight:500">· {{ industriesCount }}</span></div><button onClick="{{ addIndustry }}" style="border:none;background:#F7EBED;color:#6E1423;cursor:pointer;font-weight:700;font-size:12px;padding:5px 12px;border-radius:6px;font-family:'Manrope',sans-serif">+ Add</button></div>
+          <sc-for list="{{ industriesList }}" as="s" hint-placeholder-count="6">
+            <div style="display:flex;align-items:center;gap:10px;padding:12px 20px;border-top:1px solid #F4F1EE" style-hover="background:#FBF9F7">
+              <span style="color:#C9BEB6;font-size:14px">⠿</span>
+              <div style="flex:1;min-width:0"><div style="font-weight:600;font-size:13.5px;color:#26282B">{{ s.name }}</div></div>
+              <span style="font-size:11px;color:#6B7075;font-family:'IBM Plex Mono',monospace">{{ s.pages }} pages</span>
+              <button onClick="{{ s.up }}" title="Move up" style="border:1px solid #E8E4E1;background:#fff;cursor:pointer;width:26px;height:26px;border-radius:5px;color:#7C716A;font-size:11px" style-hover="background:#F4F1EE">↑</button>
+              <button onClick="{{ s.down }}" title="Move down" style="border:1px solid #E8E4E1;background:#fff;cursor:pointer;width:26px;height:26px;border-radius:5px;color:#7C716A;font-size:11px" style-hover="background:#F4F1EE">↓</button>
+              <button onClick="{{ s.edit }}" title="Edit" style="border:1px solid #E8E4E1;background:#fff;cursor:pointer;width:26px;height:26px;border-radius:5px;color:#6E1423;font-size:12px" style-hover="background:#F7EBED">✎</button>
+              <button onClick="{{ s.del }}" title="Delete" style="border:1px solid #F0D9DD;background:#fff;cursor:pointer;width:26px;height:26px;border-radius:5px;color:#A31631;font-size:14px" style-hover="background:#F7EBED">×</button>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ============ CAREERS ============ -->
+      <sc-if value="{{ showCareers }}" hint-placeholder-val="">
+      <div style="padding:22px 30px 60px;animation:admFade .25s ease">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6B7075">{{ jobsCount }} roles · {{ jobsApplicants }} applicants</div>
+          <div style="flex:1"></div>
+          <button onClick="{{ addJob }}" style="background:#6E1423;color:#fff;border:none;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;padding:0 16px;height:38px;border-radius:8px" style-hover="background:#A31631">+ New role</button>
+        </div>
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;overflow:hidden">
+          <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 0.7fr 0.9fr 92px;background:#26282B;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase">
+            <div style="padding:13px 20px">Role</div><div style="padding:13px 20px">Department</div><div style="padding:13px 20px">Location</div><div style="padding:13px 20px">Applicants</div><div style="padding:13px 20px">Status</div><div style="padding:13px 20px"></div>
+          </div>
+          <sc-for list="{{ jobs }}" as="j" hint-placeholder-count="5">
+            <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 0.7fr 0.9fr 92px;border-top:1px solid #F1ECE8;align-items:center">
+              <div style="padding:14px 20px;font-family:'Manrope',sans-serif;font-weight:700;font-size:14px;color:#26282B">{{ j.role }}</div>
+              <div style="padding:14px 20px;font-size:12.5px;color:#5C6166">{{ j.dept }}</div>
+              <div style="padding:14px 20px;font-size:12.5px;color:#5C6166">{{ j.location }}</div>
+              <div style="padding:14px 20px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:#6E1423;font-weight:600">{{ j.applicants }}</div>
+              <div style="padding:14px 20px"><button onClick="{{ j.toggle }}" title="Toggle status" style="border:none;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:20px;background:{{ j.statusBg }};color:{{ j.statusColor }}">{{ j.statusLabel }}</button></div>
+              <div style="padding:14px 20px;display:flex;gap:6px"><button onClick="{{ j.edit }}" title="Edit" style="border:1px solid #E8E4E1;background:#fff;cursor:pointer;width:31px;height:31px;border-radius:6px;color:#6E1423;font-size:12px" style-hover="background:#F7EBED">✎</button><button onClick="{{ j.del }}" title="Delete" style="border:1px solid #F0D9DD;background:#fff;cursor:pointer;width:31px;height:31px;border-radius:6px;color:#A31631;font-size:14px" style-hover="background:#F7EBED">×</button></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ============ MEDIA ============ -->
+      <sc-if value="{{ showMedia }}" hint-placeholder-val="">
+      <div style="padding:26px 30px 60px;animation:admFade .25s ease">
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:14px">
+          <div onClick="{{ uploadMedia }}" style="border:2px dashed #D6CEC7;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:150px;cursor:pointer;color:#7C716A" style-hover="border-color:#A31631;color:#6E1423">
+            <span style="font-size:26px">↥</span><span style="font-size:12px;font-weight:600;font-family:'Manrope',sans-serif">Upload</span>
+          </div>
+          <sc-for list="{{ media }}" as="m" hint-placeholder-count="9">
+            <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;overflow:hidden" style-hover="box-shadow:0 6px 18px rgba(38,40,43,0.10)">
+              <div style="height:104px;background:{{ m.bg }};display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.9);font-family:'IBM Plex Mono',monospace;font-size:12px;position:relative">{{ m.kind }}<button onClick="{{ m.del }}" title="Delete" style="position:absolute;top:8px;right:8px;width:24px;height:24px;border-radius:6px;border:none;background:rgba(0,0,0,0.28);color:#fff;cursor:pointer;font-size:13px" style-hover="background:rgba(0,0,0,0.5)">×</button></div>
+              <div style="padding:10px 12px"><div style="font-size:12px;font-weight:600;color:#26282B;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ m.name }}</div><div style="font-size:10.5px;color:#7C716A">{{ m.size }}</div></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ============ NEWSLETTER ============ -->
+      <sc-if value="{{ showNewsletter }}" hint-placeholder-val="">
+      <div style="padding:26px 30px 60px;animation:admFade .25s ease">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:18px">
+          <sc-for list="{{ subStats }}" as="s" hint-placeholder-count="4">
+            <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;padding:18px 20px"><div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:26px;color:#6E1423">{{ s.value }}</div><div style="font-size:12px;color:#6B7075;margin-top:4px">{{ s.label }}</div></div>
+          </sc-for>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+          <sc-for list="{{ subSegments }}" as="sg" hint-placeholder-count="4">
+            <button onClick="{{ sg.go }}" style="border:1px solid {{ sg.border }};background:{{ sg.bg }};color:{{ sg.color }};cursor:pointer;font-family:'Manrope',sans-serif;font-weight:600;font-size:12px;padding:6px 13px;border-radius:20px">{{ sg.label }}</button>
+          </sc-for>
+          <div style="flex:1"></div>
+          <div style="display:flex;align-items:center;background:#fff;border:1px solid #E8E4E1;border-radius:8px;padding:0 12px;height:36px;width:220px">
+            <span style="color:#B0A79F;font-size:14px;margin-right:8px">⌕</span>
+            <input value="{{ subSearch }}" onInput="{{ onSubSearch }}" placeholder="Search email…" style="border:none;background:transparent;outline:none;font-family:'IBM Plex Sans',sans-serif;font-size:13px;width:100%"/>
+          </div>
+          <button onClick="{{ exportSubs }}" style="background:#F7EBED;color:#6E1423;border:none;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:12.5px;padding:0 15px;height:36px;border-radius:8px" style-hover="background:#F0DADF">Export CSV</button>
+        </div>
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;overflow:hidden">
+          <div style="display:grid;grid-template-columns:1.5fr 1.2fr 1fr 0.8fr 56px;background:#26282B;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase">
+            <div style="padding:13px 20px">Subscriber</div><div style="padding:13px 20px">Segment</div><div style="padding:13px 20px">Source</div><div style="padding:13px 20px">Joined</div><div style="padding:13px 20px"></div>
+          </div>
+          <sc-for list="{{ subscribers }}" as="s" hint-placeholder-count="8">
+            <div style="display:grid;grid-template-columns:1.5fr 1.2fr 1fr 0.8fr 56px;border-top:1px solid #F1ECE8;align-items:center">
+              <div style="padding:12px 20px"><div style="font-weight:600;font-size:13px">{{ s.email }}</div></div>
+              <div style="padding:12px 20px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#6E1423;background:#F7EBED;padding:2px 9px;border-radius:4px">{{ s.segment }}</span></div>
+              <div style="padding:12px 20px;font-size:12px;color:#5C6166">{{ s.source }}</div>
+              <div style="padding:12px 20px;font-size:12px;color:#7C716A;font-family:'IBM Plex Mono',monospace">{{ s.joined }}</div>
+              <div style="padding:12px 20px"><button onClick="{{ s.remove }}" title="Remove" style="border:1px solid #F0D9DD;background:#fff;cursor:pointer;width:30px;height:30px;border-radius:6px;color:#A31631;font-size:14px" style-hover="background:#F7EBED">×</button></div>
+            </div>
+          </sc-for>
+          <sc-if value="{{ subsEmpty }}" hint-placeholder-val=""><div style="padding:26px;text-align:center;color:#7C716A;font-size:13px">No subscribers match.</div></sc-if>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ============ TEAM ============ -->
+      <sc-if value="{{ showTeam }}" hint-placeholder-val="">
+      <div style="padding:22px 30px 60px;animation:admFade .25s ease">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6B7075">{{ teamCount }} people</div>
+          <div style="flex:1"></div>
+          <button onClick="{{ addTeam }}" style="background:#6E1423;color:#fff;border:none;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;padding:0 16px;height:38px;border-radius:8px" style-hover="background:#A31631">+ Add member</button>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+          <sc-for list="{{ team }}" as="t" hint-placeholder-count="6">
+            <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;padding:20px;display:flex;gap:14px;align-items:flex-start;position:relative">
+              <div style="width:54px;height:54px;border-radius:10px;background:{{ t.bg }};color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Manrope',sans-serif;font-weight:700;font-size:18px;flex-shrink:0">{{ t.initials }}</div>
+              <div style="flex:1;min-width:0">
+                <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;color:#26282B">{{ t.name }}</div>
+                <div style="font-size:12.5px;color:#6E1423;font-weight:600;margin-bottom:8px">{{ t.title }}</div>
+                <div style="font-size:11.5px;color:#6B7075;line-height:1.5">{{ t.cred }}</div>
+                <div style="margin-top:10px;display:flex;gap:8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7C716A">{{ t.leads }} leads owned</span></div>
+              </div>
+              <div style="position:absolute;top:12px;right:12px;display:flex;gap:6px">
+                <button onClick="{{ t.edit }}" title="Edit" style="border:1px solid #E8E4E1;background:#fff;cursor:pointer;width:28px;height:28px;border-radius:6px;color:#6E1423;font-size:12px" style-hover="background:#F7EBED">✎</button>
+                <button onClick="{{ t.del }}" title="Delete" style="border:1px solid #F0D9DD;background:#fff;cursor:pointer;width:28px;height:28px;border-radius:6px;color:#A31631;font-size:14px" style-hover="background:#F7EBED">×</button>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ============ SEO / SETTINGS ============ -->
+      <sc-if value="{{ showSeo }}" hint-placeholder-val="">
+      <div style="padding:26px 30px 60px;animation:admFade .25s ease;max-width:820px">
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;padding:24px 26px;margin-bottom:16px">
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;margin-bottom:4px">Global SEO defaults</div>
+          <div style="font-size:12.5px;color:#6B7075;margin-bottom:20px">Fallback metadata applied where a page has none.</div>
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div><label style="display:block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:#7C716A;text-transform:uppercase;margin-bottom:6px">Title template</label><input value="{{ seoTitle }}" onInput="{{ onSeoTitle }}" style="width:100%;border:1px solid #E8E4E1;border-radius:7px;padding:10px 12px;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;outline:none"/></div>
+            <div><label style="display:block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:#7C716A;text-transform:uppercase;margin-bottom:6px">Meta description</label><textarea value="{{ seoDesc }}" onInput="{{ onSeoDesc }}" style="width:100%;border:1px solid #E8E4E1;border-radius:7px;padding:10px 12px;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;outline:none;min-height:70px;resize:vertical"></textarea></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;margin-top:20px"><button onClick="{{ saveSeo }}" style="background:#6E1423;color:#fff;border:none;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:13.5px;padding:10px 22px;border-radius:8px" style-hover="background:#A31631">Save changes</button><span style="font-size:12px;color:#7C716A">{{ seoPreview }}</span></div>
+        </div>
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;padding:24px 26px">
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;margin-bottom:20px">Integrations</div>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <sc-for list="{{ integrations }}" as="i" hint-placeholder-count="4">
+              <div style="display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid #F4F1EE">
+                <div style="width:34px;height:34px;border-radius:8px;background:#F4F1EE;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6E1423;font-weight:600">{{ i.abbr }}</div>
+                <div style="flex:1"><div style="font-weight:600;font-size:13.5px;color:#26282B">{{ i.name }}</div><div style="font-size:11.5px;color:#7C716A">{{ i.desc }}</div></div>
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;padding:3px 10px;border-radius:20px;background:{{ i.stBg }};color:{{ i.stColor }}">{{ i.status }}</span>
+                <button onClick="{{ i.toggle }}" style="border:1px solid #E8E4E1;background:#fff;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:600;font-size:12px;color:{{ i.btnColor }};padding:6px 13px;border-radius:6px" style-hover="background:#F4F1EE">{{ i.toggleLabel }}</button>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;padding:24px 26px;margin-top:16px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+            <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:16px">AI content providers</div>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.05em;background:#F7EBED;color:#6E1423;padding:2px 8px;border-radius:5px;font-weight:600">LLM</span>
+          </div>
+          <div style="font-size:12.5px;color:#6B7075;margin-bottom:18px">API keys used by “Write with AI” in the article editor. Keys are stored server-side and never exposed to the public site.</div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <sc-for list="{{ aiProviderRows }}" as="p" hint-placeholder-count="5">
+              <div style="border:1px solid {{ p.cardBorder }};background:{{ p.cardBg }};border-radius:10px;padding:14px 16px">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+                  <div style="width:34px;height:34px;border-radius:8px;background:{{ p.color }};color:#fff;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;flex-shrink:0">{{ p.abbr }}</div>
+                  <div style="flex:1;min-width:0">
+                    <div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700;font-size:14px;color:#26282B;font-family:'Manrope',sans-serif">{{ p.name }}</span><sc-if value="{{ p.isDefault }}" hint-placeholder-val=""><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.05em;background:#6E1423;color:#fff;padding:2px 7px;border-radius:4px;font-weight:600">DEFAULT</span></sc-if></div>
+                    <div style="font-size:11.5px;color:#7C716A">{{ p.modelsLabel }}</div>
+                  </div>
+                  <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;background:{{ p.stBg }};color:{{ p.stColor }};white-space:nowrap">{{ p.status }}</span>
+                  <button onClick="{{ p.toggle }}" style="border:1px solid #E8E4E1;background:#fff;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:600;font-size:12px;color:{{ p.toggleColor }};padding:6px 12px;border-radius:6px" style-hover="background:#F4F1EE">{{ p.toggleLabel }}</button>
+                </div>
+                <div style="display:grid;grid-template-columns:1.7fr 1fr auto;gap:10px;align-items:end">
+                  <div><label style="display:block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.05em;color:#7C716A;text-transform:uppercase;margin-bottom:5px">API key</label><input type="password" value="{{ p.key }}" onInput="{{ p.onKey }}" placeholder="{{ p.keyPlaceholder }}" style="width:100%;border:1px solid #E8E4E1;border-radius:7px;padding:8px 10px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#26282B;outline:none" style-focus="border-color:#D6CEC7"/></div>
+                  <div><label style="display:block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.05em;color:#7C716A;text-transform:uppercase;margin-bottom:5px">Default model</label><select value="{{ p.model }}" onChange="{{ p.onModel }}" style="width:100%;border:1px solid #E8E4E1;border-radius:7px;padding:8px 9px;font-family:'IBM Plex Mono',monospace;font-size:12px;background:#fff;outline:none;cursor:pointer;color:#26282B"><sc-for list="{{ p.models }}" as="m" hint-placeholder-count="3"><option value="{{ m }}">{{ m }}</option></sc-for></select></div>
+                  <button onClick="{{ p.setDefault }}" style="border:1px solid {{ p.defBorder }};background:{{ p.defBg }};cursor:pointer;font-family:'Manrope',sans-serif;font-weight:600;font-size:12px;color:{{ p.defColor }};padding:8px 13px;border-radius:7px;white-space:nowrap" style-hover="background:#F7EBED">{{ p.defaultBtnLabel }}</button>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ============ USERS & ROLES ============ -->
+      <sc-if value="{{ showUsers }}" hint-placeholder-val="">
+      <div style="padding:22px 30px 60px;animation:admFade .25s ease">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6B7075">{{ usersCount }} users</div>
+          <div style="flex:1"></div>
+          <button onClick="{{ inviteUser }}" style="background:#6E1423;color:#fff;border:none;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;padding:0 16px;height:38px;border-radius:8px" style-hover="background:#A31631">+ Invite user</button>
+        </div>
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;overflow:hidden;margin-bottom:18px">
+          <div style="display:grid;grid-template-columns:1.5fr 1.05fr 0.85fr 0.8fr 60px;background:#26282B;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase">
+            <div style="padding:13px 20px">User</div><div style="padding:13px 20px">Role</div><div style="padding:13px 20px">Last active</div><div style="padding:13px 20px">Status</div><div style="padding:13px 20px"></div>
+          </div>
+          <sc-for list="{{ users }}" as="u" hint-placeholder-count="5">
+            <div style="display:grid;grid-template-columns:1.5fr 1.05fr 0.85fr 0.8fr 60px;border-top:1px solid #F1ECE8;align-items:center">
+              <div style="padding:12px 20px;display:flex;align-items:center;gap:11px"><div style="width:32px;height:32px;border-radius:8px;background:{{ u.bg }};color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Manrope',sans-serif;font-weight:700;font-size:12px">{{ u.initials }}</div><div style="min-width:0"><div style="font-weight:600;font-size:13px">{{ u.name }}</div><div style="font-size:11px;color:#7C716A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ u.email }}</div></div></div>
+              <div style="padding:12px 20px"><select value="{{ u.role }}" onChange="{{ u.onRole }}" style="border:1px solid #E8E4E1;border-radius:7px;padding:6px 8px;font-family:'IBM Plex Sans',sans-serif;font-size:12px;background:#fff;outline:none;cursor:pointer;color:#26282B"><sc-for list="{{ roleOptions }}" as="ro" hint-placeholder-count="3"><option value="{{ ro }}">{{ ro }}</option></sc-for></select></div>
+              <div style="padding:12px 20px;font-size:12px;color:#6B7075">{{ u.active }}</div>
+              <div style="padding:12px 20px"><button onClick="{{ u.toggleStatus }}" title="Toggle status" style="border:none;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;color:{{ u.stColor }};background:{{ u.stBg }};padding:4px 10px;border-radius:20px">{{ u.status }}</button></div>
+              <div style="padding:12px 20px"><button onClick="{{ u.remove }}" title="Remove" style="border:1px solid #F0D9DD;background:#fff;cursor:pointer;width:30px;height:30px;border-radius:6px;color:#A31631;font-size:14px" style-hover="background:#F7EBED">×</button></div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+          <sc-for list="{{ roles }}" as="r" hint-placeholder-count="3">
+            <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;padding:18px 20px">
+              <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:14.5px;color:#26282B;margin-bottom:4px">{{ r.name }}</div>
+              <div style="font-size:11.5px;color:#7C716A;margin-bottom:14px">{{ r.count }} members</div>
+              <div style="display:flex;flex-direction:column;gap:7px">
+                <sc-for list="{{ r.perms }}" as="p" hint-placeholder-count="4">
+                  <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#5C6166"><span style="color:#7A9A5B;font-weight:700">✓</span>{{ p }}</div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ============ BLOCK / SECTION EDITOR ============ -->
+      <sc-if value="{{ showEditor }}" hint-placeholder-val="">
+      <div style="display:flex;height:100%;animation:admFade .2s ease">
+        <div style="flex:1;overflow-y:auto;padding:24px 30px 60px">
+          <button onClick="{{ closeEditor }}" style="background:none;border:none;cursor:pointer;color:#6E1423;font-weight:600;font-size:13px;font-family:'IBM Plex Sans',sans-serif;margin-bottom:16px">← Back</button>
+          <div style="max-width:720px">
+            <input value="{{ editorTitle }}" onInput="{{ onEditorTitle }}" style="width:100%;border:none;border-bottom:2px solid transparent;font-family:'Manrope',sans-serif;font-weight:800;font-size:28px;color:#26282B;outline:none;padding:2px 0;background:transparent;margin-bottom:6px" style-focus="border-bottom-color:#E8E4E1"/>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#7C716A;margin-bottom:24px">{{ editorMeta }}</div>
+
+            <sc-if value="{{ showAiAssist }}" hint-placeholder-val="">
+            <div style="background:#fff;border:1px solid #E8E4E1;border-radius:12px;overflow:hidden;margin-bottom:20px;box-shadow:0 4px 16px rgba(78,13,25,0.06)">
+              <div style="background:linear-gradient(135deg,#4E0D19,#6E1423);padding:13px 18px;display:flex;align-items:center;gap:11px">
+                <div style="width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px">✦</div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:14.5px;color:#fff">Write with AI</div>
+                  <div style="font-size:11.5px;color:rgba(255,255,255,0.72)">Describe the article — generate a full draft, then edit anything below</div>
+                </div>
+                <a href="#" onClick="{{ goAiSettings }}" style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.07em;color:rgba(255,255,255,0.82)!important;background:rgba(255,255,255,0.12);padding:5px 10px;border-radius:6px" style-hover="background:rgba(255,255,255,0.26)">API KEYS</a>
+              </div>
+              <div style="padding:16px 18px">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.06em;color:#7C716A;text-transform:uppercase;margin-bottom:8px">Model provider</div>
+                <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px">
+                  <sc-for list="{{ aiProviders }}" as="p" hint-placeholder-count="5">
+                    <button onClick="{{ p.select }}" title="{{ p.hint }}" style="display:flex;align-items:center;gap:7px;border:1px solid {{ p.border }};background:{{ p.bg }};color:{{ p.color }};cursor:pointer;font-family:'Manrope',sans-serif;font-weight:600;font-size:12.5px;padding:6px 12px;border-radius:8px"><span style="width:7px;height:7px;border-radius:2px;flex-shrink:0;background:{{ p.dot }}"></span>{{ p.name }}</button>
+                  </sc-for>
+                </div>
+                <div style="display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:10px;margin-bottom:12px">
+                  <div><label style="display:block;font-size:11px;font-weight:600;color:#5C6166;margin-bottom:5px">Model</label><select value="{{ aiModel }}" onChange="{{ onAiModel }}" style="width:100%;border:1px solid #E8E4E1;border-radius:7px;padding:8px 9px;font-family:'IBM Plex Mono',monospace;font-size:12px;background:#fff;outline:none;cursor:pointer;color:#26282B"><sc-for list="{{ aiModelOptions }}" as="m" hint-placeholder-count="3"><option value="{{ m }}">{{ m }}</option></sc-for></select></div>
+                  <div><label style="display:block;font-size:11px;font-weight:600;color:#5C6166;margin-bottom:5px">Tone</label><select value="{{ aiTone }}" onChange="{{ onAiTone }}" style="width:100%;border:1px solid #E8E4E1;border-radius:7px;padding:8px 9px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;background:#fff;outline:none;cursor:pointer"><sc-for list="{{ toneOptions }}" as="t" hint-placeholder-count="4"><option value="{{ t }}">{{ t }}</option></sc-for></select></div>
+                  <div><label style="display:block;font-size:11px;font-weight:600;color:#5C6166;margin-bottom:5px">Length</label><select value="{{ aiLength }}" onChange="{{ onAiLength }}" style="width:100%;border:1px solid #E8E4E1;border-radius:7px;padding:8px 9px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;background:#fff;outline:none;cursor:pointer"><sc-for list="{{ lengthOptions }}" as="l" hint-placeholder-count="3"><option value="{{ l }}">{{ l }}</option></sc-for></select></div>
+                </div>
+                <textarea value="{{ aiPrompt }}" onInput="{{ onAiPrompt }}" placeholder="e.g. Explain the 2026 VAT 12% transition rules for importers, with a practical compliance checklist" style="width:100%;border:1px solid #E8E4E1;border-radius:8px;padding:11px 12px;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;color:#26282B;outline:none;min-height:78px;resize:vertical;line-height:1.55;margin-bottom:12px" style-focus="border-color:#D6CEC7"></textarea>
+                <div style="display:flex;align-items:center;gap:13px;flex-wrap:wrap">
+                  <button onClick="{{ generateAi }}" disabled="{{ aiLoading }}" style="background:{{ aiBtnBg }};color:#fff;border:none;cursor:{{ aiBtnCursor }};font-family:'Manrope',sans-serif;font-weight:700;font-size:13.5px;padding:10px 20px;border-radius:8px;display:flex;align-items:center;gap:9px" style-hover="background:#A31631"><sc-if value="{{ aiLoading }}" hint-placeholder-val=""><span style="width:13px;height:13px;border:2px solid rgba(255,255,255,0.4);border-top-color:#fff;border-radius:50%;display:inline-block;animation:admSpin .7s linear infinite"></span></sc-if>{{ aiBtnLabel }}</button>
+                  <sc-if value="{{ aiGenNote }}" hint-placeholder-val=""><span style="font-size:11.5px;color:#6B7075;display:flex;align-items:center;gap:6px"><span style="color:#5E7A3E">✓</span>{{ aiGenNote }}</span></sc-if>
+                </div>
+              </div>
+            </div>
+            </sc-if>
+
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <sc-for list="{{ editorBlocks }}" as="b" hint-placeholder-count="4">
+                <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;padding:16px 18px" style-hover="border-color:#D6CEC7">
+                  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+                    <span style="width:8px;height:8px;border-radius:2px;background:{{ b.color }}"></span>
+                    <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:#7C716A;text-transform:uppercase;flex:1">{{ b.type }}</span>
+                    <button onClick="{{ b.up }}" style="border:1px solid #E8E4E1;background:#fff;cursor:pointer;width:26px;height:26px;border-radius:5px;color:#7C716A;font-size:12px" style-hover="background:#F4F1EE">↑</button>
+                    <button onClick="{{ b.down }}" style="border:1px solid #E8E4E1;background:#fff;cursor:pointer;width:26px;height:26px;border-radius:5px;color:#7C716A;font-size:12px" style-hover="background:#F4F1EE">↓</button>
+                    <button onClick="{{ b.remove }}" style="border:1px solid #F0D9DD;background:#fff;cursor:pointer;width:26px;height:26px;border-radius:5px;color:#A31631;font-size:14px" style-hover="background:#F7EBED">×</button>
+                  </div>
+                  <sc-if value="{{ b.isImage }}" hint-placeholder-val="">
+                    <div style="height:120px;background:#F1ECE8;border-radius:7px;display:flex;align-items:center;justify-content:center;color:#B0A79F;font-size:12px;font-family:'IBM Plex Mono',monospace">{{ b.text }}</div>
+                  </sc-if>
+                  <sc-if value="{{ b.isText }}" hint-placeholder-val="{{ true }}">
+                    <textarea value="{{ b.text }}" onInput="{{ b.onInput }}" style="width:100%;border:1px solid #F1ECE8;border-radius:7px;padding:10px 12px;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;color:#26282B;outline:none;min-height:{{ b.minH }};resize:vertical;line-height:1.55" style-focus="border-color:#D6CEC7"></textarea>
+                  </sc-if>
+                </div>
+              </sc-for>
+            </div>
+
+            <div style="margin-top:16px;background:#F4F1EE;border:1px dashed #D6CEC7;border-radius:10px;padding:14px 16px">
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:#7C716A;text-transform:uppercase;margin-bottom:10px">Add section</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <sc-for list="{{ blockPalette }}" as="p" hint-placeholder-count="5">
+                  <button onClick="{{ p.add }}" style="border:1px solid #E8E4E1;background:#fff;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:600;font-size:12.5px;color:#5C6166;padding:7px 14px;border-radius:7px" style-hover="background:#F7EBED;color:#6E1423">+ {{ p.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside style="width:300px;flex-shrink:0;background:#fff;border-left:1px solid #E8E4E1;padding:24px 22px;overflow-y:auto">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:#7C716A;text-transform:uppercase;margin-bottom:14px">Publish</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:#FBF9F7;border:1px solid #F1ECE8;border-radius:8px;margin-bottom:14px">
+            <div><div style="font-size:13px;font-weight:600;color:#26282B">Status</div><div style="font-size:11.5px;color:#7C716A">{{ editorStatusNote }}</div></div>
+            <button onClick="{{ togglePublish }}" style="border:none;cursor:pointer;width:46px;height:26px;border-radius:20px;background:{{ pubTrackBg }};position:relative;transition:background .2s"><span style="position:absolute;top:3px;left:{{ pubKnobLeft }};width:20px;height:20px;border-radius:50%;background:#fff;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,0.2)"></span></button>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:22px">
+            <div><label style="display:block;font-size:11.5px;font-weight:600;color:#5C6166;margin-bottom:5px">Category</label><input value="{{ editorCategory }}" onInput="{{ onEditorCategory }}" style="width:100%;border:1px solid #E8E4E1;border-radius:7px;padding:8px 10px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;outline:none"/></div>
+            <div><label style="display:block;font-size:11.5px;font-weight:600;color:#5C6166;margin-bottom:5px">URL slug</label><input value="{{ editorSlug }}" onInput="{{ onEditorSlug }}" style="width:100%;border:1px solid #E8E4E1;border-radius:7px;padding:8px 10px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6E1423;outline:none"/></div>
+          </div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:#7C716A;text-transform:uppercase;margin-bottom:12px">SEO preview</div>
+          <div style="border:1px solid #F1ECE8;border-radius:8px;padding:12px 14px;background:#FBF9F7;margin-bottom:22px">
+            <div style="color:#1a0dab;font-size:14px;line-height:1.3;margin-bottom:2px">{{ editorTitle }}</div>
+            <div style="color:#0a7d33;font-size:12px;margin-bottom:4px;font-family:'IBM Plex Mono',monospace">ecovisindonesia.com/{{ editorSlug }}</div>
+            <div style="color:#5C6166;font-size:12px;line-height:1.45">{{ editorSeoDesc }}</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:9px">
+            <button onClick="{{ saveEditor }}" style="width:100%;background:#6E1423;color:#fff;border:none;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:13.5px;padding:11px;border-radius:8px" style-hover="background:#A31631">{{ saveLabel }}</button>
+            <button onClick="{{ closeEditor }}" style="width:100%;background:#fff;color:#5C6166;border:1px solid #E8E4E1;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:600;font-size:13.5px;padding:10px;border-radius:8px" style-hover="background:#F4F1EE">Cancel</button>
+          </div>
+        </aside>
+      </div>
+      </sc-if>
+
+    </main>
+  </div>
+
+  <!-- ===================== LEAD DRAWER ===================== -->
+  <sc-if value="{{ drawerOpen }}" hint-placeholder-val="">
+  <div onClick="{{ closeLead }}" style="position:fixed;inset:0;background:rgba(38,40,43,0.42);z-index:2000;animation:admFade .2s ease"></div>
+  <div style="position:fixed;top:0;right:0;bottom:0;width:520px;background:#F6F4F2;z-index:2001;display:flex;flex-direction:column;box-shadow:-16px 0 40px rgba(38,40,43,0.22);animation:admSlideIn .28s cubic-bezier(.22,.61,.36,1)">
+    <div style="background:linear-gradient(135deg,#4E0D19,#6E1423);color:#fff;padding:22px 26px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div>
+          <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:22px;line-height:1.15">{{ dName }}</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.8);margin-top:3px">{{ dCompany }}</div>
+        </div>
+        <button onClick="{{ closeLead }}" style="background:rgba(255,255,255,0.14);border:none;cursor:pointer;color:#fff;width:32px;height:32px;border-radius:8px;font-size:16px" style-hover="background:rgba(255,255,255,0.26)">×</button>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap">
+        <a href="{{ dMailto }}" style="background:rgba(255,255,255,0.12);color:#fff;font-size:12px;padding:5px 12px;border-radius:6px" style-hover="background:rgba(255,255,255,0.24);color:#fff">✉ {{ dEmail }}</a>
+        <span style="background:rgba(255,255,255,0.12);color:#fff;font-size:12px;padding:5px 12px;border-radius:6px">☏ {{ dPhone }}</span>
+      </div>
+    </div>
+
+    <div style="flex:1;overflow-y:auto;padding:22px 26px">
+      <!-- stage -->
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:#7C716A;text-transform:uppercase;margin-bottom:9px">Stage</div>
+      <div style="display:flex;gap:6px;margin-bottom:22px">
+        <sc-for list="{{ dStages }}" as="s" hint-placeholder-count="4">
+          <button onClick="{{ s.set }}" style="flex:1;border:1px solid {{ s.border }};background:{{ s.bg }};color:{{ s.color }};cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:11.5px;padding:8px 4px;border-radius:7px">{{ s.label }}</button>
+        </sc-for>
+      </div>
+
+      <!-- meta grid -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px">
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:9px;padding:12px 14px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7C716A;text-transform:uppercase;margin-bottom:4px">Service</div><div style="font-size:13.5px;font-weight:600;color:#26282B">{{ dService }}</div></div>
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:9px;padding:12px 14px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7C716A;text-transform:uppercase;margin-bottom:4px">Est. value</div><div style="font-size:13.5px;font-weight:600;color:#6E1423">{{ dValue }}</div></div>
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:9px;padding:12px 14px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7C716A;text-transform:uppercase;margin-bottom:4px">Source</div><div style="font-size:13.5px;font-weight:600;color:#26282B">{{ dSource }}</div></div>
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:9px;padding:12px 14px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7C716A;text-transform:uppercase;margin-bottom:4px">Received</div><div style="font-size:13.5px;font-weight:600;color:#26282B">{{ dReceived }}</div></div>
+      </div>
+
+      <!-- assign + follow up -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:#7C716A;text-transform:uppercase;margin-bottom:8px">Owner</div>
+          <select value="{{ dAssigned }}" onChange="{{ onAssign }}" style="width:100%;border:1px solid #E8E4E1;border-radius:8px;padding:9px 10px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;background:#fff;outline:none;cursor:pointer">
+            <sc-for list="{{ owners }}" as="o" hint-placeholder-count="4"><option value="{{ o }}">{{ o }}</option></sc-for>
+          </select>
+        </div>
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:#7C716A;text-transform:uppercase;margin-bottom:8px">Follow-up</div>
+          <input type="date" value="{{ dFollowUp }}" onChange="{{ onFollowUp }}" style="width:100%;border:1px solid #E8E4E1;border-radius:8px;padding:8px 10px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;background:#fff;outline:none;cursor:pointer"/>
+        </div>
+      </div>
+
+      <!-- original message -->
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:#7C716A;text-transform:uppercase;margin-bottom:8px">Enquiry</div>
+      <div style="background:#fff;border:1px solid #E8E4E1;border-left:3px solid #6E1423;border-radius:8px;padding:14px 16px;font-size:13px;color:#4B4F53;line-height:1.6;margin-bottom:24px">{{ dMessage }}</div>
+
+      <!-- notes -->
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:#7C716A;text-transform:uppercase;margin-bottom:10px">Notes &amp; activity</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px">
+        <sc-for list="{{ dNotes }}" as="n" hint-placeholder-count="2">
+          <div style="display:flex;gap:11px">
+            <div style="width:28px;height:28px;border-radius:7px;background:{{ n.bg }};color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Manrope',sans-serif;font-weight:700;font-size:11px;flex-shrink:0">{{ n.initials }}</div>
+            <div style="flex:1;background:#fff;border:1px solid #E8E4E1;border-radius:8px;padding:10px 13px">
+              <div style="display:flex;justify-content:space-between;margin-bottom:3px"><span style="font-size:12.5px;font-weight:600;color:#26282B">{{ n.author }}</span><span style="font-size:10.5px;color:#7C716A;font-family:'IBM Plex Mono',monospace">{{ n.time }}</span></div>
+              <div style="font-size:12.5px;color:#4B4F53;line-height:1.5">{{ n.text }}</div>
+            </div>
+          </div>
+        </sc-for>
+        <sc-if value="{{ dNoNotes }}" hint-placeholder-val=""><div style="font-size:12.5px;color:#7C716A;padding:4px 0">No notes yet — add the first one below.</div></sc-if>
+      </div>
+      <div style="display:flex;gap:8px;align-items:flex-end">
+        <textarea value="{{ noteDraft }}" onInput="{{ onNoteDraft }}" placeholder="Add a note…" style="flex:1;border:1px solid #E8E4E1;border-radius:8px;padding:10px 12px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;outline:none;resize:none;min-height:42px;background:#fff" style-focus="border-color:#D6CEC7"></textarea>
+        <button onClick="{{ addNote }}" style="background:#6E1423;color:#fff;border:none;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;padding:0 16px;height:42px;border-radius:8px" style-hover="background:#A31631">Post</button>
+      </div>
+    </div>
+
+    <div style="border-top:1px solid #E8E4E1;background:#fff;padding:14px 26px;display:flex;gap:10px">
+      <button onClick="{{ scheduleConsult }}" style="flex:1;background:#6E1423;color:#fff;border:none;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:13.5px;padding:11px;border-radius:8px" style-hover="background:#A31631">Schedule consultation</button>
+      <button onClick="{{ markLost }}" style="background:#fff;color:#A31631;border:1px solid #F0D9DD;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:600;font-size:13.5px;padding:11px 16px;border-radius:8px" style-hover="background:#F7EBED">Mark lost</button>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ===================== GENERIC MODAL ===================== -->
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="">
+  <div onClick="{{ closeModal }}" style="position:fixed;inset:0;background:rgba(38,40,43,0.42);z-index:2500;animation:admFade .2s ease"></div>
+  <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:460px;max-height:86vh;overflow-y:auto;background:#fff;border-radius:14px;z-index:2501;box-shadow:0 24px 60px rgba(38,40,43,0.3);animation:admPop .22s ease">
+    <div style="padding:20px 24px;border-bottom:1px solid #ECE9E6;display:flex;justify-content:space-between;align-items:center">
+      <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:18px;color:#26282B">{{ modalTitle }}</div>
+      <button onClick="{{ closeModal }}" style="border:none;background:#F4F1EE;cursor:pointer;width:30px;height:30px;border-radius:7px;color:#5C6166;font-size:15px" style-hover="background:#EAE5E1">×</button>
+    </div>
+    <div style="padding:22px 24px;display:flex;flex-direction:column;gap:15px">
+      <sc-for list="{{ modalFields }}" as="f" hint-placeholder-count="3">
+        <div>
+          <label style="display:block;font-size:11.5px;font-weight:600;color:#5C6166;margin-bottom:6px">{{ f.label }}</label>
+          <sc-if value="{{ f.isText }}" hint-placeholder-val="{{ true }}"><input value="{{ f.value }}" onInput="{{ f.onInput }}" style="width:100%;border:1px solid #E8E4E1;border-radius:8px;padding:9px 11px;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;outline:none" style-focus="border-color:#D6CEC7"/></sc-if>
+          <sc-if value="{{ f.isTextarea }}" hint-placeholder-val=""><textarea value="{{ f.value }}" onInput="{{ f.onInput }}" style="width:100%;border:1px solid #E8E4E1;border-radius:8px;padding:9px 11px;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;outline:none;min-height:74px;resize:vertical;line-height:1.5" style-focus="border-color:#D6CEC7"></textarea></sc-if>
+          <sc-if value="{{ f.isSelect }}" hint-placeholder-val=""><select value="{{ f.value }}" onChange="{{ f.onInput }}" style="width:100%;border:1px solid #E8E4E1;border-radius:8px;padding:9px 11px;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;background:#fff;outline:none;cursor:pointer"><sc-for list="{{ f.options }}" as="o" hint-placeholder-count="3"><option value="{{ o }}">{{ o }}</option></sc-for></select></sc-if>
+          <sc-if value="{{ f.isToggle }}" hint-placeholder-val=""><div style="display:flex;align-items:center;gap:12px"><button onClick="{{ f.toggle }}" style="border:none;cursor:pointer;width:46px;height:26px;border-radius:20px;background:{{ f.trackBg }};position:relative;transition:background .2s"><span style="position:absolute;top:3px;left:{{ f.knobLeft }};width:20px;height:20px;border-radius:50%;background:#fff;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,0.2)"></span></button><span style="font-size:12.5px;color:#5C6166">{{ f.toggleTxt }}</span></div></sc-if>
+        </div>
+      </sc-for>
+    </div>
+    <div style="padding:16px 24px;border-top:1px solid #ECE9E6;display:flex;gap:10px;justify-content:flex-end">
+      <button onClick="{{ closeModal }}" style="background:#fff;color:#5C6166;border:1px solid #E8E4E1;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:600;font-size:13.5px;padding:9px 18px;border-radius:8px" style-hover="background:#F4F1EE">Cancel</button>
+      <button onClick="{{ saveModal }}" style="background:#6E1423;color:#fff;border:none;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:13.5px;padding:9px 20px;border-radius:8px" style-hover="background:#A31631">{{ modalSaveLabel }}</button>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ===================== TOAST ===================== -->
+  <sc-if value="{{ toast }}" hint-placeholder-val="">
+  <div style="position:fixed;bottom:26px;left:50%;transform:translateX(-50%);background:#26282B;color:#fff;padding:12px 22px;border-radius:9px;font-size:13.5px;font-weight:600;font-family:'IBM Plex Sans',sans-serif;z-index:3000;box-shadow:0 12px 30px rgba(38,40,43,0.32);animation:admToast .3s ease;display:flex;align-items:center;gap:10px"><span style="color:#E8A0AB">✓</span>{{ toast }}</div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900},&quot;defaultView&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;dashboard&quot;,&quot;options&quot;:[&quot;dashboard&quot;,&quot;leads&quot;,&quot;pages&quot;,&quot;insights&quot;,&quot;resources&quot;,&quot;services&quot;,&quot;careers&quot;,&quot;media&quot;,&quot;newsletter&quot;,&quot;team&quot;,&quot;seo&quot;,&quot;users&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Behavior&quot;},&quot;sidebarTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;maroon&quot;,&quot;options&quot;:[&quot;maroon&quot;,&quot;light&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Appearance&quot;}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const stage = (id, label) => ({ id, label });
+    this.STAGES = [stage('new','New'), stage('contacted','Contacted'), stage('consultation','Consultation'), stage('client','Client')];
+    this.STAGE_META = {
+      new:{label:'New',bg:'#F7EBED',color:'#A31631',col:'#A31631'},
+      contacted:{label:'Contacted',bg:'#FBF0E4',color:'#B5702A',col:'#C98A3A'},
+      consultation:{label:'Consultation',bg:'#E9F0E4',color:'#5E7A3E',col:'#7A9A5B'},
+      client:{label:'Client',bg:'#E4EBF0',color:'#3E5E7A',col:'#5B7A9A'},
+      lost:{label:'Lost',bg:'#F0ECEA',color:'#9A9089',col:'#B0A79F'}
+    };
+    this.OWNERS = ['Unassigned','Ari Wibowo','Sinta Halim','Budi Santoso','Rina Wijaya'];
+    this.SERVICE_NAMES = ['Audit & Assurance','Tax','PT PMA Establishment','Accounting','Payroll','Corporate Finance','Transfer Pricing','Advisory','ESG & Sustainability','Digital Solutions'];
+    this.ROLE_OPTIONS = ['Administrator','Editor','Consultant'];
+    this.RES_TYPES = ['GUIDE · PDF','CHECKLIST','WHITEPAPER','WEBINAR'];
+    this.avatarColor = (s) => ['#6E1423','#A31631','#3E5E7A','#5E7A3E','#B5702A'][(s||'').length % 5];
+    this.initials = (n) => (n||'').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+
+    this.state = {
+      view: this.props.defaultView || 'dashboard',
+      leadView: 'board',
+      leadSearch: '', globalSearch: '', pageSearch: '', subSearch: '', subSegment: 'All', _itab: 'all',
+      selectedLead: null,
+      noteDraft: '',
+      editor: null,
+      modal: null,
+      toast: '',
+      seo: { title:'%page% · Ecovis Indonesia — Audit, Tax & PMA', desc:'Global ECOVIS expertise delivered by licensed local partners — integrated audit, tax and company setup in Indonesia.' },
+      leads: [
+        { id:1, name:'James Whitfield', company:'Harborline Logistics (UK)', email:'j.whitfield@harborline.co.uk', phone:'+44 20 7946 0102', service:'PT PMA Establishment', stage:'new', assigned:'Unassigned', value:45000000, source:'Organic — PMA guide', priority:'high', ago:'2h ago', followUp:'', message:'We are a UK logistics group planning a Jakarta subsidiary. Need guidance on minimum capital, OSS licensing and a timeline to operate before Q4.', notes:[] },
+        { id:2, name:'Dewi Kartika', company:'Nusantara Retail Group', email:'dewi@nusantararetail.co.id', phone:'+62 811 2345 678', service:'Audit & Assurance', stage:'new', assigned:'Unassigned', value:28000000, source:'Organic — audit page', priority:'medium', ago:'5h ago', followUp:'', message:'Board requires a statutory audit for FY2025 ahead of a bank facility renewal. What is your scope and fee estimate?', notes:[] },
+        { id:3, name:'Michael Tan', company:'Sapphire Ventures (SG)', email:'m.tan@sapphire.sg', phone:'+65 6123 4567', service:'Tax', stage:'contacted', assigned:'Sinta Halim', value:36000000, source:'Referral — ECOVIS SG', priority:'high', ago:'1d ago', followUp:'2026-07-21', message:'Cross-border structuring question on withholding tax and the new Coretax e-Faktur migration for our Indonesian entity.', notes:[{author:'Sinta Halim',text:'Called — sent intro deck and Tax 2026 guide. Wants a call next week.',time:'Yesterday 16:20',initials:'SH',bg:'#A31631'}] },
+        { id:4, name:'Anita Prawira', company:'GreenField Agritech', email:'anita@greenfield.id', phone:'+62 812 9988 776', service:'Transfer Pricing', stage:'contacted', assigned:'Budi Santoso', value:52000000, source:'LinkedIn', priority:'medium', ago:'2d ago', followUp:'2026-07-20', message:'Need TP documentation for related-party transactions with our Netherlands parent. Deadline is tax filing season.', notes:[{author:'Budi Santoso',text:'Scoping call done. Awaiting their intercompany agreements.',time:'2d ago',initials:'BS',bg:'#3E5E7A'}] },
+        { id:5, name:'Robert Klein', company:'Klein Manufacturing GmbH', email:'r.klein@kleinmfg.de', phone:'+49 30 1234 567', service:'PT PMA Establishment', stage:'consultation', assigned:'Ari Wibowo', value:68000000, source:'Organic — PMA guide', priority:'high', ago:'3d ago', followUp:'2026-07-18', message:'German manufacturer setting up assembly in Bekasi. Consultation booked, needs full setup + payroll + accounting bundle.', notes:[{author:'Ari Wibowo',text:'Consultation scheduled Fri 10:00. Preparing PMA + payroll proposal.',time:'3d ago',initials:'AW',bg:'#6E1423'}] },
+        { id:6, name:'Siti Rahmawati', company:'Bahari Seafood Export', email:'siti@baharisea.co.id', phone:'+62 813 4455 667', service:'Tax', stage:'consultation', assigned:'Sinta Halim', value:22000000, source:'Google Business', priority:'low', ago:'4d ago', followUp:'2026-07-19', message:'Facing a DJP tax audit on export VAT refunds. Need representation and dispute support.', notes:[] },
+        { id:7, name:'David Osei', company:'Meridian Capital Partners', email:'d.osei@meridiancap.com', phone:'+1 212 555 0143', service:'Corporate Finance', stage:'client', assigned:'Ari Wibowo', value:95000000, source:'Referral — network', priority:'high', ago:'1w ago', followUp:'', message:'Due diligence support for an acquisition of an Indonesian target. Engagement signed.', notes:[{author:'Ari Wibowo',text:'Engagement letter signed. Kickoff Monday.',time:'5d ago',initials:'AW',bg:'#6E1423'}] },
+        { id:8, name:'Lin Mei', company:'Golden Lotus F&B', email:'lin.mei@goldenlotus.id', phone:'+62 815 2233 445', service:'Accounting', stage:'client', assigned:'Rina Wijaya', value:18000000, source:'Direct', priority:'medium', ago:'1w ago', followUp:'', message:'Monthly bookkeeping + payroll outsourcing for 3 restaurant entities. Onboarded.', notes:[] },
+        { id:9, name:'Thomas Berg', company:'Nordic Solar AS', email:'t.berg@nordicsolar.no', phone:'+47 22 33 44 55', service:'ESG & Sustainability', stage:'new', assigned:'Unassigned', value:31000000, source:'Insights article', priority:'medium', ago:'6h ago', followUp:'', message:'Interested in ESG reporting and sustainability assurance for our Indonesian solar operations.', notes:[] }
+      ],
+      articles: [
+        {id:1,title:'Coretax e-Faktur migration: what businesses must do in 2026',category:'Tax',author:'Sinta Halim',date:'12 Jul 2026',views:'2,410',published:true,slug:'coretax-efaktur-2026'},
+        {id:2,title:'How to set up a PT PMA in Indonesia: step-by-step 2026',category:'PMA',author:'Ari Wibowo',date:'8 Jul 2026',views:'5,120',published:true,slug:'pt-pma-setup-2026'},
+        {id:3,title:'Statutory audit readiness checklist for foreign subsidiaries',category:'Audit',author:'Budi Santoso',date:'2 Jul 2026',views:'1,880',published:true,slug:'audit-readiness-checklist'},
+        {id:4,title:'VAT 12%: transition rules and invoicing changes',category:'Tax',author:'Sinta Halim',date:'—',views:'0',published:false,slug:'vat-12-transition'},
+        {id:5,title:'Transfer pricing documentation deadlines explained',category:'TP',author:'Anita R.',date:'—',views:'0',published:false,slug:'tp-documentation-deadlines'}
+      ],
+      pageList: [
+        {id:1,title:'Home',url:'/',slug:'home',blocks:12,pub:true},
+        {id:2,title:'About',url:'/about',slug:'about',blocks:7,pub:true},
+        {id:3,title:'Services (Hub)',url:'/services',slug:'services',blocks:9,pub:true},
+        {id:4,title:'Audit & Assurance',url:'/audit',slug:'audit',blocks:8,pub:true},
+        {id:5,title:'Tax',url:'/tax',slug:'tax',blocks:8,pub:true},
+        {id:6,title:'PT PMA Establishment',url:'/pt-pma',slug:'pt-pma',blocks:10,pub:true},
+        {id:7,title:'Industries',url:'/industries',slug:'industries',blocks:6,pub:true},
+        {id:8,title:'Contact',url:'/contact',slug:'contact',blocks:4,pub:true},
+        {id:9,title:'Careers',url:'/careers',slug:'careers',blocks:5,pub:false}
+      ],
+      resources: [
+        {id:1,type:'GUIDE · PDF',title:'Setting up a PT PMA in Indonesia 2026',downloads:1240,leads:412,gated:true},
+        {id:2,type:'GUIDE · PDF',title:'Tax Calendar & Changes 2026',downloads:980,leads:331,gated:true},
+        {id:3,type:'CHECKLIST',title:'Annual Audit Readiness Checklist',downloads:640,leads:188,gated:true},
+        {id:4,type:'WHITEPAPER',title:'Transfer Pricing Documentation Guide',downloads:420,leads:96,gated:true},
+        {id:5,type:'GUIDE · PDF',title:'Payroll & BPJS Compliance Handbook',downloads:310,leads:74,gated:false},
+        {id:6,type:'WEBINAR',title:'Navigating Coretax: Live Q&A Recording',downloads:560,leads:140,gated:true}
+      ],
+      services: [
+        {id:1,name:'Audit & Assurance',tagline:'Statutory & special-purpose audit',priority:true,leads:32},
+        {id:2,name:'Tax',tagline:'Compliance, planning & disputes',priority:true,leads:41},
+        {id:3,name:'PT PMA Establishment',tagline:'Setup, licensing & secretarial',priority:true,leads:58},
+        {id:4,name:'Accounting',tagline:'Bookkeeping & reporting',priority:false,leads:18},
+        {id:5,name:'Payroll',tagline:'Payroll & BPJS outsourcing',priority:false,leads:12},
+        {id:6,name:'Corporate Finance',tagline:'M&A, due diligence, valuation',priority:false,leads:9},
+        {id:7,name:'Transfer Pricing',tagline:'TP documentation & policy',priority:false,leads:14},
+        {id:8,name:'Advisory',tagline:'Business & risk advisory',priority:false,leads:7},
+        {id:9,name:'ESG & Sustainability',tagline:'Reporting & assurance',priority:false,leads:6},
+        {id:10,name:'Digital Solutions',tagline:'Accounting tech & automation',priority:false,leads:4}
+      ],
+      industries: [
+        {id:1,name:'Manufacturing',pages:3},{id:2,name:'Financial Services',pages:2},{id:3,name:'Technology & Startups',pages:2},{id:4,name:'Retail & Consumer',pages:2},{id:5,name:'Energy & Resources',pages:2},{id:6,name:'Real Estate & Construction',pages:2}
+      ],
+      jobs: [
+        {id:1,role:'Senior Tax Consultant',dept:'Tax',location:'Jakarta',applicants:18,open:true},
+        {id:2,role:'Audit Associate',dept:'Audit',location:'Jakarta',applicants:34,open:true},
+        {id:3,role:'PMA Setup Specialist',dept:'Corporate Services',location:'Jakarta / Remote',applicants:12,open:true},
+        {id:4,role:'Payroll Officer',dept:'Outsourcing',location:'Surabaya',applicants:7,open:true},
+        {id:5,role:'Marketing Content Lead',dept:'Marketing',location:'Jakarta',applicants:9,open:false}
+      ],
+      media: [
+        {id:1,name:'team-partner-ari.jpg',kind:'JPG',size:'1.2 MB',bg:'#6E1423'},
+        {id:2,name:'ecovis-office-jakarta.jpg',kind:'JPG',size:'2.4 MB',bg:'#3E5E7A'},
+        {id:3,name:'pma-guide-cover.png',kind:'PNG',size:'480 KB',bg:'#A31631'},
+        {id:4,name:'audit-hero.jpg',kind:'JPG',size:'1.8 MB',bg:'#5E7A3E'},
+        {id:5,name:'tax-calendar-2026.pdf',kind:'PDF',size:'620 KB',bg:'#B5702A'},
+        {id:6,name:'network-map.svg',kind:'SVG',size:'88 KB',bg:'#26282B'},
+        {id:7,name:'client-logos.png',kind:'PNG',size:'340 KB',bg:'#5B7A9A'},
+        {id:8,name:'webinar-thumb.jpg',kind:'JPG',size:'910 KB',bg:'#8E2136'},
+        {id:9,name:'annual-report.pdf',kind:'PDF',size:'3.1 MB',bg:'#4E0D19'}
+      ],
+      subscribers: [
+        {id:1,email:'j.whitfield@harborline.co.uk',segment:'PMA / Foreign',source:'PMA guide',joined:'2h ago'},
+        {id:2,email:'dewi@nusantararetail.co.id',segment:'Audit',source:'Audit page',joined:'5h ago'},
+        {id:3,email:'cfo@meridiancap.com',segment:'Corporate Finance',source:'Referral',joined:'1d ago'},
+        {id:4,email:'finance@greenfield.id',segment:'Transfer Pricing',source:'LinkedIn',joined:'2d ago'},
+        {id:5,email:'ops@nordicsolar.no',segment:'ESG',source:'Insights',joined:'2d ago'},
+        {id:6,email:'admin@baharisea.co.id',segment:'Tax',source:'Google',joined:'4d ago'},
+        {id:7,email:'hello@goldenlotus.id',segment:'Accounting',source:'Direct',joined:'5d ago'},
+        {id:8,email:'invest@sapphire.sg',segment:'Tax',source:'Newsletter form',joined:'1w ago'}
+      ],
+      team: [
+        {id:1,name:'Ari Wibowo',title:'Managing Partner',cred:'Licensed Public Accountant (CPA) · IAPI member',bg:'#6E1423',leads:4},
+        {id:2,name:'Sinta Halim',title:'Tax Partner',cred:'Registered Tax Consultant (BKP) · Brevet C',bg:'#A31631',leads:3},
+        {id:3,name:'Budi Santoso',title:'Audit Partner',cred:'CPA · 18 years assurance experience',bg:'#3E5E7A',leads:2},
+        {id:4,name:'Rina Wijaya',title:'Head of Accounting',cred:'CA · Outsourcing & payroll lead',bg:'#5E7A3E',leads:1},
+        {id:5,name:'Daniel Osei',title:'Corporate Finance Director',cred:'CFA · M&A and valuation',bg:'#B5702A',leads:1},
+        {id:6,name:'Maya Sari',title:'Marketing Manager',cred:'Content, SEO & demand generation',bg:'#5B7A9A',leads:0}
+      ],
+      integrations: [
+        {id:1,abbr:'GA4',name:'Google Analytics 4',desc:'Traffic & conversion tracking',on:true},
+        {id:2,abbr:'GSC',name:'Google Search Console',desc:'Search performance & indexing',on:true},
+        {id:3,abbr:'ML',name:'Mailchimp',desc:'Newsletter & nurture sequences',on:true},
+        {id:4,abbr:'CT',name:'Coretax export',desc:'e-Faktur / tax data bridge',on:false}
+      ],
+      aiProviders: [
+        {id:'anthropic', name:'Anthropic Claude', short:'Anthropic', abbr:'AN', color:'#B5702A', docs:'sk-ant-api03-...', models:['claude-sonnet-4-5','claude-opus-4-1','claude-haiku-4-5'], model:'claude-sonnet-4-5', key:'', on:true},
+        {id:'openai', name:'OpenAI', short:'OpenAI', abbr:'AI', color:'#5E7A3E', docs:'sk-proj-...', models:['gpt-4o','gpt-4o-mini','gpt-4.1'], model:'gpt-4o', key:'', on:true},
+        {id:'deepseek', name:'DeepSeek', short:'DeepSeek', abbr:'DS', color:'#3E5E7A', docs:'sk-...', models:['deepseek-chat','deepseek-reasoner'], model:'deepseek-chat', key:'', on:false},
+        {id:'grok', name:'Grok \u00b7 xAI', short:'Grok', abbr:'GK', color:'#26282B', docs:'xai-...', models:['grok-4','grok-3','grok-3-mini'], model:'grok-4', key:'', on:false},
+        {id:'kimi', name:'Kimi \u00b7 Moonshot', short:'Kimi', abbr:'KM', color:'#8E2136', docs:'sk-...', models:['kimi-k2','moonshot-v1-128k','moonshot-v1-32k'], model:'kimi-k2', key:'', on:false}
+      ],
+      aiDefault: 'anthropic',
+      ai: { prompt:'', provider:'anthropic', tone:'Professional', length:'Medium', loading:false },
+      users: [
+        {id:1,name:'Ari Wibowo',email:'ari@ecovisindonesia.com',role:'Administrator',active:'Now',status:'Active'},
+        {id:2,name:'Maya Sari',email:'maya@ecovisindonesia.com',role:'Editor',active:'12m ago',status:'Active'},
+        {id:3,name:'Sinta Halim',email:'sinta@ecovisindonesia.com',role:'Consultant',active:'1h ago',status:'Active'},
+        {id:4,name:'Budi Santoso',email:'budi@ecovisindonesia.com',role:'Consultant',active:'3h ago',status:'Active'},
+        {id:5,name:'Webweaver Agency',email:'dev@webweaver.co',role:'Editor',active:'2d ago',status:'Invited'}
+      ]
+    };
+    this._blockPalette = [
+      {type:'Heading',label:'Heading'}, {type:'Paragraph',label:'Text'}, {type:'Image',label:'Image'}, {type:'Quote',label:'Quote'}, {type:'CTA band',label:'CTA'}, {type:'Stat grid',label:'Stats'}
+    ];
+  }
+
+  toast(msg){ this.setState({toast:msg}); clearTimeout(this._t); this._t=setTimeout(()=>this.setState({toast:''}),2200); }
+  go(view){ this.setState({view, editor:null, selectedLead:null}); }
+  _id(){ return Date.now()*1000 + Math.floor(Math.random()*1000); }
+
+  // ---- generic collection helpers ----
+  _patch(coll,id,patch){ this.setState(s=>({[coll]:s[coll].map(x=>x.id===id?{...x,...patch}:x)})); }
+  _remove(coll,id){ this.setState(s=>({[coll]:s[coll].filter(x=>x.id!==id)})); }
+  _push(coll,item){ const id=this._id(); this.setState(s=>({[coll]:[...s[coll],{...item,id}]})); return id; }
+  _move(coll,id,dir){ this.setState(s=>{const a=[...s[coll]]; const i=a.findIndex(x=>x.id===id); const j=i+dir; if(i<0||j<0||j>=a.length) return {}; const t=a[i]; a[i]=a[j]; a[j]=t; return {[coll]:a};}); }
+
+  // ---- generic modal ----
+  openModal(title, fields, save){ this.setState({modal:{title,fields:fields.map(f=>({...f})),save}}); }
+  closeModal(){ this.setState({modal:null}); }
+  setModalField(i,val){ this.setState(s=>({modal:{...s.modal,fields:s.modal.fields.map((f,j)=>j===i?{...f,value:val}:f)}})); }
+  toggleModalField(i){ this.setState(s=>({modal:{...s.modal,fields:s.modal.fields.map((f,j)=>j===i?{...f,value:!f.value}:f)}})); }
+  saveModal(){ const m=this.state.modal; if(!m)return; const vals={}; m.fields.forEach(f=>{vals[f.key]=f.value;}); m.save(vals); this.closeModal(); }
+
+  // ---- modal openers ----
+  serviceModal(sv){ this.openModal(sv?'Edit service':'New service',[
+    {key:'name',label:'Service name',type:'text',value:sv?sv.name:''},
+    {key:'tagline',label:'Tagline',type:'text',value:sv?sv.tagline:''},
+    {key:'priority',label:'Featured (priority)',type:'toggle',value:sv?!!sv.priority:false}
+  ],(v)=>{ if(sv){this._patch('services',sv.id,v); this.toast('Service updated');} else {this._push('services',{...v,leads:0}); this.toast('Service added');} }); }
+
+  industryModal(ind){ this.openModal(ind?'Edit industry':'New industry',[
+    {key:'name',label:'Industry name',type:'text',value:ind?ind.name:''}
+  ],(v)=>{ if(ind){this._patch('industries',ind.id,v); this.toast('Industry updated');} else {this._push('industries',{...v,pages:1}); this.toast('Industry added');} }); }
+
+  jobModal(j){ this.openModal(j?'Edit role':'New role',[
+    {key:'role',label:'Role title',type:'text',value:j?j.role:''},
+    {key:'dept',label:'Department',type:'text',value:j?j.dept:''},
+    {key:'location',label:'Location',type:'text',value:j?j.location:''},
+    {key:'open',label:'Open for applications',type:'toggle',value:j?!!j.open:true}
+  ],(v)=>{ if(j){this._patch('jobs',j.id,v); this.toast('Role updated');} else {this._push('jobs',{...v,applicants:0}); this.toast('Role posted');} }); }
+
+  teamModal(t){ this.openModal(t?'Edit member':'New member',[
+    {key:'name',label:'Full name',type:'text',value:t?t.name:''},
+    {key:'title',label:'Title',type:'text',value:t?t.title:''},
+    {key:'cred',label:'Credentials',type:'textarea',value:t?t.cred:''}
+  ],(v)=>{ if(t){this._patch('team',t.id,v); this.toast('Member updated');} else {this._push('team',{...v,bg:this.avatarColor(v.name),leads:0}); this.toast('Member added');} }); }
+
+  resourceModal(r){ this.openModal(r?'Edit resource':'New resource',[
+    {key:'title',label:'Title',type:'text',value:r?r.title:''},
+    {key:'type',label:'Type',type:'select',value:r?r.type:'GUIDE · PDF',options:this.RES_TYPES},
+    {key:'gated',label:'Email-gated (capture leads)',type:'toggle',value:r?!!r.gated:true}
+  ],(v)=>{ if(r){this._patch('resources',r.id,v); this.toast('Resource updated');} else {this._push('resources',{...v,downloads:0,leads:0}); this.toast('Resource added');} }); }
+
+  userModal(){ this.openModal('Invite user',[
+    {key:'name',label:'Full name',type:'text',value:''},
+    {key:'email',label:'Email address',type:'text',value:''},
+    {key:'role',label:'Role',type:'select',value:'Editor',options:this.ROLE_OPTIONS}
+  ],(v)=>{ if(!v.name||!v.email){this.toast('Name and email required'); return;} this._push('users',{...v,active:'—',status:'Invited'}); this.toast('Invitation sent'); }); }
+
+  pageModal(){ this.openModal('New page',[
+    {key:'title',label:'Page title',type:'text',value:''},
+    {key:'slug',label:'URL slug',type:'text',value:''},
+    {key:'pub',label:'Publish now',type:'toggle',value:false}
+  ],(v)=>{ const slug=(v.slug||v.title||'new-page').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); this._push('pageList',{title:v.title||'Untitled page',url:'/'+slug,slug,blocks:1,pub:!!v.pub}); this.toast('Page created'); }); }
+
+  leadModal(){ this.openModal('New lead',[
+    {key:'name',label:'Contact name',type:'text',value:''},
+    {key:'company',label:'Company',type:'text',value:''},
+    {key:'email',label:'Email',type:'text',value:''},
+    {key:'phone',label:'Phone',type:'text',value:''},
+    {key:'service',label:'Service interest',type:'select',value:'Tax',options:this.SERVICE_NAMES},
+    {key:'message',label:'Enquiry',type:'textarea',value:''}
+  ],(v)=>{ if(!v.name){this.toast('Contact name required'); return;} const id=this._id(); this.setState(s=>({leads:[{id,name:v.name,company:v.company||'—',email:v.email||'',phone:v.phone||'—',service:v.service,stage:'new',assigned:'Unassigned',value:20000000,source:'Manual entry',priority:'medium',ago:'Just now',followUp:'',message:v.message||'—',notes:[]},...s.leads]})); this.toast('Lead added'); }); }
+
+  // ---- editor ----
+  openArticleEditor(a){
+    this.setState({ editor:{ kind:'article', id:a?a.id:null, title:a?a.title:'Untitled article', category:a?a.category:'Tax', slug:a?a.slug:'new-article', status:a?a.published:false,
+      blocks:[{type:'Heading',text:'A clear, keyword-led headline'},{type:'Paragraph',text:'Opening paragraph that frames the reader problem and previews the answer.'},{type:'Image',text:'Featured image — 1200×630'},{type:'Paragraph',text:'Body section with the substantive guidance and internal links to the relevant service page.'}] }});
+  }
+  openPageEditor(p){
+    this.setState({ editor:{ kind:'page', id:p.id, title:p.title, category:'Marketing page', slug:p.slug, status:p.pub!==false,
+      blocks:[{type:'Heading',text:'Hero headline'},{type:'Paragraph',text:'Sub-headline / value proposition.'},{type:'CTA band',text:'Schedule a Consultation'},{type:'Stat grid',text:'90+ countries · Top 15 · Partner-led'}] }});
+  }
+  editBlock(i,text){ this.setState(s=>({editor:{...s.editor,blocks:s.editor.blocks.map((b,j)=>j===i?{...b,text}:b)}})); }
+  moveBlock(i,d){ this.setState(s=>{const b=[...s.editor.blocks]; const j=i+d; if(j<0||j>=b.length)return {}; const t=b[i]; b[i]=b[j]; b[j]=t; return {editor:{...s.editor,blocks:b}};}); }
+  removeBlock(i){ this.setState(s=>({editor:{...s.editor,blocks:s.editor.blocks.filter((_,j)=>j!==i)}})); }
+  addBlock(type){ this.setState(s=>({editor:{...s.editor,blocks:[...s.editor.blocks,{type,text:type==='Image'?'Image placeholder':''}]}})); }
+  saveEditor(){
+    const e=this.state.editor; if(!e){return;}
+    if(e.kind==='article'){
+      if(e.id){ this._patch('articles',e.id,{title:e.title,category:e.category,slug:e.slug,published:e.status,date:e.status?'Today':'—'}); }
+      else { this._push('articles',{title:e.title||'Untitled article',category:e.category,author:'Ari Wibowo',date:e.status?'Today':'—',views:'0',published:!!e.status,slug:e.slug}); }
+    } else if(e.kind==='page'){
+      if(e.id){ this._patch('pageList',e.id,{title:e.title,slug:e.slug,url:'/'+e.slug,pub:!!e.status}); }
+    }
+    this.setState({editor:null});
+    this.toast(e.status?'Published — live on site':'Draft saved');
+  }
+
+  // ---- lead helpers ----
+  updateLead(id,patch){ this.setState(s=>({leads:s.leads.map(l=>l.id===id?{...l,...patch}:l)})); }
+  addNoteToLead(){
+    const d=this.state.noteDraft.trim(); if(!d)return; const id=this.state.selectedLead;
+    const note={author:'Ari Wibowo',text:d,time:'Just now',initials:'AW',bg:'#6E1423'};
+    this.setState(s=>({leads:s.leads.map(l=>l.id===id?{...l,notes:[...l.notes,note]}:l), noteDraft:''}));
+    this.toast('Note added');
+  }
+
+  // ---- AI article generation ----
+  setAi(patch){ this.setState(s=>({ai:{...s.ai,...patch}})); }
+  setProviderModel(id,model){ this.setState(s=>({aiProviders:s.aiProviders.map(p=>p.id===id?{...p,model}:p)})); }
+  setProviderKey(id,key){ this.setState(s=>({aiProviders:s.aiProviders.map(p=>p.id===id?{...p,key}:p)})); }
+  toggleProvider(id){ const cur=this.state.aiProviders.find(p=>p.id===id); this.setState(s=>({aiProviders:s.aiProviders.map(p=>p.id===id?{...p,on:!p.on}:p)})); this.toast((cur?cur.short:'Provider')+(cur&&cur.on?' disabled':' enabled')); }
+  setDefaultProvider(id){ const p=this.state.aiProviders.find(x=>x.id===id); this.setState(s=>({aiDefault:id, ai:{...s.ai,provider:id}})); this.toast((p?p.short:'Provider')+' set as default'); }
+
+  _extractJson(raw){
+    if(!raw) return null;
+    let t=String(raw).trim();
+    const fence=t.match(/```(?:json)?\s*([\s\S]*?)```/i);
+    if(fence) t=fence[1].trim();
+    const a=t.indexOf('{'), b=t.lastIndexOf('}');
+    if(a<0||b<0) return null;
+    try{ return JSON.parse(t.slice(a,b+1)); }catch(e){ return null; }
+  }
+  _normType(t){
+    const s=String(t||'').toLowerCase();
+    if(s.indexOf('head')===0||s==='h1'||s==='h2'||s==='h3'||s==='title'||s.indexOf('subhead')===0) return 'Heading';
+    if(s.indexOf('quote')===0||s==='blockquote'||s==='pullquote') return 'Quote';
+    if(s.indexOf('image')===0||s==='img'||s==='figure'||s==='photo') return 'Image';
+    if(s.indexOf('cta')===0) return 'CTA band';
+    if(s.indexOf('stat')===0) return 'Stat grid';
+    return 'Paragraph';
+  }
+  _slugify(t){ return String(t||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,60)||'new-article'; }
+  _fallbackArticle(prompt, cat){
+    const topic=prompt.replace(/\s+/g,' ').trim().replace(/[.?!]+$/,'');
+    const cap=topic.charAt(0).toUpperCase()+topic.slice(1);
+    const title=cap.length>76?cap.slice(0,73)+'\u2026':cap;
+    return [
+      {type:'Heading', text:title},
+      {type:'Paragraph', text:'This article explains '+topic+' for businesses operating in Indonesia. Below we set out what it means, why it matters, and the practical steps Ecovis Indonesia recommends.'},
+      {type:'Heading', text:'Why this matters'},
+      {type:'Paragraph', text:'Getting this right protects your compliance position and avoids costly rework. Indonesian '+cat.toLowerCase()+' rules change frequently, so an up-to-date, partner-led approach is essential \u2014 particularly for foreign-owned entities.'},
+      {type:'Heading', text:'Key considerations'},
+      {type:'Paragraph', text:'Review the applicable requirements, documentation you must retain, and the reporting deadlines that apply. Confirm how local obligations interact with any group-level policies before you act.'},
+      {type:'Image', text:'Suggested visual \u2014 infographic summarising the key steps (1200\u00d7630)'},
+      {type:'Quote', text:'\u201cA structured, well-documented approach is the difference between a smooth process and a compliance risk.\u201d'},
+      {type:'Heading', text:'How Ecovis Indonesia can help'},
+      {type:'Paragraph', text:'Our licensed local partners combine global ECOVIS expertise with on-the-ground knowledge to guide you through '+topic+' end to end.'},
+      {type:'CTA band', text:'Schedule a consultation with our team'}
+    ];
+  }
+  async generateArticle(){
+    const s=this.state, ai=s.ai;
+    const prompt=(ai.prompt||'').trim();
+    if(!prompt){ this.toast('Enter a prompt to generate'); return; }
+    if(ai.loading) return;
+    const prov=s.aiProviders.find(p=>p.id===ai.provider)||s.aiProviders[0];
+    const cat=(s.editor&&s.editor.category)||'Tax';
+    this.setState(st=>({ai:{...st.ai,loading:true}}));
+    const lengthMap={Short:'about 350 words',Medium:'about 700 words',Long:'1,200+ words'};
+    const sys='You are a senior content writer for Ecovis Indonesia, a professional audit, tax and PT PMA advisory firm. Write accurate, helpful, non-salesy B2B articles for an Indonesian business audience. Respond ONLY with minified JSON \u2014 no markdown, no code fences, no commentary.';
+    const user='Write an article for the "'+cat+'" category. Brief: "'+prompt+'". Tone: '+ai.tone+'. Length: '+(lengthMap[ai.length]||'about 700 words')+'.\nReturn JSON exactly: {"title":string,"slug":"kebab-case","blocks":[{"type":string,"text":string}]}.\nAllowed block types: "Heading","Paragraph","Quote","Image","CTA band","Stat grid". Start with a Heading then a Paragraph intro. Alternate Heading/Paragraph to cover the topic thoroughly. Include one Image block whose text is a descriptive caption, and at least one Quote or Stat grid. Keep each Paragraph to 2-4 sentences.';
+    let blocks=null, title=null, slug=null;
+    try{
+      if(window.claude && window.claude.complete){
+        const raw=await window.claude.complete({messages:[{role:'user',content:user}],system:sys,max_tokens:4000});
+        const j=this._extractJson(raw);
+        if(j && Array.isArray(j.blocks)){
+          blocks=j.blocks.filter(b=>b&&b.type&&b.text!=null).map(b=>({type:this._normType(b.type),text:String(b.text)}));
+          title=j.title||null; slug=j.slug||null;
+        }
+      }
+    }catch(err){ blocks=null; }
+    if(!blocks || !blocks.length){ blocks=this._fallbackArticle(prompt,cat); title=blocks[0].text; }
+    if(!title){ const h=blocks.find(b=>b.type==='Heading'); title=h?h.text:prompt; }
+    if(!slug) slug=this._slugify(title);
+    this.setState(st=>( st.editor ? { editor:{...st.editor, title, slug, blocks, aiGen:{provider:prov.name, model:prov.model}}, ai:{...st.ai,loading:false} } : { ai:{...st.ai,loading:false} } ));
+    this.toast('Draft generated with '+prov.short+' \u2014 edit anything below');
+  }
+
+  renderVals(){
+    const s=this.state, SM=this.STAGE_META;
+    const money=(v)=>'Rp '+(v/1000000).toFixed(0)+'M';
+    const view=s.view, editing=!!s.editor, e=s.editor;
+
+    // sidebar theme
+    const maroon = (this.props.sidebarTheme||'maroon')==='maroon';
+    const sb = maroon
+      ? {bg:'#2A0E14',text:'#F3EDEE',muted:'#A47D84',border:'rgba(255,255,255,0.09)',divider:'rgba(255,255,255,0.16)',activeBg:'rgba(255,255,255,0.10)',activeDot:'#E8A0AB',idleDot:'rgba(255,255,255,0.22)',idleColor:'#C9B2B6'}
+      : {bg:'#fff',text:'#26282B',muted:'#9A9089',border:'#E8E4E1',divider:'#E8E4E1',activeBg:'#F7EBED',activeDot:'#A31631',idleDot:'#D6CEC7',idleColor:'#5C6166'};
+
+    const newCount = s.leads.filter(l=>l.stage==='new').length;
+    const mkNav = (id,label,badge)=>{ const on=view===id&&!editing; return {label,badge:badge||'',go:()=>this.go(id),
+      bg:on?sb.activeBg:'transparent', color:on?sb.text:sb.idleColor, weight:on?700:500, dot:on?sb.activeDot:sb.idleDot}; };
+
+    const funnel=[
+      {name:'Visitors',count:'18,420',rate:'100%',width:'100%',bg:'#4E0D19'},
+      {name:'Engaged',count:'6,240',rate:'34%',width:'62%',bg:'#6E1423'},
+      {name:'Leads (MQL)',count:'842',rate:'4.6%',width:'34%',bg:'#8E2136'},
+      {name:'Consultations',count:'214',rate:'25%',width:'20%',bg:'#A31631'},
+      {name:'Clients',count:'52',rate:'24%',width:'10%',bg:'#C24A5E'}
+    ];
+
+    // editor derived
+    const blockColor=(t)=>({Heading:'#6E1423',Paragraph:'#9A9089',Image:'#3E5E7A',Quote:'#B5702A','CTA band':'#A31631','Stat grid':'#5E7A3E'}[t]||'#9A9089');
+    const editorBlocks = e ? e.blocks.map((b,i)=>({
+      type:b.type, text:b.text, color:blockColor(b.type),
+      isImage:b.type==='Image', isText:b.type!=='Image',
+      minH:(b.type==='Paragraph'||b.type==='Quote')?'72px':'42px',
+      onInput:(ev)=>this.editBlock(i,ev.target.value),
+      up:()=>this.moveBlock(i,-1), down:()=>this.moveBlock(i,1), remove:()=>this.removeBlock(i)
+    })) : [];
+
+    // selected lead
+    const L = s.leads.find(l=>l.id===s.selectedLead);
+    const dStages = this.STAGES.map(st=>{ const on=L&&L.stage===st.id; const m=SM[st.id]; return {label:st.label,
+      set:()=>{this.updateLead(L.id,{stage:st.id}); this.toast('Moved to '+st.label);},
+      bg:on?m.bg:'#fff', color:on?m.color:'#75797E', border:on?m.color:'#E8E4E1'}; });
+
+    // leads board / list
+    const q=s.leadSearch.toLowerCase();
+    const filtered=s.leads.filter(l=>l.stage!=='lost' && (!q || (l.name+l.company+l.service).toLowerCase().includes(q)));
+    const columns=this.STAGES.map(st=>{ const ls=filtered.filter(l=>l.stage===st.id); const val=ls.reduce((a,l)=>a+l.value,0);
+      return {label:st.label,color:SM[st.id].col,count:ls.length,value:val?money(val):'—',empty:ls.length===0,
+        leads:ls.map(l=>({name:l.name,company:l.company,initials:this.initials(l.name),avatarBg:this.avatarColor(l.name),
+          serviceTag:l.service.split(' ')[0]+(l.service.split(' ')[1]&&l.service.split(' ')[1].length<4?' '+l.service.split(' ')[1]:''),
+          ago:l.ago,priorityColor:l.priority==='high'?'#A31631':l.priority==='medium'?'#C98A3A':'#B0A79F',
+          open:()=>this.setState({selectedLead:l.id})})) }; });
+
+    const listLeads=[...filtered,...s.leads.filter(l=>l.stage==='lost')].map((l,i)=>({name:l.name,company:l.company,service:l.service,
+      stageLabel:SM[l.stage].label,stageBg:SM[l.stage].bg,stageColor:SM[l.stage].color,
+      assigned:l.assigned,valueLabel:money(l.value),ago:l.ago,rowBg:i%2?'#FBF9F7':'#fff',open:()=>this.setState({selectedLead:l.id})}));
+
+    // insights
+    const curTab=s._itab||'all';
+    const filterArt=(t)=> t==='published'?s.articles.filter(a=>a.published) : t==='draft'?s.articles.filter(a=>!a.published) : s.articles;
+    const insightTabs=[['all','All',s.articles.length],['published','Published',s.articles.filter(a=>a.published).length],['draft','Drafts',s.articles.filter(a=>!a.published).length]].map(([id,label,count])=>{
+      const on=curTab===id; return {label,count,go:()=>this.setState({_itab:id}),bg:on?'#6E1423':'#fff',color:on?'#fff':'#5C6166',border:on?'#6E1423':'#E8E4E1'};});
+    const articleList=filterArt(curTab).map(a=>({title:a.title,category:a.category,author:a.author,date:a.date,views:a.views,
+      statusLabel:a.published?'Published':'Draft',statusBg:a.published?'#E9F0E4':'#F0ECEA',statusColor:a.published?'#5E7A3E':'#9A9089',
+      edit:()=>this.openArticleEditor(a), del:()=>{this._remove('articles',a.id); this.toast('Article deleted');},
+      toggle:()=>{this._patch('articles',a.id,{published:!a.published,date:!a.published?'Today':a.date}); this.toast(a.published?'Unpublished':'Published');}}));
+
+    // pages
+    const pq=s.pageSearch.toLowerCase();
+    const pages=s.pageList.filter(p=>!pq||(p.title+p.url).toLowerCase().includes(pq)).map(p=>({title:p.title,url:p.url,blocks:p.blocks,
+      statusLabel:p.pub?'Live':'Draft',statusBg:p.pub?'#E9F0E4':'#F0ECEA',statusColor:p.pub?'#5E7A3E':'#9A9089',updated:p.pub?'3 days ago':'1 week ago',
+      edit:()=>this.openPageEditor(p), toggle:()=>{this._patch('pageList',p.id,{pub:!p.pub}); this.toast(p.pub?'Page unpublished':'Page published');}}));
+
+    // resources
+    const resources=s.resources.map(r=>({type:r.type,title:r.title,downloads:r.downloads.toLocaleString(),leads:r.leads,
+      gate:r.gated?'Email-gated (captures leads)':'Open download',gateColor:r.gated?'#7A9A5B':'#C98A3A',
+      toggleLabel:r.gated?'Set open':'Gate it',
+      toggle:()=>{this._patch('resources',r.id,{gated:!r.gated}); this.toast(r.gated?'Gate removed':'Now email-gated');},
+      edit:()=>this.resourceModal(r), del:()=>{this._remove('resources',r.id); this.toast('Resource deleted');}}));
+
+    // services & industries
+    const servicesList=s.services.map(sv=>({name:sv.name,tagline:sv.tagline,priority:sv.priority,leads:sv.leads,
+      edit:()=>this.serviceModal(sv), del:()=>{this._remove('services',sv.id); this.toast('Service removed');},
+      up:()=>this._move('services',sv.id,-1), down:()=>this._move('services',sv.id,1)}));
+    const industriesList=s.industries.map(ind=>({name:ind.name,pages:ind.pages,
+      edit:()=>this.industryModal(ind), del:()=>{this._remove('industries',ind.id); this.toast('Industry removed');},
+      up:()=>this._move('industries',ind.id,-1), down:()=>this._move('industries',ind.id,1)}));
+
+    // careers
+    const jobs=s.jobs.map(j=>({role:j.role,dept:j.dept,location:j.location,applicants:j.applicants,
+      statusLabel:j.open?'Open':'Closed',statusBg:j.open?'#E9F0E4':'#F0ECEA',statusColor:j.open?'#5E7A3E':'#9A9089',
+      toggle:()=>{this._patch('jobs',j.id,{open:!j.open}); this.toast(j.open?'Role closed':'Role opened');},
+      edit:()=>this.jobModal(j), del:()=>{this._remove('jobs',j.id); this.toast('Role deleted');}}));
+
+    // media
+    const media=s.media.map(m=>({name:m.name,kind:m.kind,size:m.size,bg:m.bg,del:()=>{this._remove('media',m.id); this.toast('Asset deleted');}}));
+
+    // newsletter
+    const segs=['All',...Array.from(new Set(s.subscribers.map(x=>x.segment)))];
+    const subQ=s.subSearch.toLowerCase();
+    const filteredSubs=s.subscribers.filter(x=>(s.subSegment==='All'||x.segment===s.subSegment)&&(!subQ||x.email.toLowerCase().includes(subQ)));
+    const subSegments=segs.map(sg=>{const on=s.subSegment===sg; return {label:sg,go:()=>this.setState({subSegment:sg}),bg:on?'#6E1423':'#fff',color:on?'#fff':'#5C6166',border:on?'#6E1423':'#E8E4E1'};});
+    const subscribers=filteredSubs.map(x=>({email:x.email,segment:x.segment,source:x.source,joined:x.joined,remove:()=>{this._remove('subscribers',x.id); this.toast('Subscriber removed');}}));
+
+    // team
+    const team=s.team.map(t=>({name:t.name,title:t.title,cred:t.cred,bg:t.bg,leads:t.leads,initials:this.initials(t.name),
+      edit:()=>this.teamModal(t), del:()=>{this._remove('team',t.id); this.toast('Member removed');}}));
+
+    // integrations
+    const integrations=s.integrations.map(i=>({abbr:i.abbr,name:i.name,desc:i.desc,
+      status:i.on?'Connected':'Not connected',stBg:i.on?'#E9F0E4':'#F0ECEA',stColor:i.on?'#5E7A3E':'#9A9089',
+      toggleLabel:i.on?'Disconnect':'Connect',btnColor:i.on?'#A31631':'#6E1423',
+      toggle:()=>{this._patch('integrations',i.id,{on:!i.on}); this.toast(i.on?i.name+' disconnected':i.name+' connected');}}));
+
+    // users
+    const users=s.users.map(u=>({name:u.name,email:u.email,role:u.role,active:u.active,status:u.status,initials:this.initials(u.name),bg:this.avatarColor(u.name),
+      stBg:u.status==='Active'?'#E9F0E4':u.status==='Invited'?'#FBF0E4':'#F0ECEA',
+      stColor:u.status==='Active'?'#5E7A3E':u.status==='Invited'?'#B5702A':'#A31631',
+      onRole:(ev)=>{this._patch('users',u.id,{role:ev.target.value}); this.toast('Role updated to '+ev.target.value);},
+      toggleStatus:()=>{const ns=u.status==='Active'?'Suspended':'Active'; this._patch('users',u.id,{status:ns}); this.toast(ns==='Active'?'User activated':'User suspended');},
+      remove:()=>{this._remove('users',u.id); this.toast('User removed');}}));
+    const roleCount=(r)=>s.users.filter(u=>u.role===r).length;
+    const roles=[
+      {name:'Administrator',count:roleCount('Administrator'),perms:['Full access','Manage users & roles','Billing & settings','Publish anything']},
+      {name:'Editor',count:roleCount('Editor'),perms:['Create & edit content','Manage media','Publish pages & articles','No user management']},
+      {name:'Consultant',count:roleCount('Consultant'),perms:['View & manage leads','Add notes & follow-ups','No content editing','No settings access']}
+    ];
+
+    // generic modal fields
+    const m=s.modal;
+    const modalFields = m ? m.fields.map((f,i)=>({
+      label:f.label, value:f.value, options:f.options||[],
+      isText:f.type==='text', isTextarea:f.type==='textarea', isSelect:f.type==='select', isToggle:f.type==='toggle',
+      onInput:(ev)=>this.setModalField(i,ev.target.value),
+      toggle:()=>this.toggleModalField(i),
+      trackBg:f.value?'#7A9A5B':'#CFC8C2', knobLeft:f.value?'23px':'3px', toggleTxt:f.value?'On':'Off'
+    })) : [];
+
+    // titles
+    const titles={dashboard:['Dashboard','OVERVIEW'],leads:['Leads & Consultations','SALES PIPELINE'],pages:['Pages','SITE CONTENT'],insights:['Insights','BLOG & ARTICLES'],resources:['Resources','LEAD MAGNETS'],services:['Services & Industries','SITE CONTENT'],careers:['Careers','JOB POSTINGS'],media:['Media Library','ASSETS'],newsletter:['Newsletter','AUDIENCE'],team:['Team & Partners','PEOPLE'],seo:['SEO & Settings','SYSTEM'],users:['Users & Roles','SYSTEM']};
+    let pageTitle=(titles[view]||['',''])[0], crumb=(titles[view]||['',''])[1];
+    if(editing){ pageTitle=(e.kind==='article'?'Edit article':'Edit page'); crumb=(e.kind==='article'?'INSIGHTS':'PAGES')+' · SECTION EDITOR'; }
+    const newLabels={dashboard:'+ New lead',leads:'+ New lead',pages:'+ New page',insights:'+ New article',resources:'+ New resource',services:'+ New service',careers:'+ New role',media:'↥ Upload',newsletter:'+ Add subscriber',team:'+ Add member',seo:'+ New',users:'+ Invite user'};
+
+    const onNew=()=>{
+      if(editing){ this.saveEditor(); return; }
+      switch(view){
+        case 'insights': this.openArticleEditor(null); break;
+        case 'pages': this.pageModal(); break;
+        case 'resources': this.resourceModal(null); break;
+        case 'services': this.serviceModal(null); break;
+        case 'careers': this.jobModal(null); break;
+        case 'team': this.teamModal(null); break;
+        case 'users': this.userModal(); break;
+        case 'media': this._push('media',{name:'upload-'+(s.media.length+1)+'.png',kind:'PNG',size:(Math.floor(Math.random()*900)+100)+' KB',bg:['#6E1423','#3E5E7A','#5E7A3E','#B5702A','#5B7A9A'][s.media.length%5]}); this.toast('File uploaded'); break;
+        case 'newsletter': this.openModal('Add subscriber',[{key:'email',label:'Email',type:'text',value:''},{key:'segment',label:'Segment',type:'text',value:'Tax'}],(v)=>{ if(!v.email){this.toast('Email required'); return;} this._push('subscribers',{email:v.email,segment:v.segment||'General',source:'Manual',joined:'Just now'}); this.toast('Subscriber added'); }); break;
+        default: this.leadModal();
+      }
+    };
+
+    // AI composer
+    const aiState=s.ai;
+    const activeProv=s.aiProviders.find(p=>p.id===aiState.provider)||s.aiProviders[0];
+    const aiProviders=s.aiProviders.map(p=>{ const on=p.id===aiState.provider; return {
+      name:p.short, hint:p.name+(p.on?'':' \u2014 disabled in settings'),
+      select:()=>this.setAi({provider:p.id}),
+      bg:on?'#6E1423':'#fff', color:on?'#fff':'#5C6166', border:on?'#6E1423':'#E8E4E1', dot:on?'#fff':p.color };});
+    const aiProviderRows=s.aiProviders.map(p=>{ const hasKey=!!(p.key&&p.key.trim()); const connected=p.on&&hasKey; const isDefault=s.aiDefault===p.id; return {
+      abbr:p.abbr, color:p.color, name:p.name, models:p.models, model:p.model, key:p.key, keyPlaceholder:p.docs,
+      modelsLabel:p.models.length+' models \u00b7 '+p.models[0], isDefault,
+      cardBg:isDefault?'#FBF6F2':'#fff', cardBorder:isDefault?'#E3C9AE':'#E8E4E1',
+      status:connected?'Connected':hasKey?'Key saved':'Not configured',
+      stBg:connected?'#E9F0E4':hasKey?'#FBF0E4':'#F0ECEA', stColor:connected?'#5E7A3E':hasKey?'#B5702A':'#9A9089',
+      toggleLabel:p.on?'Disable':'Enable', toggleColor:p.on?'#A31631':'#6E1423',
+      defBg:isDefault?'#F7EBED':'#fff', defBorder:isDefault?'#E3B6BF':'#E8E4E1', defColor:'#6E1423',
+      defaultBtnLabel:isDefault?'\u2713 Default':'Set default',
+      onKey:(ev)=>this.setProviderKey(p.id,ev.target.value),
+      onModel:(ev)=>this.setProviderModel(p.id,ev.target.value),
+      toggle:()=>this.toggleProvider(p.id), setDefault:()=>this.setDefaultProvider(p.id) };});
+
+    return {
+      // sidebar
+      sbBg:sb.bg, sbText:sb.text, sbMuted:sb.muted, sbBorder:sb.border, sbDivider:sb.divider,
+      navMain:[mkNav('dashboard','Dashboard'), mkNav('leads','Leads & Consultations',String(newCount))],
+      navContent:[mkNav('pages','Pages'), mkNav('insights','Insights'), mkNav('resources','Resources'), mkNav('services','Services & Industries'), mkNav('careers','Careers'), mkNav('media','Media Library')],
+      navPeople:[mkNav('newsletter','Newsletter'), mkNav('team','Team & Partners')],
+      navSystem:[mkNav('seo','SEO & Settings'), mkNav('users','Users & Roles')],
+
+      // topbar
+      pageTitle, crumb, newLabel:editing?'Save':(newLabels[view]||'+ New'), onNewClick:onNew,
+      globalSearch:s.globalSearch, onGlobalSearch:(ev)=>this.setState({globalSearch:ev.target.value}),
+
+      // view flags
+      showDashboard:view==='dashboard'&&!editing, showLeads:view==='leads'&&!editing, showPages:view==='pages'&&!editing,
+      showInsights:view==='insights'&&!editing, showResources:view==='resources'&&!editing, showServices:view==='services'&&!editing,
+      showCareers:view==='careers'&&!editing, showMedia:view==='media'&&!editing, showNewsletter:view==='newsletter'&&!editing,
+      showTeam:view==='team'&&!editing, showSeo:view==='seo'&&!editing, showUsers:view==='users'&&!editing, showEditor:editing,
+
+      // dashboard
+      kpis:[
+        {label:'Conversion rate',value:'4.6%',note:'Sessions → leads (30d)',trend:'+0.4pt',trendColor:'#5E7A3E',trendBg:'#E9F0E4'},
+        {label:'Leads this month',value:'186',note:'MQL across all channels',trend:'+22%',trendColor:'#5E7A3E',trendBg:'#E9F0E4'},
+        {label:'MQL → SQL',value:'25.6%',note:'Leads → consultations',trend:'+1.2pt',trendColor:'#5E7A3E',trendBg:'#E9F0E4'},
+        {label:'LCP (speed)',value:'2.1s',note:'Core Web Vitals — Good',trend:'−0.3s',trendColor:'#5E7A3E',trendBg:'#E9F0E4'}
+      ],
+      funnel,
+      channels:[{name:'Organic Search (SEO)',pct:'45%'},{name:'ECOVIS Network Referral',pct:'20%'},{name:'LinkedIn & Social',pct:'15%'},{name:'Direct / Brand',pct:'12%'},{name:'Google Business',pct:'8%'}],
+      recentLeads:s.leads.slice(0,5).map(l=>({name:l.name,company:l.company,service:l.service,ago:l.ago,stageLabel:SM[l.stage].label,stageBg:SM[l.stage].bg,stageColor:SM[l.stage].color,open:()=>this.setState({view:'leads',selectedLead:l.id})})),
+      activity:[
+        {text:'New consultation request from James Whitfield (PT PMA)',who:'Web form',time:'2h ago',dot:'#A31631'},
+        {text:'“Coretax e-Faktur migration” article published',who:'Sinta Halim',time:'5h ago',dot:'#5E7A3E'},
+        {text:'Robert Klein moved to Consultation',who:'Ari Wibowo',time:'1d ago',dot:'#C98A3A'},
+        {text:'Tax Calendar 2026 guide — 40 new downloads',who:'System',time:'1d ago',dot:'#3E5E7A'},
+        {text:'Meridian Capital marked as Client',who:'Ari Wibowo',time:'2d ago',dot:'#5E7A3E'},
+        {text:'186 new newsletter subscribers this month',who:'Mailchimp',time:'2d ago',dot:'#5B7A9A'}
+      ],
+      goLeads:()=>this.go('leads'),
+
+      // leads
+      leadSearch:s.leadSearch, onLeadSearch:(ev)=>this.setState({leadSearch:ev.target.value}), addLead:()=>this.leadModal(),
+      setBoard:()=>this.setState({leadView:'board'}), setList:()=>this.setState({leadView:'list'}),
+      boardTabBg:s.leadView==='board'?'#6E1423':'transparent', boardTabColor:s.leadView==='board'?'#fff':'#75797E',
+      listTabBg:s.leadView==='list'?'#6E1423':'transparent', listTabColor:s.leadView==='list'?'#fff':'#75797E',
+      showBoard:s.leadView==='board', showList:s.leadView==='list',
+      leadCount:filtered.length, pipelineValue:money(filtered.reduce((a,l)=>a+l.value,0)),
+      columns, listLeads,
+
+      // content sections
+      insightTabs, articleList, newArticle:()=>this.openArticleEditor(null),
+      pages, pageSearch:s.pageSearch, onPageSearch:(ev)=>this.setState({pageSearch:ev.target.value}), addPage:()=>this.pageModal(),
+      resources, resourceCount:s.resources.length, addResource:()=>this.resourceModal(null),
+      servicesList, servicesCount:s.services.length, addService:()=>this.serviceModal(null),
+      industriesList, industriesCount:s.industries.length, addIndustry:()=>this.industryModal(null),
+      jobs, jobsCount:s.jobs.length, jobsApplicants:s.jobs.reduce((a,j)=>a+j.applicants,0), addJob:()=>this.jobModal(null),
+      media, uploadMedia:()=>{ this._push('media',{name:'upload-'+(s.media.length+1)+'.png',kind:'PNG',size:(Math.floor(Math.random()*900)+100)+' KB',bg:['#6E1423','#3E5E7A','#5E7A3E','#B5702A','#5B7A9A'][s.media.length%5]}); this.toast('File uploaded'); },
+      subStats:[{value:String(s.subscribers.length),label:'Active subscribers'},{value:'+186',label:'New this month'},{value:'38.4%',label:'Avg. open rate'},{value:'6.1%',label:'Avg. click rate'}],
+      subSegments, subSearch:s.subSearch, onSubSearch:(ev)=>this.setState({subSearch:ev.target.value}),
+      exportSubs:()=>this.toast('Exported '+filteredSubs.length+' subscribers (CSV)'), subscribers, subsEmpty:subscribers.length===0,
+      team, teamCount:s.team.length, addTeam:()=>this.teamModal(null),
+      integrations,
+      seoTitle:s.seo.title, onSeoTitle:(ev)=>this.setState({seo:{...s.seo,title:ev.target.value}}),
+      seoDesc:s.seo.desc, onSeoDesc:(ev)=>this.setState({seo:{...s.seo,desc:ev.target.value}}),
+      saveSeo:()=>this.toast('SEO defaults saved'), seoPreview:s.seo.desc.length+' chars in description',
+      users, usersCount:s.users.length, roleOptions:this.ROLE_OPTIONS, roles, inviteUser:()=>this.userModal(),
+
+      // editor
+      editorTitle:e?e.title:'', onEditorTitle:(ev)=>this.setState(st=>({editor:{...st.editor,title:ev.target.value}})),
+      editorMeta:e?(e.kind==='article'?'Article · IBM Plex Sans body · Manrope headings':'Marketing page · block layout'):'',
+      editorBlocks, blockPalette:this._blockPalette.map(p=>({label:p.label,add:()=>this.addBlock(p.type)})),
+      editorCategory:e?e.category:'', onEditorCategory:(ev)=>this.setState(st=>({editor:{...st.editor,category:ev.target.value}})),
+      editorSlug:e?e.slug:'', onEditorSlug:(ev)=>this.setState(st=>({editor:{...st.editor,slug:ev.target.value}})),
+      editorStatusNote:e&&e.status?'Published — live on site':'Draft — not visible',
+      pubTrackBg:e&&e.status?'#7A9A5B':'#CFC8C2', pubKnobLeft:e&&e.status?'23px':'3px',
+      togglePublish:()=>this.setState(st=>({editor:{...st.editor,status:!st.editor.status}})),
+      editorSeoDesc:e?((e.blocks.find(b=>b.type==='Paragraph')||{}).text||'Add a paragraph to generate the meta description.'):'',
+      saveLabel:e&&e.status?'Publish & save':'Save draft',
+      saveEditor:()=>this.saveEditor(),
+      closeEditor:()=>this.setState({editor:null}),
+
+      // AI composer
+      showAiAssist: editing && e && e.kind==='article',
+      aiProviders,
+      aiModel:activeProv.model, aiModelOptions:activeProv.models, onAiModel:(ev)=>this.setProviderModel(activeProv.id,ev.target.value),
+      aiTone:aiState.tone, onAiTone:(ev)=>this.setAi({tone:ev.target.value}), toneOptions:['Professional','Conversational','Authoritative','Concise','Persuasive'],
+      aiLength:aiState.length, onAiLength:(ev)=>this.setAi({length:ev.target.value}), lengthOptions:['Short','Medium','Long'],
+      aiPrompt:aiState.prompt, onAiPrompt:(ev)=>this.setAi({prompt:ev.target.value}),
+      aiLoading:aiState.loading,
+      aiBtnLabel:aiState.loading?'Generating\u2026':'\u2726 Generate draft',
+      aiBtnBg:aiState.loading?'#9A6B74':'#6E1423', aiBtnCursor:aiState.loading?'wait':'pointer',
+      generateAi:()=>this.generateArticle(),
+      aiGenNote: e&&e.aiGen ? ('Generated by '+e.aiGen.provider+' \u00b7 '+e.aiGen.model) : '',
+      goAiSettings:(ev)=>{ if(ev&&ev.preventDefault)ev.preventDefault(); this.setState({editor:null,view:'seo'}); this.toast('Configure provider API keys below'); },
+      aiProviderRows,
+      newArticleAi:()=>this.openArticleEditor(null),
+
+      // drawer
+      drawerOpen:!!L,
+      dName:L?L.name:'', dCompany:L?L.company:'', dEmail:L?L.email:'', dMailto:L?('mailto:'+L.email):'#', dPhone:L?L.phone:'',
+      dService:L?L.service:'', dValue:L?money(L.value):'', dSource:L?L.source:'', dReceived:L?L.ago:'', dMessage:L?L.message:'',
+      dStages, owners:this.OWNERS, dAssigned:L?L.assigned:'', onAssign:(ev)=>{this.updateLead(L.id,{assigned:ev.target.value}); this.toast('Assigned to '+ev.target.value);},
+      dFollowUp:L?L.followUp:'', onFollowUp:(ev)=>{this.updateLead(L.id,{followUp:ev.target.value}); this.toast('Follow-up set');},
+      dNotes:L?L.notes:[], dNoNotes:L&&L.notes.length===0, noteDraft:s.noteDraft, onNoteDraft:(ev)=>this.setState({noteDraft:ev.target.value}), addNote:()=>this.addNoteToLead(),
+      closeLead:()=>this.setState({selectedLead:null}),
+      scheduleConsult:()=>{ if(L){this.updateLead(L.id,{stage:'consultation'}); this.toast('Consultation scheduled');} },
+      markLost:()=>{ if(L){this.updateLead(L.id,{stage:'lost'}); this.setState({selectedLead:null}); this.toast('Lead marked lost');} },
+
+      // modal
+      modalOpen:!!m, modalTitle:m?m.title:'', modalFields, modalSaveLabel:'Save',
+      closeModal:()=>this.closeModal(), saveModal:()=>this.saveModal(),
+
+      toast:s.toast
+    };
+  }
+}
+</script>
+</body>
+</html>

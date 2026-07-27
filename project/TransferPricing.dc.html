@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>html{scroll-behavior:smooth}body{margin:0;background:#fff}a{color:#A31631;text-decoration:none}a:hover{color:#6E1423}</style>
+</helmet>
+<div style="font-family:'IBM Plex Sans',sans-serif;color:#26282B">
+<dc-import name="SiteHeader" style="position:sticky;top:0;z-index:1000;display:block" hint-size="100%,116px"></dc-import>
+<div id="main" tabindex="-1"></div>
+
+<section data-screen-label="Tax hero" style="background:linear-gradient(135deg,#4E0D19 0%,#6E1423 58%,#7E1A2C 100%);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-200px;right:-120px;width:620px;height:620px;border-radius:50%;background:#8E2136;opacity:0.5"></div>
+  <div style="position:absolute;top:-120px;right:-280px;width:620px;height:620px;border-radius:50%;background:#5A0F1D"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:34px clamp(20px,5vw,48px) 82px">
+    <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.62);margin-bottom:40px"><a href="Home.dc.html" style="color:rgba(255,255,255,0.62)" style-hover="color:#fff">{{ tHome }}</a> &nbsp;/&nbsp; <a href="Services.dc.html" style="color:rgba(255,255,255,0.62)" style-hover="color:#fff">{{ tServicesCrumb }}</a> &nbsp;/&nbsp; <span style="color:#fff">{{ tKicker }}</span></div>
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.18em;text-transform:uppercase;color:#D98A94;margin-bottom:18px">{{ tKicker }}</div>
+    <h1 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(32px,5vw,52px);line-height:1.07;color:#fff;margin:0 0 22px;max-width:840px;text-wrap:pretty">{{ tHeroTitle }}</h1>
+    <p style="font-size:clamp(16px,2vw,18.5px);line-height:1.6;color:rgba(255,255,255,0.85);margin:0 0 38px;max-width:660px;text-wrap:pretty">{{ tHeroSub }}</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <a href="Contact.dc.html" style="background:#fff;color:#6E1423;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;padding:15px 30px;border-radius:3px" style-hover="background:#F3E6E8;color:#4E0D19">{{ tCtaPrimary }}</a>
+      <a href="#guide" style="border:1.5px solid rgba(255,255,255,0.5);color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;padding:15px 30px;border-radius:3px" style-hover="border-color:#fff;background:rgba(255,255,255,0.08);color:#fff">{{ tCtaSecondary }}</a>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Trust strip" style="background:#fff;border-bottom:1px solid #ECE9E6">
+  <div style="max-width:1240px;margin:0 auto;padding:34px clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:28px">
+    <sc-for list="{{ trust }}" as="t" hint-placeholder-count="4">
+      <div style="display:flex;flex-direction:column;gap:5px;border-left:2px solid #E3D6D8;padding-left:18px">
+        <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:15px;color:#6E1423">{{ t.k }}</div>
+        <div style="font-size:13.5px;color:#5C6166;line-height:1.45">{{ t.v }}</div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section data-screen-label="Problem to solution" style="background:#F6F4F2">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(36px,5vw,56px)">
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px">{{ tSituation }}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(26px,3.5vw,32px);margin:0 0 26px;line-height:1.2;text-wrap:pretty">{{ tSituationTitle }}</h2>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <sc-for list="{{ problems }}" as="p" hint-placeholder-count="4">
+          <div style="display:flex;gap:14px;align-items:flex-start"><span style="color:#C9535F;font-weight:700;font-size:17px;line-height:1.4">—</span><div><div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;margin-bottom:4px">{{ p.t }}</div><div style="font-size:14.5px;color:#5C6166;line-height:1.6">{{ p.d }}</div></div></div>
+        </sc-for>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px">{{ tHowHelps }}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(26px,3.5vw,32px);margin:0 0 26px;line-height:1.2;text-wrap:pretty">{{ tHowHelpsTitle }}</h2>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <sc-for list="{{ solutions }}" as="s" hint-placeholder-count="4">
+          <div style="display:flex;gap:14px;align-items:flex-start"><span style="color:#6E1423;font-weight:700;font-size:16px;line-height:1.5">✓</span><div><div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;margin-bottom:4px">{{ s.t }}</div><div style="font-size:14.5px;color:#5C6166;line-height:1.6">{{ s.d }}</div></div></div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Scope" style="background:#fff;border-top:1px solid #ECE9E6">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px)">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px">{{ tIncluded }}</div>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);margin:0 0 44px;max-width:640px;text-wrap:pretty">{{ tScopeTitle }}</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px">
+      <sc-for list="{{ scope }}" as="c" hint-placeholder-count="6">
+        <div style="border:1px solid #E8E4E1;border-radius:4px;padding:26px 24px;display:flex;flex-direction:column;gap:9px" style-hover="border-color:#6E1423;box-shadow:0 8px 24px rgba(110,20,35,0.07)">
+          <div style="width:26px;height:3px;background:#6E1423;margin-bottom:4px"></div>
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:17px">{{ c.t }}</div>
+          <div style="font-size:13.5px;color:#5C6166;line-height:1.55">{{ c.d }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Process" style="background:#26282B;color:#fff">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px)">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#D98A94;margin-bottom:12px">{{ tHowWeWork }}</div>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);margin:0 0 48px;max-width:680px;text-wrap:pretty">{{ tProcessTitle }}</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0">
+      <sc-for list="{{ steps }}" as="st" hint-placeholder-count="5">
+        <div style="padding:0 22px;border-left:1px solid #3A3D41;position:relative">
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.1em;color:#D98A94;margin-bottom:14px">{{ tStep }} {{ st.n }}</div>
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:18px;margin-bottom:8px;line-height:1.25">{{ st.t }}</div>
+          <div style="font-size:13.5px;color:#9BA0A5;line-height:1.55">{{ st.d }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Proof" style="background:#F6F4F2">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(40px,5vw,64px);align-items:center">
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px">{{ tCredentials }}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(26px,3.5vw,32px);margin:0 0 18px;line-height:1.2;text-wrap:pretty">{{ tProofTitle }}</h2>
+      <p style="font-size:16px;line-height:1.7;color:#5C6166;margin:0 0 16px">{{ tProofBody }}</p>
+      <div style="background:#fff;border:1px solid #E8E4E1;border-left:4px solid #6E1423;border-radius:4px;padding:24px 26px">
+        <p style="margin:0 0 10px;font-size:15.5px;line-height:1.65;color:#3C4045;font-style:italic;text-wrap:pretty">{{ tQuote }}</p>
+        <div style="font-size:13px;color:#6B7075;font-weight:600">{{ tQuoteBy }}</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px">
+      <sc-for list="{{ proof }}" as="q" hint-placeholder-count="4">
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:4px;padding:26px 24px;display:flex;flex-direction:column;gap:7px">
+          <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:30px;color:#6E1423;line-height:1">{{ q.k }}</div>
+          <div style="font-size:13.5px;color:#5C6166;line-height:1.45">{{ q.v }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="guide" data-screen-label="Lead magnet" style="scroll-margin-top:130px;background:linear-gradient(120deg,#4E0D19,#6E1423);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-220px;left:-140px;width:520px;height:520px;border-radius:50%;background:#8E2136;opacity:0.4"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,76px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(40px,5vw,64px);align-items:center">
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#D98A94;margin-bottom:14px">{{ tFreeDownload }}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);color:#fff;margin:0 0 14px;text-wrap:pretty">{{ tGuideTitle }}</h2>
+      <p style="margin:0 0 22px;font-size:16px;color:rgba(255,255,255,0.82);line-height:1.65">{{ tGuideBody }}</p>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <sc-for list="{{ guidePoints }}" as="g" hint-placeholder-count="3">
+          <div style="display:flex;gap:11px;align-items:center;color:rgba(255,255,255,0.9);font-size:14.5px"><span style="color:#F0C9CF;font-weight:700">✓</span>{{ g }}</div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="background:#fff;border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:13px">
+      <label style="display:flex;flex-direction:column;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#4A4F54">{{ tPhName }}
+        <input placeholder="{{ tExName }}" style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:400;padding:12px 16px;border-radius:3px;border:1px solid #DDD9D5;outline:none;width:100%;box-sizing:border-box" style-focus="border-color:#6E1423;box-shadow:0 0 0 3px rgba(110,20,35,0.10)">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#4A4F54">{{ tPhEmail }}
+        <input placeholder="{{ tExEmail }}" style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:400;padding:12px 16px;border-radius:3px;border:1px solid #DDD9D5;outline:none;width:100%;box-sizing:border-box" style-focus="border-color:#6E1423;box-shadow:0 0 0 3px rgba(110,20,35,0.10)">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#4A4F54">{{ tPhCompany }}
+        <input placeholder="{{ tExCompany }}" style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:400;padding:12px 16px;border-radius:3px;border:1px solid #DDD9D5;outline:none;width:100%;box-sizing:border-box" style-focus="border-color:#6E1423;box-shadow:0 0 0 3px rgba(110,20,35,0.10)">
+      </label>
+      <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:12.5px;color:#5C6166;line-height:1.55">
+        <input type="checkbox" checked="{{ consent }}" onChange="{{ onConsent }}" style="width:17px;height:17px;margin:1px 0 0;accent-color:#6E1423;flex-shrink:0;cursor:pointer">
+        <span>{{ tConsent }} <a href="PrivacyPolicy.dc.html">{{ tPrivacyLink }}</a>.</span>
+      </label>
+      <button onClick="{{ submit }}" disabled="{{ submitDisabled }}" style="background:{{ submitBg }};color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:15.5px;padding:14px;border-radius:3px;border:none;cursor:{{ submitCursor }}">{{ submitLabel }}</button>
+      <p style="margin:0;font-size:12px;color:#6B7075;line-height:1.5"><strong style="color:#4A4F54;font-weight:600">{{ tSla }}</strong> {{ tFormNote }}</p>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="FAQ" style="background:#fff">
+  <div style="max-width:900px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px)">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px;text-align:center">{{ tFaqKicker }}</div>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);margin:0 0 44px;text-align:center">{{ tFaqTitle }}</h2>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+        <div style="border:1px solid #E8E4E1;border-radius:4px;overflow:hidden;background:{{ f.bg }}">
+          <button onClick="{{ f.toggle }}" style="width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:22px 26px;display:flex;justify-content:space-between;align-items:center;gap:20px;font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;color:#26282B">{{ f.q }}<span style="color:#A31631;font-size:22px;flex-shrink:0">{{ f.icon }}</span></button>
+          <div style="display:{{ f.display }};padding:0 26px 24px;font-size:15px;color:#5C6166;line-height:1.7;max-width:720px">{{ f.a }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="CTA" style="background:linear-gradient(120deg,#4E0D19,#6E1423);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-220px;right:-140px;width:520px;height:520px;border-radius:50%;background:#8E2136;opacity:0.4"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,76px) clamp(20px,5vw,48px);display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
+    <div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);color:#fff;margin:0 0 10px;text-wrap:pretty">{{ tCtaTitle }}</h2>
+      <p style="margin:0;font-size:16.5px;color:rgba(255,255,255,0.8)">{{ tCtaSub }}</p>
+    </div>
+    <a href="Contact.dc.html" style="background:#fff;color:#6E1423;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:3px;white-space:nowrap" style-hover="background:#F3E6E8;color:#4E0D19">{{ tCtaPrimary }}</a>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = { sent: false, consent: false, openFaq: 0, lang: 'EN' };
+  componentDidMount() {
+    try { const l = localStorage.getItem('ecovis-lang'); if (l) this.setState({ lang: l }); } catch (e) {}
+    this._onLang = (e) => this.setState({ lang: (e && e.detail) || 'EN' });
+    window.addEventListener('ecovis-lang', this._onLang);
+  }
+  componentWillUnmount() { if (this._onLang) window.removeEventListener('ecovis-lang', this._onLang); }
+  renderVals() {
+    const id = this.state.lang === 'ID';
+    const pick = (en, idn) => (id ? idn : en);
+    const faqData = id ? [
+      ['Siapa yang wajib menyiapkan dokumentasi transfer pricing?', 'Berdasarkan PMK-172/2023, wajib pajak dengan transaksi afiliasi di atas ambang yang ditetapkan wajib menyiapkan Master File dan Local File; grup besar juga masuk dalam Country-by-Country Reporting (CbCR). Ambangnya bergantung pada peredaran bruto dan nilai transaksi afiliasi — kami memastikan tier mana yang berlaku untuk Anda.'],
+      ['Kapan dokumentasi harus tersedia?', 'Local File dan Master File harus tersedia dalam jangka waktu tertentu setelah akhir tahun buku dan dinyatakan bersama SPT tahunan — artinya analisis harus hampir rampung sebelum Anda melapor, bukan setelah permintaan DJP datang. "Availability deadline" ini kerap mengejutkan banyak grup.'],
+      ['Apa yang terjadi jika dokumentasi kami ditantang?', 'Bila DJP mempersoalkan penetapan harga Anda, sanksi dan koreksi menyusul, dan beban pembuktian secara efektif ada di pihak Anda. Dokumentasi kontemporer dengan benchmark lokal adalah pembelaan Anda — kami menyiapkannya agar tahan pemeriksaan dan mewakili Anda bila sengketa berlanjut.'],
+      ['Bisakah kami mengandalkan studi TP regional grup kami?', 'Jarang bisa apa adanya. Kebijakan regional biasanya perlu Local File yang dilokalkan dengan analisis fungsional dan komparabel Indonesia. Kami menyesuaikan pendekatan grup dengan ketentuan Indonesia alih-alih menerjemahkan dokumen yang akan ditolak pemeriksa.'],
+      ['Apakah Anda menangani Advance Pricing Agreement?', 'Ya. Bila kepastian layak dikejar, kami menasihati dan mendukung Advance Pricing Agreement (APA) unilateral atau bilateral dengan DJP, berkoordinasi dengan tim ECOVIS di yurisdiksi lawan untuk kasus bilateral.']
+    ] : [
+      ['Who has to prepare transfer pricing documentation?', 'Under PMK-172/2023, taxpayers with related-party transactions above the prescribed thresholds must prepare a Master File and Local File; large groups also fall within Country-by-Country Reporting (CbCR). The thresholds turn on gross revenue and the value of related-party transactions — we confirm exactly which tiers apply to you.'],
+      ['When must the documentation be available?', 'The Local File and Master File must be available within a set period after the fiscal year-end and are declared with the annual return — meaning the analysis has to be substantially complete before you file, not after a DJP request arrives. This "availability deadline" catches many groups off guard.'],
+      ['What happens if our documentation is challenged?', 'If the DJP disputes your pricing, penalties and adjustments follow, and the burden of proof effectively sits with you. Contemporaneous, locally benchmarked documentation is your defence — we prepare it to withstand examination and represent you if a dispute proceeds.'],
+      ['Can we rely on our group\u2019s regional TP study?', 'Rarely as-is. A regional policy usually needs a localised Local File with Indonesian functional analysis and comparables. We adapt the group approach to Indonesian requirements rather than translating a document that examiners will reject.'],
+      ['Do you handle Advance Pricing Agreements?', 'Yes. Where certainty is worth pursuing, we advise on and support unilateral or bilateral Advance Pricing Agreements (APAs) with the DJP, coordinating with ECOVIS teams in the counterparty jurisdiction for bilateral cases.']
+    ];
+    return {
+      tHome: pick('Home', 'Beranda'),
+      tServicesCrumb: pick('Services', 'Layanan'),
+      tKicker: pick('Transfer Pricing', 'Transfer Pricing'),
+      tHeroTitle: pick('Documentation ready before the audit, not during it', 'Dokumentasi siap sebelum pemeriksaan, bukan saat pemeriksaan'),
+      tHeroSub: pick('Three-tier transfer pricing documentation, local benchmarking and audit defence compliant with PMK-172/2023 — Master File, Local File and CbCR — prepared to hold up when the DJP tests your intra-group charges.', 'Dokumentasi transfer pricing tiga tingkat, benchmarking lokal, dan pembelaan pemeriksaan sesuai PMK-172/2023 — Master File, Local File, dan CbCR — disiapkan agar bertahan saat DJP menguji transaksi antar-grup Anda.'),
+      tCtaPrimary: pick('Assess your TP exposure', 'Nilai eksposur TP Anda'),
+      tCtaSecondary: pick('Get the PMK-172 guide', 'Dapatkan panduan PMK-172'),
+      tSituation: pick('The situation', 'Situasinya'),
+      tSituationTitle: pick('Where intra-group pricing gets challenged', 'Di mana penetapan harga antar-grup dipersoalkan'),
+      tHowHelps: pick('How Ecovis helps', 'Bagaimana Ecovis membantu'),
+      tHowHelpsTitle: pick('A defensible position, contemporaneously documented', 'Posisi yang dapat dipertahankan, terdokumentasi kontemporer'),
+      tIncluded: pick("What's included", 'Yang termasuk'),
+      tScopeTitle: pick('The full three-tier framework and beyond', 'Kerangka tiga tingkat penuh dan lebih'),
+      tHowWeWork: pick('How we work', 'Cara kami bekerja'),
+      tProcessTitle: pick('Documented before the return is filed', 'Terdokumentasi sebelum SPT dilaporkan'),
+      tStep: pick('STEP', 'LANGKAH'),
+      tCredentials: pick('Credentials & proof', 'Kredensial & bukti'),
+      tProofTitle: pick('Local benchmarks, not a regional cut-and-paste', 'Benchmark lokal, bukan salinan regional'),
+      tProofBody: pick('DJP examiners reject documentation built on comparables and policies that ignore Indonesian specifics. We prepare local benchmarking with Asia-Pacific comparables and file the availability-date documentation on time — and because our tax team runs your compliance, the TP position and the return tell the same story.', 'Pemeriksa DJP menolak dokumentasi yang dibangun di atas komparabel dan kebijakan yang mengabaikan kekhususan Indonesia. Kami menyiapkan benchmarking lokal dengan komparabel Asia-Pasifik dan menyampaikan dokumentasi tepat pada availability date — dan karena tim pajak kami menjalankan kepatuhan Anda, posisi TP dan SPT menyampaikan cerita yang sama.'),
+      tQuote: pick('"Our regional policy had never been localised. Ecovis rebuilt the Local File with Indonesian comparables and the DJP closed the TP point in the next audit without an adjustment."', '"Kebijakan regional kami tidak pernah dilokalkan. Ecovis membangun ulang Local File dengan komparabel Indonesia dan DJP menutup poin TP pada pemeriksaan berikutnya tanpa koreksi."'),
+      tQuoteBy: pick('Tax Manager — multinational industrial group', 'Tax Manager — grup industri multinasional'),
+      tFreeDownload: pick('Free download', 'Unduhan gratis'),
+      tGuideTitle: pick('PMK-172 Transfer Pricing Guide', 'Panduan Transfer Pricing PMK-172'),
+      tGuideBody: pick("Who must prepare Master File, Local File and CbCR, the thresholds that trigger each, and why the availability deadline is earlier than most groups assume. We'll email the PDF and add you to our monthly briefing.", 'Siapa yang wajib menyiapkan Master File, Local File, dan CbCR, ambang yang memicu masing-masing, serta mengapa availability deadline lebih awal dari yang diasumsikan kebanyakan grup. Kami akan mengirim PDF via email dan menambahkan Anda ke briefing bulanan kami.'),
+      tPhName: pick('Full name', 'Nama lengkap'),
+      tPhEmail: pick('Work email', 'Email kantor'),
+      tPhCompany: pick('Company', 'Perusahaan'),
+      tExName: pick('e.g. Budi Santoso', 'mis. Budi Santoso'),
+      tExEmail: pick('e.g. budi@company.co.id', 'mis. budi@perusahaan.co.id'),
+      tExCompany: pick('e.g. PT Contoh Indonesia', 'mis. PT Contoh Indonesia'),
+      tConsent: pick('I agree that Ecovis Indonesia may process these details to send the material and follow up. See the', 'Saya setuju Ecovis Indonesia memproses data ini untuk mengirim materi dan menindaklanjuti. Lihat'),
+      tPrivacyLink: pick('Privacy Policy', 'Kebijakan Privasi'),
+      tSla: pick('We reply within 1 business day.', 'Kami membalas dalam 1 hari kerja.'),
+      tFormNote: pick('Used only to send this guide and our briefing. Unsubscribe anytime.', 'Hanya digunakan untuk mengirim panduan ini dan briefing kami. Berhenti berlangganan kapan saja.'),
+      tFaqKicker: pick('Frequently asked', 'Sering ditanyakan'),
+      tFaqTitle: pick('Transfer pricing questions we hear most', 'Pertanyaan transfer pricing yang paling sering kami dengar'),
+      tCtaTitle: pick('Have intra-group transactions to document?', 'Punya transaksi antar-grup untuk didokumentasikan?'),
+      tCtaSub: pick("Tell us your related-party flows and filing date and we'll scope the documentation — no obligation.", 'Beri tahu arus transaksi afiliasi dan tanggal pelaporan Anda dan kami akan menyusun dokumentasinya — tanpa kewajiban.'),
+      trust: id ? [
+        { k: 'PMK-172/2023', v: 'Dokumentasi dibangun sesuai regulasi terkini.' },
+        { k: 'Tiga tingkat', v: 'Master File, Local File, dan CbCR tercakup.' },
+        { k: 'Benchmark lokal', v: 'Komparabel Asia-Pasifik, bukan salinan regional.' },
+        { k: 'Pembelaan audit', v: 'Berkas disiapkan agar tahan pemeriksaan DJP.' }
+      ] : [
+        { k: 'PMK-172/2023', v: 'Documentation built to the current regulation.' },
+        { k: 'Three-tier', v: 'Master File, Local File and CbCR covered.' },
+        { k: 'Local benchmarks', v: 'Asia-Pacific comparables, not a regional copy.' },
+        { k: 'Audit defence', v: 'Files prepared to withstand DJP examination.' }
+      ],
+      problems: id ? [
+        { t: 'Transaksi antar-grup dipersoalkan saat audit', d: 'Management fee, royalti, dan bunga menjadi sasaran utama saat DJP memeriksa transaksi afiliasi.' },
+        { t: 'Availability deadline salah diperkirakan', d: 'Dokumentasi yang terkait tanggal pelaporan SPT harus siap lebih awal dari yang direncanakan kebanyakan grup.' },
+        { t: 'Kebijakan regional mengabaikan Indonesia', d: 'Studi TP global tanpa analisis fungsional dan komparabel lokal rutin ditolak.' },
+        { t: 'Beban pembuktian ada di pihak Anda', d: 'Tanpa dokumentasi kontemporer, mempertahankan posisi setelahnya mahal dan tidak pasti.' }
+      ] : [
+        { t: 'Intra-group charges questioned in audits', d: 'Management fees, royalties and interest are prime targets when the DJP examines related-party dealings.' },
+        { t: 'The availability deadline is misjudged', d: 'Documentation tied to the return filing date must be ready earlier than most groups plan for.' },
+        { t: 'Regional policy ignores Indonesia', d: 'A global TP study without local functional analysis and comparables is routinely rejected.' },
+        { t: 'Burden of proof sits with you', d: 'Without contemporaneous documentation, defending a position after the fact is expensive and uncertain.' }
+      ],
+      solutions: id ? [
+        { t: 'Dokumentasi tiga tingkat kontemporer', d: 'Master File, Local File, dan CbCR disiapkan sesuai standar PMK-172.' },
+        { t: 'Studi benchmarking lokal', d: 'Pencarian komparabel dengan data Asia-Pasifik yang relevan bagi operasi Indonesia.' },
+        { t: 'Berkas pembelaan sebelum audit', d: 'Dokumentasi dirancang untuk diserahkan atas permintaan, bukan dibangun ulang di bawah tekanan.' },
+        { t: 'Satu cerita di TP dan SPT', d: 'Posisi TP dan pelaporan pajak Anda selaras karena satu tim menjalankan keduanya.' }
+      ] : [
+        { t: 'Contemporaneous three-tier documentation', d: 'Master File, Local File and CbCR prepared to the PMK-172 standard.' },
+        { t: 'Local benchmarking studies', d: 'Comparable searches using Asia-Pacific data relevant to Indonesian operations.' },
+        { t: 'Defence files before the audit', d: 'Documentation designed to be produced on request, not rebuilt under pressure.' },
+        { t: 'One story across TP and returns', d: 'The TP position and your tax filings are aligned because one team runs both.' }
+      ],
+      scope: id ? [
+        { t: 'Dokumentasi TP', d: 'Master File dan Local File sesuai standar PMK-172/2023.' },
+        { t: 'CbCR', d: 'Country-by-Country Reporting untuk grup dalam cakupan.' },
+        { t: 'Studi benchmarking', d: 'Pencarian komparabel dengan data Asia-Pasifik.' },
+        { t: 'Desain kebijakan', d: 'Kebijakan harga arm\u2019s-length untuk arus antar-grup.' },
+        { t: 'Pembelaan audit', d: 'Representasi dan dukungan melalui pemeriksaan TP.' },
+        { t: 'Advance Pricing Agreement', d: 'Nasihat dan dukungan APA unilateral dan bilateral.' }
+      ] : [
+        { t: 'TP documentation', d: 'Master File and Local File to the PMK-172/2023 standard.' },
+        { t: 'CbCR', d: 'Country-by-Country Reporting for in-scope groups.' },
+        { t: 'Benchmarking studies', d: 'Comparable searches with Asia-Pacific data.' },
+        { t: 'Policy design', d: 'Arm\u2019s-length pricing policies for intra-group flows.' },
+        { t: 'Audit defence', d: 'Representation and support through TP examinations.' },
+        { t: 'Advance Pricing Agreements', d: 'Unilateral and bilateral APA advice and support.' }
+      ],
+      steps: id ? [
+        { n: '1', t: 'Petakan transaksi', d: 'Kami mengidentifikasi arus afiliasi dan mengujinya terhadap ambang PMK-172.' },
+        { n: '2', t: 'Analisis fungsional', d: 'Fungsi, aset, dan risiko didokumentasikan untuk entitas Indonesia.' },
+        { n: '3', t: 'Benchmarking', d: 'Pencarian komparabel menetapkan rentang arm\u2019s-length.' },
+        { n: '4', t: 'Dokumentasi', d: 'Master File dan Local File disiapkan sebelum availability deadline.' },
+        { n: '5', t: 'Bela', d: 'Berkas diserahkan atas permintaan dan dipertahankan melalui pemeriksaan.' }
+      ] : [
+        { n: '1', t: 'Map transactions', d: 'We identify related-party flows and test them against the PMK-172 thresholds.' },
+        { n: '2', t: 'Functional analysis', d: 'Functions, assets and risks documented for the Indonesian entity.' },
+        { n: '3', t: 'Benchmarking', d: 'Comparable searches establish the arm\u2019s-length range.' },
+        { n: '4', t: 'Documentation', d: 'Master File and Local File prepared before the availability deadline.' },
+        { n: '5', t: 'Defend', d: 'Files produced on request and defended through any examination.' }
+      ],
+      proof: id ? [
+        { k: 'PMK-172', v: 'Regulasi yang menjadi acuan dokumentasi kami' },
+        { k: '3 tingkat', v: 'Master File, Local File, CbCR' },
+        { k: 'APA', v: 'Dukungan Advance Pricing Agreement' },
+        { k: '90+', v: 'Negara untuk kasus bilateral' }
+      ] : [
+        { k: 'PMK-172', v: 'The regulation we document to' },
+        { k: '3 tiers', v: 'Master File, Local File, CbCR' },
+        { k: 'APA', v: 'Advance Pricing Agreement support' },
+        { k: '90+', v: 'Countries for bilateral cases' }
+      ],
+      guidePoints: id
+        ? ['Ambang untuk tiap tingkat dokumentasi', 'Jebakan availability deadline', 'Apa yang dicari pemeriksa DJP']
+        : ['Thresholds for each documentation tier', 'The availability-deadline trap', 'What DJP examiners look for'],
+      faqs: faqData.map(([q, a], i) => ({
+        q, a,
+        bg: this.state.openFaq === i ? '#FBF7F6' : '#fff',
+        display: this.state.openFaq === i ? 'block' : 'none',
+        icon: this.state.openFaq === i ? '\u2212' : '+',
+        toggle: () => this.setState(s => ({ openFaq: s.openFaq === i ? -1 : i }))
+      })),
+      submit: () => { if (this.state.consent) this.setState({ sent: true }); },
+      consent: this.state.consent,
+      onConsent: () => this.setState(s => ({ consent: !s.consent })),
+      submitDisabled: !this.state.consent || this.state.sent,
+      submitBg: this.state.consent ? '#6E1423' : '#C6ADB2',
+      submitCursor: this.state.consent ? 'pointer' : 'not-allowed',
+      submitLabel: this.state.sent ? pick('Thank you — check your inbox', 'Terima kasih — cek kotak masuk Anda') : pick('Email me the guide', 'Kirim panduan ke email saya')
+    };
+  }
+}
+</script>
+</body>
+</html>

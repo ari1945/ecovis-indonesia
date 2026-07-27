@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>html{scroll-behavior:smooth}body{margin:0;background:#fff}a{color:#A31631;text-decoration:none}a:hover{color:#6E1423}</style>
+</helmet>
+<div style="font-family:'IBM Plex Sans',sans-serif;color:#26282B">
+<dc-import name="SiteHeader" style="position:sticky;top:0;z-index:1000;display:block" hint-size="100%,116px"></dc-import>
+<div id="main" tabindex="-1"></div>
+
+<section data-screen-label="Tax hero" style="background:linear-gradient(135deg,#4E0D19 0%,#6E1423 58%,#7E1A2C 100%);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-200px;right:-120px;width:620px;height:620px;border-radius:50%;background:#8E2136;opacity:0.5"></div>
+  <div style="position:absolute;top:-120px;right:-280px;width:620px;height:620px;border-radius:50%;background:#5A0F1D"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:34px clamp(20px,5vw,48px) 82px">
+    <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.62);margin-bottom:40px"><a href="Home.dc.html" style="color:rgba(255,255,255,0.62)" style-hover="color:#fff">{{ tHome }}</a> &nbsp;/&nbsp; <a href="Services.dc.html" style="color:rgba(255,255,255,0.62)" style-hover="color:#fff">{{ tServicesCrumb }}</a> &nbsp;/&nbsp; <span style="color:#fff">{{ tKicker }}</span></div>
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.18em;text-transform:uppercase;color:#D98A94;margin-bottom:18px">{{ tKicker }}</div>
+    <h1 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(32px,5vw,52px);line-height:1.07;color:#fff;margin:0 0 22px;max-width:840px;text-wrap:pretty">{{ tHeroTitle }}</h1>
+    <p style="font-size:clamp(16px,2vw,18.5px);line-height:1.6;color:rgba(255,255,255,0.85);margin:0 0 38px;max-width:660px;text-wrap:pretty">{{ tHeroSub }}</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <a href="Contact.dc.html" style="background:#fff;color:#6E1423;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;padding:15px 30px;border-radius:3px" style-hover="background:#F3E6E8;color:#4E0D19">{{ tCtaPrimary }}</a>
+      <a href="#guide" style="border:1.5px solid rgba(255,255,255,0.5);color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;padding:15px 30px;border-radius:3px" style-hover="border-color:#fff;background:rgba(255,255,255,0.08);color:#fff">{{ tCtaSecondary }}</a>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Trust strip" style="background:#fff;border-bottom:1px solid #ECE9E6">
+  <div style="max-width:1240px;margin:0 auto;padding:34px clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:28px">
+    <sc-for list="{{ trust }}" as="t" hint-placeholder-count="4">
+      <div style="display:flex;flex-direction:column;gap:5px;border-left:2px solid #E3D6D8;padding-left:18px">
+        <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:15px;color:#6E1423">{{ t.k }}</div>
+        <div style="font-size:13.5px;color:#5C6166;line-height:1.45">{{ t.v }}</div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section data-screen-label="Problem to solution" style="background:#F6F4F2">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(36px,5vw,56px)">
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px">{{ tSituation }}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(26px,3.5vw,32px);margin:0 0 26px;line-height:1.2;text-wrap:pretty">{{ tSituationTitle }}</h2>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <sc-for list="{{ problems }}" as="p" hint-placeholder-count="4">
+          <div style="display:flex;gap:14px;align-items:flex-start"><span style="color:#C9535F;font-weight:700;font-size:17px;line-height:1.4">—</span><div><div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;margin-bottom:4px">{{ p.t }}</div><div style="font-size:14.5px;color:#5C6166;line-height:1.6">{{ p.d }}</div></div></div>
+        </sc-for>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px">{{ tHowHelps }}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(26px,3.5vw,32px);margin:0 0 26px;line-height:1.2;text-wrap:pretty">{{ tHowHelpsTitle }}</h2>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <sc-for list="{{ solutions }}" as="s" hint-placeholder-count="4">
+          <div style="display:flex;gap:14px;align-items:flex-start"><span style="color:#6E1423;font-weight:700;font-size:16px;line-height:1.5">✓</span><div><div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;margin-bottom:4px">{{ s.t }}</div><div style="font-size:14.5px;color:#5C6166;line-height:1.6">{{ s.d }}</div></div></div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Scope" style="background:#fff;border-top:1px solid #ECE9E6">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px)">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px">{{ tIncluded }}</div>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);margin:0 0 44px;max-width:640px;text-wrap:pretty">{{ tScopeTitle }}</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px">
+      <sc-for list="{{ scope }}" as="c" hint-placeholder-count="6">
+        <div style="border:1px solid #E8E4E1;border-radius:4px;padding:26px 24px;display:flex;flex-direction:column;gap:9px" style-hover="border-color:#6E1423;box-shadow:0 8px 24px rgba(110,20,35,0.07)">
+          <div style="width:26px;height:3px;background:#6E1423;margin-bottom:4px"></div>
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:17px">{{ c.t }}</div>
+          <div style="font-size:13.5px;color:#5C6166;line-height:1.55">{{ c.d }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Process" style="background:#26282B;color:#fff">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px)">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#D98A94;margin-bottom:12px">{{ tHowWeWork }}</div>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);margin:0 0 48px;max-width:680px;text-wrap:pretty">{{ tProcessTitle }}</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0">
+      <sc-for list="{{ steps }}" as="st" hint-placeholder-count="5">
+        <div style="padding:0 22px;border-left:1px solid #3A3D41;position:relative">
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.1em;color:#D98A94;margin-bottom:14px">{{ tStep }} {{ st.n }}</div>
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:18px;margin-bottom:8px;line-height:1.25">{{ st.t }}</div>
+          <div style="font-size:13.5px;color:#9BA0A5;line-height:1.55">{{ st.d }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Proof" style="background:#F6F4F2">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(40px,5vw,64px);align-items:center">
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px">{{ tCredentials }}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(26px,3.5vw,32px);margin:0 0 18px;line-height:1.2;text-wrap:pretty">{{ tProofTitle }}</h2>
+      <p style="font-size:16px;line-height:1.7;color:#5C6166;margin:0 0 16px">{{ tProofBody }}</p>
+      <div style="background:#fff;border:1px solid #E8E4E1;border-left:4px solid #6E1423;border-radius:4px;padding:24px 26px">
+        <p style="margin:0 0 10px;font-size:15.5px;line-height:1.65;color:#3C4045;font-style:italic;text-wrap:pretty">{{ tQuote }}</p>
+        <div style="font-size:13px;color:#6B7075;font-weight:600">{{ tQuoteBy }}</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px">
+      <sc-for list="{{ proof }}" as="q" hint-placeholder-count="4">
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:4px;padding:26px 24px;display:flex;flex-direction:column;gap:7px">
+          <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:30px;color:#6E1423;line-height:1">{{ q.k }}</div>
+          <div style="font-size:13.5px;color:#5C6166;line-height:1.45">{{ q.v }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="guide" data-screen-label="Lead magnet" style="scroll-margin-top:130px;background:linear-gradient(120deg,#4E0D19,#6E1423);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-220px;left:-140px;width:520px;height:520px;border-radius:50%;background:#8E2136;opacity:0.4"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,76px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(40px,5vw,64px);align-items:center">
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#D98A94;margin-bottom:14px">{{ tFreeDownload }}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);color:#fff;margin:0 0 14px;text-wrap:pretty">{{ tGuideTitle }}</h2>
+      <p style="margin:0 0 22px;font-size:16px;color:rgba(255,255,255,0.82);line-height:1.65">{{ tGuideBody }}</p>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <sc-for list="{{ guidePoints }}" as="g" hint-placeholder-count="3">
+          <div style="display:flex;gap:11px;align-items:center;color:rgba(255,255,255,0.9);font-size:14.5px"><span style="color:#F0C9CF;font-weight:700">✓</span>{{ g }}</div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="background:#fff;border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:13px">
+      <label style="display:flex;flex-direction:column;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#4A4F54">{{ tPhName }}
+        <input placeholder="{{ tExName }}" style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:400;padding:12px 16px;border-radius:3px;border:1px solid #DDD9D5;outline:none;width:100%;box-sizing:border-box" style-focus="border-color:#6E1423;box-shadow:0 0 0 3px rgba(110,20,35,0.10)">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#4A4F54">{{ tPhEmail }}
+        <input placeholder="{{ tExEmail }}" style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:400;padding:12px 16px;border-radius:3px;border:1px solid #DDD9D5;outline:none;width:100%;box-sizing:border-box" style-focus="border-color:#6E1423;box-shadow:0 0 0 3px rgba(110,20,35,0.10)">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#4A4F54">{{ tPhCompany }}
+        <input placeholder="{{ tExCompany }}" style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:400;padding:12px 16px;border-radius:3px;border:1px solid #DDD9D5;outline:none;width:100%;box-sizing:border-box" style-focus="border-color:#6E1423;box-shadow:0 0 0 3px rgba(110,20,35,0.10)">
+      </label>
+      <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:12.5px;color:#5C6166;line-height:1.55">
+        <input type="checkbox" checked="{{ consent }}" onChange="{{ onConsent }}" style="width:17px;height:17px;margin:1px 0 0;accent-color:#6E1423;flex-shrink:0;cursor:pointer">
+        <span>{{ tConsent }} <a href="PrivacyPolicy.dc.html">{{ tPrivacyLink }}</a>.</span>
+      </label>
+      <button onClick="{{ submit }}" disabled="{{ submitDisabled }}" style="background:{{ submitBg }};color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:15.5px;padding:14px;border-radius:3px;border:none;cursor:{{ submitCursor }}">{{ submitLabel }}</button>
+      <p style="margin:0;font-size:12px;color:#6B7075;line-height:1.5"><strong style="color:#4A4F54;font-weight:600">{{ tSla }}</strong> {{ tFormNote }}</p>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="FAQ" style="background:#fff">
+  <div style="max-width:900px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px)">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px;text-align:center">{{ tFaqKicker }}</div>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);margin:0 0 44px;text-align:center">{{ tFaqTitle }}</h2>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+        <div style="border:1px solid #E8E4E1;border-radius:4px;overflow:hidden;background:{{ f.bg }}">
+          <button onClick="{{ f.toggle }}" style="width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:22px 26px;display:flex;justify-content:space-between;align-items:center;gap:20px;font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;color:#26282B">{{ f.q }}<span style="color:#A31631;font-size:22px;flex-shrink:0">{{ f.icon }}</span></button>
+          <div style="display:{{ f.display }};padding:0 26px 24px;font-size:15px;color:#5C6166;line-height:1.7;max-width:720px">{{ f.a }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="CTA" style="background:linear-gradient(120deg,#4E0D19,#6E1423);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-220px;right:-140px;width:520px;height:520px;border-radius:50%;background:#8E2136;opacity:0.4"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,76px) clamp(20px,5vw,48px);display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
+    <div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);color:#fff;margin:0 0 10px;text-wrap:pretty">{{ tCtaTitle }}</h2>
+      <p style="margin:0;font-size:16.5px;color:rgba(255,255,255,0.8)">{{ tCtaSub }}</p>
+    </div>
+    <a href="Contact.dc.html" style="background:#fff;color:#6E1423;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:3px;white-space:nowrap" style-hover="background:#F3E6E8;color:#4E0D19">{{ tCtaPrimary }}</a>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = { sent: false, consent: false, openFaq: 0, lang: 'EN' };
+  componentDidMount() {
+    try { const l = localStorage.getItem('ecovis-lang'); if (l) this.setState({ lang: l }); } catch (e) {}
+    this._onLang = (e) => this.setState({ lang: (e && e.detail) || 'EN' });
+    window.addEventListener('ecovis-lang', this._onLang);
+  }
+  componentWillUnmount() { if (this._onLang) window.removeEventListener('ecovis-lang', this._onLang); }
+  renderVals() {
+    const id = this.state.lang === 'ID';
+    const pick = (en, idn) => (id ? idn : en);
+    const faqData = id ? [
+      ['Apa saja isi studi market-entry?', 'Kami menilai ukuran pasar dan permintaan, jalur regulasi dan perizinan untuk aktivitas Anda, struktur pesaing dan kanal, serta skenario biaya dan lini waktu yang realistis — berakhir pada rekomendasi go/no-go yang jelas dan, jika go, rencana penataan alih-alih laporan yang hanya menumpuk.'],
+      ['Bisakah Anda menyaring calon mitra atau distributor lokal?', 'Ya. Penyaringan mitra dan pihak lawan mencakup kepemilikan dan kendali, kondisi keuangan, riwayat litigasi dan regulasi, serta pemeriksaan reputasi — risiko yang sulit dilihat dari luar negeri dan mahal ditemukan setelah penandatanganan.'],
+      ['Apa beda audit internal dan audit statutori?', 'Audit statutori memberi opini eksternal atas laporan keuangan Anda. Audit internal menelaah ke dalam apakah kontrol dan proses Anda benar-benar berjalan — menangkap risiko fraud, kebocoran, dan celah kepatuhan. Kami menawarkan audit internal secara alih daya atau co-source, terpisah dari tim audit statutori.'],
+      ['Apakah Anda membantu mengimplementasikan rekomendasi?', 'Ya. Kami merancang SOP dan kerangka kontrol sesuai ukuran operasi Anda dan mendukung penerapannya, bukan sekadar menyerahkan temuan lalu pergi. Untuk proses keuangan, ini terhubung langsung ke tim akuntansi dan penggajian yang menjalankannya.'],
+      ['Bagaimana independensi dijaga?', 'Bila kami menyediakan audit statutori, pekerjaan advisory yang dapat mengganggu independensi ditangani tim terpisah dan dibatasi agar mematuhi aturan independensi yang berlaku. Kami transparan tentang apa yang bisa dan tidak bisa kami lakukan untuk klien tertentu.']
+    ] : [
+      ['What does a market-entry study include?', 'We assess market size and demand, the regulatory and licensing path for your activity, competitor and channel structure, and realistic cost and timeline scenarios — ending in a clear go/no-go recommendation and, if go, a structuring plan rather than a report that sits on a shelf.'],
+      ['Can you screen a potential local partner or distributor?', 'Yes. Partner and counterparty screening covers ownership and control, financial standing, litigation and regulatory history, and reputational checks — the risks that are hard to see from abroad and expensive to discover after signing.'],
+      ['What is the difference between internal audit and statutory audit?', 'A statutory audit gives an external opinion on your financial statements. Internal audit looks inward at whether your controls and processes actually work — catching fraud risk, leakage and compliance gaps. We offer internal audit on an outsourced or co-sourced basis, separate from the statutory audit team.'],
+      ['Do you help implement the recommendations?', 'Yes. We design SOPs and control frameworks sized to your operation and support their rollout, rather than handing over findings and leaving. For finance processes this connects directly to the accounting and payroll teams that run them.'],
+      ['How is independence maintained?', 'Where we provide the statutory audit, advisory work that could impair independence is handled by separate teams and scoped to comply with the applicable independence rules. We are transparent about what we can and cannot do for a given client.']
+    ];
+    return {
+      tHome: pick('Home', 'Beranda'),
+      tServicesCrumb: pick('Services', 'Layanan'),
+      tKicker: pick('Advisory', 'Advisory'),
+      tHeroTitle: pick('Enter, control and grow — with local intelligence behind every decision', 'Masuk, kendalikan, dan tumbuh — dengan intelijen lokal di balik setiap keputusan'),
+      tHeroSub: pick('Business advisory for market entry, risk and governance: feasibility and partner screening before you commit, internal audit and controls once you operate, and SOPs that keep a remote-managed business honest.', 'Advisory bisnis untuk masuk pasar, risiko, dan tata kelola: studi kelayakan dan penyaringan mitra sebelum Anda berkomitmen, audit internal dan kontrol saat beroperasi, serta SOP yang menjaga bisnis yang dikelola jarak jauh tetap tertib.'),
+      tCtaPrimary: pick('Talk to an advisor', 'Bicara dengan advisor'),
+      tCtaSecondary: pick('Get the market-entry checklist', 'Dapatkan checklist masuk pasar'),
+      tSituation: pick('The situation', 'Situasinya'),
+      tSituationTitle: pick('The risks of running Indonesia from afar', 'Risiko menjalankan bisnis Indonesia dari jarak jauh'),
+      tHowHelps: pick('How Ecovis helps', 'Bagaimana Ecovis membantu'),
+      tHowHelpsTitle: pick('Decisions backed by evidence and controls', 'Keputusan yang didukung bukti dan kontrol'),
+      tIncluded: pick("What's included", 'Yang termasuk'),
+      tScopeTitle: pick('Advisory across the business lifecycle', 'Advisory di sepanjang siklus bisnis'),
+      tHowWeWork: pick('How we work', 'Cara kami bekerja'),
+      tProcessTitle: pick('From question to implemented answer', 'Dari pertanyaan hingga jawaban yang diterapkan'),
+      tStep: pick('STEP', 'LANGKAH'),
+      tCredentials: pick('Credentials & proof', 'Kredensial & bukti'),
+      tProofTitle: pick('Advice that ends in something you can run', 'Saran yang berujung pada sesuatu yang bisa Anda jalankan'),
+      tProofBody: pick('Our advisory work is pragmatic, not theoretical — a feasibility study leads to a go/no-go, a controls review leads to SOPs your team actually follows, an internal-audit program leads to fixed findings. Because we also run your tax, audit and accounting, recommendations reflect how the business really operates.', 'Pekerjaan advisory kami pragmatis, bukan teoretis — studi kelayakan berujung pada go/no-go, telaah kontrol berujung pada SOP yang benar-benar diikuti tim Anda, program audit internal berujung pada temuan yang diperbaiki. Karena kami juga menjalankan pajak, audit, dan akuntansi Anda, rekomendasi mencerminkan cara bisnis benar-benar beroperasi.'),
+      tQuote: pick('"Their partner-screening report stopped us signing with a distributor who looked perfect on paper. That single finding paid for the whole engagement several times over."', '"Laporan penyaringan mitra mereka menghentikan kami menandatangani dengan distributor yang tampak sempurna di atas kertas. Satu temuan itu saja menutup biaya seluruh penugasan berkali-kali lipat."'),
+      tQuoteBy: pick('Regional GM — consumer brand entering Indonesia', 'GM Regional — merek konsumen yang masuk Indonesia'),
+      tFreeDownload: pick('Free download', 'Unduhan gratis'),
+      tGuideTitle: pick('Indonesia Market-Entry Checklist', 'Checklist Masuk Pasar Indonesia'),
+      tGuideBody: pick("The decisions to make and the risks to test before you commit capital to Indonesia — market, structure, partners and controls, in one framework. We'll email the PDF and add you to our monthly briefing.", 'Keputusan yang perlu diambil dan risiko yang perlu diuji sebelum Anda menanamkan modal di Indonesia — pasar, struktur, mitra, dan kontrol, dalam satu kerangka. Kami akan mengirim PDF via email dan menambahkan Anda ke briefing bulanan kami.'),
+      tPhName: pick('Full name', 'Nama lengkap'),
+      tPhEmail: pick('Work email', 'Email kantor'),
+      tPhCompany: pick('Company', 'Perusahaan'),
+      tExName: pick('e.g. Budi Santoso', 'mis. Budi Santoso'),
+      tExEmail: pick('e.g. budi@company.co.id', 'mis. budi@perusahaan.co.id'),
+      tExCompany: pick('e.g. PT Contoh Indonesia', 'mis. PT Contoh Indonesia'),
+      tConsent: pick('I agree that Ecovis Indonesia may process these details to send the material and follow up. See the', 'Saya setuju Ecovis Indonesia memproses data ini untuk mengirim materi dan menindaklanjuti. Lihat'),
+      tPrivacyLink: pick('Privacy Policy', 'Kebijakan Privasi'),
+      tSla: pick('We reply within 1 business day.', 'Kami membalas dalam 1 hari kerja.'),
+      tFormNote: pick('Used only to send this guide and our briefing. Unsubscribe anytime.', 'Hanya digunakan untuk mengirim panduan ini dan briefing kami. Berhenti berlangganan kapan saja.'),
+      tFaqKicker: pick('Frequently asked', 'Sering ditanyakan'),
+      tFaqTitle: pick('Advisory questions we hear most', 'Pertanyaan advisory yang paling sering kami dengar'),
+      tCtaTitle: pick('Weighing a move into Indonesia?', 'Sedang menimbang masuk ke Indonesia?'),
+      tCtaSub: pick("Bring us the question and we'll scope the work to answer it — no obligation.", 'Bawakan pertanyaannya dan kami akan menyusun pekerjaan untuk menjawabnya — tanpa kewajiban.'),
+      trust: id ? [
+        { k: 'Intelijen lokal', v: 'Risiko pasar dan mitra dibaca dari lapangan.' },
+        { k: 'Kontrol & tata kelola', v: 'Audit internal dan SOP yang benar-benar diikuti.' },
+        { k: 'Output pragmatis', v: 'Go/no-go dan perbaikan, bukan laporan yang menumpuk.' },
+        { k: 'Terintegrasi', v: 'Memanfaatkan tim pajak, audit, dan akuntansi.' }
+      ] : [
+        { k: 'Local intelligence', v: 'Market and partner risk read from the ground.' },
+        { k: 'Controls & governance', v: 'Internal audit and SOPs that get followed.' },
+        { k: 'Pragmatic output', v: 'Go/no-go and fixes, not shelf-ware reports.' },
+        { k: 'Integrated', v: 'Draws on tax, audit and accounting teams.' }
+      ],
+      problems: id ? [
+        { t: 'Masuk tanpa intelijen pasar', d: 'Keputusan dibuat atas asumsi permintaan, kanal, dan regulasi yang tak berlaku di Indonesia.' },
+        { t: 'Fraud dan kebocoran di operasi jarak jauh', d: 'Pengawasan lemah atas bisnis yang dijalankan dari luar negeri mengundang kegagalan kontrol dan kerugian.' },
+        { t: 'Mitra dipilih karena kesan baik', d: 'Distributor atau mitra JV yang dipilih tanpa penyaringan independen menjadi liabilitas.' },
+        { t: 'Kontrol terekspos saat due diligence', d: 'Kelemahan muncul di saat paling buruk — di tengah transaksi.' }
+      ] : [
+        { t: 'Entering without market intelligence', d: 'Decisions made on assumptions about demand, channels and regulation that do not hold in Indonesia.' },
+        { t: 'Fraud and leakage in remote operations', d: 'Weak oversight of a business run from abroad invites control failures and loss.' },
+        { t: 'Partners chosen on a good impression', d: 'A distributor or JV partner picked without independent screening becomes a liability.' },
+        { t: 'Controls exposed during due diligence', d: 'Weaknesses surface at the worst possible moment — mid-transaction.' }
+      ],
+      solutions: id ? [
+        { t: 'Kelayakan sebelum berkomitmen', d: 'Pasar, struktur, dan biaya diuji sejak awal, berakhir pada keputusan go/no-go.' },
+        { t: 'Penyaringan mitra independen', d: 'Pemeriksaan kepemilikan, keuangan, dan reputasi sebelum Anda menandatangani.' },
+        { t: 'Audit internal alih daya atau co-source', d: 'Program yang menemukan celah kontrol dan risiko fraud — lalu memperbaikinya.' },
+        { t: 'Kerangka kontrol berukuran tepat', d: 'SOP dan kontrol sesuai ukuran operasi Anda, bukan template global.' }
+      ] : [
+        { t: 'Feasibility before you commit', d: 'Market, structure and cost tested up front, ending in a go/no-go call.' },
+        { t: 'Independent partner screening', d: 'Ownership, financial and reputational checks before you sign.' },
+        { t: 'Outsourced or co-sourced internal audit', d: 'A program that finds control gaps and fraud risk — and fixes them.' },
+        { t: 'Right-sized control frameworks', d: 'SOPs and controls sized to your operation, not a global template.' }
+      ],
+      scope: id ? [
+        { t: 'Studi masuk pasar', d: 'Permintaan, regulasi, kanal, dan skenario biaya dengan go/no-go.' },
+        { t: 'Penyaringan mitra & pihak lawan', d: 'Due diligence kepemilikan, keuangan, dan reputasi.' },
+        { t: 'Audit internal', d: 'Program audit internal alih daya dan co-source.' },
+        { t: 'Risiko & tata kelola', d: 'Penilaian risiko, kerangka kontrol, dan pelaporan dewan.' },
+        { t: 'Desain SOP', d: 'Dokumentasi proses yang benar-benar bisa dijalankan tim Anda.' },
+        { t: 'Telaah fungsi keuangan', d: 'Health check atas struktur, staf, dan kontrol.' }
+      ] : [
+        { t: 'Market-entry studies', d: 'Demand, regulation, channels and cost scenarios with a go/no-go.' },
+        { t: 'Partner & counterparty screening', d: 'Ownership, financial and reputational due diligence.' },
+        { t: 'Internal audit', d: 'Outsourced and co-sourced internal audit programs.' },
+        { t: 'Risk & governance', d: 'Risk assessment, control frameworks and board reporting.' },
+        { t: 'SOP design', d: 'Process documentation your team can actually run.' },
+        { t: 'Finance function reviews', d: 'Health checks on structure, staffing and controls.' }
+      ],
+      steps: id ? [
+        { n: '1', t: 'Rumuskan pertanyaan', d: 'Kami mendefinisikan keputusan yang perlu Anda ambil dan risiko yang memengaruhinya.' },
+        { n: '2', t: 'Kumpulkan bukti', d: 'Data pasar, wawancara, catatan, dan penyaringan sesuai kebutuhan pertanyaan.' },
+        { n: '3', t: 'Analisis', d: 'Temuan diuji terhadap regulasi Indonesia dan realitas komersial.' },
+        { n: '4', t: 'Rekomendasikan', d: 'Go/no-go yang jelas atau serangkaian tindakan praktis berprioritas.' },
+        { n: '5', t: 'Implementasikan', d: 'SOP, kontrol, dan tindak lanjut agar rekomendasi benar-benar berlaku.' }
+      ] : [
+        { n: '1', t: 'Frame the question', d: 'We define the decision you need to make and the risks that bear on it.' },
+        { n: '2', t: 'Gather evidence', d: 'Market data, interviews, records and screening as the question requires.' },
+        { n: '3', t: 'Analyse', d: 'Findings tested against Indonesian regulation and commercial reality.' },
+        { n: '4', t: 'Recommend', d: 'A clear go/no-go or a set of prioritised, practical actions.' },
+        { n: '5', t: 'Implement', d: 'SOPs, controls and follow-through so recommendations take effect.' }
+      ],
+      proof: id ? [
+        { k: 'Go / no-go', v: 'Studi yang berujung pada keputusan' },
+        { k: 'Co-source', v: 'Audit internal berdampingan dengan tim Anda' },
+        { k: '1 grup', v: 'Advisory terhubung ke pajak dan audit' },
+        { k: '90+', v: 'Negara untuk masuk lintas negara' }
+      ] : [
+        { k: 'Go / no-go', v: 'Studies that end in a decision' },
+        { k: 'Co-source', v: 'Internal audit alongside your team' },
+        { k: '1 group', v: 'Advisory linked to tax and audit' },
+        { k: '90+', v: 'Countries for cross-border entry' }
+      ],
+      guidePoints: id
+        ? ['Uji kesiapan pasar & regulasi', 'Red flag penyaringan mitra', 'Prioritas kontrol hari pertama']
+        : ['Market & regulatory readiness tests', 'Partner-screening red flags', 'Day-one control priorities'],
+      faqs: faqData.map(([q, a], i) => ({
+        q, a,
+        bg: this.state.openFaq === i ? '#FBF7F6' : '#fff',
+        display: this.state.openFaq === i ? 'block' : 'none',
+        icon: this.state.openFaq === i ? '\u2212' : '+',
+        toggle: () => this.setState(s => ({ openFaq: s.openFaq === i ? -1 : i }))
+      })),
+      submit: () => { if (this.state.consent) this.setState({ sent: true }); },
+      consent: this.state.consent,
+      onConsent: () => this.setState(s => ({ consent: !s.consent })),
+      submitDisabled: !this.state.consent || this.state.sent,
+      submitBg: this.state.consent ? '#6E1423' : '#C6ADB2',
+      submitCursor: this.state.consent ? 'pointer' : 'not-allowed',
+      submitLabel: this.state.sent ? pick('Thank you — check your inbox', 'Terima kasih — cek kotak masuk Anda') : pick('Email me the checklist', 'Kirim checklist ke email saya')
+    };
+  }
+}
+</script>
+</body>
+</html>

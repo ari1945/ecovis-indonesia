@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>html{scroll-behavior:smooth}body{margin:0;background:#fff}a{color:#A31631;text-decoration:none}a:hover{color:#6E1423}</style>
+</helmet>
+<div style="font-family:'IBM Plex Sans',sans-serif;color:#26282B">
+<dc-import name="SiteHeader" style="position:sticky;top:0;z-index:1000;display:block" hint-size="100%,116px"></dc-import>
+<div id="main" tabindex="-1"></div>
+
+<section data-screen-label="Services hero" style="background:linear-gradient(135deg,#4E0D19,#6E1423);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-260px;right:-160px;width:560px;height:560px;border-radius:50%;background:#8E2136;opacity:0.5"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:72px 48px 80px">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#D98A94;margin-bottom:14px">{{ tKicker }}</div>
+    <h1 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(32px,5vw,46px);color:#fff;margin:0 0 18px;max-width:720px;text-wrap:pretty">{{ tHeroTitle }}</h1>
+    <p style="font-size:17.5px;line-height:1.65;color:rgba(255,255,255,0.82);margin:0;max-width:640px">{{ tHeroSub }}</p>
+  </div>
+</section>
+
+<div style="background:#fff;border-bottom:1px solid #ECE9E6;position:sticky;top:0;z-index:900">
+  <div style="max-width:1240px;margin:0 auto;padding:0 48px;display:flex;gap:26px;overflow-x:auto;font-family:'Manrope',sans-serif;font-weight:600;font-size:13.5px">
+    <sc-for list="{{ services }}" as="s" hint-placeholder-count="10">
+      <a href="{{ s.anchor }}" style="color:#5C6166;padding:14px 0;white-space:nowrap;border-bottom:2px solid transparent" style-hover="color:#6E1423;border-bottom-color:#6E1423">{{ s.name }}</a>
+    </sc-for>
+  </div>
+</div>
+
+<sc-for list="{{ services }}" as="s" hint-placeholder-count="10">
+  <section id="{{ s.slug }}" data-screen-label="{{ s.name }}" style="background:{{ s.bg }};scroll-margin-top:130px;border-bottom:1px solid #ECE9E6">
+    <div style="max-width:1240px;margin:0 auto;padding:clamp(52px,7vw,72px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(40px,5vw,64px)">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="width:34px;height:4px;background:#6E1423"></div>
+        <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:32px;margin:0;color:#26282B">{{ s.name }}</h2>
+        <p style="margin:0;font-size:16px;line-height:1.7;color:#5C6166">{{ s.overview }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px">
+          <sc-for list="{{ s.scope }}" as="chip" hint-placeholder-count="4">
+            <span style="font-size:12.5px;font-weight:500;color:#6E1423;background:#F7EBED;border-radius:2px;padding:5px 11px">{{ chip }}</span>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin-top:12px">
+          <sc-if value="{{ s.hasDetail }}" hint-placeholder-val="{{ false }}">
+            <a href="{{ s.detailHref }}" style="background:#6E1423;color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:14px;padding:11px 22px;border-radius:3px" style-hover="background:#A31631;color:#fff">{{ s.exploreLabel }} →</a>
+          </sc-if>
+          <a href="Contact.dc.html" style="font-family:'Manrope',sans-serif;font-weight:700;font-size:14.5px">{{ tDiscuss }} →</a>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;color:#A31631">{{ tChallenges }}</div>
+          <sc-for list="{{ s.challenges }}" as="c" hint-placeholder-count="3">
+            <div style="display:flex;gap:10px;font-size:14.5px;line-height:1.55;color:#3C4045"><span style="color:#C9535F;font-weight:700">—</span><span>{{ c }}</span></div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;color:#A31631">{{ tHowHelps }}</div>
+          <sc-for list="{{ s.solutions }}" as="sol" hint-placeholder-count="3">
+            <div style="display:flex;gap:10px;font-size:14.5px;line-height:1.55;color:#3C4045"><span style="color:#6E1423;font-weight:700">✓</span><span>{{ sol }}</span></div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+</sc-for>
+
+<section data-screen-label="CTA" style="background:#26282B">
+  <div style="max-width:1240px;margin:0 auto;padding:64px 48px;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap">
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(24px,3vw,30px);color:#fff;margin:0;text-wrap:pretty">{{ tCtaTitle }}</h2>
+    <a href="Contact.dc.html" style="background:#6E1423;color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:15.5px;padding:15px 30px;border-radius:3px;white-space:nowrap" style-hover="background:#A31631;color:#fff">{{ tCta }}</a>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { lang: 'EN' };
+  componentDidMount() {
+    try { const l = localStorage.getItem('ecovis-lang'); if (l) this.setState({ lang: l }); } catch (e) {}
+    this._onLang = (e) => this.setState({ lang: (e && e.detail) || 'EN' });
+    window.addEventListener('ecovis-lang', this._onLang);
+  }
+  componentWillUnmount() { if (this._onLang) window.removeEventListener('ecovis-lang', this._onLang); }
+  renderVals() {
+    const id = this.state.lang === 'ID';
+    const pick = (en, idn) => (id ? idn : en);
+    const en = [
+      ['Audit & Assurance', 'audit',
+        'Statutory and special-purpose audits performed by ECOVIS KAP Pieter, Uways & Partners under Indonesian Standards on Auditing, with ISA-aligned methodology for group reporting.',
+        ['Statutory audit', 'Group reporting packages', 'Agreed-upon procedures', 'IFRS/PSAK conversion'],
+        ['First-time audits for newly established PT PMAs', 'Group auditors abroad need PSAK-to-IFRS alignment', 'Tight statutory deadlines after year-end'],
+        ['Partner-led audit teams with industry specialization', 'Direct coordination with your group auditor', 'Clear PSAK vs IFRS difference memos for HQ']],
+      ['Tax', 'tax',
+        'Corporate and individual tax compliance, planning and dispute support — from monthly filings to DJP audits, objections and appeals.',
+        ['CIT & monthly compliance', 'Tax planning', 'Tax audits & disputes', 'Expatriate tax'],
+        ['Frequent regulatory change and Coretax migration', 'DJP audits triggered by refunds or losses', 'Uncertainty over withholding obligations'],
+        ['Full outsourced compliance calendar with reminders', 'Experienced representation before the DJP and Tax Court', 'Practical, defensible positions — documented in advance']],
+      ['Accounting', 'accounting',
+        'Outsourced bookkeeping and financial reporting under PSAK, with management reporting formatted for regional and global head offices.',
+        ['Bookkeeping', 'Monthly reporting', 'Consolidation support', 'PSAK advice'],
+        ['No local finance team in the early years', 'HQ needs English-language reporting on group deadlines', 'Legacy records need cleanup before audit'],
+        ['A complete outsourced finance function from day one', 'Dual-format reporting: PSAK books, group package output', 'Catch-up bookkeeping and pre-audit file preparation']],
+      ['Payroll', 'payroll',
+        'Confidential end-to-end payroll: salary processing, PPh 21/26 withholding, BPJS Kesehatan and Ketenagakerjaan administration, and payslip delivery.',
+        ['Payroll processing', 'PPh 21/26', 'BPJS administration', 'Expatriate payroll'],
+        ['Sensitive salary data too confidential for local admin staff', 'Complex BPJS and severance (UU Cipta Kerja) rules', 'Expatriate tax equalization'],
+        ['Fully confidential processing outside your office', 'Compliance with current manpower and social-security rules', 'One provider for payroll, tax and immigration questions']],
+      ['Corporate Services', 'corporate',
+        'Company establishment, licensing and corporate secretarial work — the practical machinery of operating legally in Indonesia.',
+        ['PT PMA establishment', 'OSS licensing', 'Corporate secretarial', 'Domicile & registrations'],
+        ['OSS risk-based licensing is hard to navigate remotely', 'Negative-list and minimum-capital questions pre-entry', 'Annual GMS and reporting obligations get missed'],
+        ['End-to-end setup: deed, ministry approval, NIB, licenses', 'Structuring advice before you commit capital', 'A compliance calendar covering every corporate deadline']],
+      ['Advisory', 'advisory',
+        'Business advisory for market entry, risk and governance — internal audit, SOP design, and finance function reviews.',
+        ['Market entry studies', 'Internal audit', 'Risk & governance', 'SOP design'],
+        ['Entering Indonesia without local market intelligence', 'Fraud risk in remote-managed operations', 'Weak controls discovered during due diligence'],
+        ['Feasibility and partner-screening before entry', 'Outsourced or co-sourced internal audit programs', 'Pragmatic control frameworks sized to your operation']],
+      ['Corporate Finance', 'finance',
+        'M&A support, valuations and due diligence — including independent valuations by ECOVIS KJPP Toha, Okky, Heru & Partners, a licensed public valuation firm.',
+        ['Financial due diligence', 'Business valuation', 'M&A advisory', 'Fairness opinions'],
+        ['Acquiring an Indonesian target with opaque records', 'Regulators or lenders require a licensed KJPP valuation', 'Deal structures with tax consequences discovered late'],
+        ['Red-flag and full-scope due diligence with local insight', 'OJK-recognized valuation reports', 'Integrated tax structuring on every transaction']],
+      ['Transfer Pricing', 'transfer-pricing',
+        'TP documentation, benchmarking and audit defense compliant with PMK-172/2023 — Master File, Local File and CbCR obligations.',
+        ['TP documentation', 'Benchmarking', 'Audit defense', 'Advance Pricing Agreements'],
+        ['Intra-group charges challenged in DJP audits', 'Documentation deadlines tied to the tax-return filing date', 'Regional policies that ignore Indonesian specifics'],
+        ['Contemporaneous three-tier documentation', 'Local benchmarking with Asia-Pacific comparables', 'Defense files prepared before the audit, not during it']],
+      ['ESG & Sustainability', 'esg',
+        'Sustainability reporting and assurance readiness — POJK 51 reports for listed and financial-sector entities, and group ESG data for global parents.',
+        ['POJK 51 reporting', 'ESG data & metrics', 'CSRD group support', 'Assurance readiness'],
+        ['European parents need CSRD-aligned data from Indonesia', 'POJK 51 obligations arrive with listing or licensing', 'ESG claims without measurable underlying data'],
+        ['Gap analysis against the standards that apply to you', 'Reporting frameworks your finance team can maintain', 'Coordination with ECOVIS ESG specialists in Europe']],
+      ['Digital Solutions', 'digital',
+        'Finance systems and tax-technology support — Coretax readiness, e-Faktur/e-Bupot integration, and accounting system implementation.',
+        ['Coretax readiness', 'e-Faktur & e-Bupot', 'System implementation', 'Process automation'],
+        ['ERP output that does not match DJP e-invoicing formats', 'Manual reconciliation between books and tax filings', 'Selecting a right-sized accounting system'],
+        ['System-to-Coretax mapping and testing', 'Automated tax-to-ledger reconciliations', 'Vendor-neutral selection and implementation support']]
+    ];
+    const idn = [
+      ['Audit & Asurans',
+        'Audit statutori dan tujuan khusus oleh ECOVIS KAP Pieter, Uways & Partners berdasarkan Standar Audit Indonesia, dengan metodologi selaras ISA untuk pelaporan grup.',
+        ['Audit statutori', 'Paket pelaporan grup', 'Agreed-upon procedures', 'Konversi IFRS/PSAK'],
+        ['Audit pertama untuk PT PMA yang baru berdiri', 'Auditor grup di luar negeri butuh penyelarasan PSAK-ke-IFRS', 'Tenggat statutori ketat setelah akhir tahun'],
+        ['Tim audit dipimpin partner dengan spesialisasi industri', 'Koordinasi langsung dengan auditor grup Anda', 'Memo perbedaan PSAK vs IFRS yang jelas untuk HQ']],
+      ['Pajak',
+        'Kepatuhan pajak badan dan orang pribadi, perencanaan, dan dukungan sengketa — dari pelaporan bulanan hingga pemeriksaan DJP, keberatan, dan banding.',
+        ['PPh badan & kepatuhan bulanan', 'Perencanaan pajak', 'Pemeriksaan & sengketa', 'Pajak ekspatriat'],
+        ['Perubahan regulasi yang sering dan migrasi Coretax', 'Pemeriksaan DJP yang dipicu restitusi atau rugi', 'Ketidakpastian kewajiban pemotongan'],
+        ['Kalender kepatuhan alih daya penuh dengan pengingat', 'Representasi berpengalaman di hadapan DJP dan Pengadilan Pajak', 'Posisi praktis dan dapat dipertahankan — didokumentasikan sejak awal']],
+      ['Akuntansi',
+        'Pembukuan dan pelaporan keuangan alih daya berdasarkan PSAK, dengan pelaporan manajemen yang diformat untuk kantor pusat regional dan global.',
+        ['Pembukuan', 'Pelaporan bulanan', 'Dukungan konsolidasi', 'Saran PSAK'],
+        ['Tidak ada tim keuangan lokal di tahun-tahun awal', 'HQ butuh pelaporan berbahasa Inggris pada tenggat grup', 'Catatan lama perlu dibereskan sebelum audit'],
+        ['Fungsi keuangan alih daya lengkap sejak hari pertama', 'Pelaporan dua format: buku PSAK, output paket grup', 'Pembukuan susulan dan penyiapan berkas pra-audit']],
+      ['Penggajian',
+        'Penggajian rahasia menyeluruh: pemrosesan gaji, pemotongan PPh 21/26, administrasi BPJS Kesehatan dan Ketenagakerjaan, serta pengiriman slip gaji.',
+        ['Pemrosesan penggajian', 'PPh 21/26', 'Administrasi BPJS', 'Penggajian ekspatriat'],
+        ['Data gaji sensitif terlalu rahasia untuk staf admin lokal', 'Aturan BPJS dan pesangon (UU Cipta Kerja) yang kompleks', 'Tax equalization ekspatriat'],
+        ['Pemrosesan sepenuhnya rahasia di luar kantor Anda', 'Kepatuhan pada aturan ketenagakerjaan dan jaminan sosial terkini', 'Satu penyedia untuk pertanyaan penggajian, pajak, dan imigrasi']],
+      ['Layanan Korporat',
+        'Pendirian perusahaan, perizinan, dan pekerjaan sekretaris perusahaan — mesin praktis untuk beroperasi secara legal di Indonesia.',
+        ['Pendirian PT PMA', 'Perizinan OSS', 'Sekretaris perusahaan', 'Domisili & pendaftaran'],
+        ['Perizinan berbasis risiko OSS sulit dinavigasi jarak jauh', 'Pertanyaan daftar negatif dan modal minimum sebelum masuk', 'Kewajiban RUPS tahunan dan pelaporan terlewat'],
+        ['Setup menyeluruh: akta, persetujuan kementerian, NIB, izin', 'Saran penataan sebelum Anda menanamkan modal', 'Kalender kepatuhan yang mencakup setiap tenggat korporat']],
+      ['Advisory',
+        'Advisory bisnis untuk masuk pasar, risiko, dan tata kelola — audit internal, desain SOP, dan telaah fungsi keuangan.',
+        ['Studi masuk pasar', 'Audit internal', 'Risiko & tata kelola', 'Desain SOP'],
+        ['Masuk Indonesia tanpa intelijen pasar lokal', 'Risiko fraud di operasi yang dikelola jarak jauh', 'Kontrol lemah yang ditemukan saat due diligence'],
+        ['Kelayakan dan penyaringan mitra sebelum masuk', 'Program audit internal alih daya atau co-source', 'Kerangka kontrol pragmatis sesuai ukuran operasi Anda']],
+      ['Keuangan Korporat',
+        'Dukungan M&A, valuasi, dan due diligence — termasuk valuasi independen oleh ECOVIS KJPP Toha, Okky, Heru & Partners, kantor jasa penilai publik berlisensi.',
+        ['Financial due diligence', 'Valuasi bisnis', 'Advisory M&A', 'Pendapat kewajaran'],
+        ['Mengakuisisi target Indonesia dengan catatan tidak transparan', 'Regulator atau pemberi pinjaman mensyaratkan valuasi KJPP berlisensi', 'Struktur transaksi dengan konsekuensi pajak yang ditemukan terlambat'],
+        ['Due diligence red-flag dan full-scope dengan wawasan lokal', 'Laporan valuasi yang diakui OJK', 'Penataan pajak terintegrasi di setiap transaksi']],
+      ['Transfer Pricing',
+        'Dokumentasi TP, benchmarking, dan pembelaan pemeriksaan sesuai PMK-172/2023 — kewajiban Master File, Local File, dan CbCR.',
+        ['Dokumentasi TP', 'Benchmarking', 'Pembelaan pemeriksaan', 'Advance Pricing Agreement'],
+        ['Transaksi antar-grup dipersoalkan saat pemeriksaan DJP', 'Tenggat dokumentasi terkait tanggal pelaporan SPT', 'Kebijakan regional yang mengabaikan kekhususan Indonesia'],
+        ['Dokumentasi tiga tingkat kontemporer', 'Benchmarking lokal dengan komparabel Asia-Pasifik', 'Berkas pembelaan disiapkan sebelum pemeriksaan, bukan saat pemeriksaan']],
+      ['ESG & Keberlanjutan',
+        'Pelaporan keberlanjutan dan kesiapan assurance — laporan POJK 51 untuk entitas tercatat dan sektor keuangan, serta data ESG grup untuk induk global.',
+        ['Pelaporan POJK 51', 'Data & metrik ESG', 'Dukungan grup CSRD', 'Kesiapan assurance'],
+        ['Induk Eropa butuh data selaras CSRD dari Indonesia', 'Kewajiban POJK 51 datang bersama listing atau lisensi', 'Klaim ESG tanpa data pendukung terukur'],
+        ['Gap analysis terhadap standar yang berlaku untuk Anda', 'Kerangka pelaporan yang bisa dijaga tim keuangan Anda', 'Koordinasi dengan spesialis ESG ECOVIS di Eropa']],
+      ['Solusi Digital',
+        'Dukungan sistem keuangan dan teknologi pajak — kesiapan Coretax, integrasi e-Faktur/e-Bupot, dan implementasi sistem akuntansi.',
+        ['Kesiapan Coretax', 'e-Faktur & e-Bupot', 'Implementasi sistem', 'Otomatisasi proses'],
+        ['Output ERP yang tidak cocok dengan format e-invoicing DJP', 'Rekonsiliasi manual antara buku dan pelaporan pajak', 'Memilih sistem akuntansi berukuran tepat'],
+        ['Pemetaan sistem-ke-Coretax dan pengujian', 'Rekonsiliasi pajak-ke-buku otomatis', 'Dukungan pemilihan dan implementasi vendor-neutral']]
+    ];
+    const detail = { audit: 'Audit.dc.html', tax: 'Tax.dc.html', corporate: 'CompanySetup.dc.html', accounting: 'Accounting.dc.html', payroll: 'Payroll.dc.html', finance: 'CorporateFinance.dc.html', advisory: 'Advisory.dc.html', 'transfer-pricing': 'TransferPricing.dc.html', esg: 'ESG.dc.html', digital: 'DigitalSolutions.dc.html' };
+    return {
+      tKicker: pick('Services', 'Layanan'),
+      tHeroTitle: pick('Integrated services, one engagement team', 'Layanan terintegrasi, satu tim penugasan'),
+      tHeroSub: pick('Every service below is partner-led, delivered by licensed Indonesian professionals, and coordinated with the ECOVIS network for cross-border work.', 'Setiap layanan di bawah dipimpin partner, dijalankan oleh profesional Indonesia berlisensi, dan dikoordinasikan dengan jaringan ECOVIS untuk pekerjaan lintas negara.'),
+      tChallenges: pick('Challenges we solve', 'Tantangan yang kami selesaikan'),
+      tHowHelps: pick('How Ecovis helps', 'Bagaimana Ecovis membantu'),
+      tDiscuss: pick('Discuss this service', 'Diskusikan layanan ini'),
+      tCtaTitle: pick('Not sure which service fits? Start with a conversation.', 'Belum yakin layanan mana yang cocok? Mulai dengan percakapan.'),
+      tCta: pick('Schedule a Consultation', 'Jadwalkan Konsultasi'),
+      services: en.map(([name, slug, overview, scope, challenges, solutions], i) => {
+        const r = id ? idn[i] : null;
+        return {
+          name: id ? r[0] : name,
+          slug,
+          overview: id ? r[1] : overview,
+          scope: id ? r[2] : scope,
+          challenges: id ? r[3] : challenges,
+          solutions: id ? r[4] : solutions,
+          anchor: '#' + slug, bg: i % 2 ? '#F6F4F2' : '#fff',
+          hasDetail: !!detail[slug], detailHref: detail[slug] || 'Services.dc.html',
+          exploreLabel: (id ? 'Jelajahi ' : 'Explore ') + (id ? r[0] : name)
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

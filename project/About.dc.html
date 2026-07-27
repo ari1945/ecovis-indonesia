@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>html{scroll-behavior:smooth}body{margin:0;background:#fff}a{color:#A31631;text-decoration:none}a:hover{color:#6E1423}</style>
+</helmet>
+<div style="font-family:'IBM Plex Sans',sans-serif;color:#26282B">
+<dc-import name="SiteHeader" style="position:sticky;top:0;z-index:1000;display:block" hint-size="100%,116px"></dc-import>
+<div id="main" tabindex="-1"></div>
+
+<section data-screen-label="About hero" style="background:linear-gradient(135deg,#4E0D19,#6E1423);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-260px;right:-160px;width:560px;height:560px;border-radius:50%;background:#8E2136;opacity:0.5"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:72px 48px 80px">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#D98A94;margin-bottom:14px">{{ tKicker }}</div>
+    <h1 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(32px,5vw,46px);color:#fff;margin:0 0 18px;max-width:760px;text-wrap:pretty">{{ tHeroTitle }}</h1>
+    <p style="font-size:17.5px;line-height:1.65;color:rgba(255,255,255,0.82);margin:0;max-width:640px">{{ tHeroSub }}</p>
+  </div>
+</section>
+
+<section id="story" data-screen-label="Our Story" style="scroll-margin-top:130px;background:#fff">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,88px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(40px,6vw,72px)">
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#A31631;margin-bottom:10px">{{ tStoryKicker }}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(28px,4vw,36px);margin:0 0 20px;text-wrap:pretty">{{ tStoryTitle }}</h2>
+      <p style="font-size:16px;line-height:1.7;color:#5C6166;margin:0 0 16px">{{ tStoryP1 }}</p>
+      <p style="font-size:16px;line-height:1.7;color:#5C6166;margin:0">{{ tStoryP2 }}</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <sc-for list="{{ entities }}" as="e" hint-placeholder-count="3">
+        <div style="border:1px solid #E8E4E1;border-left:4px solid #6E1423;border-radius:4px;padding:24px 28px;display:flex;flex-direction:column;gap:6px">
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:18px">{{ e.name }}</div>
+          <div style="font-size:13px;font-weight:600;color:#A31631;letter-spacing:0.06em;text-transform:uppercase">{{ e.role }}</div>
+          <div style="font-size:14.5px;color:#5C6166;line-height:1.6">{{ e.desc }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="leadership" data-screen-label="Leadership" style="scroll-margin-top:130px;background:#F6F4F2">
+  <div style="max-width:1240px;margin:0 auto;padding:88px 48px">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#A31631;margin-bottom:10px">{{ tLeadKicker }}</div>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(28px,4vw,36px);margin:0 0 12px">{{ tLeadTitle }}</h2>
+    <p style="font-size:16px;line-height:1.7;color:#5C6166;margin:0 0 44px;max-width:640px">{{ tLeadSub }}</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px">
+      <sc-for list="{{ partners }}" as="p" hint-placeholder-count="6">
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:4px;padding:28px;display:flex;flex-direction:column;gap:12px">
+          <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#6E1423,#A31631);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Manrope',sans-serif;font-weight:800;font-size:22px">{{ p.initials }}</div>
+          <div>
+            <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:18px;color:#6B7075">{{ p.name }}</div>
+            <div style="font-size:14px;font-weight:600;color:#6E1423;margin-top:2px">{{ p.title }}</div>
+            <div style="font-size:13px;color:#6B7075;margin-top:2px">{{ p.entity }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <p style="font-size:13px;color:#6B7075;margin:20px 0 0">{{ tLeadNote }}</p>
+  </div>
+</section>
+
+<section id="network" data-screen-label="Global Network" style="scroll-margin-top:130px;background:#26282B;color:#fff">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,88px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(40px,6vw,72px);align-items:center">
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#D98A94;margin-bottom:14px">{{ tNetKicker }}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(28px,4vw,36px);margin:0 0 20px;text-wrap:pretty">{{ tNetTitle }}</h2>
+      <p style="font-size:16px;line-height:1.7;color:#B9BDC1;margin:0 0 16px">{{ tNetP1 }}</p>
+      <p style="font-size:16px;line-height:1.7;color:#B9BDC1;margin:0">{{ tNetP2 }}</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px">
+      <div style="background:#2E3134;border:1px solid #3A3D41;border-radius:4px;padding:26px 24px"><div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:34px">90+</div><div style="font-size:13.5px;color:#9BA0A5;margin-top:6px">{{ tStat1 }}</div></div>
+      <div style="background:#2E3134;border:1px solid #3A3D41;border-radius:4px;padding:26px 24px"><div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:34px">16,000+</div><div style="font-size:13.5px;color:#9BA0A5;margin-top:6px">{{ tStat2 }}</div></div>
+      <div style="background:#2E3134;border:1px solid #3A3D41;border-radius:4px;padding:26px 24px"><div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:34px">Top 15</div><div style="font-size:13.5px;color:#9BA0A5;margin-top:6px">{{ tStat3 }}</div></div>
+      <div style="background:#2E3134;border:1px solid #3A3D41;border-radius:4px;padding:26px 24px"><div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:34px">2017</div><div style="font-size:13.5px;color:#9BA0A5;margin-top:6px">{{ tStat4 }}</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="values" data-screen-label="Quality and Values" style="scroll-margin-top:130px;background:#fff">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,88px) clamp(20px,5vw,48px)">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#A31631;margin-bottom:10px">{{ tValKicker }}</div>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(28px,4vw,36px);margin:0 0 44px;max-width:640px;text-wrap:pretty">{{ tValTitle }}</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px 48px">
+      <sc-for list="{{ values }}" as="v" hint-placeholder-count="4">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="width:26px;height:3px;background:#6E1423"></div>
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:18px">{{ v.title }}</div>
+          <div style="font-size:14.5px;color:#5C6166;line-height:1.6">{{ v.text }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Careers CTA" style="background:#F6F4F2;border-top:1px solid #ECE9E6">
+  <div style="max-width:1240px;margin:0 auto;padding:64px 48px;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap">
+    <div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(24px,3vw,28px);margin:0 0 8px">{{ tCareersTitle }}</h2>
+      <p style="margin:0;font-size:15.5px;color:#5C6166">{{ tCareersSub }}</p>
+    </div>
+    <a href="Careers.dc.html" style="background:#6E1423;color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:15.5px;padding:15px 30px;border-radius:3px;white-space:nowrap" style-hover="background:#A31631;color:#fff">{{ tCareersBtn }}</a>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { lang: 'EN' };
+  componentDidMount() {
+    try { const l = localStorage.getItem('ecovis-lang'); if (l) this.setState({ lang: l }); } catch (e) {}
+    this._onLang = (e) => this.setState({ lang: (e && e.detail) || 'EN' });
+    window.addEventListener('ecovis-lang', this._onLang);
+  }
+  componentWillUnmount() { if (this._onLang) window.removeEventListener('ecovis-lang', this._onLang); }
+  renderVals() {
+    const id = this.state.lang === 'ID';
+    const pick = (en, idn) => (id ? idn : en);
+    const partnerTitles = id
+      ? ['Managing Partner, Audit & Asurans', 'Partner Audit', 'Managing Partner, Valuasi', 'Partner Valuasi', 'Managing Partner, Pajak & Advisory', 'Partner Pajak']
+      : ['Managing Partner, Audit & Assurance', 'Audit Partner', 'Managing Partner, Valuation', 'Valuation Partner', 'Managing Partner, Tax & Advisory', 'Tax Partner'];
+    const pInit = ['PU', 'AU', 'TO', 'HP', 'PD', 'TA'];
+    const pEntity = ['ECOVIS KAP Pieter, Uways & Partners', 'ECOVIS KAP Pieter, Uways & Partners', 'ECOVIS KJPP Toha, Okky, Heru & Partners', 'ECOVIS KJPP Toha, Okky, Heru & Partners', 'ECOVIS PT Piesta Dinamika Consult', 'ECOVIS PT Piesta Dinamika Consult'];
+    return {
+      tKicker: pick('About us', 'Tentang kami'),
+      tHeroTitle: pick('A global network. An Indonesian firm.', 'Jaringan global. Firma Indonesia.'),
+      tHeroSub: pick('ECOVIS Indonesia joined the ECOVIS International network in 2017 — combining licensed local practices with the reach of 16,000+ professionals in 90+ countries.', 'ECOVIS Indonesia bergabung dengan jaringan ECOVIS International pada 2017 — memadukan praktik lokal berlisensi dengan jangkauan 16.000+ profesional di 90+ negara.'),
+      tStoryKicker: pick('Our story', 'Kisah kami'),
+      tStoryTitle: pick('Nine years of helping businesses arrive, grow and stay compliant', 'Sembilan tahun membantu bisnis masuk, tumbuh, dan tetap patuh'),
+      tStoryP1: pick('On 14 August 2017, our Indonesian practices officially integrated into ECOVIS International. Since then we have grown into a full-service group serving foreign investors, multinationals and ambitious Indonesian companies.', 'Pada 14 Agustus 2017, praktik Indonesia kami resmi terintegrasi ke ECOVIS International. Sejak itu kami tumbuh menjadi grup layanan penuh yang melayani investor asing, multinasional, dan perusahaan Indonesia yang ambisius.'),
+      tStoryP2: pick('We operate through three specialized, independently licensed entities — so every engagement is delivered by professionals holding the right Indonesian license for the work.', 'Kami beroperasi melalui tiga entitas khusus yang berlisensi independen — sehingga setiap penugasan dijalankan oleh profesional yang memegang lisensi Indonesia yang tepat untuk pekerjaan itu.'),
+      tLeadKicker: pick('Leadership', 'Kepemimpinan'),
+      tLeadTitle: pick('Partner-led, by design', 'Dipimpin partner, secara sengaja'),
+      tLeadSub: pick('Every engagement is led by a partner who signs the work and answers your calls. Meet the partners behind our three practices.', 'Setiap penugasan dipimpin oleh partner yang menandatangani pekerjaan dan menjawab panggilan Anda. Kenali para partner di balik tiga praktik kami.'),
+      tLeadNote: pick('Partner names and photos to be supplied — click any card to edit.', 'Nama dan foto partner akan dilengkapi — klik kartu mana pun untuk mengedit.'),
+      tNetKicker: pick('Global network', 'Jaringan global'),
+      tNetTitle: pick('One point of contact, wherever your business goes', 'Satu titik kontak, ke mana pun bisnis Anda pergi'),
+      tNetP1: pick("ECOVIS International ranks among the world's top 15 audit and advisory networks. When your Indonesian operation needs support in Singapore, Frankfurt or Shanghai, we make one call — and the local ECOVIS partner takes it from there.", 'ECOVIS International termasuk 15 besar jaringan audit dan advisory dunia. Ketika operasi Indonesia Anda butuh dukungan di Singapura, Frankfurt, atau Shanghai, kami cukup menelepon sekali — dan partner ECOVIS lokal melanjutkannya.'),
+      tNetP2: pick('Cross-border engagements run under a single coordinating partner, with consistent methodology and one consolidated fee discussion.', 'Penugasan lintas negara berjalan di bawah satu partner koordinasi, dengan metodologi konsisten dan satu pembahasan biaya terkonsolidasi.'),
+      tStat1: pick('Countries across 5 continents', 'Negara di 5 benua'),
+      tStat2: pick('Consultants and staff worldwide', 'Konsultan dan staf di seluruh dunia'),
+      tStat3: pick('Among international audit & advisory networks', 'Di antara jaringan audit & advisory internasional'),
+      tStat4: pick('Indonesia joined the network on 14 August 2017', 'Indonesia bergabung dengan jaringan pada 14 Agustus 2017'),
+      tValKicker: pick('Quality & values', 'Kualitas & nilai'),
+      tValTitle: pick('The standards behind the signature', 'Standar di balik tanda tangan'),
+      tCareersTitle: pick('Build your career with a global network', 'Bangun karier Anda bersama jaringan global'),
+      tCareersSub: pick('Audit, tax, valuation and advisory roles — plus internships and a graduate program.', 'Posisi audit, pajak, valuasi, dan advisory — plus magang dan program graduate.'),
+      tCareersBtn: pick('Explore Careers', 'Jelajahi Karier'),
+      entities: id ? [
+        { name: 'ECOVIS KAP Pieter, Uways & Partners', role: 'Audit & Asurans', desc: 'Kantor akuntan publik terdaftar (KAP) yang melaksanakan audit statutori dan tujuan khusus berdasarkan Standar Audit Indonesia.' },
+        { name: 'ECOVIS KJPP Toha, Okky, Heru & Partners', role: 'Jasa Valuasi', desc: 'Kantor jasa penilai publik berlisensi (KJPP) yang menyediakan valuasi bisnis, aset, dan properti yang diakui regulator Indonesia.' },
+        { name: 'ECOVIS PT Piesta Dinamika Consult', role: 'Pajak & Advisory Bisnis', desc: 'Kepatuhan dan perencanaan pajak, akuntansi, penggajian, layanan korporat, dan advisory bisnis untuk klien lokal dan internasional.' }
+      ] : [
+        { name: 'ECOVIS KAP Pieter, Uways & Partners', role: 'Audit & Assurance', desc: 'A registered public accounting firm (KAP) conducting statutory and special-purpose audits under Indonesian Standards on Auditing.' },
+        { name: 'ECOVIS KJPP Toha, Okky, Heru & Partners', role: 'Valuation Services', desc: 'A licensed public valuation firm (KJPP) providing business, asset and property valuations recognized by Indonesian regulators.' },
+        { name: 'ECOVIS PT Piesta Dinamika Consult', role: 'Tax & Business Advisory', desc: 'Tax compliance and planning, accounting, payroll, corporate services and business advisory for local and international clients.' }
+      ],
+      partners: pInit.map((initials, i) => ({ initials, name: pick('Partner name', 'Nama partner'), title: partnerTitles[i], entity: pEntity[i] })),
+      values: id ? [
+        { title: 'Independensi', text: 'Praktik berlisensi dan independen — objektivitas tidak pernah bisa ditawar.' },
+        { title: 'Jaminan mutu', text: 'Telaah mutu di seluruh jaringan dan metodologi yang selaras dengan standar internasional.' },
+        { title: 'Kerahasiaan', text: 'Data klien ditangani sesuai protokol internal ketat dan UU perlindungan data Indonesia.' },
+        { title: 'Tanggung jawab', text: 'Pekerjaan pro bono, dukungan beasiswa, dan praktik bisnis bertanggung jawab dalam operasi kami sendiri.' }
+      ] : [
+        { title: 'Independence', text: 'Licensed, independent practices — objectivity is never negotiable.' },
+        { title: 'Quality assurance', text: 'Network-wide quality reviews and methodology aligned with international standards.' },
+        { title: 'Confidentiality', text: 'Client data handled under strict internal protocols and Indonesian data-protection law.' },
+        { title: 'Responsibility', text: 'Pro bono work, scholarship support and responsible-business practice in our own operations.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

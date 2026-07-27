@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>html{scroll-behavior:smooth}body{margin:0;background:#fff}a{color:#A31631;text-decoration:none}a:hover{color:#6E1423}</style>
+</helmet>
+<div style="font-family:'IBM Plex Sans',sans-serif;color:#26282B">
+<dc-import name="SiteHeader" style="position:sticky;top:0;z-index:1000;display:block" hint-size="100%,116px"></dc-import>
+<div id="main" tabindex="-1"></div>
+
+<section data-screen-label="Tax hero" style="background:linear-gradient(135deg,#4E0D19 0%,#6E1423 58%,#7E1A2C 100%);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-200px;right:-120px;width:620px;height:620px;border-radius:50%;background:#8E2136;opacity:0.5"></div>
+  <div style="position:absolute;top:-120px;right:-280px;width:620px;height:620px;border-radius:50%;background:#5A0F1D"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:34px clamp(20px,5vw,48px) 82px">
+    <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.62);margin-bottom:40px"><a href="Home.dc.html" style="color:rgba(255,255,255,0.62)" style-hover="color:#fff">{{ tHome }}</a> &nbsp;/&nbsp; <a href="Services.dc.html" style="color:rgba(255,255,255,0.62)" style-hover="color:#fff">{{ tServicesCrumb }}</a> &nbsp;/&nbsp; <span style="color:#fff">{{ tKicker }}</span></div>
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.18em;text-transform:uppercase;color:#D98A94;margin-bottom:18px">{{ tKicker }}</div>
+    <h1 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(32px,5vw,52px);line-height:1.07;color:#fff;margin:0 0 22px;max-width:840px;text-wrap:pretty">{{ tHeroTitle }}</h1>
+    <p style="font-size:clamp(16px,2vw,18.5px);line-height:1.6;color:rgba(255,255,255,0.85);margin:0 0 38px;max-width:660px;text-wrap:pretty">{{ tHeroSub }}</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <a href="Contact.dc.html" style="background:#fff;color:#6E1423;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;padding:15px 30px;border-radius:3px" style-hover="background:#F3E6E8;color:#4E0D19">{{ tCtaPrimary }}</a>
+      <a href="#guide" style="border:1.5px solid rgba(255,255,255,0.5);color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;padding:15px 30px;border-radius:3px" style-hover="border-color:#fff;background:rgba(255,255,255,0.08);color:#fff">{{ tCtaSecondary }}</a>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Trust strip" style="background:#fff;border-bottom:1px solid #ECE9E6">
+  <div style="max-width:1240px;margin:0 auto;padding:34px clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:28px">
+    <sc-for list="{{ trust }}" as="t" hint-placeholder-count="4">
+      <div style="display:flex;flex-direction:column;gap:5px;border-left:2px solid #E3D6D8;padding-left:18px">
+        <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:15px;color:#6E1423">{{ t.k }}</div>
+        <div style="font-size:13.5px;color:#5C6166;line-height:1.45">{{ t.v }}</div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section data-screen-label="Problem to solution" style="background:#F6F4F2">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(36px,5vw,56px)">
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px">{{ tSituation }}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(26px,3.5vw,32px);margin:0 0 26px;line-height:1.2;text-wrap:pretty">{{ tSituationTitle }}</h2>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <sc-for list="{{ problems }}" as="p" hint-placeholder-count="4">
+          <div style="display:flex;gap:14px;align-items:flex-start"><span style="color:#C9535F;font-weight:700;font-size:17px;line-height:1.4">—</span><div><div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;margin-bottom:4px">{{ p.t }}</div><div style="font-size:14.5px;color:#5C6166;line-height:1.6">{{ p.d }}</div></div></div>
+        </sc-for>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px">{{ tHowHelps }}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(26px,3.5vw,32px);margin:0 0 26px;line-height:1.2;text-wrap:pretty">{{ tHowHelpsTitle }}</h2>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <sc-for list="{{ solutions }}" as="s" hint-placeholder-count="4">
+          <div style="display:flex;gap:14px;align-items:flex-start"><span style="color:#6E1423;font-weight:700;font-size:16px;line-height:1.5">✓</span><div><div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;margin-bottom:4px">{{ s.t }}</div><div style="font-size:14.5px;color:#5C6166;line-height:1.6">{{ s.d }}</div></div></div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Scope" style="background:#fff;border-top:1px solid #ECE9E6">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px)">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px">{{ tIncluded }}</div>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);margin:0 0 44px;max-width:640px;text-wrap:pretty">{{ tScopeTitle }}</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px">
+      <sc-for list="{{ scope }}" as="c" hint-placeholder-count="6">
+        <div style="border:1px solid #E8E4E1;border-radius:4px;padding:26px 24px;display:flex;flex-direction:column;gap:9px" style-hover="border-color:#6E1423;box-shadow:0 8px 24px rgba(110,20,35,0.07)">
+          <div style="width:26px;height:3px;background:#6E1423;margin-bottom:4px"></div>
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:17px">{{ c.t }}</div>
+          <div style="font-size:13.5px;color:#5C6166;line-height:1.55">{{ c.d }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Process" style="background:#26282B;color:#fff">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px)">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#D98A94;margin-bottom:12px">{{ tHowWeWork }}</div>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);margin:0 0 48px;max-width:680px;text-wrap:pretty">{{ tProcessTitle }}</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0">
+      <sc-for list="{{ steps }}" as="st" hint-placeholder-count="5">
+        <div style="padding:0 22px;border-left:1px solid #3A3D41;position:relative">
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.1em;color:#D98A94;margin-bottom:14px">{{ tStep }} {{ st.n }}</div>
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:18px;margin-bottom:8px;line-height:1.25">{{ st.t }}</div>
+          <div style="font-size:13.5px;color:#9BA0A5;line-height:1.55">{{ st.d }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Proof" style="background:#F6F4F2">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(40px,5vw,64px);align-items:center">
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px">{{ tCredentials }}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(26px,3.5vw,32px);margin:0 0 18px;line-height:1.2;text-wrap:pretty">{{ tProofTitle }}</h2>
+      <p style="font-size:16px;line-height:1.7;color:#5C6166;margin:0 0 16px">{{ tProofBody }}</p>
+      <div style="background:#fff;border:1px solid #E8E4E1;border-left:4px solid #6E1423;border-radius:4px;padding:24px 26px">
+        <p style="margin:0 0 10px;font-size:15.5px;line-height:1.65;color:#3C4045;font-style:italic;text-wrap:pretty">{{ tQuote }}</p>
+        <div style="font-size:13px;color:#6B7075;font-weight:600">{{ tQuoteBy }}</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px">
+      <sc-for list="{{ proof }}" as="q" hint-placeholder-count="4">
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:4px;padding:26px 24px;display:flex;flex-direction:column;gap:7px">
+          <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:30px;color:#6E1423;line-height:1">{{ q.k }}</div>
+          <div style="font-size:13.5px;color:#5C6166;line-height:1.45">{{ q.v }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="guide" data-screen-label="Lead magnet" style="scroll-margin-top:130px;background:linear-gradient(120deg,#4E0D19,#6E1423);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-220px;left:-140px;width:520px;height:520px;border-radius:50%;background:#8E2136;opacity:0.4"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,76px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(40px,5vw,64px);align-items:center">
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#D98A94;margin-bottom:14px">{{ tFreeDownload }}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);color:#fff;margin:0 0 14px;text-wrap:pretty">{{ tGuideTitle }}</h2>
+      <p style="margin:0 0 22px;font-size:16px;color:rgba(255,255,255,0.82);line-height:1.65">{{ tGuideBody }}</p>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <sc-for list="{{ guidePoints }}" as="g" hint-placeholder-count="3">
+          <div style="display:flex;gap:11px;align-items:center;color:rgba(255,255,255,0.9);font-size:14.5px"><span style="color:#F0C9CF;font-weight:700">✓</span>{{ g }}</div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="background:#fff;border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:13px">
+      <label style="display:flex;flex-direction:column;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#4A4F54">{{ tPhName }}
+        <input placeholder="{{ tExName }}" style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:400;padding:12px 16px;border-radius:3px;border:1px solid #DDD9D5;outline:none;width:100%;box-sizing:border-box" style-focus="border-color:#6E1423;box-shadow:0 0 0 3px rgba(110,20,35,0.10)">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#4A4F54">{{ tPhEmail }}
+        <input placeholder="{{ tExEmail }}" style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:400;padding:12px 16px;border-radius:3px;border:1px solid #DDD9D5;outline:none;width:100%;box-sizing:border-box" style-focus="border-color:#6E1423;box-shadow:0 0 0 3px rgba(110,20,35,0.10)">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#4A4F54">{{ tPhCompany }}
+        <input placeholder="{{ tExCompany }}" style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:400;padding:12px 16px;border-radius:3px;border:1px solid #DDD9D5;outline:none;width:100%;box-sizing:border-box" style-focus="border-color:#6E1423;box-shadow:0 0 0 3px rgba(110,20,35,0.10)">
+      </label>
+      <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:12.5px;color:#5C6166;line-height:1.55">
+        <input type="checkbox" checked="{{ consent }}" onChange="{{ onConsent }}" style="width:17px;height:17px;margin:1px 0 0;accent-color:#6E1423;flex-shrink:0;cursor:pointer">
+        <span>{{ tConsent }} <a href="PrivacyPolicy.dc.html">{{ tPrivacyLink }}</a>.</span>
+      </label>
+      <button onClick="{{ submit }}" disabled="{{ submitDisabled }}" style="background:{{ submitBg }};color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:15.5px;padding:14px;border-radius:3px;border:none;cursor:{{ submitCursor }}">{{ submitLabel }}</button>
+      <p style="margin:0;font-size:12px;color:#6B7075;line-height:1.5"><strong style="color:#4A4F54;font-weight:600">{{ tSla }}</strong> {{ tFormNote }}</p>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="FAQ" style="background:#fff">
+  <div style="max-width:900px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px)">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px;text-align:center">{{ tFaqKicker }}</div>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);margin:0 0 44px;text-align:center">{{ tFaqTitle }}</h2>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+        <div style="border:1px solid #E8E4E1;border-radius:4px;overflow:hidden;background:{{ f.bg }}">
+          <button onClick="{{ f.toggle }}" style="width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:22px 26px;display:flex;justify-content:space-between;align-items:center;gap:20px;font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;color:#26282B">{{ f.q }}<span style="color:#A31631;font-size:22px;flex-shrink:0">{{ f.icon }}</span></button>
+          <div style="display:{{ f.display }};padding:0 26px 24px;font-size:15px;color:#5C6166;line-height:1.7;max-width:720px">{{ f.a }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="CTA" style="background:linear-gradient(120deg,#4E0D19,#6E1423);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-220px;right:-140px;width:520px;height:520px;border-radius:50%;background:#8E2136;opacity:0.4"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,76px) clamp(20px,5vw,48px);display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
+    <div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);color:#fff;margin:0 0 10px;text-wrap:pretty">{{ tCtaTitle }}</h2>
+      <p style="margin:0;font-size:16.5px;color:rgba(255,255,255,0.8)">{{ tCtaSub }}</p>
+    </div>
+    <a href="Contact.dc.html" style="background:#fff;color:#6E1423;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:3px;white-space:nowrap" style-hover="background:#F3E6E8;color:#4E0D19">{{ tCtaPrimary }}</a>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = { sent: false, consent: false, openFaq: 0, lang: 'EN' };
+  componentDidMount() {
+    try { const l = localStorage.getItem('ecovis-lang'); if (l) this.setState({ lang: l }); } catch (e) {}
+    this._onLang = (e) => this.setState({ lang: (e && e.detail) || 'EN' });
+    window.addEventListener('ecovis-lang', this._onLang);
+  }
+  componentWillUnmount() { if (this._onLang) window.removeEventListener('ecovis-lang', this._onLang); }
+  renderVals() {
+    const id = this.state.lang === 'ID';
+    const pick = (en, idn) => (id ? idn : en);
+    const faqData = id ? [
+      ['Apa sebenarnya cakupan kesiapan Coretax?', 'Sebagian besar adalah pekerjaan master-data dan pemetaan: menyelaraskan NPWP, kode transaksi dan dokumen, serta format file yang dihasilkan ERP Anda dengan yang diharapkan Coretax, lalu menguji submission hingga lolos bersih. Pemetaan yang benar sekali membuat pelaporan berhenti ditolak; yang salah membuat setiap bulan jadi perbaikan manual.'],
+      ['Bisakah Anda mengintegrasikan ERP kami dengan e-Faktur dan e-Bupot?', 'Ya. Kami memetakan output ERP Anda ke persyaratan e-Faktur dan e-Bupot, menyiapkan ekstraksi dan validasi, serta merekonsiliasi dokumen pajak kembali ke buku besar sehingga yang Anda laporkan cocok dengan yang Anda bukukan.'],
+      ['Kami belum punya sistem akuntansi — bisakah Anda membantu memilih?', 'Ya, dan kami melakukannya secara vendor-neutral. Kami menyesuaikan kebutuhan dengan operasi Anda, menyusun shortlist sistem yang sesuai, dan mendukung pemilihan serta implementasi — termasuk bagaimana sistem akan mengumpankan Coretax dan pelaporan Anda sejak hari pertama.'],
+      ['Apa yang realistis bisa diotomatiskan?', 'Pekerjaan berulang berbasis aturan: rekonsiliasi pajak-ke-buku besar, perhitungan pemotongan, pembuatan dan validasi e-invoice, serta pemeriksaan akhir bulan. Otomatisasi menghapus langkah manual tempat kesalahan dan keterlambatan menumpuk, sehingga tim Anda menghabiskan waktu untuk telaah alih-alih entri data.'],
+      ['Bagaimana ini terhubung dengan tim pajak dan akuntansi Anda?', 'Langsung. Firma yang sama melaporkan pajak dan menjaga pembukuan Anda menggunakan sistem ini, sehingga kami mengimplementasikan sesuai alur kerja nyata dan angka terrekonsiliasi ujung ke ujung — bukan menyerahkan konfigurasi yang tampak benar di demo tetapi rusak saat akhir bulan.']
+    ] : [
+      ['What does Coretax readiness actually involve?', 'It is mostly master-data and mapping work: aligning tax IDs, transaction and document codes, and the file formats your ERP produces with what Coretax expects, then testing submissions until they pass cleanly. Get the mapping right once and filings stop bouncing; get it wrong and every month is a manual fix.'],
+      ['Can you integrate our ERP with e-Faktur and e-Bupot?', 'Yes. We map your ERP output to the e-Faktur and e-Bupot requirements, set up the extraction and validation, and reconcile the tax documents back to the ledger so what you file matches what you booked.'],
+      ['We do not have an accounting system yet — can you help us choose?', 'Yes, and we do it vendor-neutrally. We size the requirement to your operation, shortlist suitable systems, and support selection and implementation — including how the system will feed Coretax and your reporting from day one.'],
+      ['What can realistically be automated?', 'The recurring, rule-based work: tax-to-ledger reconciliations, withholding calculations, e-invoice generation and validation, and month-end checks. Automation removes the manual steps where errors and delays accumulate, so your team spends time on review rather than data entry.'],
+      ['How does this connect to your tax and accounting teams?', 'Directly. The same firm files your tax and keeps your books using these systems, so we implement for the real workflow and the numbers reconcile end to end — rather than handing over a configuration that looks right in a demo but breaks at month-end.']
+    ];
+    return {
+      tHome: pick('Home', 'Beranda'),
+      tServicesCrumb: pick('Services', 'Layanan'),
+      tKicker: pick('Digital Solutions', 'Solusi Digital'),
+      tHeroTitle: pick('Make your finance systems and Coretax speak the same language', 'Buat sistem keuangan Anda dan Coretax berbicara bahasa yang sama'),
+      tHeroSub: pick('Coretax readiness, e-Faktur and e-Bupot integration, accounting-system selection and process automation — so tax filings reconcile to your ledger without the monthly manual scramble.', 'Kesiapan Coretax, integrasi e-Faktur dan e-Bupot, pemilihan sistem akuntansi, dan otomatisasi proses — agar pelaporan pajak terrekonsiliasi dengan buku besar tanpa kerepotan manual tiap bulan.'),
+      tCtaPrimary: pick('Book a systems review', 'Pesan telaah sistem'),
+      tCtaSecondary: pick('Get the Coretax readiness guide', 'Dapatkan panduan kesiapan Coretax'),
+      tSituation: pick('The situation', 'Situasinya'),
+      tSituationTitle: pick('Where systems and tax fall out of step', 'Di mana sistem dan pajak menjadi tidak selaras'),
+      tHowHelps: pick('How Ecovis helps', 'Bagaimana Ecovis membantu'),
+      tHowHelpsTitle: pick('Systems that reconcile by design', 'Sistem yang terrekonsiliasi by design'),
+      tIncluded: pick("What's included", 'Yang termasuk'),
+      tScopeTitle: pick('Finance technology, end to end', 'Teknologi keuangan, ujung ke ujung'),
+      tHowWeWork: pick('How we work', 'Cara kami bekerja'),
+      tProcessTitle: pick('Mapped, tested, then automated', 'Dipetakan, diuji, lalu diotomatiskan'),
+      tStep: pick('STEP', 'LANGKAH'),
+      tCredentials: pick('Credentials & proof', 'Kredensial & bukti'),
+      tProofTitle: pick('Vendor-neutral, and we run the numbers ourselves', 'Vendor-neutral, dan kami sendiri yang menjalankan angkanya'),
+      tProofBody: pick('We are not tied to a single software vendor, so system selection is based on your needs, not a reseller margin. And because our own teams use these systems to file your tax and keep your books, we implement for how the work is actually done — not a demo workflow.', 'Kami tidak terikat pada satu vendor perangkat lunak, sehingga pemilihan sistem didasarkan pada kebutuhan Anda, bukan margin reseller. Dan karena tim kami sendiri menggunakan sistem ini untuk melaporkan pajak dan menjaga pembukuan Anda, kami mengimplementasikan sesuai cara kerja nyata — bukan alur demo.'),
+      tQuote: pick('"Our ERP output never matched the Coretax format, so every filing was manual. They mapped the fields, automated the reconciliation, and month-end went from days to hours."', '"Output ERP kami tidak pernah cocok dengan format Coretax, jadi setiap pelaporan manual. Mereka memetakan field-nya, mengotomatiskan rekonsiliasinya, dan akhir bulan berubah dari hitungan hari menjadi jam."'),
+      tQuoteBy: pick('Finance Manager — manufacturing subsidiary', 'Finance Manager — anak usaha manufaktur'),
+      tFreeDownload: pick('Free download', 'Unduhan gratis'),
+      tGuideTitle: pick('Coretax Readiness Guide', 'Panduan Kesiapan Coretax'),
+      tGuideBody: pick("The master-data, mapping and testing steps that decide whether your ERP feeds Coretax cleanly — and the errors that cause the most filing rejections. We'll email the PDF and add you to our monthly briefing.", 'Langkah master-data, pemetaan, dan pengujian yang menentukan apakah ERP Anda mengumpankan Coretax dengan bersih — serta kesalahan yang paling banyak menyebabkan penolakan pelaporan. Kami akan mengirim PDF via email dan menambahkan Anda ke briefing bulanan kami.'),
+      tPhName: pick('Full name', 'Nama lengkap'),
+      tPhEmail: pick('Work email', 'Email kantor'),
+      tPhCompany: pick('Company', 'Perusahaan'),
+      tExName: pick('e.g. Budi Santoso', 'mis. Budi Santoso'),
+      tExEmail: pick('e.g. budi@company.co.id', 'mis. budi@perusahaan.co.id'),
+      tExCompany: pick('e.g. PT Contoh Indonesia', 'mis. PT Contoh Indonesia'),
+      tConsent: pick('I agree that Ecovis Indonesia may process these details to send the material and follow up. See the', 'Saya setuju Ecovis Indonesia memproses data ini untuk mengirim materi dan menindaklanjuti. Lihat'),
+      tPrivacyLink: pick('Privacy Policy', 'Kebijakan Privasi'),
+      tSla: pick('We reply within 1 business day.', 'Kami membalas dalam 1 hari kerja.'),
+      tFormNote: pick('Used only to send this guide and our briefing. Unsubscribe anytime.', 'Hanya digunakan untuk mengirim panduan ini dan briefing kami. Berhenti berlangganan kapan saja.'),
+      tFaqKicker: pick('Frequently asked', 'Sering ditanyakan'),
+      tFaqTitle: pick('Digital questions we hear most', 'Pertanyaan digital yang paling sering kami dengar'),
+      tCtaTitle: pick('Manual reconciliation eating your month-end?', 'Rekonsiliasi manual menyita akhir bulan Anda?'),
+      tCtaSub: pick("Tell us your systems and we'll scope where automation pays off first — no obligation.", 'Beri tahu sistem Anda dan kami akan menentukan di mana otomatisasi paling menguntungkan lebih dulu — tanpa kewajiban.'),
+      trust: id ? [
+        { k: 'Siap Coretax', v: 'Pemetaan master-data, pengujian, dan pelaporan bersih.' },
+        { k: 'Integrasi ERP', v: 'e-Faktur dan e-Bupot tersambung ke buku besar Anda.' },
+        { k: 'Vendor-neutral', v: 'Pilihan sistem berdasarkan kebutuhan, bukan margin reseller.' },
+        { k: 'Otomatisasi', v: 'Rekonsiliasi berulang selesai tanpa kerja manual.' }
+      ] : [
+        { k: 'Coretax-ready', v: 'Master-data mapping, testing and clean filing.' },
+        { k: 'ERP integration', v: 'e-Faktur and e-Bupot wired to your ledger.' },
+        { k: 'Vendor-neutral', v: 'System choice based on need, not reseller margin.' },
+        { k: 'Automation', v: 'Recurring reconciliations done without manual work.' }
+      ],
+      problems: id ? [
+        { t: 'Output ERP yang tidak cocok Coretax', d: 'NPWP, kode, dan format file tidak sejajar, sehingga setiap pelaporan perlu perbaikan manual.' },
+        { t: 'Rekonsiliasi buku-ke-pajak manual', d: 'Akhir bulan habis untuk mencocokkan buku besar dengan pelaporan pajak secara manual.' },
+        { t: 'Memilih sistem tanpa arah', d: 'Memilih platform akuntansi atau ERP tanpa tahu bagaimana ia harus mengumpankan pajak dan pelaporan.' },
+        { t: 'Kesalahan yang berulang tiap bulan', d: 'Penolakan dan koreksi yang sama terulang karena akar masalah tidak pernah dipetakan.' }
+      ] : [
+        { t: 'ERP output that does not fit Coretax', d: 'Tax IDs, codes and file formats do not line up, so every filing needs a manual fix.' },
+        { t: 'Manual book-to-tax reconciliation', d: 'Month-end is lost to matching the ledger against tax filings by hand.' },
+        { t: 'Choosing a system blind', d: 'Selecting an accounting or ERP platform without knowing how it must feed tax and reporting.' },
+        { t: 'Errors that repeat every month', d: 'The same rejections and adjustments recur because the root cause is never mapped out.' }
+      ],
+      solutions: id ? [
+        { t: 'Pemetaan sistem-ke-Coretax dan pengujian', d: 'Master data diselaraskan dan submission diuji hingga pelaporan lolos bersih.' },
+        { t: 'Rekonsiliasi pajak-ke-buku otomatis', d: 'Pelaporan cocok kembali dengan buku tanpa pencocokan manual.' },
+        { t: 'Dukungan pemilihan vendor-neutral', d: 'Sistem berukuran tepat dipilih untuk kebutuhan Anda, lalu diimplementasikan.' },
+        { t: 'Diimplementasikan untuk alur kerja nyata', d: 'Dikonfigurasi oleh tim yang benar-benar menjalankan pajak dan pembukuan Anda.' }
+      ] : [
+        { t: 'System-to-Coretax mapping and testing', d: 'Master data aligned and submissions tested until filings pass cleanly.' },
+        { t: 'Automated tax-to-ledger reconciliation', d: 'Filings tie back to the books without manual matching.' },
+        { t: 'Vendor-neutral selection support', d: 'The right-sized system chosen for your needs, then implemented.' },
+        { t: 'Implemented for the real workflow', d: 'Configured by the teams that will actually run your tax and books.' }
+      ],
+      scope: id ? [
+        { t: 'Kesiapan Coretax', d: 'Penyelarasan master-data, pemetaan, dan pengujian submission.' },
+        { t: 'e-Faktur & e-Bupot', d: 'Integrasi ERP untuk e-invoicing dan dokumen pemotongan.' },
+        { t: 'Pemilihan sistem', d: 'Shortlist vendor-neutral yang disesuaikan dengan operasi Anda.' },
+        { t: 'Implementasi sistem', d: 'Setup, migrasi, dan dukungan go-live untuk sistem keuangan.' },
+        { t: 'Otomatisasi proses', d: 'Rekonsiliasi, validasi, dan pemeriksaan akhir bulan diotomatiskan.' },
+        { t: 'Integrasi & pelaporan', d: 'Arus data yang menghubungkan sistem, pajak, dan pelaporan.' }
+      ] : [
+        { t: 'Coretax readiness', d: 'Master-data alignment, mapping and submission testing.' },
+        { t: 'e-Faktur & e-Bupot', d: 'ERP integration for e-invoicing and withholding documents.' },
+        { t: 'System selection', d: 'Vendor-neutral shortlisting sized to your operation.' },
+        { t: 'System implementation', d: 'Setup, migration and go-live support for finance systems.' },
+        { t: 'Process automation', d: 'Reconciliations, validations and month-end checks automated.' },
+        { t: 'Integration & reporting', d: 'Data flows connecting systems, tax and reporting.' }
+      ],
+      steps: id ? [
+        { n: '1', t: 'Telaah sistem', d: 'Kami memetakan sistem, arus data, dan titik di mana semuanya rusak.' },
+        { n: '2', t: 'Desain', d: 'Desain pemetaan target dan integrasi untuk Coretax dan pelaporan.' },
+        { n: '3', t: 'Bangun', d: 'Pemetaan field, ekstraksi, dan validasi dikonfigurasi dan disambungkan.' },
+        { n: '4', t: 'Uji', d: 'Submission dan rekonsiliasi diuji hingga berjalan bersih.' },
+        { n: '5', t: 'Otomatisasi & dukungan', d: 'Langkah berulang diotomatiskan, dengan dukungan seiring pertumbuhan volume.' }
+      ] : [
+        { n: '1', t: 'Systems review', d: 'We map your current systems, data flows and the points where they break.' },
+        { n: '2', t: 'Design', d: 'A target mapping and integration design for Coretax and reporting.' },
+        { n: '3', t: 'Build', d: 'Field mapping, extraction and validation configured and connected.' },
+        { n: '4', t: 'Test', d: 'Submissions and reconciliations tested until they run clean.' },
+        { n: '5', t: 'Automate & support', d: 'Recurring steps automated, with support as volumes grow.' }
+      ],
+      proof: id ? [
+        { k: 'Coretax', v: 'Pelaporan yang lolos tanpa perbaikan manual' },
+        { k: 'Hari ke jam', v: 'Peningkatan rekonsiliasi akhir bulan tipikal' },
+        { k: 'Netral', v: 'Tanpa keterikatan satu vendor' },
+        { k: '1 tim', v: 'Sistem, pajak, dan pembukuan bersama' }
+      ] : [
+        { k: 'Coretax', v: 'Filings that pass without manual fixes' },
+        { k: 'Days to hours', v: 'Typical month-end reconciliation gain' },
+        { k: 'Neutral', v: 'No single-vendor lock-in' },
+        { k: '1 team', v: 'Systems, tax and books together' }
+      ],
+      guidePoints: id
+        ? ['Langkah penyelarasan master-data', 'Penolakan pelaporan yang paling umum', 'Apa yang diotomatiskan lebih dulu']
+        : ['Master-data alignment steps', 'The most common filing rejections', 'What to automate first'],
+      faqs: faqData.map(([q, a], i) => ({
+        q, a,
+        bg: this.state.openFaq === i ? '#FBF7F6' : '#fff',
+        display: this.state.openFaq === i ? 'block' : 'none',
+        icon: this.state.openFaq === i ? '\u2212' : '+',
+        toggle: () => this.setState(s => ({ openFaq: s.openFaq === i ? -1 : i }))
+      })),
+      submit: () => { if (this.state.consent) this.setState({ sent: true }); },
+      consent: this.state.consent,
+      onConsent: () => this.setState(s => ({ consent: !s.consent })),
+      submitDisabled: !this.state.consent || this.state.sent,
+      submitBg: this.state.consent ? '#6E1423' : '#C6ADB2',
+      submitCursor: this.state.consent ? 'pointer' : 'not-allowed',
+      submitLabel: this.state.sent ? pick('Thank you — check your inbox', 'Terima kasih — cek kotak masuk Anda') : pick('Email me the guide', 'Kirim panduan ke email saya')
+    };
+  }
+}
+</script>
+</body>
+</html>

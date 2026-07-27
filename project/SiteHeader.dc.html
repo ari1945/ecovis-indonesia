@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#A31631;text-decoration:none}a:hover{color:#6E1423}</style>
+</helmet>
+<div style="font-family:'IBM Plex Sans',sans-serif;background:#fff">
+  <a href="#main" style="position:absolute;left:-9999px;top:0;z-index:5000;background:#26282B;color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:14px;padding:12px 22px;border-radius:0 0 4px 0" style-focus="left:0">{{ tSkip }}</a>
+  <div style="background:#6E1423;color:rgba(255,255,255,0.92);font-size:12.5px;display:flex;justify-content:space-between;align-items:center;padding:7px clamp(16px,3.5vw,48px);gap:16px">
+    <div style="letter-spacing:0.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0">{{ tMember }}</div>
+    <div style="display:flex;align-items:center;gap:16px;flex-shrink:0">
+      <a href="https://wa.me/6281XXXXXXXX" style="color:#fff;font-size:12.5px;display:flex;align-items:center;gap:6px;font-weight:500" style-hover="color:#F0C9CF"><span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:#25D366;color:#0B3D22;font-size:9px;font-weight:800">W</span>{{ tWhatsApp }}</a>
+      <span style="opacity:0.45;display:{{ emailDisplay }}">|</span>
+      <a href="mailto:info@ecovisindonesia.com" style="color:rgba(255,255,255,0.92);font-size:12.5px;display:{{ emailDisplay }}" style-hover="color:#fff">info@ecovisindonesia.com</a>
+      <span style="opacity:0.45;display:{{ emailDisplay }}">|</span>
+      <div style="display:flex;gap:2px;background:rgba(255,255,255,0.12);border-radius:3px;padding:2px">
+        <button onClick="{{ setEN }}" style="border:none;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:2px;background:{{ enBg }};color:{{ enColor }}">EN</button>
+        <button onClick="{{ setID }}" style="border:none;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:2px;background:{{ idBg }};color:{{ idColor }}">ID</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px clamp(16px,3.5vw,48px);border-bottom:1px solid #E8E5E2;background:#fff">
+    <a href="Home.dc.html" style="display:flex;align-items:center;flex-shrink:0"><img src="assets/logo.png" alt="Ecovis Indonesia" style="height:52px;display:block;margin:-4px 0 -4px -14px"></a>
+
+    <nav style="display:{{ desktopNavDisplay }};align-items:center;gap:clamp(14px,1.8vw,28px);font-family:'Manrope',sans-serif;font-size:clamp(13.5px,1.1vw,15px);font-weight:600">
+      <div style="position:relative" onMouseEnter="{{ hoverAbout }}" onMouseLeave="{{ hoverClose }}">
+        <a href="About.dc.html" onClick="{{ toggleAbout }}" aria-haspopup="true" aria-expanded="{{ aboutExpanded }}" style="color:{{ aboutColor }};display:flex;align-items:center;gap:5px;padding:24px 0;cursor:pointer" style-hover="color:#A31631">{{ tAbout }} <span style="font-size:9px;color:#6B7075;transform:{{ aboutCaret }};transition:transform .18s">▼</span></a>
+        <div style="display:{{ aboutDisplay }};position:absolute;top:100%;left:-20px;background:#fff;border:1px solid #E8E5E2;border-top:3px solid #6E1423;box-shadow:0 12px 32px rgba(38,40,43,0.14);min-width:220px;padding:10px 0;z-index:1200">
+          <sc-for list="{{ aboutMenu }}" as="m" hint-placeholder-count="5">
+            <a href="{{ m.href }}" style="display:block;padding:9px 22px;color:#26282B;font-weight:500;font-size:14.5px" style-hover="background:#F7F4F2;color:#A31631">{{ m.label }}</a>
+          </sc-for>
+        </div>
+      </div>
+      <div style="position:relative" onMouseEnter="{{ hoverServices }}" onMouseLeave="{{ hoverClose }}">
+        <a href="Services.dc.html" onClick="{{ toggleServices }}" aria-haspopup="true" aria-expanded="{{ servicesExpanded }}" style="color:{{ servicesColor }};display:flex;align-items:center;gap:5px;padding:24px 0;cursor:pointer" style-hover="color:#A31631">{{ tServices }} <span style="font-size:9px;color:#6B7075;transform:{{ servicesCaret }};transition:transform .18s">▼</span></a>
+        <div style="display:{{ servicesDisplay }};position:absolute;top:100%;left:-20px;background:#fff;border:1px solid #E8E5E2;border-top:3px solid #6E1423;box-shadow:0 12px 32px rgba(38,40,43,0.14);padding:14px 0;z-index:1200;width:520px;column-count:2;column-gap:0">
+          <sc-for list="{{ services }}" as="s" hint-placeholder-count="10">
+            <a href="{{ s.href }}" style="display:block;padding:9px 24px;color:#26282B;font-weight:500;font-size:14.5px;break-inside:avoid" style-hover="background:#F7F4F2;color:#A31631">{{ s.name }}</a>
+          </sc-for>
+        </div>
+      </div>
+      <a href="Industries.dc.html" style="color:#26282B" style-hover="color:#A31631">{{ tIndustries }}</a>
+      <a href="Insights.dc.html" style="color:#26282B" style-hover="color:#A31631">{{ tInsights }}</a>
+      <a href="Resources.dc.html" style="color:#26282B" style-hover="color:#A31631">{{ tResources }}</a>
+      <a href="Contact.dc.html" style="color:#26282B" style-hover="color:#A31631">{{ tContact }}</a>
+    </nav>
+
+    <a href="Contact.dc.html" style="display:{{ ctaDisplay }};background:#6E1423;color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:clamp(13px,1vw,14px);padding:11px clamp(14px,1.6vw,22px);border-radius:3px;letter-spacing:0.01em;white-space:nowrap;flex-shrink:0" style-hover="background:#A31631;color:#fff">{{ tCta }}</a>
+
+    <button onClick="{{ openDrawer }}" ref="{{ burgerRef }}" aria-label="Menu" aria-expanded="{{ drawerExpanded }}" style="display:{{ burgerDisplay }};width:44px;height:44px;flex-shrink:0;border:1px solid #E8E5E2;background:#F7EBED;border-radius:8px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px" style-hover="background:#F0DADF">
+      <span style="width:20px;height:2px;background:#6E1423;border-radius:2px"></span>
+      <span style="width:20px;height:2px;background:#6E1423;border-radius:2px"></span>
+      <span style="width:20px;height:2px;background:#6E1423;border-radius:2px"></span>
+    </button>
+  </div>
+</div>
+
+<sc-if value="{{ drawerOpen }}" hint-placeholder-val="">
+<div style="position:fixed;inset:0;z-index:4000;font-family:'IBM Plex Sans',sans-serif">
+  <div onClick="{{ closeDrawer }}" style="position:absolute;inset:0;background:rgba(31,33,36,0.5);animation:hdrFade .2s ease"></div>
+  <div style="position:absolute;top:0;right:0;bottom:0;width:min(360px,86vw);background:#fff;display:flex;flex-direction:column;box-shadow:-16px 0 48px rgba(31,33,36,0.28);animation:hdrSlide .24s ease">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid #E8E5E2;flex-shrink:0">
+      <img src="assets/logo.png" alt="Ecovis" style="height:44px;margin-left:-8px">
+      <button onClick="{{ closeDrawer }}" aria-label="Close" style="width:40px;height:40px;border:1px solid #E8E5E2;background:#fff;border-radius:8px;cursor:pointer;font-size:20px;color:#6E1423;line-height:1" style-hover="background:#F7EBED">×</button>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding:8px 0">
+      <div>
+        <button onClick="{{ toggleMobAbout }}" style="width:100%;display:flex;justify-content:space-between;align-items:center;padding:16px 22px;border:none;border-bottom:1px solid #F1ECE8;background:none;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;color:#26282B;text-align:left">{{ tAbout }}<span style="color:#C9BEB6;font-size:13px;transform:{{ mobAboutCaret }};transition:transform .18s">▼</span></button>
+        <div style="display:{{ mobAboutDisplay }};background:#FBF7F6">
+          <sc-for list="{{ aboutMenu }}" as="m" hint-placeholder-count="5">
+            <a href="{{ m.href }}" style="display:block;padding:13px 34px;color:#5C6166;font-weight:500;font-size:15px;border-bottom:1px solid #F1ECE8" style-hover="color:#A31631">{{ m.label }}</a>
+          </sc-for>
+        </div>
+      </div>
+      <div>
+        <button onClick="{{ toggleMobServices }}" style="width:100%;display:flex;justify-content:space-between;align-items:center;padding:16px 22px;border:none;border-bottom:1px solid #F1ECE8;background:none;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;color:#26282B;text-align:left">{{ tServices }}<span style="color:#C9BEB6;font-size:13px;transform:{{ mobServicesCaret }};transition:transform .18s">▼</span></button>
+        <div style="display:{{ mobServicesDisplay }};background:#FBF7F6">
+          <sc-for list="{{ services }}" as="s" hint-placeholder-count="10">
+            <a href="{{ s.href }}" style="display:block;padding:13px 34px;color:#5C6166;font-weight:500;font-size:15px;border-bottom:1px solid #F1ECE8" style-hover="color:#A31631">{{ s.name }}</a>
+          </sc-for>
+        </div>
+      </div>
+      <a href="Industries.dc.html" style="display:block;padding:16px 22px;border-bottom:1px solid #F1ECE8;font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;color:#26282B" style-hover="color:#A31631">{{ tIndustries }}</a>
+      <a href="Insights.dc.html" style="display:block;padding:16px 22px;border-bottom:1px solid #F1ECE8;font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;color:#26282B" style-hover="color:#A31631">{{ tInsights }}</a>
+      <a href="Resources.dc.html" style="display:block;padding:16px 22px;border-bottom:1px solid #F1ECE8;font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;color:#26282B" style-hover="color:#A31631">{{ tResources }}</a>
+      <a href="Contact.dc.html" style="display:block;padding:16px 22px;border-bottom:1px solid #F1ECE8;font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;color:#26282B" style-hover="color:#A31631">{{ tContact }}</a>
+    </div>
+    <div style="padding:20px;border-top:1px solid #E8E5E2;flex-shrink:0">
+      <a href="Contact.dc.html" style="display:block;text-align:center;background:#6E1423;color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;padding:15px;border-radius:3px" style-hover="background:#A31631;color:#fff">{{ tCta }}</a>
+      <a href="https://wa.me/6281XXXXXXXX" style="display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;border:1.5px solid #E3D6D8;color:#26282B;font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;padding:13px;border-radius:3px;margin-top:10px" style-hover="border-color:#25D366;color:#26282B"><span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#25D366;color:#0B3D22;font-size:10px;font-weight:800">W</span>{{ tWhatsApp }}</a>
+      <div style="text-align:center;font-size:13.5px;color:#6B7075;margin-top:16px"><a href="mailto:info@ecovisindonesia.com" style="color:#6E1423">info@ecovisindonesia.com</a></div>
+    </div>
+  </div>
+</div>
+</sc-if>
+<style>@keyframes hdrFade{from{opacity:0}to{opacity:1}}@keyframes hdrSlide{from{transform:translateX(100%)}to{transform:translateX(0)}}</style>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { open: null, lang: 'EN', width: 1200, drawerOpen: false, mobSection: null };
+  componentDidMount() {
+    try { const l = localStorage.getItem('ecovis-lang'); if (l) this.setState({ lang: l }); } catch (e) {}
+    this._onResize = () => this.setState({ width: window.innerWidth });
+    this._onResize();
+    window.addEventListener('resize', this._onResize);
+    this._onLang = (e) => this.setState({ lang: (e && e.detail) || 'EN' });
+    window.addEventListener('ecovis-lang', this._onLang);
+    this._onKey = (e) => {
+      if (e.key !== 'Escape') return;
+      if (this.state.drawerOpen) { this.closeDrawer(); }
+      else if (this.state.open) { this.setState({ open: null }); }
+    };
+    document.addEventListener('keydown', this._onKey);
+  }
+  componentWillUnmount() {
+    if (this._onResize) window.removeEventListener('resize', this._onResize);
+    if (this._onLang) window.removeEventListener('ecovis-lang', this._onLang);
+    if (this._onKey) document.removeEventListener('keydown', this._onKey);
+  }
+  closeDrawer() {
+    this.setState({ drawerOpen: false, mobSection: null });
+    if (this._burger && this._burger.focus) setTimeout(() => this._burger.focus(), 0);
+  }
+  setLang(l) { this.setState({ lang: l }); try { localStorage.setItem('ecovis-lang', l); } catch (e) {} try { window.dispatchEvent(new CustomEvent('ecovis-lang', { detail: l })); } catch (e) {} }
+  renderVals() {
+    const { open, lang, width, drawerOpen, mobSection } = this.state;
+    const id = lang === 'ID';
+    const isMobile = width < 960;
+    const svc = [
+      ['Audit & Assurance', 'Audit & Asurans', 'Audit.dc.html'],
+      ['Tax', 'Pajak', 'Tax.dc.html'],
+      ['Accounting', 'Akuntansi', 'Accounting.dc.html'],
+      ['Payroll', 'Penggajian', 'Payroll.dc.html'],
+      ['Corporate Services & PT PMA', 'Layanan Korporat & PT PMA', 'CompanySetup.dc.html'],
+      ['Advisory', 'Advisory', 'Advisory.dc.html'],
+      ['Corporate Finance', 'Keuangan Korporat', 'CorporateFinance.dc.html'],
+      ['Transfer Pricing', 'Transfer Pricing', 'TransferPricing.dc.html'],
+      ['ESG & Sustainability', 'ESG & Keberlanjutan', 'ESG.dc.html'],
+      ['Digital Solutions', 'Solusi Digital', 'DigitalSolutions.dc.html']
+    ].map(([en, idn, href]) => ({ name: id ? idn : en, href }));
+    const aboutMenu = [
+      ['Our Story', 'Kisah Kami', 'About.dc.html#story'],
+      ['Leadership', 'Kepemimpinan', 'About.dc.html#leadership'],
+      ['Global Network', 'Jaringan Global', 'About.dc.html#network'],
+      ['Quality & Values', 'Kualitas & Nilai', 'About.dc.html#values'],
+      ['Careers', 'Karier', 'Careers.dc.html']
+    ].map(([en, idn, href]) => ({ label: id ? idn : en, href }));
+    const toggle = (key) => (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState(s => ({ open: s.open === key ? null : key })); };
+    return {
+      services: svc, aboutMenu,
+      tMember: id ? 'Anggota ECOVIS International \u00a0\u00b7\u00a0 90+ negara' : 'A member of ECOVIS International \u00a0\u00b7\u00a0 90+ countries',
+      tAbout: id ? 'Tentang' : 'About',
+      tServices: id ? 'Layanan' : 'Services',
+      tIndustries: id ? 'Industri' : 'Industries',
+      tInsights: id ? 'Wawasan' : 'Insights',
+      tResources: id ? 'Sumber Daya' : 'Resources',
+      tContact: id ? 'Kontak' : 'Contact',
+      tCta: id ? 'Jadwalkan Konsultasi' : 'Schedule a Consultation',
+      desktopNavDisplay: isMobile ? 'none' : 'flex',
+      ctaDisplay: isMobile ? 'none' : 'inline-flex',
+      burgerDisplay: isMobile ? 'flex' : 'none',
+      emailDisplay: width < 560 ? 'none' : 'inline',
+      aboutColor: open === 'about' ? '#A31631' : '#26282B',
+      servicesColor: open === 'services' ? '#A31631' : '#26282B',
+      aboutDisplay: open === 'about' ? 'block' : 'none',
+      servicesDisplay: open === 'services' ? 'block' : 'none',
+      aboutCaret: open === 'about' ? 'rotate(180deg)' : 'rotate(0deg)',
+      servicesCaret: open === 'services' ? 'rotate(180deg)' : 'rotate(0deg)',
+      toggleAbout: toggle('about'),
+      toggleServices: toggle('services'),
+      hoverAbout: () => { if (!isMobile) this.setState({ open: 'about' }); },
+      hoverServices: () => { if (!isMobile) this.setState({ open: 'services' }); },
+      hoverClose: () => { if (!isMobile) this.setState({ open: null }); },
+      openDrawer: () => this.setState({ drawerOpen: true }),
+      closeDrawer: () => this.closeDrawer(),
+      burgerRef: (el) => { this._burger = el; },
+      aboutExpanded: open === 'about' ? 'true' : 'false',
+      servicesExpanded: open === 'services' ? 'true' : 'false',
+      tSkip: id ? 'Lewati ke konten utama' : 'Skip to main content',
+      tWhatsApp: 'WhatsApp',
+      drawerOpen: drawerOpen && isMobile,
+      drawerExpanded: drawerOpen && isMobile ? 'true' : 'false',
+      toggleMobAbout: () => this.setState(s => ({ mobSection: s.mobSection === 'about' ? null : 'about' })),
+      toggleMobServices: () => this.setState(s => ({ mobSection: s.mobSection === 'services' ? null : 'services' })),
+      mobAboutDisplay: mobSection === 'about' ? 'block' : 'none',
+      mobServicesDisplay: mobSection === 'services' ? 'block' : 'none',
+      mobAboutCaret: mobSection === 'about' ? 'rotate(180deg)' : 'rotate(0deg)',
+      mobServicesCaret: mobSection === 'services' ? 'rotate(180deg)' : 'rotate(0deg)',
+      setEN: () => this.setLang('EN'),
+      setID: () => this.setLang('ID'),
+      enBg: lang === 'EN' ? '#fff' : 'transparent',
+      enColor: lang === 'EN' ? '#6E1423' : 'rgba(255,255,255,0.85)',
+      idBg: lang === 'ID' ? '#fff' : 'transparent',
+      idColor: lang === 'ID' ? '#6E1423' : 'rgba(255,255,255,0.85)'
+    };
+  }
+}
+</script>
+</body>
+</html>

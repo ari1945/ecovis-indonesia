@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>html{scroll-behavior:smooth}body{margin:0;background:#fff}a{color:#A31631;text-decoration:none}a:hover{color:#6E1423}</style>
+</helmet>
+<div style="font-family:'IBM Plex Sans',sans-serif;color:#26282B">
+<dc-import name="SiteHeader" style="position:sticky;top:0;z-index:1000;display:block" hint-size="100%,116px"></dc-import>
+<div id="main" tabindex="-1"></div>
+
+<section data-screen-label="Tax hero" style="background:linear-gradient(135deg,#4E0D19 0%,#6E1423 58%,#7E1A2C 100%);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-200px;right:-120px;width:620px;height:620px;border-radius:50%;background:#8E2136;opacity:0.5"></div>
+  <div style="position:absolute;top:-120px;right:-280px;width:620px;height:620px;border-radius:50%;background:#5A0F1D"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:34px clamp(20px,5vw,48px) 82px">
+    <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.62);margin-bottom:40px"><a href="Home.dc.html" style="color:rgba(255,255,255,0.62)" style-hover="color:#fff">{{ tHome }}</a> &nbsp;/&nbsp; <a href="Services.dc.html" style="color:rgba(255,255,255,0.62)" style-hover="color:#fff">{{ tServicesCrumb }}</a> &nbsp;/&nbsp; <span style="color:#fff">{{ tKicker }}</span></div>
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.18em;text-transform:uppercase;color:#D98A94;margin-bottom:18px">{{ tKicker }}</div>
+    <h1 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(32px,5vw,52px);line-height:1.07;color:#fff;margin:0 0 22px;max-width:840px;text-wrap:pretty">{{ tHeroTitle }}</h1>
+    <p style="font-size:clamp(16px,2vw,18.5px);line-height:1.6;color:rgba(255,255,255,0.85);margin:0 0 38px;max-width:660px;text-wrap:pretty">{{ tHeroSub }}</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <a href="Contact.dc.html" style="background:#fff;color:#6E1423;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;padding:15px 30px;border-radius:3px" style-hover="background:#F3E6E8;color:#4E0D19">{{ tCtaPrimary }}</a>
+      <a href="#guide" style="border:1.5px solid rgba(255,255,255,0.5);color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;padding:15px 30px;border-radius:3px" style-hover="border-color:#fff;background:rgba(255,255,255,0.08);color:#fff">{{ tCtaSecondary }}</a>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Trust strip" style="background:#fff;border-bottom:1px solid #ECE9E6">
+  <div style="max-width:1240px;margin:0 auto;padding:34px clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:28px">
+    <sc-for list="{{ trust }}" as="t" hint-placeholder-count="4">
+      <div style="display:flex;flex-direction:column;gap:5px;border-left:2px solid #E3D6D8;padding-left:18px">
+        <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:15px;color:#6E1423">{{ t.k }}</div>
+        <div style="font-size:13.5px;color:#5C6166;line-height:1.45">{{ t.v }}</div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section data-screen-label="Problem to solution" style="background:#F6F4F2">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(36px,5vw,56px)">
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px">{{ tSituation }}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(26px,3.5vw,32px);margin:0 0 26px;line-height:1.2;text-wrap:pretty">{{ tSituationTitle }}</h2>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <sc-for list="{{ problems }}" as="p" hint-placeholder-count="4">
+          <div style="display:flex;gap:14px;align-items:flex-start"><span style="color:#C9535F;font-weight:700;font-size:17px;line-height:1.4">—</span><div><div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;margin-bottom:4px">{{ p.t }}</div><div style="font-size:14.5px;color:#5C6166;line-height:1.6">{{ p.d }}</div></div></div>
+        </sc-for>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px">{{ tHowHelps }}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(26px,3.5vw,32px);margin:0 0 26px;line-height:1.2;text-wrap:pretty">{{ tHowHelpsTitle }}</h2>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <sc-for list="{{ solutions }}" as="s" hint-placeholder-count="4">
+          <div style="display:flex;gap:14px;align-items:flex-start"><span style="color:#6E1423;font-weight:700;font-size:16px;line-height:1.5">✓</span><div><div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;margin-bottom:4px">{{ s.t }}</div><div style="font-size:14.5px;color:#5C6166;line-height:1.6">{{ s.d }}</div></div></div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Scope" style="background:#fff;border-top:1px solid #ECE9E6">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px)">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px">{{ tIncluded }}</div>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);margin:0 0 44px;max-width:640px;text-wrap:pretty">{{ tScopeTitle }}</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px">
+      <sc-for list="{{ scope }}" as="c" hint-placeholder-count="6">
+        <div style="border:1px solid #E8E4E1;border-radius:4px;padding:26px 24px;display:flex;flex-direction:column;gap:9px" style-hover="border-color:#6E1423;box-shadow:0 8px 24px rgba(110,20,35,0.07)">
+          <div style="width:26px;height:3px;background:#6E1423;margin-bottom:4px"></div>
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:17px">{{ c.t }}</div>
+          <div style="font-size:13.5px;color:#5C6166;line-height:1.55">{{ c.d }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Process" style="background:#26282B;color:#fff">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px)">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#D98A94;margin-bottom:12px">{{ tHowWeWork }}</div>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);margin:0 0 48px;max-width:680px;text-wrap:pretty">{{ tProcessTitle }}</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0">
+      <sc-for list="{{ steps }}" as="st" hint-placeholder-count="5">
+        <div style="padding:0 22px;border-left:1px solid #3A3D41;position:relative">
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.1em;color:#D98A94;margin-bottom:14px">{{ tStep }} {{ st.n }}</div>
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:18px;margin-bottom:8px;line-height:1.25">{{ st.t }}</div>
+          <div style="font-size:13.5px;color:#9BA0A5;line-height:1.55">{{ st.d }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Proof" style="background:#F6F4F2">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(40px,5vw,64px);align-items:center">
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px">{{ tCredentials }}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(26px,3.5vw,32px);margin:0 0 18px;line-height:1.2;text-wrap:pretty">{{ tProofTitle }}</h2>
+      <p style="font-size:16px;line-height:1.7;color:#5C6166;margin:0 0 16px">{{ tProofBody }}</p>
+      <div style="background:#fff;border:1px solid #E8E4E1;border-left:4px solid #6E1423;border-radius:4px;padding:24px 26px">
+        <p style="margin:0 0 10px;font-size:15.5px;line-height:1.65;color:#3C4045;font-style:italic;text-wrap:pretty">{{ tQuote }}</p>
+        <div style="font-size:13px;color:#6B7075;font-weight:600">{{ tQuoteBy }}</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px">
+      <sc-for list="{{ proof }}" as="q" hint-placeholder-count="4">
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:4px;padding:26px 24px;display:flex;flex-direction:column;gap:7px">
+          <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:30px;color:#6E1423;line-height:1">{{ q.k }}</div>
+          <div style="font-size:13.5px;color:#5C6166;line-height:1.45">{{ q.v }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="guide" data-screen-label="Lead magnet" style="scroll-margin-top:130px;background:linear-gradient(120deg,#4E0D19,#6E1423);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-220px;left:-140px;width:520px;height:520px;border-radius:50%;background:#8E2136;opacity:0.4"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,76px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(40px,5vw,64px);align-items:center">
+    <div>
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#D98A94;margin-bottom:14px">{{ tFreeDownload }}</div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);color:#fff;margin:0 0 14px;text-wrap:pretty">{{ tGuideTitle }}</h2>
+      <p style="margin:0 0 22px;font-size:16px;color:rgba(255,255,255,0.82);line-height:1.65">{{ tGuideBody }}</p>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <sc-for list="{{ guidePoints }}" as="g" hint-placeholder-count="3">
+          <div style="display:flex;gap:11px;align-items:center;color:rgba(255,255,255,0.9);font-size:14.5px"><span style="color:#F0C9CF;font-weight:700">✓</span>{{ g }}</div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="background:#fff;border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:13px">
+      <label style="display:flex;flex-direction:column;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#4A4F54">{{ tPhName }}
+        <input placeholder="{{ tExName }}" style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:400;padding:12px 16px;border-radius:3px;border:1px solid #DDD9D5;outline:none;width:100%;box-sizing:border-box" style-focus="border-color:#6E1423;box-shadow:0 0 0 3px rgba(110,20,35,0.10)">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#4A4F54">{{ tPhEmail }}
+        <input placeholder="{{ tExEmail }}" style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:400;padding:12px 16px;border-radius:3px;border:1px solid #DDD9D5;outline:none;width:100%;box-sizing:border-box" style-focus="border-color:#6E1423;box-shadow:0 0 0 3px rgba(110,20,35,0.10)">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#4A4F54">{{ tPhCompany }}
+        <input placeholder="{{ tExCompany }}" style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:400;padding:12px 16px;border-radius:3px;border:1px solid #DDD9D5;outline:none;width:100%;box-sizing:border-box" style-focus="border-color:#6E1423;box-shadow:0 0 0 3px rgba(110,20,35,0.10)">
+      </label>
+      <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:12.5px;color:#5C6166;line-height:1.55">
+        <input type="checkbox" checked="{{ consent }}" onChange="{{ onConsent }}" style="width:17px;height:17px;margin:1px 0 0;accent-color:#6E1423;flex-shrink:0;cursor:pointer">
+        <span>{{ tConsent }} <a href="PrivacyPolicy.dc.html">{{ tPrivacyLink }}</a>.</span>
+      </label>
+      <button onClick="{{ submit }}" disabled="{{ submitDisabled }}" style="background:{{ submitBg }};color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:15.5px;padding:14px;border-radius:3px;border:none;cursor:{{ submitCursor }}">{{ submitLabel }}</button>
+      <p style="margin:0;font-size:12px;color:#6B7075;line-height:1.5"><strong style="color:#4A4F54;font-weight:600">{{ tSla }}</strong> {{ tFormNote }}</p>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="FAQ" style="background:#fff">
+  <div style="max-width:900px;margin:0 auto;padding:clamp(56px,8vw,84px) clamp(20px,5vw,48px)">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:12px;text-align:center">{{ tFaqKicker }}</div>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);margin:0 0 44px;text-align:center">{{ tFaqTitle }}</h2>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+        <div style="border:1px solid #E8E4E1;border-radius:4px;overflow:hidden;background:{{ f.bg }}">
+          <button onClick="{{ f.toggle }}" style="width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:22px 26px;display:flex;justify-content:space-between;align-items:center;gap:20px;font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;color:#26282B">{{ f.q }}<span style="color:#A31631;font-size:22px;flex-shrink:0">{{ f.icon }}</span></button>
+          <div style="display:{{ f.display }};padding:0 26px 24px;font-size:15px;color:#5C6166;line-height:1.7;max-width:720px">{{ f.a }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="CTA" style="background:linear-gradient(120deg,#4E0D19,#6E1423);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-220px;right:-140px;width:520px;height:520px;border-radius:50%;background:#8E2136;opacity:0.4"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,76px) clamp(20px,5vw,48px);display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
+    <div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);color:#fff;margin:0 0 10px;text-wrap:pretty">{{ tCtaTitle }}</h2>
+      <p style="margin:0;font-size:16.5px;color:rgba(255,255,255,0.8)">{{ tCtaSub }}</p>
+    </div>
+    <a href="Contact.dc.html" style="background:#fff;color:#6E1423;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:3px;white-space:nowrap" style-hover="background:#F3E6E8;color:#4E0D19">{{ tCtaPrimary }}</a>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = { sent: false, consent: false, openFaq: 0, lang: 'EN' };
+  componentDidMount() {
+    try { const l = localStorage.getItem('ecovis-lang'); if (l) this.setState({ lang: l }); } catch (e) {}
+    this._onLang = (e) => this.setState({ lang: (e && e.detail) || 'EN' });
+    window.addEventListener('ecovis-lang', this._onLang);
+  }
+  componentWillUnmount() { if (this._onLang) window.removeEventListener('ecovis-lang', this._onLang); }
+  renderVals() {
+    const id = this.state.lang === 'ID';
+    const pick = (en, idn) => (id ? idn : en);
+    const faqData = id ? [
+      ['Kapan kami butuh valuasi KJPP berlisensi?', 'Valuasi dari kantor jasa penilai publik berlisensi (KJPP) diwajibkan atau diharapkan untuk banyak situasi teregulasi — transaksi yang diawasi OJK, transaksi afiliasi, injeksi aset, pembiayaan tertentu, dan pendapat kewajaran. Laporan KJPP diakui regulator dan pemberi pinjaman dengan cara yang tidak dimiliki estimasi internal.'],
+      ['Apa cakupan financial due diligence?', 'Kami memeriksa quality of earnings, pos modal kerja dan utang, eksposur di luar neraca, serta risiko khas Indonesia seperti kewajiban pajak yang belum tercatat dan masalah sertifikat tanah. Anda dapat menetapkan cakupannya sebagai red-flag review terfokus atau exercise penuh tergantung ukuran dan risiko transaksi.'],
+      ['Bisakah Anda menangani sisi pajak transaksi juga?', 'Ya, dan kami merekomendasikannya. Tim pajak kami bekerja berdampingan dengan diligence agar struktur transaksi mencerminkan konsekuensi pajaknya — pajak pengalihan, rezim PPh final, dan eksposur pasca-akuisisi — sebelum harga dan struktur dikunci.'],
+      ['Apakah Anda menasihati sisi beli dan sisi jual?', 'Kami mendukung pembeli dengan diligence dan valuasi, serta penjual dengan vendor due diligence dan valuasi untuk mempertahankan harga. Di kedua sisi tujuannya sama: lebih sedikit kejutan dan angka yang dapat dipertahankan.'],
+      ['Bagaimana ini terhubung dengan layanan Anda lainnya?', 'Sebuah transaksi biasanya membutuhkan valuasi, penataan pajak, dan sering kali audit statutori serta pendirian entitas baru. Karena semuanya berada dalam satu grup, tim transaksi memanfaatkan semuanya tanpa berkoordinasi lintas firma terpisah.']
+    ] : [
+      ['When do we need a licensed KJPP valuation?', 'A valuation from a licensed public valuation firm (KJPP) is required or expected for many regulated situations — OJK-supervised transactions, related-party deals, asset injections, certain financing, and fairness opinions. A KJPP report is recognised by regulators and lenders in a way an internal estimate is not.'],
+      ['What does financial due diligence cover?', 'We examine quality of earnings, working-capital and debt items, off-balance-sheet exposures, and Indonesia-specific risks such as unrecorded tax liabilities and land-title issues. You can scope it as a focused red-flag review or a full-scope exercise depending on deal size and risk.'],
+      ['Can you handle the tax side of the deal too?', 'Yes, and we recommend it. Our tax team works alongside diligence so the deal structure reflects its tax consequences — transfer taxes, final-tax regimes and post-acquisition exposures — before the price and structure are locked.'],
+      ['Do you advise on both buy-side and sell-side?', 'We support acquirers with diligence and valuation, and sellers with vendor due diligence and valuation to defend price. On both sides the aim is the same: fewer surprises and a defensible number.'],
+      ['How does this connect to your other services?', 'A transaction usually needs valuation, tax structuring, and often a statutory audit and new-entity setup. Because those sit within one group, the deal team draws on all of them without coordinating across separate firms.']
+    ];
+    return {
+      tHome: pick('Home', 'Beranda'),
+      tServicesCrumb: pick('Services', 'Layanan'),
+      tKicker: pick('Corporate Finance', 'Keuangan Korporat'),
+      tHeroTitle: pick("Know exactly what you're buying — before you sign", 'Ketahui persis apa yang Anda beli — sebelum menandatangani'),
+      tHeroSub: pick('Financial due diligence, licensed KJPP valuations and M&A support for transactions in Indonesia — including independent valuations by ECOVIS KJPP Toha, Okky, Heru & Partners, recognised by Indonesian regulators.', 'Financial due diligence, valuasi KJPP berlisensi, dan dukungan M&A untuk transaksi di Indonesia — termasuk valuasi independen oleh ECOVIS KJPP Toha, Okky, Heru & Partners, yang diakui regulator Indonesia.'),
+      tCtaPrimary: pick('Discuss your transaction', 'Diskusikan transaksi Anda'),
+      tCtaSecondary: pick('Get the due-diligence checklist', 'Dapatkan checklist due diligence'),
+      tSituation: pick('The situation', 'Situasinya'),
+      tSituationTitle: pick('Where deals go wrong in Indonesia', 'Di mana transaksi keliru di Indonesia'),
+      tHowHelps: pick('How Ecovis helps', 'Bagaimana Ecovis membantu'),
+      tHowHelpsTitle: pick('Evidence for the price you pay', 'Bukti untuk harga yang Anda bayar'),
+      tIncluded: pick("What's included", 'Yang termasuk'),
+      tScopeTitle: pick('Across the whole transaction', 'Di sepanjang seluruh transaksi'),
+      tHowWeWork: pick('How we work', 'Cara kami bekerja'),
+      tProcessTitle: pick('From first look to signed deal', 'Dari pandangan pertama hingga transaksi tertanda'),
+      tStep: pick('STEP', 'LANGKAH'),
+      tCredentials: pick('Credentials & proof', 'Kredensial & bukti'),
+      tProofTitle: pick('A licensed KJPP and integrated tax structuring', 'KJPP berlisensi dan penataan pajak terintegrasi'),
+      tProofBody: pick('Valuations are issued by ECOVIS KJPP Toha, Okky, Heru & Partners — a licensed public valuation firm whose reports are recognised by OJK and lenders. Every diligence engagement runs alongside our tax team, so structure and price reflect the tax consequences before, not after, close.', 'Valuasi diterbitkan oleh ECOVIS KJPP Toha, Okky, Heru & Partners — kantor jasa penilai publik berlisensi yang laporannya diakui OJK dan pemberi pinjaman. Setiap penugasan diligence berjalan berdampingan dengan tim pajak kami, sehingga struktur dan harga mencerminkan konsekuensi pajak sebelum, bukan sesudah, penutupan.'),
+      tQuote: pick('"Their red-flag report surfaced an unrecorded tax exposure that moved the price by eight figures. The KJPP valuation then satisfied our lender without a second opinion."', '"Laporan red-flag mereka memunculkan eksposur pajak yang belum tercatat yang menggeser harga hingga delapan digit. Valuasi KJPP-nya kemudian memuaskan pemberi pinjaman kami tanpa perlu pendapat kedua."'),
+      tQuoteBy: pick('Investment Director — regional private equity fund', 'Direktur Investasi — dana private equity regional'),
+      tFreeDownload: pick('Free download', 'Unduhan gratis'),
+      tGuideTitle: pick('Financial Due Diligence Checklist', 'Checklist Financial Due Diligence'),
+      tGuideBody: pick("The information request, red-flag areas and Indonesia-specific tax and title checks we run before an acquisition — the framework our deal teams use. We'll email the PDF and add you to our monthly briefing.", 'Permintaan informasi, area red-flag, serta pemeriksaan pajak dan sertifikat khas Indonesia yang kami jalankan sebelum akuisisi — kerangka yang dipakai tim transaksi kami. Kami akan mengirim PDF via email dan menambahkan Anda ke briefing bulanan kami.'),
+      tPhName: pick('Full name', 'Nama lengkap'),
+      tPhEmail: pick('Work email', 'Email kantor'),
+      tPhCompany: pick('Company', 'Perusahaan'),
+      tExName: pick('e.g. Budi Santoso', 'mis. Budi Santoso'),
+      tExEmail: pick('e.g. budi@company.co.id', 'mis. budi@perusahaan.co.id'),
+      tExCompany: pick('e.g. PT Contoh Indonesia', 'mis. PT Contoh Indonesia'),
+      tConsent: pick('I agree that Ecovis Indonesia may process these details to send the material and follow up. See the', 'Saya setuju Ecovis Indonesia memproses data ini untuk mengirim materi dan menindaklanjuti. Lihat'),
+      tPrivacyLink: pick('Privacy Policy', 'Kebijakan Privasi'),
+      tSla: pick('We reply within 1 business day.', 'Kami membalas dalam 1 hari kerja.'),
+      tFormNote: pick('Used only to send this guide and our briefing. Unsubscribe anytime.', 'Hanya digunakan untuk mengirim panduan ini dan briefing kami. Berhenti berlangganan kapan saja.'),
+      tFaqKicker: pick('Frequently asked', 'Sering ditanyakan'),
+      tFaqTitle: pick('Corporate finance questions we hear most', 'Pertanyaan keuangan korporat yang paling sering kami dengar'),
+      tCtaTitle: pick('Have a target or a valuation deadline?', 'Punya target atau tenggat valuasi?'),
+      tCtaSub: pick('Tell us the deal and the timeline — first conversations are without obligation.', 'Beri tahu transaksi dan lini waktunya — percakapan pertama tanpa kewajiban.'),
+      trust: id ? [
+        { k: 'KJPP berlisensi', v: 'Valuasi yang diakui OJK dan pemberi pinjaman.' },
+        { k: 'Wawasan lokal', v: 'Diligence disetel ke risiko pajak dan sertifikat Indonesia.' },
+        { k: 'Terintegrasi pajak', v: 'Struktur mencerminkan konsekuensi pajak sebelum penutupan.' },
+        { k: 'Sisi beli & jual', v: 'Dukungan bagi pembeli maupun penjual.' }
+      ] : [
+        { k: 'Licensed KJPP', v: 'Valuations recognised by OJK and lenders.' },
+        { k: 'Local insight', v: 'Diligence tuned to Indonesian tax and title risk.' },
+        { k: 'Tax-integrated', v: 'Structure reflects tax consequences before close.' },
+        { k: 'Buy & sell side', v: 'Support for acquirers and vendors alike.' }
+      ],
+      problems: id ? [
+        { t: 'Catatan target yang tidak transparan', d: 'Pembukuan yang tak mencerminkan laba nyata menyembunyikan risiko yang menentukan harga.' },
+        { t: 'Regulator meminta valuasi berlisensi', d: 'OJK atau pemberi pinjaman mensyaratkan laporan KJPP yang tak bisa digantikan angka internal.' },
+        { t: 'Konsekuensi pajak ditemukan terlambat', d: 'Struktur transaksi yang dikunci tanpa masukan pajak menciptakan eksposur yang muncul setelah penutupan.' },
+        { t: 'Sertifikat tanah dan liabilitas tersembunyi', d: 'Isu sertifikat dan pajak khas Indonesia jarang muncul di data room standar.' }
+      ] : [
+        { t: 'Opaque target records', d: 'Books that do not reflect real earnings hide the risks that decide the price.' },
+        { t: 'Regulators want a licensed valuation', d: 'OJK or a lender requires a KJPP report an internal number cannot replace.' },
+        { t: 'Tax consequences found too late', d: 'A deal structure locked without tax input creates exposures that surface after close.' },
+        { t: 'Land title and hidden liabilities', d: 'Indonesia-specific title and tax issues rarely show up in a standard data room.' }
+      ],
+      solutions: id ? [
+        { t: 'Diligence red-flag atau full-scope', d: 'Diskalakan sesuai transaksi, dengan wawasan lokal atas risiko yang penting di sini.' },
+        { t: 'Valuasi KJPP diakui OJK', d: 'Laporan independen yang diterima regulator dan pemberi pinjaman.' },
+        { t: 'Penataan pajak terintegrasi', d: 'Konsekuensi pajak dihitung ke dalam struktur sebelum penandatanganan.' },
+        { t: 'Satu tim di seluruh transaksi', d: 'Valuasi, diligence, pajak, dan pendirian dikoordinasikan dalam satu grup.' }
+      ] : [
+        { t: 'Red-flag or full-scope diligence', d: 'Sized to the deal, with local insight into the risks that matter here.' },
+        { t: 'OJK-recognised KJPP valuations', d: 'Independent reports accepted by regulators and lenders.' },
+        { t: 'Integrated tax structuring', d: 'Tax consequences priced into the structure before signing.' },
+        { t: 'One team across the deal', d: 'Valuation, diligence, tax and setup coordinated under one group.' }
+      ],
+      scope: id ? [
+        { t: 'Financial due diligence', d: 'Quality of earnings, modal kerja, utang, dan eksposur.' },
+        { t: 'Valuasi bisnis', d: 'Valuasi KJPP independen untuk saham dan perusahaan.' },
+        { t: 'Valuasi aset & properti', d: 'Valuasi berlisensi atas aset berwujud dan real estat.' },
+        { t: 'Advisory M&A', d: 'Penataan transaksi, dukungan negosiasi, dan penyelesaian.' },
+        { t: 'Pendapat kewajaran', d: 'Pendapat independen untuk transaksi afiliasi dan teregulasi.' },
+        { t: 'Vendor due diligence', d: 'Telaah sisi jual yang mempertahankan harga dan mempercepat proses.' }
+      ] : [
+        { t: 'Financial due diligence', d: 'Quality of earnings, working capital, debt and exposures.' },
+        { t: 'Business valuation', d: 'Independent KJPP valuations for shares and enterprises.' },
+        { t: 'Asset & property valuation', d: 'Licensed valuations of tangible assets and real estate.' },
+        { t: 'M&A advisory', d: 'Deal structuring, negotiation support and completion.' },
+        { t: 'Fairness opinions', d: 'Independent opinions for related-party and regulated deals.' },
+        { t: 'Vendor due diligence', d: 'Sell-side reviews that defend price and speed the process.' }
+      ],
+      steps: id ? [
+        { n: '1', t: 'Scoping', d: 'Kami mendefinisikan risiko yang penting dan menyesuaikan pekerjaan dengan transaksi.' },
+        { n: '2', t: 'Permintaan informasi', d: 'Permintaan data tertarget yang dikaitkan dengan area risiko Indonesia.' },
+        { n: '3', t: 'Diligence & valuasi', d: 'Telaah keuangan dan, bila perlu, valuasi KJPP berlisensi.' },
+        { n: '4', t: 'Temuan & penataan', d: 'Red flag, dampak harga, dan opsi struktur yang sadar-pajak.' },
+        { n: '5', t: 'Dukungan penyelesaian', d: 'Dukungan melalui negosiasi, masukan SPA, dan penutupan.' }
+      ] : [
+        { n: '1', t: 'Scoping', d: 'We define the risks that matter and size the work to the deal.' },
+        { n: '2', t: 'Information request', d: 'A targeted data request keyed to Indonesian risk areas.' },
+        { n: '3', t: 'Diligence & valuation', d: 'Financial review and, where needed, a licensed KJPP valuation.' },
+        { n: '4', t: 'Findings & structuring', d: 'Red flags, price impact and tax-aware structure options.' },
+        { n: '5', t: 'Completion support', d: 'Support through negotiation, SPA input and close.' }
+      ],
+      proof: id ? [
+        { k: 'KJPP', v: 'Kantor jasa penilai publik berlisensi dalam grup' },
+        { k: 'OJK', v: 'Laporan valuasi diakui regulator' },
+        { k: 'Pajak + deal', v: 'Penataan terintegrasi dengan diligence' },
+        { k: '90+', v: 'Negara untuk transaksi lintas negara' }
+      ] : [
+        { k: 'KJPP', v: 'Licensed public valuation firm in the group' },
+        { k: 'OJK', v: 'Valuation reports recognised by regulators' },
+        { k: 'Tax + deal', v: 'Structuring integrated with diligence' },
+        { k: '90+', v: 'Countries for cross-border deals' }
+      ],
+      guidePoints: id
+        ? ['Daftar permintaan informasi lengkap', 'Area red-flag khas Indonesia', 'Pemeriksaan pajak dan sertifikat tanah']
+        : ['Full information request list', 'Indonesia-specific red-flag areas', 'Tax and land-title checks'],
+      faqs: faqData.map(([q, a], i) => ({
+        q, a,
+        bg: this.state.openFaq === i ? '#FBF7F6' : '#fff',
+        display: this.state.openFaq === i ? 'block' : 'none',
+        icon: this.state.openFaq === i ? '\u2212' : '+',
+        toggle: () => this.setState(s => ({ openFaq: s.openFaq === i ? -1 : i }))
+      })),
+      submit: () => { if (this.state.consent) this.setState({ sent: true }); },
+      consent: this.state.consent,
+      onConsent: () => this.setState(s => ({ consent: !s.consent })),
+      submitDisabled: !this.state.consent || this.state.sent,
+      submitBg: this.state.consent ? '#6E1423' : '#C6ADB2',
+      submitCursor: this.state.consent ? 'pointer' : 'not-allowed',
+      submitLabel: this.state.sent ? pick('Thank you — check your inbox', 'Terima kasih — cek kotak masuk Anda') : pick('Email me the checklist', 'Kirim checklist ke email saya')
+    };
+  }
+}
+</script>
+</body>
+</html>

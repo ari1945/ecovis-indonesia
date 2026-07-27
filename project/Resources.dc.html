@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>html{scroll-behavior:smooth}body{margin:0;background:#fff}a{color:#A31631;text-decoration:none}a:hover{color:#6E1423}</style>
+</helmet>
+<div style="font-family:'IBM Plex Sans',sans-serif;color:#26282B">
+<dc-import name="SiteHeader" style="position:sticky;top:0;z-index:1000;display:block" hint-size="100%,116px"></dc-import>
+<div id="main" tabindex="-1"></div>
+
+<section data-screen-label="Resources hero" style="background:linear-gradient(135deg,#4E0D19,#6E1423);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-260px;right:-160px;width:560px;height:560px;border-radius:50%;background:#8E2136;opacity:0.5"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:72px 48px 80px">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#D98A94;margin-bottom:14px">{{ tKicker }}</div>
+    <h1 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(32px,5vw,46px);color:#fff;margin:0 0 18px;max-width:760px;text-wrap:pretty">{{ tHeroTitle }}</h1>
+    <p style="font-size:17.5px;line-height:1.65;color:rgba(255,255,255,0.82);margin:0;max-width:640px">{{ tHeroSub }}</p>
+  </div>
+</section>
+
+<section data-screen-label="Guides" style="background:#F6F4F2">
+  <div style="max-width:1240px;margin:0 auto;padding:72px 48px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px">
+      <sc-for list="{{ guides }}" as="g" hint-placeholder-count="6">
+        <div style="background:#fff;border:1px solid #E8E4E1;border-radius:4px;padding:30px;display:flex;flex-direction:column;gap:14px" style-hover="border-color:#6E1423;box-shadow:0 8px 24px rgba(110,20,35,0.08)">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div style="width:44px;height:56px;background:linear-gradient(160deg,#6E1423,#A31631);border-radius:2px;display:flex;align-items:flex-end;padding:6px;box-sizing:border-box"><div style="width:100%;height:3px;background:rgba(255,255,255,0.7)"></div></div>
+            <span style="font-size:11.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:{{ g.badgeColor }};background:{{ g.badgeBg }};padding:4px 10px;border-radius:2px">{{ g.badge }}</span>
+          </div>
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:20px;line-height:1.25">{{ g.title }}</div>
+          <div style="font-size:14px;color:#5C6166;line-height:1.55;flex:1">{{ g.desc }}</div>
+          <a href="{{ g.href }}" style="font-family:'Manrope',sans-serif;font-weight:700;font-size:14px">{{ g.cta }} →</a>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Tax calendar" style="background:#fff">
+  <div style="max-width:1240px;margin:0 auto;padding:88px 48px">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#A31631;margin-bottom:10px">{{ tCalKicker }}</div>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(28px,4vw,36px);margin:0 0 12px">{{ tCalTitle }}</h2>
+    <p style="font-size:15.5px;color:#5C6166;margin:0 0 40px;max-width:600px">{{ tCalSub }}</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+      <sc-for list="{{ deadlines }}" as="d" hint-placeholder-count="4">
+        <div style="border:1px solid #E8E4E1;border-top:4px solid #6E1423;border-radius:4px;padding:24px;display:flex;flex-direction:column;gap:8px">
+          <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:30px;color:#6E1423">{{ d.day }}</div>
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:15.5px">{{ d.what }}</div>
+          <div style="font-size:13.5px;color:#6B7075;line-height:1.5">{{ d.detail }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="newsletter" data-screen-label="Newsletter" style="scroll-margin-top:130px;background:linear-gradient(120deg,#4E0D19,#6E1423);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-220px;left:-140px;width:520px;height:520px;border-radius:50%;background:#8E2136;opacity:0.4"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,80px) clamp(20px,5vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(40px,5vw,64px);align-items:center">
+    <div>
+      <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(27px,3.6vw,34px);color:#fff;margin:0 0 12px;text-wrap:pretty">{{ tNlTitle }}</h2>
+      <p style="margin:0;font-size:16px;color:rgba(255,255,255,0.8);line-height:1.65">{{ tNlSub }}</p>
+    </div>
+    <div style="background:#fff;border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:14px">
+      <label style="display:flex;flex-direction:column;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#4A4F54">{{ tPhName }}
+        <input placeholder="{{ tExName }}" style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:400;padding:12px 16px;border-radius:3px;border:1px solid #DDD9D5;outline:none;width:100%;box-sizing:border-box" style-focus="border-color:#6E1423;box-shadow:0 0 0 3px rgba(110,20,35,0.10)">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#4A4F54">{{ tPhEmail }}
+        <input placeholder="{{ tExEmail }}" style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:400;padding:12px 16px;border-radius:3px;border:1px solid #DDD9D5;outline:none;width:100%;box-sizing:border-box" style-focus="border-color:#6E1423;box-shadow:0 0 0 3px rgba(110,20,35,0.10)">
+      </label>
+      <select aria-label="{{ tOptDefault }}" style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;padding:12px 16px;border-radius:3px;border:1px solid #DDD9D5;color:#5C6166;outline:none;background:#fff">
+        <option>{{ tOptDefault }}</option>
+        <option>{{ tOptTax }}</option>
+        <option>{{ tOptCompany }}</option>
+        <option>{{ tOptPayroll }}</option>
+        <option>{{ tOptInvestment }}</option>
+        <option>{{ tOptCalendar }}</option>
+      </select>
+      <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:12.5px;color:#5C6166;line-height:1.55">
+        <input type="checkbox" checked="{{ consent }}" onChange="{{ onConsent }}" style="width:17px;height:17px;margin:1px 0 0;accent-color:#6E1423;flex-shrink:0;cursor:pointer">
+        <span>{{ tConsent }} <a href="PrivacyPolicy.dc.html">{{ tPrivacyLink }}</a>.</span>
+      </label>
+      <button onClick="{{ submit }}" disabled="{{ submitDisabled }}" style="background:{{ submitBg }};color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:15.5px;padding:14px;border-radius:3px;border:none;cursor:{{ submitCursor }}">{{ submitLabel }}</button>
+      <p style="margin:0;font-size:12px;color:#6B7075;line-height:1.5"><strong style="color:#4A4F54;font-weight:600">{{ tSla }}</strong> {{ tFormNote }}</p>
+    </div>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { sent: false, consent: false, lang: 'EN' };
+  componentDidMount() {
+    try { const l = localStorage.getItem('ecovis-lang'); if (l) this.setState({ lang: l }); } catch (e) {}
+    this._onLang = (e) => this.setState({ lang: (e && e.detail) || 'EN' });
+    window.addEventListener('ecovis-lang', this._onLang);
+  }
+  componentWillUnmount() { if (this._onLang) window.removeEventListener('ecovis-lang', this._onLang); }
+  renderVals() {
+    const id = this.state.lang === 'ID';
+    const pick = (en, idn) => (id ? idn : en);
+    const free = { badge: pick('Free download', 'Unduhan gratis'), badgeColor: '#2E6E3A', badgeBg: '#EAF3EC', cta: pick('Download PDF', 'Unduh PDF'), href: '#newsletter' };
+    const gated = { badge: pick('By request', 'Atas permintaan'), badgeColor: '#A31631', badgeBg: '#F7EBED', cta: pick('Request by email', 'Minta via email'), href: '#newsletter' };
+    const guidesEn = [
+      ['Indonesia Tax Guide 2026', 'Corporate income tax, VAT, withholding and individual tax — rates, deadlines and filing mechanics in one reference.'],
+      ['Company Establishment Guide', 'PT PMA setup step by step: capital rules, OSS risk-based licensing, timelines and post-incorporation registrations.'],
+      ['Payroll & Employment Guide', 'PPh 21, BPJS, minimum wages, leave entitlements and termination costs under current manpower regulations.'],
+      ['Foreign Investment Guide', 'The positive investment list, sector caps, incentives and repatriation rules for foreign investors.'],
+      ['Annual Tax Calendar 2026', 'Every corporate and individual tax deadline for the year, formatted for your compliance calendar.'],
+      ['Company Setup Checklist', 'A one-page checklist of documents and decisions needed before incorporating in Indonesia.']
+    ];
+    const guidesId = [
+      ['Panduan Pajak Indonesia 2026', 'PPh badan, PPN, pemotongan, dan pajak orang pribadi — tarif, tenggat, dan mekanisme pelaporan dalam satu referensi.'],
+      ['Panduan Pendirian Perusahaan', 'Pendirian PT PMA langkah demi langkah: aturan modal, perizinan berbasis risiko OSS, lini waktu, dan pendaftaran pasca-pendirian.'],
+      ['Panduan Penggajian & Ketenagakerjaan', 'PPh 21, BPJS, upah minimum, hak cuti, dan biaya pemutusan berdasarkan aturan ketenagakerjaan terkini.'],
+      ['Panduan Investasi Asing', 'Daftar positif investasi, batas sektor, insentif, dan aturan repatriasi bagi investor asing.'],
+      ['Kalender Pajak Tahunan 2026', 'Setiap tenggat pajak badan dan orang pribadi sepanjang tahun, diformat untuk kalender kepatuhan Anda.'],
+      ['Checklist Pendirian Perusahaan', 'Checklist satu halaman berisi dokumen dan keputusan yang dibutuhkan sebelum mendirikan usaha di Indonesia.']
+    ];
+    const gsrc = id ? guidesId : guidesEn;
+    const guides = gsrc.map(([title, desc], i) => {
+      const base = (i === 4 || i === 5) ? free : gated;
+      const g = { title, desc, ...base };
+      if (i === 1) g.href = 'GuideLanding.dc.html';
+      return g;
+    });
+    const deadlines = id ? [
+      { day: 'Tgl 10', what: 'Pembayaran pajak dipotong', detail: 'PPh 21, 23, 26, dan 4(2) yang dipotong bulan sebelumnya.' },
+      { day: 'Tgl 15', what: 'Angsuran badan', detail: 'Angsuran PPh 25 badan bulanan.' },
+      { day: 'Tgl 20', what: 'SPT pemotongan', detail: 'SPT pemotongan terpadu bulanan via Coretax.' },
+      { day: 'Akhir bulan', what: 'SPT & bayar PPN', detail: 'SPT PPN bulan sebelumnya, dibayar sebelum pelaporan.' }
+    ] : [
+      { day: '10th', what: 'Withholding tax payment', detail: 'PPh 21, 23, 26 and 4(2) withheld in the prior month.' },
+      { day: '15th', what: 'Corporate installment', detail: 'Monthly PPh 25 corporate income tax installment.' },
+      { day: '20th', what: 'Withholding tax returns', detail: 'Monthly unified withholding return via Coretax.' },
+      { day: 'Month-end', what: 'VAT return & payment', detail: 'VAT return for the previous month, paid before filing.' }
+    ];
+    return {
+      tKicker: pick('Resources', 'Sumber Daya'),
+      tHeroTitle: pick('The practical library for doing business in Indonesia', 'Pustaka praktis untuk berbisnis di Indonesia'),
+      tHeroSub: pick('Guides, checklists and the tax calendar — free to download. Premium guides are sent by email after a short form.', 'Panduan, checklist, dan kalender pajak — gratis diunduh. Panduan premium dikirim via email setelah mengisi formulir singkat.'),
+      tCalKicker: pick('Tax calendar', 'Kalender pajak'),
+      tCalTitle: pick('Key monthly deadlines', 'Tenggat bulanan utama'),
+      tCalSub: pick('The recurring dates every Indonesian entity must hit. Download the full annual calendar for corporate and individual deadlines.', 'Tanggal berulang yang harus dipenuhi setiap entitas Indonesia. Unduh kalender tahunan lengkap untuk tenggat badan dan orang pribadi.'),
+      tNlTitle: pick('Request a premium guide', 'Minta panduan premium'),
+      tNlSub: pick("Leave your details and we'll email the guide — plus our monthly briefing on Indonesian tax and regulatory changes. Unsubscribe anytime.", 'Tinggalkan data Anda dan kami akan mengirim panduan via email — plus briefing bulanan kami tentang perubahan pajak dan regulasi Indonesia. Berhenti berlangganan kapan saja.'),
+      tPhName: pick('Full name', 'Nama lengkap'),
+      tPhEmail: pick('Work email', 'Email kantor'),
+      tExName: pick('e.g. Budi Santoso', 'mis. Budi Santoso'),
+      tExEmail: pick('e.g. budi@company.co.id', 'mis. budi@perusahaan.co.id'),
+      tExCompany: pick('e.g. PT Contoh Indonesia', 'mis. PT Contoh Indonesia'),
+      tConsent: pick('I agree that Ecovis Indonesia may process these details to send the material and follow up. See the', 'Saya setuju Ecovis Indonesia memproses data ini untuk mengirim materi dan menindaklanjuti. Lihat'),
+      tPrivacyLink: pick('Privacy Policy', 'Kebijakan Privasi'),
+      tSla: pick('We reply within 1 business day.', 'Kami membalas dalam 1 hari kerja.'),
+      tOptDefault: pick('Which guide do you need?', 'Panduan mana yang Anda butuhkan?'),
+      tOptTax: pick('Indonesia Tax Guide', 'Panduan Pajak Indonesia'),
+      tOptCompany: pick('Company Establishment Guide', 'Panduan Pendirian Perusahaan'),
+      tOptPayroll: pick('Payroll Guide', 'Panduan Penggajian'),
+      tOptInvestment: pick('Investment Guide', 'Panduan Investasi'),
+      tOptCalendar: pick('Annual Tax Calendar', 'Kalender Pajak Tahunan'),
+      guides, deadlines,
+      submit: () => { if (this.state.consent) this.setState({ sent: true }); },
+      consent: this.state.consent,
+      onConsent: () => this.setState(s => ({ consent: !s.consent })),
+      submitDisabled: !this.state.consent || this.state.sent,
+      submitBg: this.state.consent ? '#6E1423' : '#C6ADB2',
+      submitCursor: this.state.consent ? 'pointer' : 'not-allowed',
+      submitLabel: this.state.sent ? pick('Thank you — check your inbox', 'Terima kasih — cek kotak masuk Anda') : pick('Send my guide', 'Kirim panduan saya')
+    };
+  }
+}
+</script>
+</body>
+</html>

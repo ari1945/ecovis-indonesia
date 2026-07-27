@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#E7E3DF}a{color:#A31631;text-decoration:none}a:hover{color:#6E1423}</style>
+</helmet>
+<div style="width:1440px;margin:0 auto;background:#fff;font-family:'IBM Plex Sans',sans-serif;color:#26282B">
+
+<!-- ============ MASTHEAD ============ -->
+<div style="background:linear-gradient(135deg,#4E0D19 0%,#6E1423 58%,#7E1A2C 100%);color:#fff;position:relative;overflow:hidden">
+  <div style="position:absolute;top:-200px;right:-120px;width:620px;height:620px;border-radius:50%;background:#8E2136;opacity:0.5"></div>
+  <div style="position:absolute;top:-120px;right:-280px;width:620px;height:620px;border-radius:50%;background:#5A0F1D"></div>
+  <div style="position:relative;padding:64px 72px 58px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:44px">
+      <div style="display:flex;align-items:center;gap:14px">
+        <img src="assets/logo.png" alt="Ecovis" style="height:34px;display:block;filter:brightness(0) invert(1)">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;color:#D98A94;border-left:1px solid rgba(255,255,255,0.3);padding-left:14px">INDONESIA</span>
+      </div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.06em;color:rgba(255,255,255,0.72);text-align:right;line-height:1.7">
+        PANDUAN DEVELOPMENT · v1.0<br>Pendamping Blueprint · Jul 2026
+      </div>
+    </div>
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.2em;text-transform:uppercase;color:#D98A94;margin-bottom:18px">Roadmap Pengembangan · Tahap demi Tahap</div>
+    <h1 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:56px;line-height:1.05;margin:0 0 22px;max-width:960px;text-wrap:pretty">Cara membangun website ini, dari nol sampai go-live</h1>
+    <p style="font-size:18px;line-height:1.6;color:rgba(255,255,255,0.85);margin:0;max-width:800px;text-wrap:pretty">Sembilan fase berurutan untuk tim pengembang — setiap fase menjelaskan tujuan, tugas konkret, output yang diharapkan, dan kapan boleh lanjut ke fase berikutnya. Prototipe halaman di project ini menjadi sumber kebenaran desain & konten.</p>
+    <div style="display:flex;gap:0;margin-top:40px;border:1px solid rgba(255,255,255,0.18);border-radius:6px;overflow:hidden">
+      <sc-for list="{{ headMetrics }}" as="m" hint-placeholder-count="4">
+        <div style="flex:1;padding:22px 26px;border-right:1px solid rgba(255,255,255,0.14)">
+          <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:30px;line-height:1;margin-bottom:8px">{{ m.value }}</div>
+          <div style="font-size:12.5px;color:rgba(255,255,255,0.7);line-height:1.4">{{ m.label }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TIMELINE OVERVIEW ============ -->
+<section style="padding:64px 72px 60px;background:#fff;border-bottom:1px solid #ECE9E6">
+  <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:14px">
+    <span style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px;color:#A31631">00</span>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:34px;margin:0;color:#26282B">Peta Fase & Estimasi Waktu</h2>
+  </div>
+  <p style="font-size:15px;color:#5C6166;margin:0 0 34px;max-width:840px;line-height:1.6">Estimasi untuk satu tim kecil (1 PM, 1–2 dev, 1 desainer, 1 penulis konten). Fase dapat sebagian tumpang-tindih; panah menandai ketergantungan.</p>
+
+  <div style="display:flex;gap:0;align-items:stretch;overflow:hidden;border:1px solid #E8E4E1;border-radius:8px">
+    <sc-for list="{{ phasesShort }}" as="p" hint-placeholder-count="9">
+      <div style="flex:1;padding:20px 16px;border-right:1px solid #ECE9E6;background:{{ p.bg }};display:flex;flex-direction:column;gap:8px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:{{ p.num }};font-weight:600">FASE {{ p.n }}</div>
+        <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13.5px;line-height:1.25;color:#26282B">{{ p.name }}</div>
+        <div style="margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6B7075">{{ p.weeks }}</div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:flex;justify-content:space-between;margin-top:16px;padding:14px 22px;background:#F6F4F2;border:1px solid #E8E4E1;border-radius:6px;font-size:13px;color:#5C6166">
+    <span><strong style="color:#26282B">Total estimasi:</strong> ± 12–16 minggu sampai go-live</span>
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#A31631">MVP go-live bisa dipersingkat ke ± 8 minggu (fokus 8 halaman inti + form)</span>
+  </div>
+</section>
+
+<!-- ============ DETAILED PHASES ============ -->
+<section style="padding:64px 72px 40px;background:#F6F4F2;border-bottom:1px solid #ECE9E6">
+  <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:14px">
+    <span style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px;color:#A31631">01</span>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:34px;margin:0;color:#26282B">Fase demi Fase</h2>
+  </div>
+  <p style="font-size:15px;color:#5C6166;margin:0 0 40px;max-width:840px;line-height:1.6">Setiap kartu berisi tujuan fase, tugas konkret yang harus dikerjakan, output/deliverable, dan <em>gate</em> — syarat sebelum lanjut ke fase berikutnya.</p>
+
+  <div style="display:flex;flex-direction:column;gap:22px">
+    <sc-for list="{{ phases }}" as="p" hint-placeholder-count="9">
+      <div style="background:#fff;border:1px solid #E8E4E1;border-radius:10px;overflow:hidden;display:flex">
+        <div style="width:120px;flex-shrink:0;background:linear-gradient(160deg,#6E1423,#4E0D19);color:#fff;padding:26px 22px;display:flex;flex-direction:column;gap:10px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#E7B7BE">FASE</div>
+          <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:46px;line-height:0.9">{{ p.n }}</div>
+          <div style="margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(255,255,255,0.75);line-height:1.4">{{ p.weeks }}</div>
+        </div>
+        <div style="flex:1;padding:26px 30px">
+          <h3 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:23px;margin:0 0 6px;color:#26282B">{{ p.name }}</h3>
+          <p style="font-size:13.5px;color:#6E1423;font-weight:500;margin:0 0 20px;line-height:1.5">{{ p.goal }}</p>
+          <div style="display:grid;grid-template-columns:1.7fr 1fr;gap:28px">
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;color:#A31631;text-transform:uppercase;margin-bottom:12px">Langkah kerja</div>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <sc-for list="{{ p.tasks }}" as="t" hint-placeholder-count="4">
+                  <div style="display:flex;gap:11px;align-items:flex-start">
+                    <span style="width:18px;height:18px;border-radius:50%;border:1.5px solid #C9AEB1;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:9px;color:#A31631;font-family:'IBM Plex Mono',monospace">{{ t.i }}</span>
+                    <div style="font-size:13.5px;color:#4B4F53;line-height:1.5">{{ t.text }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:20px">
+              <div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;color:#A31631;text-transform:uppercase;margin-bottom:9px">Output</div>
+                <div style="font-size:13px;color:#4B4F53;line-height:1.55">{{ p.output }}</div>
+              </div>
+              <div style="background:#FBF7F6;border:1px solid #EDE0E2;border-radius:6px;padding:14px 16px">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;color:#A31631;text-transform:uppercase;margin-bottom:7px">✓ Gate — boleh lanjut jika</div>
+                <div style="font-size:12.5px;color:#5C6166;line-height:1.5">{{ p.gate }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- ============ PAGE BUILD ORDER ============ -->
+<section style="padding:64px 72px 60px;background:#26282B;color:#fff">
+  <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:14px">
+    <span style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px;color:#D98A94">02</span>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:34px;margin:0;color:#fff">Urutan Build Halaman</h2>
+  </div>
+  <p style="font-size:15px;color:#B9BDC1;margin:0 0 36px;max-width:840px;line-height:1.6">Bangun berdasarkan dampak konversi, bukan urutan menu. Semua template halaman sudah ada sebagai prototipe di project ini — rujuk sebagai spesifikasi visual & konten.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+    <sc-for list="{{ buildOrder }}" as="b" hint-placeholder-count="6">
+      <div style="border:1px solid #3A3D41;border-radius:8px;background:#2E3134;padding:20px 22px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="width:26px;height:26px;border-radius:6px;background:#6E1423;color:#fff;font-family:'Manrope',sans-serif;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center">{{ b.n }}</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8B9096;letter-spacing:0.06em">{{ b.tier }}</span>
+        </div>
+        <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;color:#fff;line-height:1.3">{{ b.pages }}</div>
+        <div style="font-size:12.5px;color:#B9BDC1;line-height:1.5">{{ b.why }}</div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- ============ COMPONENT & CMS MAPPING ============ -->
+<section style="padding:64px 72px 60px;background:#fff;border-bottom:1px solid #ECE9E6">
+  <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:14px">
+    <span style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px;color:#A31631">03</span>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:34px;margin:0;color:#26282B">Komponen Bersama & Model Konten CMS</h2>
+  </div>
+  <p style="font-size:15px;color:#5C6166;margin:0 0 34px;max-width:840px;line-height:1.6">Bangun ini sekali sebagai komponen global, lalu pakai ulang. Kolom kanan memetakan tipe konten yang harus dapat dikelola non-developer lewat CMS.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+    <div style="border:1px solid #E8E4E1;border-radius:8px;padding:26px 28px;background:#FBF9F7">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;color:#A31631;text-transform:uppercase;margin-bottom:18px">Komponen global (bangun sekali)</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <sc-for list="{{ components }}" as="c" hint-placeholder-count="5">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span style="color:#A31631;font-weight:700;font-size:14px;line-height:1.4">›</span>
+            <div style="font-size:13.5px;color:#4B4F53;line-height:1.5"><strong style="color:#26282B">{{ c.name }}</strong> — {{ c.desc }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="border:1px solid #E8E4E1;border-radius:8px;padding:26px 28px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;color:#A31631;text-transform:uppercase;margin-bottom:18px">Tipe konten CMS (dikelola tim)</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <sc-for list="{{ contentTypes }}" as="c" hint-placeholder-count="5">
+          <div style="border:1px solid #EDE7E3;border-radius:6px;padding:13px 15px;background:#FBF9F7">
+            <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:14px;color:#26282B;margin-bottom:4px">{{ c.name }}</div>
+            <div style="font-size:12.5px;color:#6B7075;line-height:1.5">{{ c.fields }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GO-LIVE CHECKLIST ============ -->
+<section style="padding:64px 72px 66px;background:#F6F4F2">
+  <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:14px">
+    <span style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px;color:#A31631">04</span>
+    <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:34px;margin:0;color:#26282B">Checklist Go-Live</h2>
+  </div>
+  <p style="font-size:15px;color:#5C6166;margin:0 0 34px;max-width:840px;line-height:1.6">Lewati fase peluncuran hanya setelah setiap item tercentang. Dikelompokkan per bidang.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+    <sc-for list="{{ checklist }}" as="g" hint-placeholder-count="4">
+      <div style="background:#fff;border:1px solid #E8E4E1;border-radius:8px;padding:24px 24px">
+        <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:16px;color:#6E1423;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #ECE9E6">{{ g.group }}</div>
+        <div style="display:flex;flex-direction:column;gap:11px">
+          <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="4">
+            <div style="display:flex;gap:11px;align-items:flex-start">
+              <span style="width:16px;height:16px;border-radius:4px;border:1.5px solid #C9AEB1;flex-shrink:0;margin-top:1px"></span>
+              <div style="font-size:13px;color:#4B4F53;line-height:1.5">{{ it }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<div style="background:#4E0D19;color:rgba(255,255,255,0.72);padding:34px 72px;display:flex;justify-content:space-between;align-items:center;font-size:12.5px">
+  <div style="font-family:'IBM Plex Mono',monospace;letter-spacing:0.06em">ECOVIS INDONESIA · PANDUAN DEVELOPMENT WEBSITE · v1.0 · JUL 2026</div>
+  <div>Pendamping Blueprint — untuk tim / vendor pengembang</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  renderVals() {
+    const idx = (arr) => arr.map((o, i) => ({ ...o, tasks: o.tasks.map((t, j) => ({ text: t, i: j + 1 })) }));
+    return {
+      headMetrics: [
+        { value: '9', label: 'Fase pengembangan berurutan' },
+        { value: '12–16', label: 'Minggu estimasi sampai go-live' },
+        { value: '8', label: 'Halaman inti dibangun lebih dulu' },
+        { value: '1', label: 'Sumber kebenaran: prototipe project ini' }
+      ],
+      phasesShort: [
+        { n: '0', name: 'Discovery & Persiapan', weeks: '1 mgg', bg: '#fff', num: '#A31631' },
+        { n: '1', name: 'Fondasi Teknis', weeks: '1–2 mgg', bg: '#FBF9F7', num: '#A31631' },
+        { n: '2', name: 'Sistem Desain', weeks: '1 mgg', bg: '#fff', num: '#A31631' },
+        { n: '3', name: 'Konten & SEO', weeks: '2–3 mgg', bg: '#FBF9F7', num: '#A31631' },
+        { n: '4', name: 'Build Halaman', weeks: '3–4 mgg', bg: '#fff', num: '#A31631' },
+        { n: '5', name: 'Integrasi', weeks: '1–2 mgg', bg: '#FBF9F7', num: '#A31631' },
+        { n: '6', name: 'QA & Optimasi', weeks: '1–2 mgg', bg: '#fff', num: '#A31631' },
+        { n: '7', name: 'Launch', weeks: '3 hari', bg: '#FBF9F7', num: '#A31631' },
+        { n: '8', name: 'Pasca-Launch', weeks: 'berkelanjutan', bg: '#fff', num: '#A31631' }
+      ],
+      phases: idx([
+        {
+          n: '0', name: 'Discovery & Persiapan', weeks: '± 1 minggu',
+          goal: 'Menyamakan pemahaman, mengunci lingkup, dan menyiapkan semua bahan sebelum satu baris kode ditulis.',
+          tasks: [
+            'Pelajari Blueprint & seluruh prototipe halaman (.dc.html) di project ini sebagai spesifikasi.',
+            'Kunci lingkup MVP: 8 halaman inti + form konsultasi + lead magnet.',
+            'Kumpulkan aset brand: logo, foto partner/kantor, izin KAP/IAPI, logo klien.',
+            'Tetapkan pilihan platform (CMS, CRM, hosting) & buat akun.',
+            'Susun daftar domain, akses DNS, email, dan owner tiap keputusan.'
+          ],
+          output: 'Dokumen lingkup final, daftar aset lengkap, akun platform siap, jadwal & RACI.',
+          gate: 'Lingkup MVP disetujui klien dan semua akses/akun tersedia.'
+        },
+        {
+          n: '1', name: 'Fondasi Teknis', weeks: '± 1–2 minggu',
+          goal: 'Menyiapkan kerangka teknis: repo, hosting, CMS, dan alur deploy — sebelum membangun halaman.',
+          tasks: [
+            'Inisialisasi repo (Git) + struktur proyek; pilih stack (WordPress atau Astro/Next + Strapi).',
+            'Setup environment: local → staging → production dengan deploy otomatis.',
+            'Pasang CMS, konfigurasi tipe konten (lihat bagian 03).',
+            'Setup domain + SSL + CDN; environment staging ber-password.',
+            'Integrasikan font (Manrope, IBM Plex) & konfigurasi baseline performa.'
+          ],
+          output: 'Staging hidup dengan CMS berjalan, pipeline deploy, dan halaman kosong ber-styling dasar.',
+          gate: 'Push ke staging otomatis ter-deploy dan CMS dapat diakses editor.'
+        },
+        {
+          n: '2', name: 'Sistem Desain & Komponen', weeks: '± 1 minggu',
+          goal: 'Menerjemahkan gaya prototipe menjadi token & komponen yang dapat dipakai ulang di semua halaman.',
+          tasks: [
+            'Ekstrak token: warna (maroon #6E1423/#A31631, netral), tipografi, spacing dari prototipe.',
+            'Bangun komponen global: Header + nav mobile, Footer, band CTA, kartu jasa, form.',
+            'Buat halaman styleguide internal untuk QA visual antar komponen.',
+            'Definisikan breakpoint desktop / tablet / mobile & perilaku responsif.'
+          ],
+          output: 'Library komponen ter-styling + styleguide; header & footer final terpasang di layout.',
+          gate: 'Komponen inti lolos review visual di 3 breakpoint dibanding prototipe.'
+        },
+        {
+          n: '3', name: 'Konten & SEO', weeks: '± 2–3 minggu (paralel)',
+          goal: 'Menyiapkan seluruh copy, media, dan metadata SEO agar build halaman tinggal merangkai.',
+          tasks: [
+            'Finalisasi copy tiap halaman dari prototipe; sesuaikan nada penasihat (bukan sales).',
+            'Tulis title/H1, meta description, dan URL slug per halaman mengandung kata kunci + lokasi.',
+            'Siapkan lead magnet (PDF guide) & 3–5 artikel Insights awal.',
+            'Optimasi & beri nama semua gambar; siapkan alt text.',
+            'Susun peta internal link antar halaman jasa & Insights.'
+          ],
+          output: 'Semua konten siap tempel di CMS + paket metadata SEO per halaman + lead magnet.',
+          gate: 'Copy & metadata disetujui; lead magnet siap didistribusikan.'
+        },
+        {
+          n: '4', name: 'Build Halaman', weeks: '± 3–4 minggu',
+          goal: 'Merakit halaman dari komponen & konten, mengikuti urutan prioritas konversi (lihat bagian 02).',
+          tasks: [
+            'Bangun Beranda → Hub Jasa → 3 halaman jasa prioritas (Audit, Pajak, PMA) lebih dulu.',
+            'Bangun Kontak (form konsultasi), Tentang, Insights, Resources.',
+            'Bangun halaman sistem: Thank-You, 404, Privacy Policy.',
+            'Isi konten via CMS; pastikan setiap halaman responsif & punya CTA sesuai funnel.',
+            'Tambahkan sisa halaman jasa & Industri setelah 8 inti selesai.'
+          ],
+          output: 'Semua halaman selesai di staging, terhubung navigasi, responsif di semua device.',
+          gate: '8 halaman inti selesai, ter-review konten, dan lolos cek responsif.'
+        },
+        {
+          n: '5', name: 'Integrasi Form, CRM & Analitik', weeks: '± 1–2 minggu',
+          goal: 'Menghubungkan aliran lead end-to-end sehingga setiap konversi tercatat & memicu tindak lanjut.',
+          tasks: [
+            'Sambungkan form konsultasi: kirim → email partner + buat lead di CRM + redirect Thank-You + auto-reply.',
+            'Sambungkan lead magnet: form email → kirim PDF otomatis + tandai MQL + sequence nurture 3 email.',
+            'Pasang anti-spam (reCAPTCHA v3 / honeypot + rate limit) di semua endpoint form.',
+            'Pasang GA4 + Search Console; fire event generate_lead di halaman Thank-You.',
+            'Pasang banner cookie consent (UU PDP) yang mengontrol analytics.'
+          ],
+          output: 'Aliran lead teruji: submit form benar-benar sampai ke inbox, CRM, dan GA4.',
+          gate: 'Uji kirim form berhasil melewati seluruh rantai (email + CRM + event + Thank-You).'
+        },
+        {
+          n: '6', name: 'QA & Optimasi', weeks: '± 1–2 minggu',
+          goal: 'Memastikan situs cepat, benar di semua browser/device, dan bebas cacat sebelum peluncuran.',
+          tasks: [
+            'Uji lintas browser (Chrome, Safari, Firefox, Edge) & device (desktop/tablet/mobile).',
+            'Optimasi Core Web Vitals; target LCP < 2,5s (kompres gambar, lazy-load, cache).',
+            'Cek aksesibilitas dasar (kontras, alt text, fokus keyboard, label form).',
+            'Validasi SEO teknis: sitemap.xml, robots.txt, schema Organization/Service/FAQ.',
+            'Uji semua tautan, form, dan status 404; perbaiki temuan bug.'
+          ],
+          output: 'Laporan QA bersih, skor performa & aksesibilitas memenuhi ambang, checklist bug nol.',
+          gate: 'LCP < 2,5s tercapai dan seluruh checklist Go-Live (bagian 04) tercentang.'
+        },
+        {
+          n: '7', name: 'Launch', weeks: '± 3 hari',
+          goal: 'Memindahkan situs ke production dengan aman dan memastikan pemantauan aktif sejak menit pertama.',
+          tasks: [
+            'Arahkan DNS ke production; pasang SSL & paksa HTTPS.',
+            'Kirim sitemap ke Search Console; buka indexing (hapus password staging).',
+            'Verifikasi GA4, form, dan tracking konversi hidup di domain live.',
+            'Backup awal + monitoring uptime; siapkan rencana rollback.'
+          ],
+          output: 'Website live di domain resmi, terindeks, terpantau, dengan backup & rollback siap.',
+          gate: 'Situs live, form live teruji sekali lagi, dan pemantauan menyala.'
+        },
+        {
+          n: '8', name: 'Pasca-Launch & Pemeliharaan', weeks: 'berkelanjutan',
+          goal: 'Mengubah situs menjadi mesin lead yang tumbuh: ukur, terbitkan konten, dan iterasi tiap bulan.',
+          tasks: [
+            'Pantau funnel & KPI bulanan (lihat bagian 08 Blueprint); tinjau tiap kuartal.',
+            'Terbitkan Insights rutin untuk menumbuhkan traffic SEO puncak funnel.',
+            'A/B test CTA & lead magnet; iterasi halaman berdasarkan data.',
+            'Update rutin CMS/plugin, keamanan, dan backup terjadwal.'
+          ],
+          output: 'Ritme konten & optimasi berjalan; dashboard KPI ditinjau berkala.',
+          gate: '—  (fase berkelanjutan, bukan gate)'
+        }
+      ]),
+      buildOrder: [
+        { n: '1', tier: 'PRIORITAS · KONVERSI', pages: 'Beranda + Hub Jasa', why: 'Etalase & penyaring — halaman pertama yang dilihat & titik konversi utama.' },
+        { n: '2', tier: 'PRIORITAS · PENJUAL', pages: 'Audit · Pajak · Pendirian PMA', why: 'Tiga jasa fokus yang paling menghasilkan lead; struktur masalah→solusi→CTA.' },
+        { n: '3', tier: 'KONVERSI AKHIR', pages: 'Kontak + Thank-You', why: 'Form konsultasi = SQL. Thank-You memicu event konversi GA4.' },
+        { n: '4', tier: 'KEPERCAYAAN', pages: 'Tentang + Resources', why: 'Validasi kredibilitas & rumah lead magnet di balik form email.' },
+        { n: '5', tier: 'TRAFFIC / SEO', pages: 'Insights + Industri', why: 'Magnet SEO puncak funnel & relevansi sektoral long-tail.' },
+        { n: '6', tier: 'PELENGKAP', pages: 'Sisa jasa · Karier · Legal · 404', why: 'Lengkapi katalog jasa, employer branding, dan halaman sistem.' }
+      ],
+      components: [
+        { name: 'Header + nav mobile', desc: 'logo, menu, tombol Konsultasi primer; hamburger < 900px.' },
+        { name: 'Footer global', desc: 'kontak, sitemap, newsletter, kredensial, tautan legal.' },
+        { name: 'Band CTA konversi', desc: 'blok maroon "Jadwalkan Konsultasi" yang muncul di tiap halaman.' },
+        { name: 'Kartu jasa & artikel', desc: 'kartu seragam untuk grid jasa, Insights, Resources.' },
+        { name: 'Form + status', desc: 'form konsultasi & email, validasi, state sukses/gagal.' }
+      ],
+      contentTypes: [
+        { name: 'Halaman Jasa', fields: 'judul, ringkasan, masalah, solusi, lingkup, FAQ, CTA, metadata SEO.' },
+        { name: 'Artikel Insight', fields: 'judul, penulis, tanggal, kategori, isi, gambar, meta.' },
+        { name: 'Resource / Guide', fields: 'judul, deskripsi, cover, file PDF, form gate.' },
+        { name: 'Profil Partner', fields: 'nama, jabatan, kredensial, foto, area keahlian.' },
+        { name: 'Lowongan Karier', fields: 'posisi, lokasi, deskripsi, kualifikasi, form lamar.' }
+      ],
+      checklist: [
+        { group: 'Teknis & Performa', items: ['SSL aktif & HTTPS dipaksa', 'LCP < 2,5s di mobile', 'Backup awal & rollback siap', 'Uptime monitoring menyala', 'Responsif di semua breakpoint'] },
+        { group: 'SEO & Analitik', items: ['sitemap.xml terkirim ke GSC', 'robots.txt & indexing terbuka', 'Schema Org/Service/FAQ valid', 'GA4 + event generate_lead aktif', 'Title & meta terisi tiap halaman'] },
+        { group: 'Konversi & Legal', items: ['Form konsultasi → email + CRM teruji', 'Lead magnet kirim PDF otomatis', 'Anti-spam terpasang', 'Cookie consent (UU PDP) aktif', 'Privacy Policy & Thank-You live'] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

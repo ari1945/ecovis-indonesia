@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>html{scroll-behavior:smooth}body{margin:0;background:#fff}a{color:#A31631;text-decoration:none}a:hover{color:#6E1423}</style>
+</helmet>
+<div style="font-family:'IBM Plex Sans',sans-serif;color:#26282B;min-height:100vh;display:flex;flex-direction:column">
+<dc-import name="SiteHeader" style="position:sticky;top:0;z-index:1000;display:block" hint-size="100%,116px"></dc-import>
+<div id="main" tabindex="-1"></div>
+
+<section data-screen-label="Thank you" style="flex:1;background:linear-gradient(135deg,#4E0D19 0%,#6E1423 58%,#7E1A2C 100%);position:relative;overflow:hidden;display:flex;align-items:center">
+  <div style="position:absolute;top:-200px;right:-140px;width:600px;height:600px;border-radius:50%;background:#8E2136;opacity:0.4"></div>
+  <div style="position:absolute;bottom:-260px;left:-160px;width:520px;height:520px;border-radius:50%;background:#5A0F1D;opacity:0.6"></div>
+  <div style="position:relative;max-width:760px;margin:0 auto;padding:80px 48px;text-align:center;color:#fff">
+    <div style="width:76px;height:76px;border-radius:50%;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.24);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;font-size:36px;font-weight:700;color:#fff">✓</div>
+    <h1 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(32px,5vw,44px);line-height:1.1;margin:0 0 18px;text-wrap:pretty">{{ tTitle }}</h1>
+    <p style="font-size:18px;line-height:1.65;color:rgba(255,255,255,0.85);margin:0 auto 40px;max-width:560px;text-wrap:pretty">{{ tSub }}</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <a href="Resources.dc.html" style="background:#fff;color:#6E1423;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;padding:15px 30px;border-radius:3px" style-hover="background:#F3E6E8;color:#4E0D19">{{ tBtnGuides }}</a>
+      <a href="Insights.dc.html" style="border:1.5px solid rgba(255,255,255,0.55);color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;padding:15px 30px;border-radius:3px" style-hover="border-color:#fff;background:rgba(255,255,255,0.08);color:#fff">{{ tBtnInsights }}</a>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Next steps" style="background:#fff;border-top:1px solid #ECE9E6">
+  <div style="max-width:1040px;margin:0 auto;padding:64px 48px">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#A31631;margin-bottom:28px;text-align:center">{{ tNextLabel }}</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+        <div style="border:1px solid #E8E4E1;border-radius:6px;padding:26px">
+          <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:15px;color:#6E1423;margin-bottom:12px">{{ s.n }}</div>
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;color:#26282B;margin-bottom:8px">{{ s.title }}</div>
+          <div style="font-size:14px;color:#5C6166;line-height:1.6">{{ s.text }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top:26px;background:#F6F4F2;border:1px dashed #D6CEC7;border-radius:6px;padding:14px 20px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#6B7075;line-height:1.6"><strong style="color:#5C6166">DEV NOTE</strong> — This page is the post-submit redirect target. Wire the Contact / lead-magnet form to POST, then redirect here so it can fire the GA4 <code>generate_lead</code> conversion event.</div>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1240}}">
+class Component extends DCLogic {
+  state = { lang: 'EN' };
+  componentDidMount() {
+    try { const l = localStorage.getItem('ecovis-lang'); if (l) this.setState({ lang: l }); } catch (e) {}
+    this._onLang = (e) => this.setState({ lang: (e && e.detail) || 'EN' });
+    window.addEventListener('ecovis-lang', this._onLang);
+  }
+  componentWillUnmount() { if (this._onLang) window.removeEventListener('ecovis-lang', this._onLang); }
+  renderVals() {
+    const id = this.state.lang === 'ID';
+    const pick = (en, idn) => (id ? idn : en);
+    return {
+      tTitle: pick('Thank you — your request is on its way', 'Terima kasih — permintaan Anda sedang dikirim'),
+      tSub: pick("A partner from the relevant team will reply within one business day. We've also emailed you a confirmation with a direct line in case anything is urgent.", 'Seorang partner dari tim terkait akan membalas dalam satu hari kerja. Kami juga telah mengirim konfirmasi via email beserta kontak langsung jika ada hal mendesak.'),
+      tBtnGuides: pick('Browse our free guides', 'Jelajahi panduan gratis kami'),
+      tBtnInsights: pick('Read latest insights', 'Baca wawasan terbaru'),
+      tNextLabel: pick('What happens next', 'Apa yang terjadi selanjutnya'),
+      steps: id ? [
+        { n: '01', title: 'Kami telaah detail Anda', text: 'Permintaan Anda diarahkan ke partner yang timnya paling cocok dengan kebutuhan Anda.' },
+        { n: '02', title: 'Partner menghubungi', text: 'Balasan dalam satu hari kerja untuk mengonfirmasi waktu konsultasi.' },
+        { n: '03', title: 'Kami bersiap untuk Anda', text: 'Konsultasi pertama tanpa kewajiban — datang dengan pertanyaan.' }
+      ] : [
+        { n: '01', title: 'We review your details', text: 'Your inquiry is routed to the partner whose team best matches your need.' },
+        { n: '02', title: 'A partner reaches out', text: 'Expect a reply within one business day to confirm a consultation time.' },
+        { n: '03', title: 'We prepare for you', text: 'The first consultation is without obligation — come with questions.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

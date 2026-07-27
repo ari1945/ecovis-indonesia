@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>html{scroll-behavior:smooth}body{margin:0;background:#fff}a{color:#A31631;text-decoration:none}a:hover{color:#6E1423}</style>
+</helmet>
+<div style="font-family:'IBM Plex Sans',sans-serif;color:#26282B">
+<dc-import name="SiteHeader" style="position:sticky;top:0;z-index:1000;display:block" hint-size="100%,116px"></dc-import>
+<div id="main" tabindex="-1"></div>
+
+<section data-screen-label="Contact hero" style="background:linear-gradient(135deg,#4E0D19,#6E1423);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-260px;right:-160px;width:560px;height:560px;border-radius:50%;background:#8E2136;opacity:0.5"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:72px 48px 80px">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#D98A94;margin-bottom:14px">{{ tKicker }}</div>
+    <h1 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(32px,5vw,46px);color:#fff;margin:0 0 18px;max-width:720px;text-wrap:pretty">{{ tHeroTitle }}</h1>
+    <p style="font-size:17.5px;line-height:1.65;color:rgba(255,255,255,0.82);margin:0;max-width:640px">{{ tHeroSub }}</p>
+  </div>
+</section>
+
+<section data-screen-label="Contact form" style="background:#F6F4F2">
+  <div style="max-width:1240px;margin:0 auto;padding:72px 48px;display:grid;grid-template-columns:1.4fr 1fr;gap:56px;align-items:start">
+    <div style="background:#fff;border:1px solid #E8E4E1;border-radius:4px;padding:40px;display:flex;flex-direction:column;gap:22px">
+      <!-- progress -->
+      <sc-if value="{{ notDone }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+          <sc-for list="{{ steps }}" as="st" hint-placeholder-count="3">
+            <div style="display:flex;align-items:center;gap:9px;flex:1">
+              <div style="width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;background:{{ st.bg }};color:{{ st.fg }};border:1.5px solid {{ st.border }}">{{ st.label }}</div>
+              <span style="font-family:'Manrope',sans-serif;font-weight:600;font-size:13px;color:{{ st.textColor }};white-space:nowrap">{{ st.name }}</span>
+              <sc-if value="{{ st.connector }}" hint-placeholder-val="{{ true }}"><div style="height:1.5px;flex:1;background:#E3DED9;margin:0 4px"></div></sc-if>
+            </div>
+          </sc-for>
+        </div>
+        <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:24px;margin:0 0 2px">{{ stepTitle }}</h2>
+        <p style="margin:0;font-size:14px;color:#6B7075;line-height:1.5">{{ stepHint }}</p>
+      </div>
+
+      <!-- STEP 1: what you need -->
+      <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <sc-for list="{{ needOptions }}" as="o" hint-placeholder-count="7">
+          <button onClick="{{ o.pick }}" style="text-align:left;font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;font-weight:500;padding:15px 16px;border-radius:4px;border:1.5px solid {{ o.border }};background:{{ o.bg }};color:{{ o.color }};cursor:pointer;display:flex;align-items:center;gap:10px" style-hover="border-color:#6E1423">
+            <span style="width:16px;height:16px;border-radius:50%;border:1.5px solid {{ o.dot }};flex-shrink:0;display:flex;align-items:center;justify-content:center"><span style="width:8px;height:8px;border-radius:50%;background:{{ o.dotFill }}"></span></span>{{ o.name }}
+          </button>
+        </sc-for>
+      </div>
+      </sc-if>
+
+      <!-- STEP 2: your details -->
+      <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px">
+          <div>
+            <input value="{{ name }}" onInput="{{ onName }}" placeholder="{{ tPhName }}" style="width:100%;box-sizing:border-box;font-family:'IBM Plex Sans',sans-serif;font-size:15px;padding:13px 16px;border-radius:3px;border:1px solid {{ nameBorder }};outline:none" style-focus="border-color:#6E1423">
+            <div style="height:{{ nameErrH }};overflow:hidden;font-size:12px;color:#C0392B;padding-top:4px">{{ tNameErr }}</div>
+          </div>
+          <input value="{{ company }}" onInput="{{ onCompany }}" placeholder="{{ tPhCompany }}" style="width:100%;box-sizing:border-box;font-family:'IBM Plex Sans',sans-serif;font-size:15px;padding:13px 16px;border-radius:3px;border:1px solid #DDD9D5;outline:none" style-focus="border-color:#6E1423">
+          <div>
+            <input value="{{ email }}" onInput="{{ onEmail }}" placeholder="{{ tPhEmail }}" style="width:100%;box-sizing:border-box;font-family:'IBM Plex Sans',sans-serif;font-size:15px;padding:13px 16px;border-radius:3px;border:1px solid {{ emailBorder }};outline:none" style-focus="border-color:#6E1423">
+            <div style="height:{{ emailErrH }};overflow:hidden;font-size:12px;color:#C0392B;padding-top:4px">{{ tEmailErr }}</div>
+          </div>
+          <input value="{{ phone }}" onInput="{{ onPhone }}" placeholder="{{ tPhPhone }}" style="width:100%;box-sizing:border-box;font-family:'IBM Plex Sans',sans-serif;font-size:15px;padding:13px 16px;border-radius:3px;border:1px solid #DDD9D5;outline:none" style-focus="border-color:#6E1423">
+        </div>
+        <textarea value="{{ message }}" onInput="{{ onMessage }}" placeholder="{{ tPhMessage }}" rows="4" style="width:100%;box-sizing:border-box;font-family:'IBM Plex Sans',sans-serif;font-size:15px;padding:13px 16px;border-radius:3px;border:1px solid #DDD9D5;outline:none;resize:vertical" style-focus="border-color:#6E1423"></textarea>
+      </div>
+      </sc-if>
+
+      <!-- STEP 3: preferred time + review -->
+      <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div>
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;color:#5C6166;margin-bottom:9px">{{ tPreferred }}</div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <sc-for list="{{ slotOptions }}" as="sl" hint-placeholder-count="4">
+              <button onClick="{{ sl.pick }}" style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:500;padding:10px 16px;border-radius:100px;border:1.5px solid {{ sl.border }};background:{{ sl.bg }};color:{{ sl.color }};cursor:pointer" style-hover="border-color:#6E1423">{{ sl.name }}</button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background:#F6F4F2;border:1px solid #E8E4E1;border-radius:4px;padding:18px 20px;display:flex;flex-direction:column;gap:9px">
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#7C716A;margin-bottom:2px">{{ tReview }}</div>
+          <sc-for list="{{ summary }}" as="r" hint-placeholder-count="4">
+            <div style="display:flex;gap:12px;font-size:14px;line-height:1.45"><span style="color:#7C716A;min-width:88px">{{ r.k }}</span><span style="color:#26282B;font-weight:500">{{ r.v }}</span></div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+      <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:12.5px;color:#5C6166;line-height:1.55;border:1px solid {{ consentBorder }};border-radius:3px;padding:14px 16px">
+        <input type="checkbox" checked="{{ consent }}" onChange="{{ onConsent }}" style="width:17px;height:17px;margin:1px 0 0;accent-color:#6E1423;flex-shrink:0;cursor:pointer">
+        <span>{{ tConsent }} <a href="PrivacyPolicy.dc.html">{{ tPrivacyLink }}</a>.</span>
+      </label>
+      </sc-if>
+
+      <!-- nav buttons -->
+      <div style="display:flex;gap:12px;align-items:center;margin-top:2px">
+        <sc-if value="{{ canBack }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ back }}" style="background:#fff;color:#6E1423;font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;padding:14px 22px;border-radius:3px;border:1.5px solid #E3D6D8;cursor:pointer" style-hover="border-color:#6E1423">{{ tBack }}</button>
+        </sc-if>
+        <button onClick="{{ next }}" style="flex:1;background:#6E1423;color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;padding:15px;border-radius:3px;border:none;cursor:pointer" style-hover="background:#A31631">{{ nextLabel }}</button>
+      </div>
+      <p style="margin:0;font-size:12.5px;color:#6B7075;line-height:1.5">{{ tPrivacyNote }}</p>
+      </sc-if>
+
+      <!-- SUCCESS -->
+      <sc-if value="{{ done }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:20px 4px 12px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px">
+        <div style="width:64px;height:64px;border-radius:50%;background:#EAF3EA;display:flex;align-items:center;justify-content:center;margin-bottom:10px"><span style="color:#2E7D32;font-size:32px;font-weight:700">✓</span></div>
+        <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:24px;color:#26282B">{{ tSuccessTitle }}, {{ firstName }}</div>
+        <p style="margin:8px 0 0;font-size:15px;color:#6B7075;line-height:1.6;max-width:400px">{{ tSuccessLead }} <strong style="color:#26282B">{{ needName }}</strong> {{ tSuccessMid }} <strong style="color:#26282B">{{ email }}</strong> {{ tSuccessTail }} <strong style="color:#26282B">{{ slotName }}</strong>.</p>
+        <a href="Resources.dc.html" style="font-family:'Manrope',sans-serif;font-weight:600;font-size:14.5px;margin-top:20px">{{ tWhileWait }} →</a>
+      </div>
+      </sc-if>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="background:#fff;border:1px solid #E8E4E1;border-radius:4px;padding:28px;display:flex;flex-direction:column;gap:14px">
+        <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#A31631">{{ tOfficeLabel }}</div>
+        <div style="font-size:15px;line-height:1.65;color:#3C4045">Menara Kuningan, 8th Floor<br>Jl. H.R. Rasuna Said Blok X-7 Kav. 5<br>Jakarta Selatan 12940, Indonesia</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:15px">
+          <a href="mailto:info@ecovisindonesia.com">info@ecovisindonesia.com</a>
+          <span style="color:#3C4045">+62 21 2988 8000</span>
+          <a href="https://wa.me/6281129888000">WhatsApp: +62 811 2988 8000</a>
+        </div>
+        <div style="font-size:13.5px;color:#6B7075">{{ tHours }}</div>
+      </div>
+      <div style="border:1px solid #E8E4E1;border-radius:4px;overflow:hidden;background:#E9E6E2;height:230px;position:relative">
+        <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,#E9E6E2,#E9E6E2 12px,#E2DFDA 12px,#E2DFDA 24px)"></div>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px">
+          <div style="width:36px;height:36px;border-radius:50% 50% 50% 0;background:#6E1423;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center"><div style="width:12px;height:12px;border-radius:50%;background:#fff;transform:rotate(45deg)"></div></div>
+          <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:14px;color:#5C6166">{{ tMapText }}</div>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #E8E4E1;border-radius:4px;padding:28px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#A31631">{{ tDirectLines }}</div>
+        <div style="font-size:14.5px;line-height:1.7;color:#3C4045">{{ tDirAudit }} — <a href="mailto:audit@ecovisindonesia.com">audit@ecovisindonesia.com</a><br>{{ tDirTax }} — <a href="mailto:tax@ecovisindonesia.com">tax@ecovisindonesia.com</a><br>{{ tDirValuation }} — <a href="mailto:valuation@ecovisindonesia.com">valuation@ecovisindonesia.com</a><br>{{ tDirCareers }} — <a href="mailto:careers@ecovisindonesia.com">careers@ecovisindonesia.com</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { step: 1, need: '', name: '', company: '', email: '', phone: '', message: '', slot: '', touched: false, consent: false, done: false, lang: 'EN' };
+  componentDidMount() {
+    try { const l = localStorage.getItem('ecovis-lang'); if (l) this.setState({ lang: l }); } catch (e) {}
+    this._onLang = (e) => this.setState({ lang: (e && e.detail) || 'EN' });
+    window.addEventListener('ecovis-lang', this._onLang);
+  }
+  componentWillUnmount() { if (this._onLang) window.removeEventListener('ecovis-lang', this._onLang); }
+
+  validEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+
+  next = () => {
+    const s = this.state;
+    if (s.step === 1) { if (!s.need) return; this.setState({ step: 2, touched: false }); return; }
+    if (s.step === 2) {
+      const ok = s.name.trim() && this.validEmail(s.email.trim());
+      if (!ok) { this.setState({ touched: true }); return; }
+      this.setState({ step: 3, touched: false }); return;
+    }
+    if (s.step === 3) { if (!s.consent) { this.setState({ touched: true }); return; } this.setState({ done: true }); }
+  };
+  back = () => this.setState({ step: Math.max(1, this.state.step - 1), touched: false });
+
+  renderVals() {
+    const s = this.state;
+    const id = s.lang === 'ID';
+    const pick = (en, idn) => (id ? idn : en);
+    const needs = id
+      ? ['Audit & Asurans', 'Pajak', 'Akuntansi & Penggajian', 'PT PMA / Pendirian usaha', 'Advisory / Keuangan korporat', 'Transfer pricing', 'Lainnya']
+      : ['Audit & Assurance', 'Tax', 'Accounting & Payroll', 'PT PMA / Company setup', 'Advisory / Corp. finance', 'Transfer pricing', 'Something else'];
+    const slots = id
+      ? ['Minggu ini', 'Minggu depan', 'Pagi (WIB)', 'Siang (WIB)']
+      : ['This week', 'Next week', 'Morning (WIB)', 'Afternoon (WIB)'];
+    const stepMeta = id ? [
+      { name: 'Kebutuhan', title: 'Apa yang bisa kami bantu?', hint: 'Pilih area yang paling dekat dengan situasi Anda.' },
+      { name: 'Detail', title: 'Ceritakan tentang Anda', hint: 'Agar partner yang tepat bisa bersiap sebelum menghubungi.' },
+      { name: 'Jadwal', title: 'Kapan waktu terbaik?', hint: 'Kami akan mengonfirmasi slot dalam satu hari kerja.' }
+    ] : [
+      { name: 'Need', title: 'What can we help with?', hint: 'Pick the area closest to your situation.' },
+      { name: 'Details', title: 'Tell us about you', hint: 'So the right partner can prepare before reaching out.' },
+      { name: 'Schedule', title: 'When works best?', hint: 'We\u2019ll confirm a slot within one business day.' }
+    ];
+    const nameBad = s.touched && !s.name.trim();
+    const emailBad = s.touched && !this.validEmail(s.email.trim());
+    const set = (k) => (e) => this.setState({ [k]: e.target.value });
+
+    return {
+      tKicker: pick('Contact', 'Kontak'),
+      tHeroTitle: pick('Talk to a partner this week', 'Bicara dengan partner minggu ini'),
+      tHeroSub: pick("Tell us what you're planning. We reply within one business day, and first consultations are without obligation.", 'Ceritakan rencana Anda. Kami membalas dalam satu hari kerja, dan konsultasi pertama tanpa kewajiban.'),
+      tPhName: pick('Full name', 'Nama lengkap'),
+      tPhCompany: pick('Company', 'Perusahaan'),
+      tPhEmail: pick('Work email', 'Email kantor'),
+      tPhPhone: pick('Phone / WhatsApp', 'Telepon / WhatsApp'),
+      tPhMessage: pick("Briefly describe your situation — e.g. 'German manufacturer planning a plant in West Java, need entity setup and payroll.'", "Jelaskan singkat situasi Anda — mis. 'Produsen Jerman merencanakan pabrik di Jawa Barat, butuh pendirian entitas dan penggajian.'"),
+      tNameErr: pick('Please enter your name.', 'Mohon masukkan nama Anda.'),
+      tEmailErr: pick('Enter a valid work email.', 'Masukkan email kantor yang valid.'),
+      tPreferred: pick('Preferred time to talk', 'Waktu yang Anda inginkan untuk bicara'),
+      tReview: pick('Review', 'Tinjauan'),
+      tBack: pick('← Back', '← Kembali'),
+      tPrivacyNote: pick('Your details are used only to respond to this inquiry and are handled under our confidentiality protocols.', 'Data Anda hanya digunakan untuk menanggapi permintaan ini dan ditangani sesuai protokol kerahasiaan kami.'),
+      tSuccessTitle: pick('Request received', 'Permintaan diterima'),
+      tSuccessLead: pick('A partner from our', 'Seorang partner dari tim'),
+      tSuccessMid: pick('team will reply to', 'kami akan membalas ke'),
+      tSuccessTail: pick('within one business day to confirm a consultation for', 'dalam satu hari kerja untuk mengonfirmasi konsultasi untuk'),
+      tWhileWait: pick('While you wait — browse our free guides', 'Sambil menunggu — jelajahi panduan gratis kami'),
+      tOfficeLabel: pick('Jakarta office', 'Kantor Jakarta'),
+      tHours: pick('Monday–Friday, 08:30–17:30 WIB', 'Senin–Jumat, 08.30–17.30 WIB'),
+      tMapText: pick('Google Maps embed goes here', 'Embed Google Maps di sini'),
+      tDirectLines: pick('Direct lines', 'Kontak langsung'),
+      tDirAudit: pick('Audit', 'Audit'),
+      tDirTax: pick('Tax & advisory', 'Pajak & advisory'),
+      tDirValuation: pick('Valuation', 'Valuasi'),
+      tDirCareers: pick('Careers', 'Karier'),
+      notDone: !s.done, done: s.done,
+      isStep1: !s.done && s.step === 1, isStep2: !s.done && s.step === 2, isStep3: !s.done && s.step === 3,
+      canBack: !s.done && s.step > 1,
+      stepTitle: stepMeta[s.step - 1].title,
+      stepHint: stepMeta[s.step - 1].hint,
+      nextLabel: s.step === 3 ? pick('Submit request', 'Kirim permintaan') : pick('Continue →', 'Lanjut →'),
+      next: this.next, back: this.back,
+      consent: s.consent,
+      onConsent: () => this.setState(st => ({ consent: !st.consent })),
+      consentBorder: (!s.consent && s.touched && s.step === 3) ? '#C0392B' : '#E3DED9',
+      tConsent: pick('I agree that Ecovis Indonesia may process these details to respond to my request and follow up.', 'Saya setuju Ecovis Indonesia memproses data ini untuk menanggapi permintaan saya dan menindaklanjuti.'),
+      tPrivacyLink: pick('Privacy Policy', 'Kebijakan Privasi'),
+      steps: stepMeta.map((m, i) => {
+        const n = i + 1, active = n === s.step, complete = n < s.step;
+        return {
+          label: complete ? '✓' : String(n), name: m.name,
+          bg: active || complete ? '#6E1423' : '#fff',
+          fg: active || complete ? '#fff' : '#9A9089',
+          border: active || complete ? '#6E1423' : '#E3DED9',
+          textColor: active ? '#26282B' : '#9A9089',
+          connector: n < 3
+        };
+      }),
+      needOptions: needs.map((n) => {
+        const on = s.need === n;
+        return { name: n, pick: () => this.setState({ need: n }),
+          border: on ? '#6E1423' : '#E3DED9', bg: on ? '#FBF7F6' : '#fff', color: on ? '#26282B' : '#3C4045',
+          dot: on ? '#6E1423' : '#C9C4BF', dotFill: on ? '#6E1423' : 'transparent' };
+      }),
+      slotOptions: slots.map((n) => {
+        const on = s.slot === n;
+        return { name: n, pick: () => this.setState({ slot: n }),
+          border: on ? '#6E1423' : '#E3DED9', bg: on ? '#FBF7F6' : '#fff', color: on ? '#6E1423' : '#3C4045' };
+      }),
+      summary: [
+        { k: pick('Need', 'Kebutuhan'), v: s.need || '—' },
+        { k: pick('Name', 'Nama'), v: s.name || '—' },
+        { k: pick('Company', 'Perusahaan'), v: s.company || '—' },
+        { k: pick('Email', 'Email'), v: s.email || '—' },
+        { k: pick('Preferred', 'Waktu'), v: s.slot || pick('No preference', 'Tidak ada preferensi') }
+      ],
+      name: s.name, company: s.company, email: s.email, phone: s.phone, message: s.message,
+      onName: set('name'), onCompany: set('company'), onEmail: set('email'), onPhone: set('phone'), onMessage: set('message'),
+      nameBorder: nameBad ? '#C0392B' : '#DDD9D5', emailBorder: emailBad ? '#C0392B' : '#DDD9D5',
+      nameErrH: nameBad ? '20px' : '0px', emailErrH: emailBad ? '20px' : '0px',
+      firstName: s.name.trim().split(' ')[0] || pick('there', 'Anda'),
+      needName: s.need || pick('advisory', 'advisory'), slotName: s.slot || pick('this week', 'minggu ini')
+    };
+  }
+}
+</script>
+</body>
+</html>

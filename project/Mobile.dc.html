@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#E7E3DF}a{color:#A31631;text-decoration:none}a:hover{color:#6E1423}</style>
+</helmet>
+<div style="font-family:'IBM Plex Sans',sans-serif;color:#26282B;padding:56px 60px">
+
+  <div style="margin-bottom:40px;max-width:900px">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.2em;text-transform:uppercase;color:#A31631;margin-bottom:12px">Cetak Biru Website · Spesifikasi Mobile</div>
+    <h1 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:40px;margin:0 0 14px;color:#26282B;line-height:1.08">Tampilan responsif — 4 layar kunci</h1>
+    <p style="font-size:16px;line-height:1.6;color:#5C6166;margin:0;max-width:720px;text-wrap:pretty">Acuan visual untuk vendor: bagaimana Header (menu hamburger), Beranda, halaman Jasa, dan Kontak harus beradaptasi di layar 390px. Semua warna, tipografi, dan hirarki CTA mengikuti versi desktop.</p>
+  </div>
+
+  <div style="display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap">
+
+    <!-- ============ PHONE 1: NAV / DRAWER ============ -->
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6B7075;letter-spacing:0.08em">01 · HEADER + MENU (hamburger terbuka)</div>
+      <div style="width:390px;height:800px;background:#fff;border-radius:38px;border:10px solid #1F2124;overflow:hidden;box-shadow:0 30px 70px rgba(31,33,36,0.32);position:relative">
+        <div style="height:34px;background:#6E1423;display:flex;align-items:center;justify-content:space-between;padding:0 22px;font-size:12px;color:#fff;font-family:'IBM Plex Mono',monospace">9:41<span>▪ ▪ ▪</span></div>
+        <div style="background:#6E1423;color:rgba(255,255,255,0.9);font-size:11.5px;padding:6px 18px;text-align:center">A member of ECOVIS International · 90+ countries</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid #E8E5E2">
+          <img src="assets/logo.png" alt="Ecovis" style="height:40px;margin-left:-8px">
+          <div style="width:40px;height:40px;border-radius:8px;background:#F7EBED;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:2px;background:#6E1423;border-radius:2px"></span><span style="width:18px;height:2px;background:#6E1423;border-radius:2px"></span></div>
+        </div>
+        <div style="padding:8px 0">
+          <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px;border-bottom:1px solid #F1ECE8;font-family:'Manrope',sans-serif;font-weight:600;font-size:17px;color:#26282B">{{ n.label }}<span style="color:#C9BEB6;font-size:14px">{{ n.chev }}</span></div>
+          </sc-for>
+          <div style="padding:22px">
+            <a href="Contact.dc.html" style="display:block;text-align:center;background:#6E1423;color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;padding:15px;border-radius:3px" style-hover="background:#A31631;color:#fff">Schedule a Consultation</a>
+            <div style="display:flex;gap:16px;justify-content:center;margin-top:20px;font-size:13.5px;color:#5C6166">
+              <span style="font-weight:700;color:#6E1423">EN</span><span style="color:#C9BEB6">|</span><span>ID</span>
+            </div>
+            <div style="text-align:center;font-size:13px;color:#7C716A;margin-top:16px">info@ecovisindonesia.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PHONE 2: HOME ============ -->
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6B7075;letter-spacing:0.08em">02 · BERANDA</div>
+      <div style="width:390px;height:800px;background:#fff;border-radius:38px;border:10px solid #1F2124;overflow:hidden;box-shadow:0 30px 70px rgba(31,33,36,0.32);position:relative">
+        <div style="height:34px;background:#6E1423;display:flex;align-items:center;justify-content:space-between;padding:0 22px;font-size:12px;color:#fff;font-family:'IBM Plex Mono',monospace">9:41<span>▪ ▪ ▪</span></div>
+        <div style="height:766px;overflow:hidden">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid #E8E5E2;background:#fff">
+            <img src="assets/logo.png" alt="Ecovis" style="height:38px;margin-left:-8px">
+            <div style="width:38px;height:38px;border-radius:8px;background:#F7EBED;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><span style="width:16px;height:2px;background:#6E1423"></span><span style="width:16px;height:2px;background:#6E1423"></span><span style="width:16px;height:2px;background:#6E1423"></span></div>
+          </div>
+          <div style="background:linear-gradient(135deg,#4E0D19,#6E1423 60%,#7E1A2C);color:#fff;padding:34px 22px 40px;position:relative;overflow:hidden">
+            <div style="position:absolute;top:-80px;right:-80px;width:280px;height:280px;border-radius:50%;background:#8E2136;opacity:0.5"></div>
+            <div style="position:relative">
+              <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#D98A94;margin-bottom:14px">Global Expertise. Local Commitment.</div>
+              <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:30px;line-height:1.1;margin-bottom:14px;text-wrap:pretty">Helping Businesses Succeed in Indonesia</div>
+              <p style="font-size:14.5px;line-height:1.55;color:rgba(255,255,255,0.82);margin:0 0 22px">Integrated audit, tax, accounting, payroll and advisory — backed by the global ECOVIS network.</p>
+              <a href="Contact.dc.html" style="display:block;text-align:center;background:#fff;color:#6E1423;font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;padding:14px;border-radius:3px;margin-bottom:10px" style-hover="background:#F3E6E8;color:#4E0D19">Schedule a Consultation</a>
+              <a href="Services.dc.html" style="display:block;text-align:center;border:1.5px solid rgba(255,255,255,0.5);color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;padding:13px;border-radius:3px" style-hover="border-color:#fff;color:#fff">Explore Our Services</a>
+            </div>
+          </div>
+          <div style="padding:24px 22px;background:#fff">
+            <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#A31631;margin-bottom:6px">What we do</div>
+            <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:22px;color:#26282B;line-height:1.2;margin-bottom:18px">One integrated team for every stage</div>
+            <sc-for list="{{ homeServices }}" as="s" hint-placeholder-count="3">
+              <a href="{{ s.href }}" style="display:block;border:1px solid #E8E4E1;border-radius:4px;padding:16px 18px;margin-bottom:10px;color:#26282B" style-hover="border-color:#6E1423;color:#26282B">
+                <div style="width:24px;height:3px;background:#6E1423;margin-bottom:10px"></div>
+                <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;margin-bottom:4px">{{ s.name }}</div>
+                <div style="font-size:12.5px;color:#6B7075;line-height:1.45">{{ s.blurb }}</div>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PHONE 3: SERVICE (TAX) ============ -->
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6B7075;letter-spacing:0.08em">03 · HALAMAN JASA (Pajak)</div>
+      <div style="width:390px;height:800px;background:#fff;border-radius:38px;border:10px solid #1F2124;overflow:hidden;box-shadow:0 30px 70px rgba(31,33,36,0.32);position:relative">
+        <div style="height:34px;background:#6E1423;display:flex;align-items:center;justify-content:space-between;padding:0 22px;font-size:12px;color:#fff;font-family:'IBM Plex Mono',monospace">9:41<span>▪ ▪ ▪</span></div>
+        <div style="height:766px;overflow:hidden">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid #E8E5E2;background:#fff">
+            <img src="assets/logo.png" alt="Ecovis" style="height:38px;margin-left:-8px">
+            <div style="width:38px;height:38px;border-radius:8px;background:#F7EBED;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><span style="width:16px;height:2px;background:#6E1423"></span><span style="width:16px;height:2px;background:#6E1423"></span><span style="width:16px;height:2px;background:#6E1423"></span></div>
+          </div>
+          <div style="background:linear-gradient(135deg,#4E0D19,#6E1423);color:#fff;padding:26px 22px 32px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(255,255,255,0.7);margin-bottom:14px">Services / Tax</div>
+            <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:30px;line-height:1.1;margin-bottom:12px">Tax</div>
+            <p style="font-size:14.5px;line-height:1.55;color:rgba(255,255,255,0.82);margin:0">Compliance, planning and dispute resolution — for the realities of Indonesian tax.</p>
+          </div>
+          <div style="padding:24px 22px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#A31631;text-transform:uppercase;margin-bottom:8px">The challenge</div>
+            <p style="font-size:14.5px;line-height:1.6;color:#3C4045;margin:0 0 22px">VAT at 12%, the Coretax migration and rising audit activity make compliance a moving target.</p>
+            <div style="background:#FBF7F6;border:1px dashed #D9C4C7;border-radius:6px;padding:18px;margin-bottom:20px">
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;color:#A31631;text-transform:uppercase;margin-bottom:6px">Free guide</div>
+              <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;color:#26282B;margin-bottom:12px">Tax Calendar & Changes 2026</div>
+              <a href="GuideLanding.dc.html" style="display:block;text-align:center;background:#6E1423;color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:14px;padding:12px;border-radius:3px" style-hover="background:#A31631;color:#fff">Download the guide</a>
+            </div>
+            <a href="Contact.dc.html" style="display:block;text-align:center;background:#26282B;color:#fff;font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;padding:15px;border-radius:3px" style-hover="background:#3A3D41;color:#fff">Talk to a tax partner →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PHONE 4: CONTACT ============ -->
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6B7075;letter-spacing:0.08em">04 · KONTAK (form langkah 1)</div>
+      <div style="width:390px;height:800px;background:#fff;border-radius:38px;border:10px solid #1F2124;overflow:hidden;box-shadow:0 30px 70px rgba(31,33,36,0.32);position:relative">
+        <div style="height:34px;background:#6E1423;display:flex;align-items:center;justify-content:space-between;padding:0 22px;font-size:12px;color:#fff;font-family:'IBM Plex Mono',monospace">9:41<span>▪ ▪ ▪</span></div>
+        <div style="height:766px;overflow:hidden">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid #E8E5E2;background:#fff">
+            <img src="assets/logo.png" alt="Ecovis" style="height:38px;margin-left:-8px">
+            <div style="width:38px;height:38px;border-radius:8px;background:#F7EBED;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><span style="width:16px;height:2px;background:#6E1423"></span><span style="width:16px;height:2px;background:#6E1423"></span><span style="width:16px;height:2px;background:#6E1423"></span></div>
+          </div>
+          <div style="background:linear-gradient(135deg,#4E0D19,#6E1423);color:#fff;padding:26px 22px 30px">
+            <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:28px;line-height:1.1;margin-bottom:10px">Talk to a partner this week</div>
+            <p style="font-size:14px;line-height:1.55;color:rgba(255,255,255,0.82);margin:0">We reply within one business day. First consultations without obligation.</p>
+          </div>
+          <div style="padding:22px">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+              <div style="width:26px;height:26px;border-radius:50%;background:#6E1423;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Manrope',sans-serif;font-weight:700;font-size:12px">1</div>
+              <span style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;color:#26282B">Need</span>
+              <div style="flex:1;height:1.5px;background:#E3DED9"></div>
+              <div style="width:26px;height:26px;border-radius:50%;background:#fff;border:1.5px solid #E3DED9;color:#7C716A;display:flex;align-items:center;justify-content:center;font-family:'Manrope',sans-serif;font-weight:700;font-size:12px">2</div>
+              <div style="flex:1;height:1.5px;background:#E3DED9"></div>
+              <div style="width:26px;height:26px;border-radius:50%;background:#fff;border:1.5px solid #E3DED9;color:#7C716A;display:flex;align-items:center;justify-content:center;font-family:'Manrope',sans-serif;font-weight:700;font-size:12px">3</div>
+            </div>
+            <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:19px;color:#26282B;margin-bottom:4px">What can we help with?</div>
+            <div style="font-size:13px;color:#6B7075;margin-bottom:16px">Pick the area closest to your situation.</div>
+            <sc-for list="{{ needs }}" as="n" hint-placeholder-count="4">
+              <div style="display:flex;align-items:center;gap:10px;border:1.5px solid {{ n.border }};background:{{ n.bg }};border-radius:4px;padding:14px 15px;margin-bottom:9px;font-size:14px;color:#3C4045">
+                <span style="width:16px;height:16px;border-radius:50%;border:1.5px solid {{ n.dot }};flex-shrink:0;display:flex;align-items:center;justify-content:center"><span style="width:8px;height:8px;border-radius:50%;background:{{ n.fill }}"></span></span>{{ n.name }}
+              </div>
+            </sc-for>
+            <div style="background:#6E1423;color:#fff;text-align:center;font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;padding:15px;border-radius:3px;margin-top:6px">Continue →</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1840}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      nav: [
+        { label: 'About', chev: '▾' },
+        { label: 'Services', chev: '▾' },
+        { label: 'Industries', chev: '›' },
+        { label: 'Insights', chev: '›' },
+        { label: 'Resources', chev: '›' },
+        { label: 'Contact', chev: '›' }
+      ],
+      homeServices: [
+        { name: 'Audit & Assurance', blurb: 'Statutory & special-purpose audits under ISA', href: 'Audit.dc.html' },
+        { name: 'Tax', blurb: 'Compliance, planning and dispute resolution', href: 'Tax.dc.html' },
+        { name: 'PT PMA Establishment', blurb: 'Company setup, licensing and secretarial', href: 'CompanySetup.dc.html' }
+      ],
+      needs: [
+        { name: 'Audit & Assurance', on: false },
+        { name: 'Tax', on: true },
+        { name: 'PT PMA / Company setup', on: false },
+        { name: 'Advisory / Corp. finance', on: false }
+      ].map(n => ({
+        name: n.name,
+        border: n.on ? '#6E1423' : '#E3DED9',
+        bg: n.on ? '#FBF7F6' : '#fff',
+        dot: n.on ? '#6E1423' : '#C9C4BF',
+        fill: n.on ? '#6E1423' : 'transparent'
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

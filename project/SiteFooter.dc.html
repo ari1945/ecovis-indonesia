@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>body{margin:0}a{color:#A31631;text-decoration:none}a:hover{color:#6E1423}</style>
+</helmet>
+<footer style="background:#1F2124;color:#B9BDC1;font-family:'IBM Plex Sans',sans-serif;font-size:14px">
+  <div style="max-width:1240px;margin:0 auto;padding:64px clamp(20px,5vw,48px) 48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:clamp(32px,4vw,48px)">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="font-family:'Manrope',sans-serif;font-weight:800;font-size:22px;color:#fff;letter-spacing:0.04em">ECOVIS <span style="font-weight:600;color:#C9535F">INDONESIA</span></div>
+      <p style="margin:0;line-height:1.65;color:#9BA0A5">{{ tTagline }}</p>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;color:#8A8F94;line-height:1.5;border-top:1px solid #33363A;padding-top:16px">
+        <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:#93989D">{{ tEntities }}</div>
+        <span><span style="color:#B9BDC1">ECOVIS KAP Pieter, Uways &amp; Partners</span><br>Audit &amp; Assurance · Izin Usaha KAP No. [nomor izin]</span>
+        <span><span style="color:#B9BDC1">ECOVIS KJPP Toha, Okky, Heru &amp; Partners</span><br>Valuation · Izin Usaha KJPP No. [nomor izin]</span>
+        <span><span style="color:#B9BDC1">ECOVIS PT Piesta Dinamika Consult</span><br>Tax &amp; Advisory · Izin Konsultan Pajak No. [nomor izin]</span>
+        <span style="color:#93989D">{{ tMemberships }}</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;color:#fff;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px">{{ tServices }}</div>
+      <sc-for list="{{ serviceLinks }}" as="l" hint-placeholder-count="6">
+        <a href="{{ l.href }}" style="color:#B9BDC1" style-hover="color:#fff">{{ l.label }}</a>
+      </sc-for>
+      <a href="Services.dc.html" style="color:#C9535F" style-hover="color:#fff">{{ tAllServices }} →</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;color:#fff;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px">{{ tCompany }}</div>
+      <sc-for list="{{ companyLinks }}" as="l" hint-placeholder-count="6">
+        <a href="{{ l.href }}" style="color:#B9BDC1" style-hover="color:#fff">{{ l.label }}</a>
+      </sc-for>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;color:#fff;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px">{{ tOffice }}</div>
+      <span style="line-height:1.6;color:#9BA0A5">Menara Kuningan, 8th Floor<br>Jl. H.R. Rasuna Said Blok X-7 Kav. 5<br>Jakarta Selatan 12940, Indonesia</span>
+      <span style="color:#9BA0A5;line-height:1.6">{{ tHours }}</span>
+      <a href="mailto:info@ecovisindonesia.com" style="color:#C9535F" style-hover="color:#fff">info@ecovisindonesia.com</a>
+      <a href="tel:+622129888000" style="color:#B9BDC1" style-hover="color:#fff">+62 21 2988 8000</a>
+      <a href="https://wa.me/6281XXXXXXXX" style="color:#B9BDC1;display:flex;align-items:center;gap:8px" style-hover="color:#fff"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:#25D366;color:#0B3D22;border-radius:3px;font-size:11px;font-weight:800">W</span> WhatsApp</a>
+      <a href="https://www.linkedin.com/company/ecovis" style="color:#B9BDC1;display:flex;align-items:center;gap:8px" style-hover="color:#fff"><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:#3A3D41;border-radius:3px;font-size:11px;font-weight:700;color:#fff">in</span> LinkedIn</a>
+    </div>
+  </div>
+  <div style="border-top:1px solid #33363A">
+    <div style="max-width:1240px;margin:0 auto;padding:20px clamp(20px,5vw,48px);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;font-size:12.5px;color:#93989D">
+      <span>{{ tCopyright }}</span>
+      <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+        <a href="PrivacyPolicy.dc.html" style="color:#93989D" style-hover="color:#fff">{{ tPrivacy }}</a>
+        <button onClick="{{ manageCookies }}" style="background:none;border:none;cursor:pointer;color:#93989D;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;padding:0" style-hover="color:#fff">{{ tCookieSettings }}</button>
+        <span>{{ tMember }}</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<sc-if value="{{ showCookie }}" hint-placeholder-val="{{ true }}">
+<div style="position:fixed;left:0;right:0;bottom:0;z-index:3000;background:#26282B;border-top:2px solid #6E1423;color:#D6D9DC;font-family:'IBM Plex Sans',sans-serif">
+  <div style="max-width:1240px;margin:0 auto;padding:18px clamp(20px,5vw,48px);display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+    <div style="flex:1;min-width:260px;font-size:13.5px;line-height:1.6">{{ tCookieBody }} <a href="PrivacyPolicy.dc.html" style="color:#E7A6AF" style-hover="color:#fff">{{ tPrivacy }}</a>.</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button onClick="{{ declineCookies }}" style="background:transparent;color:#D6D9DC;border:1px solid #4A4E52;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:13.5px;padding:10px 20px;border-radius:3px" style-hover="border-color:#B9BDC1;color:#fff">{{ tDecline }}</button>
+      <button onClick="{{ acceptCookies }}" style="background:#6E1423;color:#fff;border:none;cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:13.5px;padding:10px 22px;border-radius:3px" style-hover="background:#A31631">{{ tAccept }}</button>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { choice: null, lang: 'EN' };
+  componentDidMount() {
+    try { this.setState({ choice: localStorage.getItem('ecovis-cookie') || null }); } catch (e) {}
+    try { const l = localStorage.getItem('ecovis-lang'); if (l) this.setState({ lang: l }); } catch (e) {}
+    this._onLang = (e) => this.setState({ lang: (e && e.detail) || 'EN' });
+    window.addEventListener('ecovis-lang', this._onLang);
+  }
+  componentWillUnmount() { if (this._onLang) window.removeEventListener('ecovis-lang', this._onLang); }
+  save(v) { try { localStorage.setItem('ecovis-cookie', v); } catch (e) {} this.setState({ choice: v }); }
+  renderVals() {
+    const id = this.state.lang === 'ID';
+    const serviceLinks = [
+      ['Audit & Assurance', 'Audit & Asurans', 'Audit.dc.html'],
+      ['Tax', 'Pajak', 'Tax.dc.html'],
+      ['PT PMA Establishment', 'Pendirian PT PMA', 'CompanySetup.dc.html'],
+      ['Accounting & Payroll', 'Akuntansi & Penggajian', 'Accounting.dc.html'],
+      ['Advisory', 'Advisory', 'Advisory.dc.html'],
+      ['Transfer Pricing', 'Transfer Pricing', 'TransferPricing.dc.html']
+    ].map(([en, idn, href]) => ({ label: id ? idn : en, href }));
+    const companyLinks = [
+      ['About Us', 'Tentang Kami', 'About.dc.html'],
+      ['Industries', 'Industri', 'Industries.dc.html'],
+      ['Insights', 'Wawasan', 'Insights.dc.html'],
+      ['Resources', 'Sumber Daya', 'Resources.dc.html'],
+      ['Careers', 'Karier', 'Careers.dc.html'],
+      ['Contact', 'Kontak', 'Contact.dc.html']
+    ].map(([en, idn, href]) => ({ label: id ? idn : en, href }));
+    return {
+      serviceLinks, companyLinks,
+      tTagline: id ? 'Layanan audit, pajak, akuntansi, penggajian, dan advisory bisnis yang terintegrasi \u2014 didukung jaringan global ECOVIS di 90+ negara.' : 'Integrated audit, tax, accounting, payroll and business advisory services — backed by the global ECOVIS network in 90+ countries.',
+      tServices: id ? 'Layanan' : 'Services',
+      tAllServices: id ? 'Semua layanan' : 'All services',
+      tCompany: id ? 'Perusahaan' : 'Company',
+      tOffice: id ? 'Kantor Jakarta' : 'Jakarta Office',
+      tEntities: id ? 'Entitas & izin' : 'Legal entities & licences',
+      tMemberships: id ? 'Terdaftar pada IAPI, IKPI, dan MAPPI. Anggota independen ECOVIS International.' : 'Registered with IAPI, IKPI and MAPPI. An independent member of ECOVIS International.',
+      tHours: id ? 'Senin–Jumat, 08.30–17.30 WIB' : 'Monday–Friday, 08.30–17.30 WIB',
+      tCopyright: id ? '© 2026 ECOVIS Indonesia. Hak cipta dilindungi.' : '© 2026 ECOVIS Indonesia. All rights reserved.',
+      tPrivacy: id ? 'Kebijakan Privasi' : 'Privacy Policy',
+      tCookieSettings: id ? 'Pengaturan cookie' : 'Cookie settings',
+      tMember: id ? 'Anggota ECOVIS International' : 'Member of ECOVIS International',
+      tCookieBody: id ? 'Kami menggunakan cookie esensial untuk menjalankan situs ini dan, dengan persetujuan Anda, cookie analitik untuk meningkatkannya. Lihat' : 'We use essential cookies to run this site and, with your consent, analytics cookies to improve it. See our',
+      tDecline: id ? 'Tolak non-esensial' : 'Decline non-essential',
+      tAccept: id ? 'Terima semua' : 'Accept all',
+      showCookie: this.state.choice === null,
+      acceptCookies: () => this.save('all'),
+      declineCookies: () => this.save('essential'),
+      manageCookies: () => this.setState({ choice: null })
+    };
+  }
+}
+</script>
+</body>
+</html>

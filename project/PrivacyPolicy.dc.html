@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>html{scroll-behavior:smooth}body{margin:0;background:#fff}a{color:#A31631;text-decoration:none}a:hover{color:#6E1423}</style>
+</helmet>
+<div style="font-family:'IBM Plex Sans',sans-serif;color:#26282B">
+<dc-import name="SiteHeader" style="position:sticky;top:0;z-index:1000;display:block" hint-size="100%,116px"></dc-import>
+<div id="main" tabindex="-1"></div>
+
+<section data-screen-label="Privacy hero" style="background:linear-gradient(135deg,#4E0D19,#6E1423);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-260px;right:-160px;width:560px;height:560px;border-radius:50%;background:#8E2136;opacity:0.45"></div>
+  <div style="position:relative;max-width:880px;margin:0 auto;padding:60px 48px 64px">
+    <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#D98A94;margin-bottom:14px">{{ tKicker }}</div>
+    <h1 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(30px,4.5vw,42px);color:#fff;margin:0 0 14px">{{ tTitle }}</h1>
+    <p style="font-size:16px;line-height:1.6;color:rgba(255,255,255,0.8);margin:0;max-width:600px">{{ tIntro }}</p>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:rgba(255,255,255,0.6);margin-top:20px">{{ tUpdated }}</div>
+  </div>
+</section>
+
+<section data-screen-label="Privacy body" style="background:#fff">
+  <div style="max-width:1180px;margin:0 auto;padding:56px 48px 80px;display:grid;grid-template-columns:240px minmax(0,1fr);gap:56px;align-items:start">
+    <aside style="position:sticky;top:132px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#7C716A;margin-bottom:14px">{{ tContents }}</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <sc-for list="{{ toc }}" as="t" hint-placeholder-count="7">
+          <a href="{{ t.href }}" style="font-size:13.5px;color:#5C6166;line-height:1.4" style-hover="color:#6E1423">{{ t.text }}</a>
+        </sc-for>
+      </div>
+    </aside>
+    <div style="min-width:0">
+      <sc-for list="{{ sections }}" as="s" hint-placeholder-count="7">
+        <div style="margin-bottom:38px">
+          <h2 style="font-family:'Manrope',sans-serif;font-weight:800;font-size:23px;color:#26282B;margin:0 0 14px;text-wrap:pretty">{{ s.num }}. {{ s.title }}</h2>
+          <sc-for list="{{ s.paras }}" as="p" hint-placeholder-count="2">
+            <p style="font-size:16px;line-height:1.75;color:#3C4045;margin:0 0 16px;text-wrap:pretty">{{ p }}</p>
+          </sc-for>
+          <sc-if value="{{ s.hasList }}" hint-placeholder-val="">
+            <ul style="margin:0 0 8px;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px">
+              <sc-for list="{{ s.items }}" as="it" hint-placeholder-count="3">
+                <li style="display:flex;gap:12px;align-items:flex-start;font-size:15.5px;line-height:1.6;color:#3C4045"><span style="color:#A31631;font-weight:700;flex-shrink:0;margin-top:1px">→</span><span>{{ it }}</span></li>
+              </sc-for>
+            </ul>
+          </sc-if>
+        </div>
+      </sc-for>
+      <div style="background:#F6F4F2;border:1px solid #E8E4E1;border-radius:6px;padding:26px 28px;margin-top:8px">
+        <div style="font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;color:#26282B;margin-bottom:8px">{{ tContactTitle }}</div>
+        <p style="font-size:15px;line-height:1.7;color:#3C4045;margin:0">{{ tContactLead }} <a href="mailto:privacy@ecovisindonesia.com">privacy@ecovisindonesia.com</a>{{ tContactMid }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<dc-import name="SiteFooter" hint-size="100%,460px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1240}}">
+class Component extends DCLogic {
+  state = { lang: 'EN' };
+  componentDidMount() {
+    try { const l = localStorage.getItem('ecovis-lang'); if (l) this.setState({ lang: l }); } catch (e) {}
+    this._onLang = (e) => this.setState({ lang: (e && e.detail) || 'EN' });
+    window.addEventListener('ecovis-lang', this._onLang);
+  }
+  componentWillUnmount() { if (this._onLang) window.removeEventListener('ecovis-lang', this._onLang); }
+  renderVals() {
+    const id = this.state.lang === 'ID';
+    const pick = (en, idn) => (id ? idn : en);
+    const en = [
+      { title: 'Who we are', paras: ['ECOVIS Indonesia refers to the ECOVIS member firms operating in Indonesia \u2014 ECOVIS KAP Pieter, Uways & Partners; ECOVIS KJPP Toha, Okky, Heru & Partners; and ECOVIS PT Piesta Dinamika Consult. Acting as the data controller for information collected through this website.'] },
+      { title: 'Data we collect', paras: ['We collect only the data you provide and a limited set of technical data needed to operate the site.'], items: ['Contact details you submit through forms \u2014 name, company, work email, phone/WhatsApp, and the message you write', 'Marketing preferences, such as newsletter opt-in', 'Technical data \u2014 IP address, browser type, and pages viewed, collected via cookies and analytics'] },
+      { title: 'How we use your data', paras: ['We process personal data to respond to your inquiry, deliver requested guides, send updates you have opted into, and improve the website. We do not sell your personal data.'] },
+      { title: 'Legal basis (UU PDP)', paras: ['We rely on your consent for marketing communications, and on the necessity of taking steps at your request (pre-contract) to respond to service inquiries, consistent with Law No. 27 of 2022 on Personal Data Protection.'] },
+      { title: 'Cookies', paras: ['We use essential cookies to run the site and, with your consent, analytics cookies (e.g. Google Analytics 4) to understand usage. You can accept or decline non-essential cookies via the banner and change your choice at any time in your browser settings.'] },
+      { title: 'Sharing and transfers', paras: ['We may share data with trusted processors (e.g. email, CRM and analytics providers) under confidentiality terms, and with other ECOVIS network firms where relevant to your request. Where data is transferred outside Indonesia, we apply appropriate safeguards as required by UU PDP.'] },
+      { title: 'Retention', paras: ['We keep personal data only as long as needed for the purpose it was collected, or as required by applicable law and professional obligations, after which it is securely deleted or anonymised.'] },
+      { title: 'Your rights', paras: ['Under UU PDP you have the right to:'], items: ['Access, correct, or update your personal data', 'Withdraw consent and unsubscribe from marketing at any time', 'Request deletion, and to restrict or object to certain processing', 'Lodge a complaint with the relevant supervisory authority'] }
+    ];
+    const idn = [
+      { title: 'Siapa kami', paras: ['ECOVIS Indonesia merujuk pada firma anggota ECOVIS yang beroperasi di Indonesia \u2014 ECOVIS KAP Pieter, Uways & Partners; ECOVIS KJPP Toha, Okky, Heru & Partners; dan ECOVIS PT Piesta Dinamika Consult. Bertindak sebagai pengendali data atas informasi yang dikumpulkan melalui situs ini.'] },
+      { title: 'Data yang kami kumpulkan', paras: ['Kami hanya mengumpulkan data yang Anda berikan dan sejumlah terbatas data teknis yang dibutuhkan untuk menjalankan situs.'], items: ['Detail kontak yang Anda kirim melalui formulir \u2014 nama, perusahaan, email kantor, telepon/WhatsApp, dan pesan yang Anda tulis', 'Preferensi pemasaran, seperti keikutsertaan newsletter', 'Data teknis \u2014 alamat IP, jenis browser, dan halaman yang dilihat, dikumpulkan via cookie dan analitik'] },
+      { title: 'Bagaimana kami menggunakan data Anda', paras: ['Kami memproses data pribadi untuk menanggapi pertanyaan Anda, mengirim panduan yang diminta, mengirim pembaruan yang Anda setujui, dan meningkatkan situs. Kami tidak menjual data pribadi Anda.'] },
+      { title: 'Dasar hukum (UU PDP)', paras: ['Kami mengandalkan persetujuan Anda untuk komunikasi pemasaran, dan pada perlunya mengambil langkah atas permintaan Anda (pra-kontrak) untuk menanggapi pertanyaan layanan, sesuai UU No. 27 Tahun 2022 tentang Perlindungan Data Pribadi.'] },
+      { title: 'Cookie', paras: ['Kami menggunakan cookie esensial untuk menjalankan situs dan, dengan persetujuan Anda, cookie analitik (mis. Google Analytics 4) untuk memahami penggunaan. Anda dapat menerima atau menolak cookie non-esensial melalui banner dan mengubah pilihan kapan saja di pengaturan browser Anda.'] },
+      { title: 'Pembagian dan transfer', paras: ['Kami dapat membagikan data dengan pemroses tepercaya (mis. penyedia email, CRM, dan analitik) berdasarkan ketentuan kerahasiaan, dan dengan firma jaringan ECOVIS lain bila relevan dengan permintaan Anda. Bila data ditransfer ke luar Indonesia, kami menerapkan pengamanan yang sesuai sebagaimana diwajibkan UU PDP.'] },
+      { title: 'Retensi', paras: ['Kami menyimpan data pribadi hanya selama diperlukan untuk tujuan pengumpulannya, atau sebagaimana diwajibkan hukum yang berlaku dan kewajiban profesional, setelah itu dihapus secara aman atau dianonimkan.'] },
+      { title: 'Hak Anda', paras: ['Berdasarkan UU PDP Anda berhak untuk:'], items: ['Mengakses, memperbaiki, atau memperbarui data pribadi Anda', 'Menarik persetujuan dan berhenti berlangganan pemasaran kapan saja', 'Meminta penghapusan, serta membatasi atau menolak pemrosesan tertentu', 'Mengajukan pengaduan kepada otoritas pengawas terkait'] }
+    ];
+    const src = id ? idn : en;
+    const withMeta = src.map((s, i) => ({ ...s, num: i + 1, hasList: !!s.items, id: 'sec-' + (i + 1) }));
+    return {
+      tKicker: pick('Legal', 'Legal'),
+      tTitle: pick('Privacy Policy', 'Kebijakan Privasi'),
+      tIntro: pick('How ECOVIS Indonesia collects, uses and protects your personal data, in line with Law No. 27 of 2022 on Personal Data Protection (UU PDP).', 'Bagaimana ECOVIS Indonesia mengumpulkan, menggunakan, dan melindungi data pribadi Anda, sesuai UU No. 27 Tahun 2022 tentang Perlindungan Data Pribadi (UU PDP).'),
+      tUpdated: pick('Last updated: 1 July 2026', 'Terakhir diperbarui: 1 Juli 2026'),
+      tContents: pick('Contents', 'Daftar isi'),
+      tContactTitle: pick('Contact our Data Protection contact', 'Hubungi kontak Perlindungan Data kami'),
+      tContactLead: pick('To exercise your rights or ask about this policy, email', 'Untuk menggunakan hak Anda atau bertanya tentang kebijakan ini, kirim email ke'),
+      tContactMid: pick(' or write to Menara Kuningan, 8th Floor, Jl. H.R. Rasuna Said Blok X-7 Kav. 5, Jakarta Selatan 12940.', ' atau surati Menara Kuningan, Lantai 8, Jl. H.R. Rasuna Said Blok X-7 Kav. 5, Jakarta Selatan 12940.'),
+      sections: withMeta,
+      toc: withMeta.map(s => ({ text: s.num + '. ' + s.title, href: '#' + s.id }))
+    };
+  }
+}
+</script>
+</body>
+</html>
