@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Manrope, IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { HTML_LANG, LANGS, isLang, t, type Lang } from '@/lib/i18n';
-import { SITE } from '@/lib/site';
+import { IS_PRODUCTION_SITE, SITE } from '@/lib/site';
 import '@/styles/globals.css';
 
 const manrope = Manrope({
@@ -41,6 +41,8 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL(SITE.url),
+    // robots.txt is only advisory; preview deployments also carry a meta tag.
+    ...(IS_PRODUCTION_SITE ? {} : { robots: { index: false, follow: false } }),
     title: {
       default: t(
         lang,

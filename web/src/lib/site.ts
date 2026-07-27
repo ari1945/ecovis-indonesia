@@ -1,5 +1,29 @@
 import { bi, t, type Lang } from './i18n';
 
+/** The canonical production origin. */
+const PRODUCTION_URL = 'https://www.ecovisindonesia.com';
+
+/**
+ * Absolute origin used for canonicals, hreflang and the sitemap.
+ *
+ * Set NEXT_PUBLIC_SITE_URL per environment. On a Vercel preview we fall back to
+ * that deployment's own URL rather than the production domain, so a preview
+ * never emits canonicals pointing at the live site.
+ */
+function resolveSiteUrl(): string {
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL;
+  if (explicit) return explicit.replace(/\/$/, '');
+
+  const vercelUrl = process.env.NEXT_PUBLIC_VERCEL_URL ?? process.env.VERCEL_URL;
+  if (vercelUrl && process.env.VERCEL_ENV !== 'production') return `https://${vercelUrl}`;
+
+  return PRODUCTION_URL;
+}
+
+/** True only on the real production domain — gates indexing. */
+export const IS_PRODUCTION_SITE =
+  resolveSiteUrl() === PRODUCTION_URL && process.env.VERCEL_ENV !== 'preview';
+
 /**
  * Contact details are placeholders carried over from the design prototype.
  * The design chats flag these as unverified — replace before go-live.
@@ -7,7 +31,7 @@ import { bi, t, type Lang } from './i18n';
 export const SITE = {
   name: 'ECOVIS Indonesia',
   domain: 'ecovisindonesia.com',
-  url: 'https://www.ecovisindonesia.com',
+  url: resolveSiteUrl(),
   email: 'info@ecovisindonesia.com',
   phone: '+62 21 2988 8000',
   phoneHref: 'tel:+622129888000',

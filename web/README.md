@@ -46,6 +46,28 @@ toggle-only bilingual mode as a P0 SEO defect.
 the locale root layout but not the header and footer — they are single-focus by
 design.
 
+## Deployment
+
+Vercel auto-detects the framework. Two settings matter:
+
+- **Root Directory** → `web` (the repo root also holds the design bundle)
+- **Environment variable** → `NEXT_PUBLIC_SITE_URL`, set to the deployment's own
+  origin, e.g. `https://www.ecovisindonesia.com` on production
+
+`NEXT_PUBLIC_SITE_URL` drives `metadataBase`, canonicals, hreflang and the
+sitemap. If it is unset the app falls back to the Vercel deployment URL on
+preview, and to the production domain otherwise.
+
+Indexing is gated on that same value (`IS_PRODUCTION_SITE` in `src/lib/site.ts`).
+Anything that is not the production domain serves `Disallow: /` in `robots.txt`
+**and** a `noindex, nofollow` meta tag, so preview deployments cannot compete
+with the live site for the same content. Verify after a deploy:
+
+```bash
+curl -s https://<deployment>/robots.txt
+curl -s https://<deployment>/en | grep '<link rel="canonical"'
+```
+
 ## Content and i18n
 
 Copy lives in `src/lib/content/` as `[en, id]` pairs, read with

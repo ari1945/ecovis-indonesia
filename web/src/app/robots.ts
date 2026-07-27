@@ -1,7 +1,13 @@
 import type { MetadataRoute } from 'next';
-import { SITE } from '@/lib/site';
+import { IS_PRODUCTION_SITE, SITE } from '@/lib/site';
 
 export default function robots(): MetadataRoute.Robots {
+  // Preview and staging deployments must never be indexed — they would compete
+  // with the production domain for the same content.
+  if (!IS_PRODUCTION_SITE) {
+    return { rules: [{ userAgent: '*', disallow: '/' }] };
+  }
+
   return {
     rules: [
       {
