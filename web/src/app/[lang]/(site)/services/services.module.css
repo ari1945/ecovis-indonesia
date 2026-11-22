@@ -56,7 +56,7 @@
 .serviceGrid {
   padding-block: clamp(52px, 7vw, 72px);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
   gap: clamp(40px, 5vw, 64px);
 }
 
@@ -134,7 +134,7 @@
 
 .serviceDetail {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
   gap: 32px;
 }
 

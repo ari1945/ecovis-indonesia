@@ -90,7 +90,7 @@ export default async function CareersPage({ params }: { params: Promise<{ lang: 
       </section>
 
       <section className="bg-ink">
-        <div className="wrap section" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: 20 }}>
+        <div className="wrap section" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(280px,100%),1fr))', gap: 20 }}>
           {programs.map((program) => (
             <div key={program.title[0]} className={styles.program}>
               <div className={styles.programKicker}>{bi(lang, program.kicker)}</div>

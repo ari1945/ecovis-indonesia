@@ -90,7 +90,7 @@
 
 .needGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
   gap: 12px;
 }
 
@@ -156,7 +156,7 @@
 
 .fieldGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
   gap: 14px;
 }
 
@@ -405,4 +405,15 @@
   font-weight: 600;
   font-size: 14.5px;
   margin-top: 20px;
+}
+
+/* Step names would force the progress row wider than a phone screen. */
+@media (max-width: 479px) {
+  .stepName {
+    display: none;
+  }
+
+  .stepNameActive {
+    display: inline;
+  }
 }

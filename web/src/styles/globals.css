@@ -536,69 +536,69 @@ h4 {
 /* auto-fit grids keep the fixed-column prototype layouts collapsing gracefully
    on narrow screens without media queries. */
 .grid--stats {
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
   gap: 32px;
 }
 
 .grid--services {
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
   gap: 16px;
 }
 
 .grid--industries {
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
   gap: 14px;
 }
 
 .grid--why {
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
   gap: 40px 48px;
 }
 
 .grid--articles {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
   gap: 20px;
 }
 
 .grid--split {
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
   gap: clamp(40px, 6vw, 72px);
   align-items: center;
 }
 
 .grid--two {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
   gap: clamp(36px, 5vw, 56px);
 }
 
 .grid--proof {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
   gap: clamp(40px, 5vw, 64px);
   align-items: center;
 }
 
 .grid--scope {
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
   gap: 16px;
 }
 
 .grid--trust {
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
   gap: 28px;
 }
 
 .grid--steps {
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr));
   gap: 0;
 }
 
 .grid--tiles {
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
   gap: 14px;
 }
 
 .grid--quad {
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr));
   gap: 14px;
 }
 
@@ -712,7 +712,7 @@ a.card:hover {
 .stat__value {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 40px;
+  font-size: clamp(30px, 8.5vw, 40px);
   color: var(--maroon-800);
   line-height: 1;
 }
@@ -724,6 +724,8 @@ a.card:hover {
 }
 
 .stat-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
   background: var(--ink-700);
   border: 1px solid var(--ink-600);
   border-radius: var(--radius-md);
@@ -736,7 +738,7 @@ a.card:hover {
 .stat-tile__value {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 34px;
+  font-size: clamp(26px, 7.5vw, 34px);
   color: var(--white);
   line-height: 1;
 }
