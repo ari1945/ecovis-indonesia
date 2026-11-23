@@ -112,6 +112,16 @@ checkboxes gating submission, `aria-invalid`/`aria-describedby` on errors.
 
 ## Admin console
 
+`/admin` is protected by HTTP Basic Auth (`src/lib/admin-auth.ts`, wired in
+`src/middleware.ts`). Set credentials in the hosting dashboard, never in code:
+
+- `ADMIN_PASSWORD` — required. **If unset, `/admin` is locked for everyone**
+  (fails closed with HTTP 503).
+- `ADMIN_USER` — optional, defaults to `admin`.
+
+Environment variables are read at build time on Vercel, so redeploy after
+changing them.
+
 `/admin` is a **UX reference, not a production CMS**. State is in-memory and
 resets on reload. The design bundle's Blueprint (section 09) recommends an
 off-the-shelf CMS + CRM and treating this console as the requirements spec.

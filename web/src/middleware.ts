@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server';
+import { guardAdmin } from '@/lib/admin-auth';
 import { DEFAULT_LANG, LANGS } from '@/lib/i18n';
 
 const PUBLIC_FILE = /\.[^/]+$/;
@@ -11,8 +12,12 @@ const PUBLIC_FILE = /\.[^/]+$/;
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // The admin console sits behind a password (see src/lib/admin-auth.ts).
+  if (pathname === '/admin' || pathname.startsWith('/admin/')) {
+    return guardAdmin(request);
+  }
+
   if (
-    pathname.startsWith('/admin') ||
     pathname.startsWith('/api') ||
     pathname.startsWith('/_next') ||
     PUBLIC_FILE.test(pathname)
